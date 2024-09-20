@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-07 09:00+0000\n"
-"PO-Revision-Date: 2024-09-07 08:12-0300\n"
+"POT-Creation-Date: 2024-09-19 20:09+0000\n"
+"PO-Revision-Date: 2024-09-20 08:34-0300\n"
 "Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>>\n"
 "Language: pt_BR\n"
@@ -69,7 +69,8 @@ msgstr "Sensível"
 msgid "Contains sensitive data."
 msgstr "Contém dados sensíveis."
 
-#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:373
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:291
+#: gsecrets/entry_page.py:448
 msgid "_Add"
 msgstr "_Adicionar"
 
@@ -131,7 +132,7 @@ msgstr "Cor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:237
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
 msgid "Create Safe"
 msgstr "Criar cofre"
 
@@ -345,50 +346,59 @@ msgid "Icon"
 msgstr "Ícone"
 
 #: data/gtk/entry_page.ui:218
+msgid "Tags"
+msgstr "Marcadores"
+
+#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:289
+msgid "Add New Tag"
+msgstr "Adicionar novo marcador"
+
+#: data/gtk/entry_page.ui:245
 msgid "Attachments"
 msgstr "Anexos"
 
-#: data/gtk/entry_page.ui:222
+#: data/gtk/entry_page.ui:249
 msgid "_Add Attachment"
 msgstr "_Adicionar anexo"
 
-#: data/gtk/entry_page.ui:231
+#: data/gtk/entry_page.ui:258
 msgid "Attributes"
 msgstr "Atributos"
 
-#: data/gtk/entry_page.ui:236
+#: data/gtk/entry_page.ui:263
 msgid "Add Attr_ibute"
 msgstr "Adicionar atr_ibuto"
 
-#: data/gtk/entry_page.ui:244
+#: data/gtk/entry_page.ui:271
 msgid "Expiration Date"
 msgstr "Data de expiração"
 
-#: data/gtk/entry_page.ui:257
+#: data/gtk/entry_page.ui:284
 msgid "_Show More"
 msgstr "_Mostrar mais"
 
-#: data/gtk/entry_page.ui:271
+#: data/gtk/entry_page.ui:298
 msgid "D_uplicate"
 msgstr "D_uplicar"
 
-#: data/gtk/entry_page.ui:275
+#: data/gtk/entry_page.ui:302
 msgid "_References"
 msgstr "_Referências"
 
-#: data/gtk/entry_page.ui:279 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "_Propriedades"
 
-#: data/gtk/entry_page.ui:285
+#: data/gtk/entry_page.ui:312
 msgid "_Save in History"
 msgstr "Sal_var no histórico"
 
-#: data/gtk/entry_page.ui:289
+#: data/gtk/entry_page.ui:316
 msgid "Show _History"
 msgstr "Mostrar _histórico"
 
-#: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "E_xcluir"
 
@@ -690,12 +700,12 @@ msgstr "Você deseja escrever todas as alterações ao cofre?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:416
+#: gsecrets/widgets/window.py:419
 msgid "_Quit Without Saving"
 msgstr "_Sair sem salvar"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:417
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
 msgid "_Don't Quit"
 msgstr "_Não sair"
 
@@ -714,8 +724,8 @@ msgstr "Reabre o último cofre aberto."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
-#: gsecrets/widgets/window.py:229 gsecrets/widgets/window.py:241
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
 msgid "Safe"
 msgstr "Cofre"
 
@@ -728,7 +738,6 @@ msgid "Save every change automatically."
 msgstr "Salva todas as alterações automaticamente."
 
 #: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
-#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Desbloquear"
 
@@ -849,7 +858,7 @@ msgstr "Limpa"
 msgid "Unlock Safe"
 msgstr "Desbloquear cofre"
 
-#: data/gtk/unlock_database.ui:51
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
@@ -865,7 +874,8 @@ msgstr "Selecionar itens"
 msgid "Go Back"
 msgstr "Voltar"
 
-#: data/gtk/unlocked_database.ui:41
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:290
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Cancelar"
@@ -1184,38 +1194,46 @@ msgstr "Senhas não conferem"
 msgid "Unable to create database"
 msgstr "Não foi possível criar um banco de dados"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:98
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "Falha ao gerar a chave composta"
 
-#: gsecrets/entry_page.py:259 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:283
+msgid "Enter tag name"
+msgstr "Digite o nome do marcador"
+
+#: gsecrets/entry_page.py:313
+msgid "The tag already exists"
+msgstr "O marcador já existe"
+
+#: gsecrets/entry_page.py:334 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "Salvo no histórico"
 
-#: gsecrets/entry_page.py:278 gsecrets/entry_row.py:163
+#: gsecrets/entry_page.py:353 gsecrets/entry_row.py:163
 #: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "Nome de usuário copiado"
 
-#: gsecrets/entry_page.py:283 gsecrets/entry_page.py:416
+#: gsecrets/entry_page.py:358 gsecrets/entry_page.py:491
 msgid "Address copied"
 msgstr "Endereço copiado"
 
-#: gsecrets/entry_page.py:292 gsecrets/entry_page.py:347
+#: gsecrets/entry_page.py:367 gsecrets/entry_page.py:422
 msgid "One-time password copied"
 msgstr "Senha descartável copiada"
 
-#: gsecrets/entry_page.py:325
+#: gsecrets/entry_page.py:400
 msgid "Could not open URL"
 msgstr "Não foi possível abrir a URL"
 
-#: gsecrets/entry_page.py:335
+#: gsecrets/entry_page.py:410
 msgid "The address is not valid"
 msgstr "O endereço não é válido"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:447
 msgid "Select Attachments"
 msgstr "Selecione o anexo"
 
@@ -1324,16 +1342,12 @@ msgstr "Por favor insira um cartão inteligente e tente novamente."
 
 #: gsecrets/provider/pkcs11_provider.py:200
 #: gsecrets/widgets/database_settings_dialog.py:246
-msgid "OK"
-msgstr "OK"
+msgid "_OK"
+msgstr "_OK"
 
 #: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "Desbloquear seu cartão inteligente"
-
-#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
-msgid "Cancel"
-msgstr "Cancelar"
 
 #: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
@@ -1420,7 +1434,7 @@ msgstr "Clone"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
-#: gsecrets/widgets/window.py:415
+#: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "Não foi possível salvar o cofre"
 
@@ -1439,10 +1453,6 @@ msgstr ""
 "Você está excluindo elementos da lixeira, exclusão essa que não pode ser "
 "desfeita."
 
-#: gsecrets/selection_manager.py:112
-msgid "Delete"
-msgstr "Excluir"
-
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "Operação cancelada: movendo o grupo atualmente ativo"
@@ -1452,11 +1462,11 @@ msgid "Move completed"
 msgstr "Movimentação concluída"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:105
+#: gsecrets/unlock_database.py:106
 msgid "Safe {} is already open"
 msgstr "Cofre {} já está aberto"
 
-#: gsecrets/unlock_database.py:182
+#: gsecrets/unlock_database.py:185
 msgid "Failed to unlock Safe"
 msgstr "Falha ao desbloquear o cofre"
 
@@ -1496,7 +1506,7 @@ msgstr "Copiado"
 msgid "Safe locked due to inactivity"
 msgstr "Cofre bloqueado devido a inatividade"
 
-#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
 #: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
@@ -1650,37 +1660,43 @@ msgstr "Salvar Backup"
 msgid "Could not backup safe"
 msgstr "Não foi possível efetuar backup do cofre"
 
-#: gsecrets/widgets/window.py:150
+#: gsecrets/widgets/window.py:151
 msgid "Any file type"
 msgstr "Todo tipo de arquivo"
 
-#: gsecrets/widgets/window.py:157
+#: gsecrets/widgets/window.py:158
 msgid "Select Safe"
 msgstr "Selecionar cofre"
 
-#: gsecrets/widgets/window.py:174
+#: gsecrets/widgets/window.py:175
 msgid "File does not have a valid path"
 msgstr "O arquivo não possui um caminho válido"
 
-#: gsecrets/widgets/window.py:207
+#: gsecrets/widgets/window.py:208
 msgid "Safe is already open"
 msgstr "Cofre já está aberto"
 
-#: gsecrets/widgets/window.py:239
+#: gsecrets/widgets/window.py:240
 msgid "_Create"
 msgstr "_Criar"
 
-#: gsecrets/widgets/window.py:261
+#: gsecrets/widgets/window.py:262
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Não foi possível criar cofre: o cofre já está aberto"
 
-#: gsecrets/widgets/window.py:302 gsecrets/widgets/window.py:315
+#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
 msgid "Could not create new Safe"
 msgstr "Não foi possível criar novo cofre"
 
-#: gsecrets/widgets/window.py:392
+#: gsecrets/widgets/window.py:395
 msgid "Could not save safe"
 msgstr "Não foi possível salvar o cofre"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Delete"
+#~ msgstr "Excluir"
 
 #~ msgid "Automatically lock the safe when the session is locked."
 #~ msgstr "Bloqueia o cofre automaticamente quando a sessão é bloqueada."
@@ -1787,9 +1803,6 @@ msgstr "Não foi possível salvar o cofre"
 
 #~ msgid "Enter character here…"
 #~ msgstr "Insira caractere aqui…"
-
-#~ msgid "Enter Character"
-#~ msgstr "Inserir caractere"
 
 #~ msgid "_Select Keyfile"
 #~ msgstr "_Selecionar arquivo de chave"

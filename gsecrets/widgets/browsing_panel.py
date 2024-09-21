@@ -206,7 +206,7 @@ class BrowsingPanel(Adw.Bin):
         if item.is_root_group:
             return False
 
-        if item.tags:
+        if not item.is_group and item.tags:
             for tag in item.tags:
                 if self._query in tag.lower():
                     return True

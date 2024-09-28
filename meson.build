@@ -1,6 +1,6 @@
 project('secrets',
         version: '10.1',
-        meson_version: '>= 0.59',
+        meson_version: '>= 0.64',
         license: 'GPL-3.0-only'
        )
 i18n = import('i18n')
@@ -81,4 +81,5 @@ gnome.post_install(
   gtk_update_icon_cache: true,
   glib_compile_schemas: true,
   update_desktop_database: true,
+  update_mime_database: true,
 )

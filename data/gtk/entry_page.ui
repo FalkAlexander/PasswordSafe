@@ -228,14 +228,9 @@
                   </object>
                 </property>
                 <child>
-                  <object class="GtkFlowBox" id="_tag_entry_box">
-                    <property name="max-children-per-line">10</property>
-                    <property name="min-children-per-line">5</property>
-                    <property name="row-spacing">6</property>
-                    <property name="column-spacing">6</property>
-                    <accessibility>
-                      <relation name="labelled-by">_tags_group</relation>
-                    </accessibility>
+                  <object class="AdwWrapBox" id="_tag_entry_box">
+                    <property name="line-spacing">6</property>
+                    <property name="child-spacing">6</property>
                   </object>
                 </child>
               </object>

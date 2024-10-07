@@ -72,6 +72,8 @@ class EntryPage(Adw.Bin):
 
     safe_entry = GObject.Property(type=SafeEntry)
 
+    _tags: list[EntryPageTag] = []
+
     def __init__(
         self,
         u_d: UnlockedDatabase,
@@ -254,7 +256,10 @@ class EntryPage(Adw.Bin):
     def _update_tags(self):
         safe_entry = self.props.safe_entry
 
-        self._tag_entry_box.remove_all()
+        for tag in self._tags:
+            self._tag_entry_box.remove(tag)
+
+        self._tags = []
 
         if safe_entry.tags:
             for tag in safe_entry.tags:
@@ -265,6 +270,7 @@ class EntryPage(Adw.Bin):
                     tag,
                 )
                 self._tag_entry_box.append(widget)
+                self._tags.append(widget)
 
     def _on_remove_button_clicked(self, _button, tag_name):
         safe_entry = self.props.safe_entry

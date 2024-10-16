@@ -166,14 +166,23 @@ class DatabaseManager(GObject.Object):
         logging.debug("Saving database %s", self.path)
         self.save_running = True
 
-        try:
-            self.db.save()
-        except Exception as err:  # pylint: disable=broad-except
-            err = generic_error(str(err))
-            task.return_error(err)
-        else:
-            self._update_file_monitor()
-            task.return_boolean(True)
+        with io.BytesIO() as buf:
+            try:
+                self.db.save(buf)
+            except Exception as err:  # pylint: disable=broad-except
+                err = generic_error(str(err))
+                task.return_error(err)
+            else:
+                flags = Gio.FileCreateFlags.NONE
+                gfile = Gio.File.new_for_path(self._path)
+                contents = buf.getvalue()
+                try:
+                    gfile.replace_contents(contents, None, False, flags, None)
+                except GLib.Error as err:  # pylint: disable=broad-except
+                    task.return_error(err)
+                else:
+                    self._update_file_monitor()
+                    task.return_boolean(True)
 
     def save_finish(self, result: Gio.AsyncResult) -> bool:
         """Finish save_async.

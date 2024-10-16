@@ -278,6 +278,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
         if element := self.active_element:
             parent_group = element.parentgroup
             self.browsing_panel.unselect(element)
+            self.active_element = parent_group
             if element.trash():
                 elements = []
             else:

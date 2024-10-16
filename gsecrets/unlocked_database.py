@@ -196,6 +196,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self._split_view.props.content = page
         self._split_view.props.show_content = True
 
+        self.browsing_panel.selection_model.props.selected_item = element
+
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
 

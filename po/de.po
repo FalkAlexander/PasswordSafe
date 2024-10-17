@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-19 20:09+0000\n"
-"PO-Revision-Date: 2024-09-20 11:23+0200\n"
+"POT-Creation-Date: 2024-10-17 17:11+0000\n"
+"PO-Revision-Date: 2024-10-17 20:08+0200\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -68,8 +68,8 @@ msgstr "Sensibel"
 msgid "Contains sensitive data."
 msgstr "Enthält sensible Daten."
 
-#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:291
-#: gsecrets/entry_page.py:448
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
 msgid "_Add"
 msgstr "_Hinzufügen"
 
@@ -349,58 +349,62 @@ msgstr "Symbol"
 msgid "Tags"
 msgstr "Stichwörter"
 
-#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:289
+#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "Neues Stichwort hinzufügen"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:240
 msgid "Attachments"
 msgstr "Anhänge"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:244
 msgid "_Add Attachment"
 msgstr "_Anhang hinzufügen"
 
-#: data/gtk/entry_page.ui:258
+#: data/gtk/entry_page.ui:253
 msgid "Attributes"
 msgstr "Attribute"
 
-#: data/gtk/entry_page.ui:263
+#: data/gtk/entry_page.ui:258
 msgid "Add Attr_ibute"
 msgstr "Attr_ibut hinzufügen"
 
-#: data/gtk/entry_page.ui:271
+#: data/gtk/entry_page.ui:266
 msgid "Expiration Date"
 msgstr "Ablaufdatum"
 
-#: data/gtk/entry_page.ui:284
+#: data/gtk/entry_page.ui:279
 msgid "_Show More"
 msgstr "_Mehr anzeigen"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:293
 msgid "D_uplicate"
 msgstr "D_uplizieren"
 
-#: data/gtk/entry_page.ui:302
+#: data/gtk/entry_page.ui:297
 msgid "_References"
 msgstr "_Referenzen"
 
-#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:301 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "_Eigenschaften"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:307
 msgid "_Save in History"
 msgstr "In der Chronik _speichern"
 
-#: data/gtk/entry_page.ui:316
+#: data/gtk/entry_page.ui:311
 msgid "Show _History"
 msgstr "_Chronik anzeigen"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:81
+#: data/gtk/entry_page.ui:317 data/gtk/group_page.ui:81
 #: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "_Löschen"
+
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "Entfernen"
 
 #: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
@@ -867,7 +871,7 @@ msgstr "_Entsperren"
 msgid "Browser"
 msgstr "Browser"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:693
 msgid "Select Items"
 msgstr "Einträge auswählen"
 
@@ -875,7 +879,7 @@ msgstr "Einträge auswählen"
 msgid "Go Back"
 msgstr "Zurückgehen"
 
-#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:290
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
 #: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
@@ -1171,15 +1175,15 @@ msgstr ""
 "und stellt eine einfache und übersichtliche Schnittstelle für die Verwaltung "
 "von Passwortdatenbanken bereit."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:338
 msgid "Password management"
 msgstr "Passwort-Verwaltung"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:342
 msgid "Safe unlocking"
 msgstr "Safe-Entsperrung"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:346
 msgid "Safe creation"
 msgstr "Safe-Erstellung"
 
@@ -1202,41 +1206,41 @@ msgstr "Datenbank konnte nicht erzeugt werden"
 msgid "Failed to generate composite key"
 msgstr "Erzeugung eines Verbundschlüssels fehlgeschlagen"
 
-#: gsecrets/entry_page.py:283
+#: gsecrets/entry_page.py:289
 msgid "Enter tag name"
 msgstr "Stichwort eingeben"
 
-#: gsecrets/entry_page.py:313
+#: gsecrets/entry_page.py:319
 msgid "The tag already exists"
 msgstr "Das Stichwort existiert bereits"
 
-#: gsecrets/entry_page.py:334 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "In Chronik gespeichert"
 
-#: gsecrets/entry_page.py:353 gsecrets/entry_row.py:163
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:163
 #: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "Benutzername kopiert"
 
-#: gsecrets/entry_page.py:358 gsecrets/entry_page.py:491
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:497
 msgid "Address copied"
 msgstr "Adresse kopiert"
 
-#: gsecrets/entry_page.py:367 gsecrets/entry_page.py:422
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
 msgid "One-time password copied"
 msgstr "Einmalpasswort kopiert"
 
-#: gsecrets/entry_page.py:400
+#: gsecrets/entry_page.py:406
 msgid "Could not open URL"
 msgstr "Adresse konnte nicht geöffnet werden"
 
-#: gsecrets/entry_page.py:410
+#: gsecrets/entry_page.py:416
 msgid "The address is not valid"
 msgstr "Die Adresse ist ungültig"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:447
+#: gsecrets/entry_page.py:453
 msgid "Select Attachments"
 msgstr "Anhänge auswählen"
 
@@ -1446,7 +1450,7 @@ msgstr "Klonen"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/unlocked_database.py:243 gsecrets/unlocked_database.py:531
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "Safe konnte nicht gespeichert werden"
@@ -1483,44 +1487,44 @@ msgstr "Safe {} ist bereits geöffnet"
 msgid "Failed to unlock Safe"
 msgstr "Safe konnte nicht entsperrt werden"
 
-#: gsecrets/unlocked_database.py:244
+#: gsecrets/unlocked_database.py:246
 msgid "Safe saved"
 msgstr "Safe gespeichert"
 
-#: gsecrets/unlocked_database.py:246
+#: gsecrets/unlocked_database.py:248
 msgid "No changes made"
 msgstr "Keine Änderungen vorgenommen"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:296
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Element gelöscht"
 msgstr[1] "{} Elemente gelöscht"
 
-#: gsecrets/unlocked_database.py:298
+#: gsecrets/unlocked_database.py:301
 msgid "Deletion completed"
 msgstr "Löschen abgeschlossen"
 
-#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
+#: gsecrets/unlocked_database.py:306 gsecrets/unlocked_database.py:330
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: gsecrets/unlocked_database.py:326
+#: gsecrets/unlocked_database.py:329
 msgid "Attribute deleted"
 msgstr "Attribut gelöscht"
 
-#: gsecrets/unlocked_database.py:355
+#: gsecrets/unlocked_database.py:358
 msgid "Copied"
 msgstr "Kopiert"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:455
+#: gsecrets/unlocked_database.py:458
 msgid "Safe locked due to inactivity"
 msgstr "Safe aufgrund von Inaktivität gesperrt"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:693
+#: gsecrets/unlocked_database.py:696
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} ausgewählt"

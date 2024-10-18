@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-19 20:09+0000\n"
-"PO-Revision-Date: 2024-09-21 19:55+0800\n"
+"POT-Creation-Date: 2024-10-17 15:44+0000\n"
+"PO-Revision-Date: 2024-10-18 08:30+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 46.1\n"
+"X-Generator: Gtranslator 47.0\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -57,8 +57,8 @@ msgstr "敏感"
 msgid "Contains sensitive data."
 msgstr "包含敏感数据。"
 
-#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:291
-#: gsecrets/entry_page.py:448
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
 msgid "_Add"
 msgstr "添加(_A)"
 
@@ -335,58 +335,62 @@ msgstr "图标"
 msgid "Tags"
 msgstr "标签"
 
-#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:289
+#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "添加新标签"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:240
 msgid "Attachments"
 msgstr "附件"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:244
 msgid "_Add Attachment"
 msgstr "添加附件(_A)"
 
-#: data/gtk/entry_page.ui:258
+#: data/gtk/entry_page.ui:253
 msgid "Attributes"
 msgstr "属性"
 
-#: data/gtk/entry_page.ui:263
+#: data/gtk/entry_page.ui:258
 msgid "Add Attr_ibute"
 msgstr "添加属性(_I)"
 
-#: data/gtk/entry_page.ui:271
+#: data/gtk/entry_page.ui:266
 msgid "Expiration Date"
 msgstr "过期日期"
 
-#: data/gtk/entry_page.ui:284
+#: data/gtk/entry_page.ui:279
 msgid "_Show More"
 msgstr "显示更多(_S)"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:293
 msgid "D_uplicate"
 msgstr "复制(_U)"
 
-#: data/gtk/entry_page.ui:302
+#: data/gtk/entry_page.ui:297
 msgid "_References"
 msgstr "引用(_R)"
 
-#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:301 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "属性(_P)"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:307
 msgid "_Save in History"
 msgstr "保存到历史(_S)"
 
-#: data/gtk/entry_page.ui:316
+#: data/gtk/entry_page.ui:311
 msgid "Show _History"
 msgstr "显示历史(_H)"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:81
+#: data/gtk/entry_page.ui:317 data/gtk/group_page.ui:81
 #: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "删除(_D)"
+
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "移除"
 
 #: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
@@ -858,7 +862,7 @@ msgstr "选择项目"
 msgid "Go Back"
 msgstr "后退"
 
-#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:290
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
 #: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
@@ -1137,15 +1141,15 @@ msgstr ""
 "秘密是一个使用 KeePass v.4 格式的密码管理器。与 GNOME 桌面完美集成并提供简"
 "易、整洁的界面来管理密码数据库。"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:328
 msgid "Password management"
 msgstr "密码管理"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:332
 msgid "Safe unlocking"
 msgstr "保险箱解锁"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:336
 msgid "Safe creation"
 msgstr "保险箱创建"
 
@@ -1167,41 +1171,41 @@ msgstr "无法创建数据库"
 msgid "Failed to generate composite key"
 msgstr "生成组合密钥失败"
 
-#: gsecrets/entry_page.py:283
+#: gsecrets/entry_page.py:289
 msgid "Enter tag name"
 msgstr "输入标签名称"
 
-#: gsecrets/entry_page.py:313
+#: gsecrets/entry_page.py:319
 msgid "The tag already exists"
 msgstr "该标签已存在"
 
-#: gsecrets/entry_page.py:334 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "已保存到历史"
 
-#: gsecrets/entry_page.py:353 gsecrets/entry_row.py:163
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:163
 #: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "用户名已复制"
 
-#: gsecrets/entry_page.py:358 gsecrets/entry_page.py:491
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:497
 msgid "Address copied"
 msgstr "地址已复制"
 
-#: gsecrets/entry_page.py:367 gsecrets/entry_page.py:422
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
 msgid "One-time password copied"
 msgstr "动态口令已复制"
 
-#: gsecrets/entry_page.py:400
+#: gsecrets/entry_page.py:406
 msgid "Could not open URL"
 msgstr "无法打开 URL"
 
-#: gsecrets/entry_page.py:410
+#: gsecrets/entry_page.py:416
 msgid "The address is not valid"
 msgstr "该地址无效"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:447
+#: gsecrets/entry_page.py:453
 msgid "Select Attachments"
 msgstr "选择附件"
 

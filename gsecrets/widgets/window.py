@@ -547,7 +547,8 @@ class Window(Adw.ApplicationWindow):
         about_dialog.present(self)
 
     def on_settings_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
-        SettingsDialog().present(self)
+        if self.get_visible_dialog() is None:
+            SettingsDialog().present(self)
 
     def on_go_back_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         if self.view == self.View.CREATE_DATABASE:

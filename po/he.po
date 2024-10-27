@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-19 20:09+0000\n"
-"PO-Revision-Date: 2024-09-21 22:45+0300\n"
+"POT-Creation-Date: 2024-10-19 08:53+0000\n"
+"PO-Revision-Date: 2024-10-27 08:17+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -58,8 +58,8 @@ msgstr "רגיש"
 msgid "Contains sensitive data."
 msgstr "מכיל מידע רגיש."
 
-#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:291
-#: gsecrets/entry_page.py:448
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
 msgid "_Add"
 msgstr "הו_ספה"
 
@@ -339,58 +339,62 @@ msgstr "סמל"
 msgid "Tags"
 msgstr "תגיות"
 
-#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:289
+#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "הוספת תגית חדשה"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:240
 msgid "Attachments"
 msgstr "צרופות"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:244
 msgid "_Add Attachment"
 msgstr "הוספת _צרופה"
 
-#: data/gtk/entry_page.ui:258
+#: data/gtk/entry_page.ui:253
 msgid "Attributes"
 msgstr "מאפיינים"
 
-#: data/gtk/entry_page.ui:263
+#: data/gtk/entry_page.ui:258
 msgid "Add Attr_ibute"
 msgstr "הוספת _מאפיין"
 
-#: data/gtk/entry_page.ui:271
+#: data/gtk/entry_page.ui:266
 msgid "Expiration Date"
 msgstr "תאריך תפוגה"
 
-#: data/gtk/entry_page.ui:284
+#: data/gtk/entry_page.ui:279
 msgid "_Show More"
 msgstr "להציג _עוד"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:293
 msgid "D_uplicate"
 msgstr "_שכפול"
 
-#: data/gtk/entry_page.ui:302
+#: data/gtk/entry_page.ui:297
 msgid "_References"
 msgstr "ה_פניה"
 
-#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:301 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "מ_אפיינים"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:307
 msgid "_Save in History"
 msgstr "_שמירה בהיסטוריה"
 
-#: data/gtk/entry_page.ui:316
+#: data/gtk/entry_page.ui:311
 msgid "Show _History"
 msgstr "הצגת _היסטוריה"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:81
+#: data/gtk/entry_page.ui:317 data/gtk/group_page.ui:81
 #: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "מ_חיקה"
+
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "הסרה"
 
 # msgctxt "Shortcut window description"
 #: data/gtk/entry_row.ui:81
@@ -857,7 +861,7 @@ msgstr "_שחרור נעילה"
 msgid "Browser"
 msgstr "דפדפן"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:693
 msgid "Select Items"
 msgstr "בחירת פריטים"
 
@@ -865,7 +869,7 @@ msgstr "בחירת פריטים"
 msgid "Go Back"
 msgstr "חזרה"
 
-#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:290
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
 #: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
@@ -1151,15 +1155,15 @@ msgstr ""
 "באופן מושלם עם שולחן העבודה GNOME ומספק מנשק פשוט ובלתי עמוס לניהול מסדי "
 "נתונים של ססמאות."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:338
 msgid "Password management"
 msgstr "ניהול סיסמאות"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:342
 msgid "Safe unlocking"
 msgstr "שחרור נעילה בטוח"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:346
 msgid "Safe creation"
 msgstr "יצירה בטוחה"
 
@@ -1181,41 +1185,41 @@ msgstr "לא ניתן ליצור מסד נתונים"
 msgid "Failed to generate composite key"
 msgstr "יצירת מפתח מורכב נכשלה"
 
-#: gsecrets/entry_page.py:283
+#: gsecrets/entry_page.py:289
 msgid "Enter tag name"
 msgstr "נא למלא שם לתגית"
 
-#: gsecrets/entry_page.py:313
+#: gsecrets/entry_page.py:319
 msgid "The tag already exists"
 msgstr "התגית כבר קיימת"
 
-#: gsecrets/entry_page.py:334 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "שמירה בהיסטוריה"
 
-#: gsecrets/entry_page.py:353 gsecrets/entry_row.py:163
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:163
 #: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "שם המשתמש הועתק"
 
-#: gsecrets/entry_page.py:358 gsecrets/entry_page.py:491
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:497
 msgid "Address copied"
 msgstr "כתובת הועתקה"
 
-#: gsecrets/entry_page.py:367 gsecrets/entry_page.py:422
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
 msgid "One-time password copied"
 msgstr "הססמה החד־פעמית הועתקה"
 
-#: gsecrets/entry_page.py:400
+#: gsecrets/entry_page.py:406
 msgid "Could not open URL"
 msgstr "לא ניתן לפתוח את הכתובת"
 
-#: gsecrets/entry_page.py:410
+#: gsecrets/entry_page.py:416
 msgid "The address is not valid"
 msgstr "הכתובת אינה תקפה"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:447
+#: gsecrets/entry_page.py:453
 msgid "Select Attachments"
 msgstr "בחירת צרופות"
 
@@ -1415,7 +1419,7 @@ msgstr "שכפול"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/unlocked_database.py:243 gsecrets/unlocked_database.py:531
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "לא ניתן לשמור את הכספת"
@@ -1450,16 +1454,16 @@ msgstr "הכספת {} כבר פתוחה"
 msgid "Failed to unlock Safe"
 msgstr "שחרור נעילת הכספת נכשל"
 
-#: gsecrets/unlocked_database.py:244
+#: gsecrets/unlocked_database.py:246
 msgid "Safe saved"
 msgstr "הכספת נשמרה"
 
-#: gsecrets/unlocked_database.py:246
+#: gsecrets/unlocked_database.py:248
 msgid "No changes made"
 msgstr "לא בוצעו שינויים"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:296
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "פריט אחד נמחק"
@@ -1467,29 +1471,29 @@ msgstr[1] "‏{} פריטים נמחקו"
 msgstr[2] "שני פריטים נמחקו"
 msgstr[3] "‏{} פריטים נמחקו"
 
-#: gsecrets/unlocked_database.py:298
+#: gsecrets/unlocked_database.py:301
 msgid "Deletion completed"
 msgstr "המחיקה הושלמה"
 
-#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
+#: gsecrets/unlocked_database.py:306 gsecrets/unlocked_database.py:330
 msgid "Undo"
 msgstr "ביטול"
 
-#: gsecrets/unlocked_database.py:326
+#: gsecrets/unlocked_database.py:329
 msgid "Attribute deleted"
 msgstr "תכונה נמחקה"
 
-#: gsecrets/unlocked_database.py:355
+#: gsecrets/unlocked_database.py:358
 msgid "Copied"
 msgstr "הועתק"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:455
+#: gsecrets/unlocked_database.py:458
 msgid "Safe locked due to inactivity"
 msgstr "הכספת ננעלה עקב חוסר פעילות"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:693
+#: gsecrets/unlocked_database.py:696
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} נבחר"

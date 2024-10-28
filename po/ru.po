@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-21 15:00+0000\n"
-"PO-Revision-Date: 2024-09-21 21:57+0300\n"
+"POT-Creation-Date: 2024-10-19 08:53+0000\n"
+"PO-Revision-Date: 2024-10-27 16:20+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -60,8 +60,8 @@ msgstr "Уязвимый"
 msgid "Contains sensitive data."
 msgstr "Содержит конфиденциальные данные."
 
-#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:291
-#: gsecrets/entry_page.py:448
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
 msgid "_Add"
 msgstr "_Добавить"
 
@@ -341,58 +341,62 @@ msgstr "Значок"
 msgid "Tags"
 msgstr "Метки"
 
-#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:289
+#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "Добавить новую метку"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:240
 msgid "Attachments"
 msgstr "Вложения"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:244
 msgid "_Add Attachment"
 msgstr "_Добавить вложение"
 
-#: data/gtk/entry_page.ui:258
+#: data/gtk/entry_page.ui:253
 msgid "Attributes"
 msgstr "Атрибуты"
 
-#: data/gtk/entry_page.ui:263
+#: data/gtk/entry_page.ui:258
 msgid "Add Attr_ibute"
 msgstr "Добавить атр_ибут"
 
-#: data/gtk/entry_page.ui:271
+#: data/gtk/entry_page.ui:266
 msgid "Expiration Date"
 msgstr "Дата окончания срока действия"
 
-#: data/gtk/entry_page.ui:284
+#: data/gtk/entry_page.ui:279
 msgid "_Show More"
 msgstr "Показать _больше"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:293
 msgid "D_uplicate"
 msgstr "_Дубликат"
 
-#: data/gtk/entry_page.ui:302
+#: data/gtk/entry_page.ui:297
 msgid "_References"
 msgstr "Сс_ылки"
 
-#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:301 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "_Свойства"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:307
 msgid "_Save in History"
 msgstr "Со_хранить в истории"
 
-#: data/gtk/entry_page.ui:316
+#: data/gtk/entry_page.ui:311
 msgid "Show _History"
 msgstr "Показать _историю"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:81
+#: data/gtk/entry_page.ui:317 data/gtk/group_page.ui:81
 #: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "У_далить"
+
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "Удалить"
 
 #: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
@@ -858,7 +862,7 @@ msgstr "_Разблокировать"
 msgid "Browser"
 msgstr "Обзор"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:693
 msgid "Select Items"
 msgstr "Выбрать элементы"
 
@@ -866,7 +870,7 @@ msgstr "Выбрать элементы"
 msgid "Go Back"
 msgstr "Назад"
 
-#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:290
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
 #: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
@@ -1157,15 +1161,15 @@ msgstr ""
 "отлично интегрируется с рабочим столом GNOME и предоставляет простой и "
 "лаконичный интерфейс для управления базами данных паролей."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:328
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:338
 msgid "Password management"
 msgstr "Управление паролями"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:332
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:342
 msgid "Safe unlocking"
 msgstr "Разблокировка сейфа"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:336
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:346
 msgid "Safe creation"
 msgstr "Создание сейфа"
 
@@ -1187,41 +1191,41 @@ msgstr "Невозможно создать базу данных"
 msgid "Failed to generate composite key"
 msgstr "Не удалось сгенерировать составной ключ"
 
-#: gsecrets/entry_page.py:283
+#: gsecrets/entry_page.py:289
 msgid "Enter tag name"
 msgstr "Введите имя метки"
 
-#: gsecrets/entry_page.py:313
+#: gsecrets/entry_page.py:319
 msgid "The tag already exists"
 msgstr "Метка уже существует"
 
-#: gsecrets/entry_page.py:334 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "Сохранено в истории"
 
-#: gsecrets/entry_page.py:353 gsecrets/entry_row.py:163
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:163
 #: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "Имя пользователя скопировано"
 
-#: gsecrets/entry_page.py:358 gsecrets/entry_page.py:491
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:497
 msgid "Address copied"
 msgstr "Адрес скопирован"
 
-#: gsecrets/entry_page.py:367 gsecrets/entry_page.py:422
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
 msgid "One-time password copied"
 msgstr "Одноразовый пароль скопирован"
 
-#: gsecrets/entry_page.py:400
+#: gsecrets/entry_page.py:406
 msgid "Could not open URL"
 msgstr "Не удалось открыть URL"
 
-#: gsecrets/entry_page.py:410
+#: gsecrets/entry_page.py:416
 msgid "The address is not valid"
 msgstr "Адрес недействителен"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:447
+#: gsecrets/entry_page.py:453
 msgid "Select Attachments"
 msgstr "Выбрать вложения"
 
@@ -1421,7 +1425,7 @@ msgstr "Клон"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/unlocked_database.py:243 gsecrets/unlocked_database.py:531
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "Не удалось сохранить сейф"
@@ -1456,45 +1460,45 @@ msgstr "Сейф {} уже открыт"
 msgid "Failed to unlock Safe"
 msgstr "Не удалось разблокировать сейф"
 
-#: gsecrets/unlocked_database.py:244
+#: gsecrets/unlocked_database.py:246
 msgid "Safe saved"
 msgstr "Сейф сохранён"
 
-#: gsecrets/unlocked_database.py:246
+#: gsecrets/unlocked_database.py:248
 msgid "No changes made"
 msgstr "Изменений не было"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:296
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Элемент удален"
 msgstr[1] "{} элемента удалено"
 msgstr[2] "{} элементов удалено"
 
-#: gsecrets/unlocked_database.py:298
+#: gsecrets/unlocked_database.py:301
 msgid "Deletion completed"
 msgstr "Удаление завершено"
 
-#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
+#: gsecrets/unlocked_database.py:306 gsecrets/unlocked_database.py:330
 msgid "Undo"
 msgstr "Вернуть"
 
-#: gsecrets/unlocked_database.py:326
+#: gsecrets/unlocked_database.py:329
 msgid "Attribute deleted"
 msgstr "Атрибут удалён"
 
-#: gsecrets/unlocked_database.py:355
+#: gsecrets/unlocked_database.py:358
 msgid "Copied"
 msgstr "Скопировано"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:455
+#: gsecrets/unlocked_database.py:458
 msgid "Safe locked due to inactivity"
 msgstr "Сейф заблокирован из-за бездействия"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:693
+#: gsecrets/unlocked_database.py:696
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} выбран"

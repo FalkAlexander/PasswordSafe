@@ -112,7 +112,7 @@ class SelectionManager(GObject.Object):
             dialog.add_response("delete", _("_Delete"))
             dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response::delete", response_delete_cb)
-            dialog.present(self)
+            dialog.present(self.unlocked_database)
         else:
             delete_elements()
 

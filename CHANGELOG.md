@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file.
 - Port tags to AdwFlowBox
 - Add a changelog
 
+## 10.3 - 2024-11-11
+Minor release.
+- Do not allow multiple preferences dialogs simultaneously
+- Fix crash when deleting trash bin
+
 ## 10.2 - 2024-10-17
 Minor release.
 - Correctly select element after creating it

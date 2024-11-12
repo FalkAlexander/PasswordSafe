@@ -1,5 +1,33 @@
 message('Compiling resources')
 
+metainfo_conf = configuration_data()
+metainfo_conf.set('APPID', application_id)
+metainfo_conf.set('GETTEXT_PACKAGE', meson.project_name())
+metainfo_conf.set('NAME', project_name)
+metainfo = i18n.merge_file(
+  input: configure_file(
+    input: files('org.gnome.World.Secrets.metainfo.xml.in.in'),
+    output: 'org.gnome.World.Secrets.metainfo.xml.in',
+    configuration: metainfo_conf
+  ),
+  output: application_id + '.metainfo.xml',
+  install: true,
+  install_dir: join_paths(join_paths('share'), 'metainfo'),
+  po_dir: join_paths(meson.project_source_root(), 'po')
+)
+
+
+# Validating the metainfo file
+appstreamcli = find_program('appstreamcli', required: false)
+if appstreamcli.found()
+  test (
+    'Validate metainfo file',
+    appstreamcli,
+    args: ['validate', '--no-net', '--explain', metainfo],
+    workdir: meson.current_build_dir()
+  )
+endif
+
 about_conf = configuration_data()
 about_conf.set('PACKAGE_URL', package_url)
 about_conf.set('CONTRIBUTORS', contributors)
@@ -63,34 +91,6 @@ if desktop_file_validate.found()
     'Validate desktop file',
     desktop_file_validate,
     args: join_paths(meson.current_build_dir (), application_id + '.desktop')
-  )
-endif
-
-metainfo_conf = configuration_data()
-metainfo_conf.set('APPID', application_id)
-metainfo_conf.set('GETTEXT_PACKAGE', meson.project_name())
-metainfo_conf.set('NAME', project_name)
-metainfo = i18n.merge_file(
-  input: configure_file(
-    input: files('org.gnome.World.Secrets.metainfo.xml.in.in'),
-    output: 'org.gnome.World.Secrets.metainfo.xml.in',
-    configuration: metainfo_conf
-  ),
-  output: application_id + '.metainfo.xml',
-  install: true,
-  install_dir: join_paths(join_paths('share'), 'metainfo'),
-  po_dir: join_paths(meson.project_source_root(), 'po')
-)
-
-
-# Validating the metainfo file
-appstreamcli = find_program('appstreamcli', required: false)
-if appstreamcli.found()
-  test (
-    'Validate metainfo file',
-    appstreamcli,
-    args: ['validate', '--no-net', '--explain', metainfo],
-    workdir: meson.current_build_dir()
   )
 endif
 

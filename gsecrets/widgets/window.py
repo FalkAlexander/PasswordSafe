@@ -8,6 +8,7 @@ from gettext import gettext as _
 from gi.repository import Adw, Gio, GLib, Gtk
 
 import gsecrets.config_manager
+from gsecrets import const
 from gsecrets.create_database import CreateDatabase
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.err import QUARK, ErrorType
@@ -540,10 +541,25 @@ class Window(Adw.ApplicationWindow):
 
     def on_about_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         """Invoked when we click "about" in the main menu."""
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/World/Secrets/about_dialog.ui",
+        about_dialog = Adw.AboutDialog.new_from_appdata(
+            f"/org/gnome/World/Secrets/{const.APP_ID}.metainfo.xml",
         )
-        about_dialog = builder.get_object("about_dialog")
+        about_dialog.set_designers(["Christopher Davis", "Tobias Bernard"])
+        about_dialog.set_developers(
+            [
+                "Falk Alexander Seidl <fseidl@gnome.org>",
+                "Uta Lemke",
+                "David Heidelberg",
+                "Jean Felder",
+                "Maximiliano Sandoval <msandova@gnome.org>",
+                "Sebastian Spaeth",
+                "Christopher Davis",
+                "Jan-Michael Brummer",
+            ],
+        )
+        about_dialog.set_copyright("© 2018-2024 Falk Alexander Seidl, et al.")
+        # TRANSLATORS Add your name to the translator credits lis
+        about_dialog.set_translator_credits(_("translator-credits"))
         about_dialog.present(self)
 
     def on_settings_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:

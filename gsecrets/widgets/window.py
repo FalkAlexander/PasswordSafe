@@ -558,7 +558,7 @@ class Window(Adw.ApplicationWindow):
             ],
         )
         about_dialog.set_copyright("© 2018-2024 Falk Alexander Seidl, et al.")
-        # TRANSLATORS Add your name to the translator credits lis
+        # TRANSLATORS Add your name to the translator credits list
         about_dialog.set_translator_credits(_("translator-credits"))
         about_dialog.present(self)
 

@@ -9,3 +9,10 @@ test(
   args: files('test_element.py'),
   env: envs
 )
+
+test(
+  'Test Password Generator',
+  python_bin,
+  args: files('test_password_generator.py'),
+  env: envs
+)

@@ -13,6 +13,28 @@ if typing.TYPE_CHECKING:
     from collections.abc import Callable
 
 
+def _satisfies_requirements(
+    password: str,
+    use_uppercase: bool,
+    use_lowercase: bool,
+    use_numbers: bool,
+    use_symbols: bool,
+) -> bool:
+    if use_uppercase and not any(c.isupper() for c in password):
+        return False
+
+    if use_lowercase and not any(c.islower() for c in password):
+        return False
+
+    if use_numbers and not any(c.isdigit() for c in password):
+        return False
+
+    if use_symbols and not any(not c.isalnum() for c in password):  # noqa: SIM103
+        return False
+
+    return True
+
+
 def generate(
     length: int,
     use_uppercase: bool,
@@ -57,22 +79,14 @@ def generate(
         )
 
     while True:
-        correct = True
-
         password = "".join([secrets.choice(characters) for _ in range(length)])
-        if use_uppercase and not any(c.isupper() for c in password):
-            correct = False
-
-        if use_lowercase and not any(c.islower() for c in password):
-            correct = False
-
-        if use_numbers and not any(c.isdigit() for c in password):
-            correct = False
-
-        if use_symbols and not any(not c.isalnum() for c in password):
-            correct = False
-
-        if correct:
+        if _satisfies_requirements(
+            password,
+            use_uppercase,
+            use_lowercase,
+            use_numbers,
+            use_symbols,
+        ):
             return password
 
 

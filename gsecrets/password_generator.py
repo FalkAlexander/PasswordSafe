@@ -69,7 +69,7 @@ def generate(
         if use_numbers and not any(c.isdigit() for c in password):
             correct = False
 
-        if use_symbols and not any(c.isalpha() for c in password):
+        if use_symbols and not any(not c.isalnum() for c in password):
             correct = False
 
         if correct:

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-19 20:09+0000\n"
-"PO-Revision-Date: 2024-09-20 08:00+0300\n"
+"POT-Creation-Date: 2024-10-17 15:44+0000\n"
+"PO-Revision-Date: 2024-10-20 21:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -59,8 +59,8 @@ msgstr "Hassas"
 msgid "Contains sensitive data."
 msgstr "Hassas veri içerir."
 
-#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:291
-#: gsecrets/entry_page.py:448
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
 msgid "_Add"
 msgstr "_Ekle"
 
@@ -339,58 +339,62 @@ msgstr "Simge"
 msgid "Tags"
 msgstr "Etiketler"
 
-#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:289
+#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "Yeni Etiket Ekle"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:240
 msgid "Attachments"
 msgstr "Ekler"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:244
 msgid "_Add Attachment"
 msgstr "_Ek Ekle"
 
-#: data/gtk/entry_page.ui:258
+#: data/gtk/entry_page.ui:253
 msgid "Attributes"
 msgstr "Öznitelikler"
 
-#: data/gtk/entry_page.ui:263
+#: data/gtk/entry_page.ui:258
 msgid "Add Attr_ibute"
 msgstr "Ö_znitelik Ekle"
 
-#: data/gtk/entry_page.ui:271
+#: data/gtk/entry_page.ui:266
 msgid "Expiration Date"
 msgstr "Son Kullanım Tarihi"
 
-#: data/gtk/entry_page.ui:284
+#: data/gtk/entry_page.ui:279
 msgid "_Show More"
 msgstr "Daha Çoğunu _Göster"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:293
 msgid "D_uplicate"
 msgstr "Y_inele"
 
-#: data/gtk/entry_page.ui:302
+#: data/gtk/entry_page.ui:297
 msgid "_References"
 msgstr "_Referanslar"
 
-#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:301 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "_Özellikler"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:307
 msgid "_Save in History"
 msgstr "Geçmişe _Kaydet"
 
-#: data/gtk/entry_page.ui:316
+#: data/gtk/entry_page.ui:311
 msgid "Show _History"
 msgstr "_Geçmişi Göster"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:81
+#: data/gtk/entry_page.ui:317 data/gtk/group_page.ui:81
 #: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "_Sil"
+
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "Kaldır"
 
 #: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
@@ -864,7 +868,7 @@ msgstr "Ögeleri Seç"
 msgid "Go Back"
 msgstr "Geri Git"
 
-#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:290
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
 #: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
@@ -1155,15 +1159,15 @@ msgstr ""
 "masaüstüyle kusursuzca tümleşir ve parola veri tabanlarının yönetimi için "
 "kolay ve düzenli arayüz sunar."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:328
 msgid "Password management"
 msgstr "Parola yönetimi"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:332
 msgid "Safe unlocking"
 msgstr "Kasa kilidi açma"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:336
 msgid "Safe creation"
 msgstr "Kasa oluşturma"
 
@@ -1185,41 +1189,41 @@ msgstr "Veri tabanı oluşturulamadı"
 msgid "Failed to generate composite key"
 msgstr "Birleşik anahtar oluşturulamadı"
 
-#: gsecrets/entry_page.py:283
+#: gsecrets/entry_page.py:289
 msgid "Enter tag name"
 msgstr "Etiket adı gir"
 
-#: gsecrets/entry_page.py:313
+#: gsecrets/entry_page.py:319
 msgid "The tag already exists"
 msgstr "Etiket zaten var"
 
-#: gsecrets/entry_page.py:334 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "Geçmişe kaydedildi"
 
-#: gsecrets/entry_page.py:353 gsecrets/entry_row.py:163
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:163
 #: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "Kullanıcı adı kopyalandı"
 
-#: gsecrets/entry_page.py:358 gsecrets/entry_page.py:491
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:497
 msgid "Address copied"
 msgstr "Adres kopyalandı"
 
-#: gsecrets/entry_page.py:367 gsecrets/entry_page.py:422
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
 msgid "One-time password copied"
 msgstr "Tek kullanımlık parola kopyalandı"
 
-#: gsecrets/entry_page.py:400
+#: gsecrets/entry_page.py:406
 msgid "Could not open URL"
 msgstr "URL açılamadı"
 
-#: gsecrets/entry_page.py:410
+#: gsecrets/entry_page.py:416
 msgid "The address is not valid"
 msgstr "Adres geçersiz"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:447
+#: gsecrets/entry_page.py:453
 msgid "Select Attachments"
 msgstr "Ek Seç"
 

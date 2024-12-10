@@ -86,7 +86,7 @@ def strength(password: str) -> int:
     :rtype: int
     """
     if password:
-        return zxcvbn(password).score
+        return int(zxcvbn(password).score)
 
     return 0
 

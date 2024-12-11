@@ -134,6 +134,7 @@ class BrowsingPanel(Adw.Bin):
             element.props.selected = not element.props.selected
         else:
             self.selection_model.props.selected_item = element
+            self.unlocked_database.show_edit_page(element)
 
     def _on_setup(self, _list_view, item):
         entry_row = EntryRow(self.unlocked_database)

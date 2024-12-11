@@ -88,9 +88,6 @@ class Window(Adw.ApplicationWindow):
         ):
             create_view.close_banner()
 
-    def close_notification(self, toast: Adw.Toast) -> None:
-        toast.dismiss()
-
     def assemble_window(self) -> None:
         window_size = gsecrets.config_manager.get_window_size()
         self.set_default_size(window_size[0], window_size[1])

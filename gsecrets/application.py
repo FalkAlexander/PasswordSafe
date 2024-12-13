@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+from gettext import gettext as _
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
@@ -30,7 +31,7 @@ class Application(Adw.Application):
             ord("d"),
             GLib.OptionFlags.NONE,
             GLib.OptionArg.NONE,
-            "Enable debug logging",
+            _("Enable debug logging"),
             None,
         )
 

@@ -48,7 +48,7 @@ class ColorButton(Gtk.FlowBoxChild):
     def is_selected(self, is_selected: bool) -> None:
         self._is_selected = is_selected
         if is_selected:
-            self._button.props.icon_name = "emblem-ok-symbolic"
+            self._button.props.icon_name = "checkmark-symbolic"
         else:
             self._button.props.icon_name = ""
 

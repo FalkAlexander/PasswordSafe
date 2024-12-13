@@ -147,6 +147,6 @@ class Application(Adw.Application):
         self.set_accels_for_action("win.db.search", ["<Control>f"])
         self.set_accels_for_action("win.db.lock", ["<Control>l"])
         self.set_accels_for_action("win.db.add_entry", ["<Control>e"])
-        self.set_accels_for_action("win.db.add_group", ["<Control>g"])
+        self.set_accels_for_action("win.db.add_group", ["<Control>p"])
         self.set_accels_for_action("win.go_back", ["Escape"])
         self.set_accels_for_action("window.close", ["<Control>w"])

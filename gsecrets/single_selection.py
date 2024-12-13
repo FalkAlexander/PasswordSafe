@@ -62,6 +62,9 @@ class SingleSelection(GObject.Object, Gio.ListModel, Gtk.SelectionModel):
     def selected_item(self):
         return self._selected_item
 
+    def selected_item_pos(self) -> int:
+        return self._item_pos
+
     @selected_item.setter  # type: ignore
     def selected_item(self, selected_item):
         if self._selected_item == selected_item:

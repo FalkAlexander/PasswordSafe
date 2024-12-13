@@ -140,6 +140,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self._search_bar.set_key_capture_widget(window)
 
         self._search_entry.connect("search-changed", self._on_search_changed)
+        self._search_entry.connect("next-match", self._on_search_next_match)
+        self._search_entry.connect("previous-match", self._on_search_previous_match)
         self.bind_property(
             "search-active",
             self._search_bar,
@@ -721,3 +723,9 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     def _on_search_changed(self, search_entry):
         self.browsing_panel.set_search(search_entry.props.text)
+
+    def _on_search_next_match(self, _search_entry):
+        self.browsing_panel.select_next()
+
+    def _on_search_previous_match(self, _search_entry):
+        self.browsing_panel.select_previous()

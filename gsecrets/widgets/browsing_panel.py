@@ -229,3 +229,37 @@ class BrowsingPanel(Adw.Bin):
     def unselect(self, item):
         if item == self.selection_model.props.selected_item:
             self.selection_model.props.selected_item = None
+
+    def select_next(self):
+        pos = self.selection_model.selected_item_pos()
+        n_items = self.selection_model.get_n_items()
+        scroll_flags = Gtk.ListScrollFlags.NONE
+
+        if pos == Gtk.INVALID_LIST_POSITION and n_items > 0:
+            self.selection_model.props.selected_item = self.selection_model.get_item(0)
+            self._list_view.scroll_to(0, scroll_flags, None)
+            return
+
+        if pos + 1 < n_items:
+            self.selection_model.props.selected_item = self.selection_model.get_item(
+                pos + 1,
+            )
+            self._list_view.scroll_to(pos + 1, scroll_flags, None)
+
+    def select_previous(self):
+        pos = self.selection_model.selected_item_pos()
+        n_items = self.selection_model.get_n_items()
+        scroll_flags = Gtk.ListScrollFlags.NONE
+
+        if pos == Gtk.INVALID_LIST_POSITION and n_items > 0:
+            self.selection_model.props.selected_item = self.selection_model.get_item(
+                n_items - 1,
+            )
+            self._list_view.scroll_to(n_items - 1, scroll_flags, None)
+            return
+
+        if pos > 0:
+            self.selection_model.props.selected_item = self.selection_model.get_item(
+                pos - 1,
+            )
+            self._list_view.scroll_to(pos - 1, scroll_flags, None)

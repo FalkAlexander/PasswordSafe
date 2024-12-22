@@ -62,6 +62,7 @@
           <object class="GtkButton" id="popover_edit_button">
             <property name="label" translatable="yes">_Set Expiration Date</property>
             <property name="use_underline">True</property>
+            <property name="can_shrink">True</property>
             <signal name="clicked" handler="on_edit_button_clicked" swapped="no"/>
             <style>
               <class name="suggested-action"/>

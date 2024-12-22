@@ -75,6 +75,7 @@
                 <property name="label" translatable="yes">_Apply Changes</property>
                 <property name="use_underline">True</property>
                 <property name="sensitive">False</property>
+                <property name="can_shrink">True</property>
                 <signal name="clicked" handler="on_auth_apply_button_clicked"/>
                 <style>
                   <class name="suggested-action"/>

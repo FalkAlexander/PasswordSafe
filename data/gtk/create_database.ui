@@ -87,8 +87,10 @@
                                 <child>
                                   <object class="GtkButton" id="create_button">
                                     <property name="halign">center</property>
-                                    <property name="label" translatable="yes">Create</property>
+                                    <property name="label" translatable="yes">C_reate</property>
                                     <property name="sensitive">False</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="can_shrink">True</property>
                                     <signal name="clicked" handler="_on_create_button_clicked" swapped="no"/>
                                     <style>
                                       <class name="suggested-action"/>
@@ -116,6 +118,7 @@
                             <property name="label" translatable="yes">_Open Safe</property>
                             <property name="use_underline">True</property>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <signal name="clicked" handler="on_finish_button_clicked" swapped="no"/>
                             <style>
                               <class name="suggested-action"/>

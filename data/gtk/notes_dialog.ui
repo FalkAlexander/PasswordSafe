@@ -19,6 +19,7 @@
                   <object class="GtkButton" id="copy_button">
                     <property name="label" translatable="yes">_Copy</property>
                     <property name="use_underline">True</property>
+                    <property name="can_shrink">True</property>
                     <signal name="clicked" handler="_on_copy_button_clicked"/>
                     <style>
                       <class name="suggested-action"/>

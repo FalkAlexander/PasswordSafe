@@ -40,6 +40,7 @@
                           <object class="GtkButton">
                             <property name="label" translatable="yes">_Cancel</property>
                             <property name="use_underline">True</property>
+                            <property name="can_shrink">True</property>
                             <signal name="clicked" handler="_on_selection_cancel_clicked" swapped="no"/>
                           </object>
                         </child>
@@ -72,6 +73,7 @@
                         <property name="label" translatable="yes">_Clear</property>
                         <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
+                        <property name="can_shrink">True</property>
                         <signal name="clicked" handler="_on_clear_selection_clicked" swapped="no"/>
                       </object>
                     </child>

@@ -1111,7 +1111,7 @@ ICONS = {
     "17": Icon("media-optical-cd-audio-symbolic"),
     "18": Icon("video-display-symbolic"),
     "19": Icon("mail-unread-symbolic", True),
-    "20": Icon("emblem-system-symbolic"),
+    "20": Icon("settings-symbolic"),
     "21": Icon("edit-paste-symbolic"),
     "22": Icon("edit-paste-symbolic"),
     "23": Icon("display-with-window-symbolic", True),

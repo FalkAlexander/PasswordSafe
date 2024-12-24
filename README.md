@@ -41,7 +41,7 @@ flatpak install --user ./org.gnome.World.Secrets.Devel.flatpak
 ```
 
 ## Building locally
-We use the Meson build system for. The quickest
+We use the Meson build system for building. The quickest
 way to get going is to run the following:
 ```
 meson . _build

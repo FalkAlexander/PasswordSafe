@@ -21,8 +21,9 @@ class AddAttributeDialog(Adw.Dialog):
         super().__init__()
 
         self.entry = entry
+        self._db_manager = db_manager
 
-        db_manager.connect("notify::locked", self._on_locked)
+        self._signal_handle = db_manager.connect("notify::locked", self._on_locked)
 
     @Gtk.Template.Callback()
     def _on_add_button_clicked(self, _button):
@@ -56,3 +57,8 @@ class AddAttributeDialog(Adw.Dialog):
         locked = database_manager.props.locked
         if locked:
             self.close()
+
+    def do_closed(self) -> None:
+        if handle := self._signal_handle:
+            self._db_manager.disconnect(handle)
+            self._signal_handle = 0

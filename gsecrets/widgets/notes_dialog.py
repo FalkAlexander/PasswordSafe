@@ -25,6 +25,7 @@ class NotesDialog(Adw.Dialog):
         self.__unlocked_database = unlocked_database
         self.__safe_entry = safe_entry
         self.__search_stopped = False
+        self.__signal_handle = 0
 
         self.__notes_buffer = self._value_entry.get_buffer()
         # TODO Revisit the choice of color used as it might look bad
@@ -34,10 +35,11 @@ class NotesDialog(Adw.Dialog):
         self.__setup_signals()
 
     def __setup_signals(self):
-        self.__unlocked_database.database_manager.connect(
+        handle = self.__unlocked_database.database_manager.connect(
             "notify::locked",
             self.__on_locked,
         )
+        self.__signal_handle = handle
         # Bind text to the corresponding safe entry.
         self.__safe_entry.bind_property(
             "notes",
@@ -121,3 +123,8 @@ class NotesDialog(Adw.Dialog):
         locked = database_manager.props.locked
         if locked:
             self.close()
+
+    def do_closed(self) -> None:
+        if handle := self.__signal_handle:
+            self.__unlocked_database.database_manager.disconnect(handle)
+            self.__signal_handle = 0

@@ -24,7 +24,7 @@ class HistoryWindow(Adw.Dialog):
         self.list_model.splice(0, 0, history)
         self.listbox.bind_model(self.list_model, HistoryRow, self)
 
-        self.unlocked_database.database_manager.connect(
+        self._signal_handle = self.unlocked_database.database_manager.connect(
             "notify::locked",
             self._on_locked,
         )
@@ -32,3 +32,8 @@ class HistoryWindow(Adw.Dialog):
     def _on_locked(self, database_manager, _value):
         if database_manager.props.locked:
             self.close()
+
+    def do_closed(self) -> None:
+        if handle := self._signal_handle:
+            self.unlocked_database.database_manager.disconnect(handle)
+            self._signal_handle = 0

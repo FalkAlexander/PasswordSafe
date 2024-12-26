@@ -179,7 +179,7 @@ class YubiKeyProvider(BaseProvider):
 
     def _on_factory_setup(self, _factory, list_item):
         label = Gtk.Label()
-        label.set_halign(Gtk.Align.START)
+        label.set_xalign(0.0)
         list_item.set_child(label)
 
     def _on_factory_bind(self, _factory, list_item):

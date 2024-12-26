@@ -22,6 +22,7 @@ class ReferencesDialog(Adw.Dialog):
 
         self.__unlocked_database = unlocked_database
         self.__database_manager = unlocked_database.database_manager
+        self.__signal_handle = 0
 
         self.__setup_actions()
         self.__setup_signals()
@@ -32,7 +33,8 @@ class ReferencesDialog(Adw.Dialog):
 
     def __setup_signals(self) -> None:
         self.__connect_model_buttons_signals()
-        self.__database_manager.connect("notify::locked", self.__on_locked)
+        handle = self.__database_manager.connect("notify::locked", self.__on_locked)
+        self.__signal_handle = handle
 
     def __setup_actions(self) -> None:
         action_group = Gio.SimpleActionGroup.new()
@@ -56,6 +58,11 @@ class ReferencesDialog(Adw.Dialog):
         self._reference_entry.set_text(
             "{REF:" + self.__property + "@I:" + encoded_uuid + "}",
         )
+
+    def do_closed(self) -> None:
+        if handle := self.__signal_handle:
+            self.__database_manager.disconnect(handle)
+            self.__signal_handle = 0
 
     @Gtk.Template.Callback()
     def _open_codes_popover(self, _gesture, _n_points, _x, _y):

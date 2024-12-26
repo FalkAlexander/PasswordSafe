@@ -24,6 +24,8 @@ class PropertiesDialog(Adw.Dialog):
 
         self.__database = database
         self.__db_manager = database.database_manager
+        self.__signal_handle = 0
+
         self.__setup_signals()
         self.__setup_widgets()
 
@@ -37,7 +39,8 @@ class PropertiesDialog(Adw.Dialog):
         self._created_row.props.subtitle = format_time(element.ctime)
 
     def __setup_signals(self) -> None:
-        self.__db_manager.connect("notify::locked", self.__on_locked)
+        handle = self.__db_manager.connect("notify::locked", self.__on_locked)
+        self.__signal_handle = handle
 
     def __setup_widgets(self) -> None:
         self.__update_properties()
@@ -46,3 +49,8 @@ class PropertiesDialog(Adw.Dialog):
         locked = database_manager.props.locked
         if locked:
             self.close()
+
+    def do_closed(self) -> None:
+        if handle := self.__signal_handle:
+            self.__db_manager.disconnect(handle)
+            self.__signal_handle = 0

@@ -102,8 +102,10 @@ class UnlockDatabase(Adw.Bin):
 
         if self.is_safe_open_elsewhere():
             self.window.send_notification(
-                # pylint: disable=consider-using-f-string
-                _("Safe {} is already open".format(self.database_manager.path)),
+                # TRANSLATORS For example: "Safe ~/MySafe.kdbx is already open"
+                _("Safe {path} is already open").format(
+                    path=self.database_manager.path,
+                ),
             )
             return
 

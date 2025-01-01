@@ -21,6 +21,8 @@ class RecentFilesMenu:
         to_remove = []
 
         for item in reversed(recents.get_items()):
+            if item.get_mime_type() != "application/x-keepass2":
+                continue
             if not item.exists():
                 uri = item.get_uri()
                 logging.info("Ignoring nonexistent recent file: %s", uri)

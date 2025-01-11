@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 - Port tags to AdwFlowBox
 - Add a changelog
 
+## 10.4 - 2024-12-26
+Minor release.
+- Fix crash when closing a dialog when the db is locked
+- Fix crash when using zxcvbn-rs 0.2
+- Various bug fixes
+
 ## 10.3 - 2024-11-11
 Minor release.
 - Do not allow multiple preferences dialogs simultaneously

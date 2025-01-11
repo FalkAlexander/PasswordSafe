@@ -2,6 +2,8 @@ image: fedora:latest
 include:
   - project: 'gnome/citemplates'
     file: 'flatpak/flatpak_ci_initiative.yml'
+  - project: 'GNOME/citemplates'
+    file: 'templates/basic-release.yml'
 
 stages:
   - check

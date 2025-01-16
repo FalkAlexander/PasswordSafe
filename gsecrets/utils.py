@@ -91,8 +91,12 @@ async def get_host_path(gfile: Gio.File) -> str | None:
         logging.exception("Could not query file info")
         return gfile.get_path()
 
-    if host_path := info.get_attribute_string(ATTRIBUTE_HOST_PATH):
-        return host_path
+    try:
+        host_path = info.get_attribute_string(ATTRIBUTE_HOST_PATH)
+    except GLib.Error:
+        logging.exception("Could not query file attribute")
+    else:
+        return host_path or gfile.get_path()
 
     return gfile.get_path()
 

@@ -2,17 +2,17 @@
 from __future__ import annotations
 
 import logging
-import os
 import threading
 import typing
 from gettext import gettext as _
-from pathlib import Path
+from pathlib import Path, PurePath
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
 from gsecrets.utils import (
     compare_passwords,
     format_time,
+    get_host_path,
 )
 
 if typing.TYPE_CHECKING:
@@ -270,10 +270,18 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         # Path
         path = self.database_manager.path
         gfile = Gio.File.new_for_path(path)
-        if "/home/" in path:
-            self.path_row.props.subtitle = "~/" + os.path.relpath(path)
-        else:
-            self.path_row.props.subtitle = path
+
+        async def set_path():
+            path = PurePath(await get_host_path(gfile))
+
+            home = str(Path.home())
+            if path.is_relative_to(home):
+                self.path_row.props.subtitle = "~/" + str(path.relative_to(home))
+            else:
+                self.path_row.props.subtitle = str(path)
+
+        app = Gio.Application.get_default()
+        app.create_asyncio_task(set_path())
 
         # Size
         def query_info_cb(gfile, result):

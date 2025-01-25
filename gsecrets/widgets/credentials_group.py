@@ -77,7 +77,7 @@ class CredentialsGroup(Adw.PreferencesGroup):
         self._password_entry_row.props.text = password
 
     @Gtk.Template.Callback()
-    def _on_password_value_changed(self, _entry: Gtk.Entry) -> None:
+    def _on_password_value_changed(self, _entry: Adw.PasswordEntry) -> None:
         """Invoked when the password entry has changed.
 
         Take note that this callback is already invoked after the initial

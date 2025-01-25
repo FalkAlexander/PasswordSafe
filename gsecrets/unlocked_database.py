@@ -184,10 +184,13 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
         self.start_database_lock_timer()
-        self.active_element = element
-
         # Sets the accessed time.
         element.touch()
+
+        if self.active_element == element:
+            return
+
+        self.active_element = element
 
         if element.is_group:
             page = GroupPage(self, element)

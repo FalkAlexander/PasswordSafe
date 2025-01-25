@@ -107,7 +107,12 @@ def strength(password: str) -> int:
 
 def _threaded_compute_strength(password: str, callback: Callable[[int], None]) -> None:
     score = strength(password)
-    GLib.idle_add(callback, score)
+
+    def wrapper_callback(score):
+        callback(score)
+        return GLib.SOURCE_REMOVE
+
+    GLib.idle_add(wrapper_callback, score)
 
 
 def strength_async(password: str, callback: Callable[[int], None]) -> None:

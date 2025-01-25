@@ -38,6 +38,9 @@ class CredentialsGroup(Adw.PreferencesGroup):
 
     @entry.setter  # type: ignore
     def entry(self, entry):
+        if self._safe_entry == entry:
+            return
+
         self._safe_entry = entry
         self._password_entry_row.props.text = entry.props.password
 

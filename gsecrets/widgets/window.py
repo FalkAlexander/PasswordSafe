@@ -13,6 +13,7 @@ from gsecrets.create_database import CreateDatabase
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.err import QUARK, ErrorType
 from gsecrets.provider.providers import Providers
+from gsecrets.recent_manager import RecentManager
 from gsecrets.save_dialog import SaveDialog
 from gsecrets.settings_dialog import SettingsDialog
 from gsecrets.unlock_database import UnlockDatabase
@@ -118,8 +119,8 @@ class Window(Adw.ApplicationWindow):
             # simply load the last opened file
             uri = gsecrets.config_manager.get_last_opened_database()
             gfile: Gio.File = Gio.File.new_for_uri(uri)
-            recents = Gtk.RecentManager.get_default()
-            if gfile.query_exists() and recents.has_item(uri):
+            recents = RecentManager()
+            if gfile.query_exists() and gfile in recents:
                 filepath = gfile.get_path()
                 logging.debug("Opening last opened database: %s", filepath)
                 self.start_database_opening_routine(filepath)

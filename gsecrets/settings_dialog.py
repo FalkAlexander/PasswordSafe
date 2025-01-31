@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
-import logging
 
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Adw, Gio, Gtk
 
 import gsecrets.config_manager as config
 from gsecrets.const import APP_ID
+from gsecrets.recent_manager import RecentManager
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/settings_dialog.ui")
@@ -91,8 +91,8 @@ class SettingsDialog(Adw.PreferencesDialog):
 
         self._clear_button.connect("clicked", self._on_settings_clear_recents_clicked)
 
-        recents = Gtk.RecentManager.get_default()
-        if not recents.get_items():
+        recents = RecentManager()
+        if recents.is_empty():
             self._clear_button.props.sensitive = False
 
         # Unlock
@@ -113,11 +113,7 @@ class SettingsDialog(Adw.PreferencesDialog):
             config.set_last_used_key_provider({})
 
     def _on_settings_clear_recents_clicked(self, widget):
-        recents = Gtk.RecentManager.get_default()
-        try:
-            recents.purge_items()
-        except GLib.Error:
-            logging.exception("Failed to purge items for recent manager")
-        else:
-            config.set_last_opened_database("")
-            widget.set_sensitive(False)
+        recents = RecentManager()
+        recents.purge_items()
+        config.set_last_opened_database("")
+        widget.set_sensitive(False)

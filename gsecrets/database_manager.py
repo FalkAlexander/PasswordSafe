@@ -6,12 +6,13 @@ import json
 import logging
 from pathlib import Path
 
-from gi.repository import Gio, GLib, GObject, Gtk
+from gi.repository import Gio, GLib, GObject
 from pykeepass import PyKeePass
 from pykeepass.exceptions import CredentialsError
 
 import gsecrets.config_manager as config
 from gsecrets.err import ErrorType, error, generic_error
+from gsecrets.recent_manager import RecentManager
 from gsecrets.safe_element import SafeEntry, SafeGroup
 from gsecrets.utils import LazyValue, compare_passwords
 
@@ -244,10 +245,11 @@ class DatabaseManager(GObject.Object):
         return is_saved
 
     def add_to_history(self) -> None:
-        uri = Gio.File.new_for_path(self._path).get_uri()
+        gfile = Gio.File.new_for_path(self._path)
+        uri = gfile.get_uri()
 
-        recents = Gtk.RecentManager.get_default()
-        recents.add_item(uri)
+        recents = RecentManager()
+        recents.add_item(gfile)
 
         # Set last opened database.
         config.set_last_opened_database(uri)

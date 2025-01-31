@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import asyncio
 import logging
 from gettext import gettext as _
 
+from gi.events import GLibEventLoopPolicy
 from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets import const
@@ -24,6 +26,8 @@ class Application(Adw.Application):
             resource_base_path="/org/gnome/World/Secrets",
             register_session=True,
         )
+
+        asyncio.set_event_loop_policy(GLibEventLoopPolicy())
 
         # debug level logging option
         self.add_main_option(

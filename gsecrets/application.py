@@ -9,6 +9,7 @@ from gi.events import GLibEventLoopPolicy
 from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets import const
+from gsecrets.recent_manager import RecentManager
 from gsecrets.widgets.mod import load_widgets
 from gsecrets.widgets.window import Window
 
@@ -48,6 +49,9 @@ class Application(Adw.Application):
         self.add_global_accelerators()
 
         load_widgets()
+
+        recents = RecentManager()
+        self.create_asyncio_task(recents.clean_non_existent())
 
     def do_open(self, gfile_list, _n_files, _hint):  # pylint: disable=arguments-differ
         for gfile in gfile_list:

@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
+import logging
 from collections import deque
 
-from gi.repository import Gio, GObject
+from gi.repository import Gio, GLib, GObject
 
 from gsecrets.const import APP_ID
 
@@ -38,11 +39,12 @@ class RecentManager(GObject.Object):
         self._save_items()
         self.emit(self.changed)
 
-    def remove_item(self, item: Gio.File) -> None:
-        if found := next(
-            (f for f in self.recents if f.get_uri() == item.get_uri()), None
-        ):
-            self.recents.remove(found)
+    def _remove_items(self, items: list[Gio.File]) -> None:
+        for item in items:
+            self.recents.remove(item)
+
+        if bool(items):
+            self._save_items()
             self.emit(self.changed)
 
     def is_empty(self) -> bool:
@@ -68,3 +70,30 @@ class RecentManager(GObject.Object):
     def _on_settings_changed(self, _settings, _key):
         self._load_items()
         self.emit(self.changed)
+
+    async def clean_non_existent(self) -> None:
+        to_remove = []
+
+        for item in self.recents:
+            try:
+                await item.query_info_async(
+                    Gio.FILE_ATTRIBUTE_STANDARD_TYPE,
+                    Gio.FileQueryInfoFlags.NONE,
+                    GLib.PRIORITY_DEFAULT,
+                    None,
+                )
+            except GLib.Error as err:
+                file_exist = not err.matches(
+                    Gio.io_error_quark(), Gio.IOErrorEnum.NOT_FOUND
+                )
+                if file_exist:
+                    logging.exception("Could not get file info")
+                else:
+                    uri = item.get_uri()
+                    logging.info("Ignoring nonexistent recent file: %s", uri)
+
+                to_remove.append(item)
+
+        # We remove items after we are done iterating to avoid undefined
+        # behaviour.
+        self._remove_items(to_remove)

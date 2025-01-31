@@ -1,5 +1,7 @@
 image: fedora:latest
 include:
+  - project: "GNOME/citemplates"
+    file: "templates/default-rules.yml"
   - project: 'gnome/citemplates'
     file: 'flatpak/flatpak_ci_initiative.yml'
   - project: 'GNOME/citemplates'

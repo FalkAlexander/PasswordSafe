@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-01-13 17:19+0000\n"
-"PO-Revision-Date: 2025-01-17 12:38-0300\n"
+"POT-Creation-Date: 2025-01-31 23:26+0000\n"
+"PO-Revision-Date: 2025-01-31 22:53-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
@@ -111,7 +111,7 @@ msgstr "Cor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:236
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:237
 msgid "Create Safe"
 msgstr "Criar cofre"
 
@@ -695,12 +695,12 @@ msgstr "Você deseja escrever todas as alterações ao cofre?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:417
+#: gsecrets/widgets/window.py:418
 msgid "_Quit Without Saving"
 msgstr "_Sair sem salvar"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:418
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:419
 msgid "_Don't Quit"
 msgstr "_Não sair"
 
@@ -719,8 +719,8 @@ msgstr "Reabre o último cofre aberto."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:145
-#: gsecrets/widgets/window.py:228 gsecrets/widgets/window.py:240
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:229 gsecrets/widgets/window.py:241
 msgid "Safe"
 msgstr "Cofre"
 
@@ -800,7 +800,7 @@ msgid "Passphrase Length"
 msgstr "Comprimento da frase secreta"
 
 #: data/gtk/settings_dialog.ui:112
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
 msgstr "Número de palavras a serem usadas quando gera-se uma frase secreta."
 
@@ -861,7 +861,7 @@ msgstr "_Desbloquear"
 msgid "Browser"
 msgstr "Navegador"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:695
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
 msgid "Select Items"
 msgstr "Selecionar itens"
 
@@ -1049,45 +1049,53 @@ msgid "Remember the window size."
 msgstr "Memoriza o tamanho da janela."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened databases"
+msgstr "Últimos bancos de dados abertos"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "A list of the last opened databases."
+msgstr "Uma lista do último banco de dados aberto."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Last opened database"
 msgstr "Último banco de dados aberto"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:43
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "Path to the last opened database."
 msgstr "Caminho do último banco de dados aberto."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:47
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
 msgstr "Memorizar chave composta"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
 "Memoriza a última chave composta usada para desbloqueio de banco de dados."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used key provider"
 msgstr "Últimos servidores de chaves utilizados"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Key provider for composite database unlocking."
 msgstr "Servidor de chave para desbloqueio de banco de dados composto."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:57
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
 msgstr "Memorizar o método de desbloqueio"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
 "Memoriza o último método de desbloqueio usado para o próximo desbloqueio de "
 "banco de dados."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
 msgstr "Fazer backup do banco de dados ao desbloquear"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
 "If an error occurs while saving the database, a backup can be found at "
 "~/.cache/secrets/backups"
@@ -1095,63 +1103,63 @@ msgstr ""
 "Se ocorrer algum erro enquanto estiver salvando o banco de dados, um backup "
 "pode ser localizado em ~/.cache/secrets/backups"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
 msgstr "Ordem de classificação de grupos e entradas"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
 msgstr "Ordena as linhas nas visões de grupos e de entradas."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
 msgstr "Usa maiúsculas ao gerar uma senha"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
 msgstr "Usa caracteres maiúsculos de A-Z ao gerar uma senha aleatória."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
 msgstr "Usa caracteres minúsculos ao gerar uma senha"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr "Usa caracteres minúsculos de a-z ao gerar uma senha aleatória."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
 msgstr "Usa números ao gerar uma senha"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
 msgstr "Usa números de 0-9 ao gerar uma senha aleatória."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
 msgstr "Usa símbolos ao gerar uma senha"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr "Usa símbolos ASCII não-alfanuméricos ao gerar uma senha aleatória."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
 msgstr "Comprimento da senha ao gerá-la"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
 msgstr "Número de caracteres únicos ao gerar uma senha."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
 msgstr "Número de palavras ao gerar uma frase secreta"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
 msgid "Separator when generating a passphrase"
 msgstr "Separador ao gerar uma frase secreta"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
 msgstr "Separador de palavras a ser usado ao gerar uma frase secreta."
 
@@ -1185,7 +1193,7 @@ msgstr "Desbloqueando cofre"
 msgid "Safe creation"
 msgstr "Criação do cofre"
 
-#: gsecrets/application.py:34
+#: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Habilitar registro de logs de depuração"
 
@@ -1215,12 +1223,12 @@ msgstr "Digite o nome do marcador"
 msgid "The tag already exists"
 msgstr "O marcador já existe"
 
-#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:103
 msgid "Saved in history"
 msgstr "Salvo no histórico"
 
 #: gsecrets/entry_page.py:359 gsecrets/entry_row.py:163
-#: gsecrets/widgets/credentials_group.py:95
+#: gsecrets/widgets/credentials_group.py:98
 msgid "Username copied"
 msgstr "Nome de usuário copiado"
 
@@ -1245,7 +1253,7 @@ msgstr "O endereço não é válido"
 msgid "Select Attachments"
 msgstr "Selecione o anexo"
 
-#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:110
 msgid "Password copied"
 msgstr "Senha copiada"
 
@@ -1398,7 +1406,7 @@ msgstr "Selecionar a posição do YubiKey"
 msgid "Touch YubiKey"
 msgstr "Tocar o YubiKey"
 
-#: gsecrets/recent_files_menu.py:45
+#: gsecrets/recent_files_menu.py:29
 msgid "Recent Files"
 msgstr "Cofres recentes"
 
@@ -1441,8 +1449,8 @@ msgstr "Clone"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:245 gsecrets/unlocked_database.py:533
-#: gsecrets/widgets/window.py:416
+#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:536
+#: gsecrets/widgets/window.py:417
 msgid "Could not save Safe"
 msgstr "Não foi possível salvar o cofre"
 
@@ -1479,44 +1487,44 @@ msgstr "Cofre {path} já está aberto"
 msgid "Failed to unlock Safe"
 msgstr "Falha ao desbloquear o cofre"
 
-#: gsecrets/unlocked_database.py:248
+#: gsecrets/unlocked_database.py:251
 msgid "Safe saved"
 msgstr "Cofre salvo"
 
-#: gsecrets/unlocked_database.py:250
+#: gsecrets/unlocked_database.py:253
 msgid "No changes made"
 msgstr "Nenhuma alteração feita"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:298
+#: gsecrets/unlocked_database.py:301
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Elemento excluído"
 msgstr[1] "{} elementos excluídos"
 
-#: gsecrets/unlocked_database.py:303
+#: gsecrets/unlocked_database.py:306
 msgid "Deletion completed"
 msgstr "Exclusão concluída"
 
-#: gsecrets/unlocked_database.py:308 gsecrets/unlocked_database.py:332
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
 msgid "Undo"
 msgstr "Desfazer"
 
-#: gsecrets/unlocked_database.py:331
+#: gsecrets/unlocked_database.py:334
 msgid "Attribute deleted"
 msgstr "Atributos excluídos"
 
-#: gsecrets/unlocked_database.py:360
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "Copiado"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:460
+#: gsecrets/unlocked_database.py:463
 msgid "Safe locked due to inactivity"
 msgstr "Cofre bloqueado devido a inatividade"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:698
+#: gsecrets/unlocked_database.py:701
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} selecionado"
@@ -1669,40 +1677,40 @@ msgstr "Salvar Backup"
 msgid "Could not backup safe"
 msgstr "Não foi possível efetuar backup do cofre"
 
-#: gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:150
 msgid "Any file type"
 msgstr "Todo tipo de arquivo"
 
-#: gsecrets/widgets/window.py:156
+#: gsecrets/widgets/window.py:157
 msgid "Select Safe"
 msgstr "Selecionar cofre"
 
-#: gsecrets/widgets/window.py:173
+#: gsecrets/widgets/window.py:174
 msgid "File does not have a valid path"
 msgstr "O arquivo não possui um caminho válido"
 
-#: gsecrets/widgets/window.py:206
+#: gsecrets/widgets/window.py:207
 msgid "Safe is already open"
 msgstr "Cofre já está aberto"
 
-#: gsecrets/widgets/window.py:238
+#: gsecrets/widgets/window.py:239
 msgid "_Create"
 msgstr "_Criar"
 
-#: gsecrets/widgets/window.py:260
+#: gsecrets/widgets/window.py:261
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Não foi possível criar cofre: o cofre já está aberto"
 
-#: gsecrets/widgets/window.py:303 gsecrets/widgets/window.py:316
+#: gsecrets/widgets/window.py:304 gsecrets/widgets/window.py:317
 msgid "Could not create new Safe"
 msgstr "Não foi possível criar novo cofre"
 
-#: gsecrets/widgets/window.py:393
+#: gsecrets/widgets/window.py:394
 msgid "Could not save safe"
 msgstr "Não foi possível salvar o cofre"
 
 #. TRANSLATORS Add your name to the translator credits list
-#: gsecrets/widgets/window.py:559
+#: gsecrets/widgets/window.py:560
 msgid "translator-credits"
 msgstr ""
 "Yuri Otávio Lopes Gomes <yuriotavio@hotmail.com>\n"
@@ -1759,9 +1767,6 @@ msgstr ""
 
 #~ msgid "Select _All"
 #~ msgstr "Selecionar _todos"
-
-#~ msgid "Last opened databases"
-#~ msgstr "Últimos bancos de dados abertos"
 
 #~ msgid "A list of the last opened databases. Not used anymore."
 #~ msgstr "Uma lista dos últimos bancos de dados abertos. Não se utiliza mais."

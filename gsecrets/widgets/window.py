@@ -120,7 +120,8 @@ class Window(Adw.ApplicationWindow):
             uri = gsecrets.config_manager.get_last_opened_database()
             gfile: Gio.File = Gio.File.new_for_uri(uri)
             recents = RecentManager()
-            if gfile.query_exists() and gfile in recents:
+            recent_uris = [f.get_uri() for f in recents]
+            if gfile.query_exists() and uri in recent_uris:
                 filepath = gfile.get_path()
                 logging.debug("Opening last opened database: %s", filepath)
                 self.start_database_opening_routine(filepath)

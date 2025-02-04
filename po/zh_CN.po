@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-01-13 17:19+0000\n"
-"PO-Revision-Date: 2025-01-14 15:04+0800\n"
+"POT-Creation-Date: 2025-01-31 23:26+0000\n"
+"PO-Revision-Date: 2025-02-04 09:57+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -101,7 +101,7 @@ msgstr "颜色"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:236
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:237
 msgid "Create Safe"
 msgstr "创建保险箱"
 
@@ -683,12 +683,12 @@ msgstr "是否将所有更改写入保险箱？"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:417
+#: gsecrets/widgets/window.py:418
 msgid "_Quit Without Saving"
 msgstr "不保存并退出(_Q)"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:418
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:419
 msgid "_Don't Quit"
 msgstr "不退出(_D)"
 
@@ -707,8 +707,8 @@ msgstr "重新打开上次打开的保险箱。"
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:145
-#: gsecrets/widgets/window.py:228 gsecrets/widgets/window.py:240
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:229 gsecrets/widgets/window.py:241
 msgid "Safe"
 msgstr "保险箱"
 
@@ -788,7 +788,7 @@ msgid "Passphrase Length"
 msgstr "密码短语长度"
 
 #: data/gtk/settings_dialog.ui:112
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
 msgstr "生成密码短语时要使用的单词数量。"
 
@@ -849,7 +849,7 @@ msgstr "解锁(_U)"
 msgid "Browser"
 msgstr "浏览器"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:695
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
 msgid "Select Items"
 msgstr "选择项目"
 
@@ -1027,104 +1027,112 @@ msgid "Remember the window size."
 msgstr "记住窗口大小。"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:42
-msgid "Last opened database"
+msgid "Last opened databases"
 msgstr "上次打开的数据库"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:43
-msgid "Path to the last opened database."
-msgstr "上一次打开的数据库的路径。"
+msgid "A list of the last opened databases."
+msgstr "上次打开的数据库的列表。"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last opened database"
+msgstr "上次打开的数据库"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "Path to the last opened database."
+msgstr "上次打开的数据库的路径。"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
 msgstr "记住组合密钥"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
 msgstr "记住上一次解锁数据库使用的组合密钥。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used key provider"
 msgstr "上次使用的密钥提供者"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Key provider for composite database unlocking."
 msgstr "用于解锁合成数据库的密钥提供者。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:57
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
 msgstr "记住解锁方式"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
 msgstr "记住上一次使用的解锁方式，用于之后的数据库解锁。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
 msgstr "解锁时备份数据库"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
 msgstr "如果在保存数据库时出错，可以在 ~/.cache/secrets/backups 找到备份"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
 msgstr "分组和项目的排列顺序"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
 msgstr "分组和项目视图中的行顺序。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
 msgstr "生成密码时使用大写字母"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
 msgstr "生成随机密码时使用大写字符 A-Z。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
 msgstr "生成密码时使用小写字母"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr "生成随机密码时使用小写字符 a-z。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
 msgstr "生成密码时使用数字"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
 msgstr "生成随机密码时使用数字 0-9 字符。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
 msgstr "生成密码时使用符号"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr "生成随机密码时使用非字母或数字的 ASCII 符号。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
 msgstr "生成密码时的密码长度"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
 msgstr "生成密码时单个字符的数量。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
 msgstr "生成密码短语时的单词数量"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
 msgid "Separator when generating a passphrase"
 msgstr "生成密码短语时的分隔符"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
 msgstr "生成密码短语时要使用的单词分隔符。"
 
@@ -1157,7 +1165,7 @@ msgstr "保险箱解锁"
 msgid "Safe creation"
 msgstr "保险箱创建"
 
-#: gsecrets/application.py:34
+#: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "启用调试日志"
 
@@ -1187,12 +1195,12 @@ msgstr "输入标签名称"
 msgid "The tag already exists"
 msgstr "该标签已存在"
 
-#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:103
 msgid "Saved in history"
 msgstr "已保存到历史"
 
 #: gsecrets/entry_page.py:359 gsecrets/entry_row.py:163
-#: gsecrets/widgets/credentials_group.py:95
+#: gsecrets/widgets/credentials_group.py:98
 msgid "Username copied"
 msgstr "用户名已复制"
 
@@ -1217,7 +1225,7 @@ msgstr "该地址无效"
 msgid "Select Attachments"
 msgstr "选择附件"
 
-#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:110
 msgid "Password copied"
 msgstr "密码已复制"
 
@@ -1370,7 +1378,7 @@ msgstr "选择 YubiKey 插槽"
 msgid "Touch YubiKey"
 msgstr "触摸 YubiKey"
 
-#: gsecrets/recent_files_menu.py:45
+#: gsecrets/recent_files_menu.py:29
 msgid "Recent Files"
 msgstr "最近的文件"
 
@@ -1413,8 +1421,8 @@ msgstr "克隆"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:245 gsecrets/unlocked_database.py:533
-#: gsecrets/widgets/window.py:416
+#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:536
+#: gsecrets/widgets/window.py:417
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
 
@@ -1449,43 +1457,43 @@ msgstr "保险箱 {path} 已打开"
 msgid "Failed to unlock Safe"
 msgstr "保险箱解锁失败"
 
-#: gsecrets/unlocked_database.py:248
+#: gsecrets/unlocked_database.py:251
 msgid "Safe saved"
 msgstr "保险箱已保存"
 
-#: gsecrets/unlocked_database.py:250
+#: gsecrets/unlocked_database.py:253
 msgid "No changes made"
 msgstr "未作更改"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:298
+#: gsecrets/unlocked_database.py:301
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "{} 项元素已删除"
 
-#: gsecrets/unlocked_database.py:303
+#: gsecrets/unlocked_database.py:306
 msgid "Deletion completed"
 msgstr "删除完毕"
 
-#: gsecrets/unlocked_database.py:308 gsecrets/unlocked_database.py:332
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
 msgid "Undo"
 msgstr "撤消"
 
-#: gsecrets/unlocked_database.py:331
+#: gsecrets/unlocked_database.py:334
 msgid "Attribute deleted"
 msgstr "属性已删除"
 
-#: gsecrets/unlocked_database.py:360
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "已复制"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:460
+#: gsecrets/unlocked_database.py:463
 msgid "Safe locked due to inactivity"
 msgstr "保险箱因无活动已被锁定"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:698
+#: gsecrets/unlocked_database.py:701
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "已选择 {} 项"
@@ -1634,40 +1642,40 @@ msgstr "保存备份"
 msgid "Could not backup safe"
 msgstr "无法备份保险箱"
 
-#: gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:150
 msgid "Any file type"
 msgstr "任何文件类型"
 
-#: gsecrets/widgets/window.py:156
+#: gsecrets/widgets/window.py:157
 msgid "Select Safe"
 msgstr "选择保险箱"
 
-#: gsecrets/widgets/window.py:173
+#: gsecrets/widgets/window.py:174
 msgid "File does not have a valid path"
 msgstr "文件不具有有效路径"
 
-#: gsecrets/widgets/window.py:206
+#: gsecrets/widgets/window.py:207
 msgid "Safe is already open"
 msgstr "保险箱已打开"
 
-#: gsecrets/widgets/window.py:238
+#: gsecrets/widgets/window.py:239
 msgid "_Create"
 msgstr "创建(_C)"
 
-#: gsecrets/widgets/window.py:260
+#: gsecrets/widgets/window.py:261
 msgid "Cannot create Safe: Safe is already open"
 msgstr "无法创建保险箱：保险箱已打开"
 
-#: gsecrets/widgets/window.py:303 gsecrets/widgets/window.py:316
+#: gsecrets/widgets/window.py:304 gsecrets/widgets/window.py:317
 msgid "Could not create new Safe"
 msgstr "无法创建新保险箱"
 
-#: gsecrets/widgets/window.py:393
+#: gsecrets/widgets/window.py:394
 msgid "Could not save safe"
 msgstr "无法保存保险箱"
 
 #. TRANSLATORS Add your name to the translator credits list
-#: gsecrets/widgets/window.py:559
+#: gsecrets/widgets/window.py:560
 msgid "translator-credits"
 msgstr ""
 "Damned <damnedlies@163.com>, 2020.\n"
@@ -1696,9 +1704,6 @@ msgstr ""
 
 #~ msgid "Navigate To"
 #~ msgstr "导航至"
-
-#~ msgid "Last opened databases"
-#~ msgstr "上次打开的数据库"
 
 #~ msgid "A list of the last opened databases. Not used anymore."
 #~ msgstr "上一次打开的数据库的列表。不再使用。"

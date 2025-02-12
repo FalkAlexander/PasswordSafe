@@ -10,7 +10,9 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Gio, GLib
+gi.require_version("GtkSource", "5")
+
+from gi.repository import Gio, GLib, GtkSource
 
 from gsecrets import const
 
@@ -55,6 +57,7 @@ def main():
     app = Application()
 
     exit_status = app.run(sys.argv)
+    GtkSource.finalize()
     sys.exit(exit_status)
 
 

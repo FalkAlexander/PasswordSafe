@@ -6,7 +6,7 @@ import logging
 from gettext import gettext as _
 
 from gi.events import GLibEventLoopPolicy
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Adw, Gio, GLib, Gtk, GtkSource
 
 from gsecrets import const
 from gsecrets.recent_manager import RecentManager
@@ -42,6 +42,8 @@ class Application(Adw.Application):
 
     def do_startup(self):  # pylint: disable=arguments-differ
         Adw.Application.do_startup(self)
+
+        GtkSource.init()
 
         Gtk.Window.set_default_icon_name(const.APP_ID)
 

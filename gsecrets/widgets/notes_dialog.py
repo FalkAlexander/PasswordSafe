@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from gettext import gettext as _
 
-from gi.repository import Adw, GObject, Gtk
+from gi.repository import Adw, GObject, Gtk, GtkSource
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/notes_dialog.ui")
@@ -28,13 +28,19 @@ class NotesDialog(Adw.Dialog):
         self.__signal_handle = 0
 
         self.__notes_buffer = self._value_entry.get_buffer()
-        # TODO Revisit the choice of color used as it might look bad
-        # other themes.
-        self.__tag = self.__notes_buffer.create_tag("found", background="yellow")
+
+        self.__tag = self.__notes_buffer.create_tag(None)
+
+        manager = Adw.StyleManager.get_default()
 
         self.__setup_signals()
 
+        self.__update_tag()
+        self.__update_style_scheme(manager)
+
     def __setup_signals(self):
+        manager = Adw.StyleManager.get_default()
+
         handle = self.__unlocked_database.database_manager.connect(
             "notify::locked",
             self.__on_locked,
@@ -47,6 +53,45 @@ class NotesDialog(Adw.Dialog):
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
+
+        self.__notes_buffer.connect(
+            "notify::style-scheme", self.__on_style_scheme_notify
+        )
+        manager.connect("notify::dark", self.__on_dark_notify)
+
+    def __on_style_scheme_notify(self, _buffer, _pspec):
+        self.__update_tag()
+
+    def __on_dark_notify(self, manager, _pspec):
+        self.__update_style_scheme(manager)
+
+    def __update_style_scheme(self, manager):
+        if manager.props.dark:
+            scheme_name = "Adwaita-dark"
+        else:
+            scheme_name = "Adwaita"
+
+        scheme_manager = GtkSource.StyleSchemeManager.get_default()
+        scheme = scheme_manager.get_scheme(scheme_name)
+        self.__notes_buffer.set_style_scheme(scheme)
+
+    def __update_tag(self):
+        table = self.__notes_buffer.get_tag_table()
+
+        if current_tag := self.__tag:
+            table.remove(current_tag)
+
+        self.__tag = self.__notes_buffer.create_tag(None)
+
+        if scheme := self.__notes_buffer.get_style_scheme():  # noqa: SIM102
+            if style := scheme.get_style("search-match"):
+                style.apply(self.__tag)
+
+                if rgba := self.__tag.props.background_rgba:
+                    rgba.alpha = 1.0
+                    current_tag.props.background_rgba = rgba
+
+        self.__tag.set_priority(table.get_size() - 1)
 
     #
     # Events

@@ -40,13 +40,18 @@
             "name": "opensc",
             "config-opts": [
                 "--disable-doc",
+                "--disable-man",
+                "--with-completiondir=/app/lib/share/bash-completion/completions",
                 "--disable-tests"
+            ],
+            "cleanup": [
+                "/app/lib/share/bash-completion/completions"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/OpenSC/OpenSC/releases/download/0.25.1/opensc-0.25.1.tar.gz",
-                    "sha256": "23cbaae8bd7c8eb589b68c0a961dfb0d02007bea3165a3fc5efe2621d549b37b"
+                    "url": "https://github.com/OpenSC/OpenSC/releases/download/0.26.1/opensc-0.26.1.tar.gz",
+                    "sha256": "f16291a031d86e570394762e9f35eaf2fcbc2337a49910f3feae42d54e1688cb"
                 }
             ]
         },

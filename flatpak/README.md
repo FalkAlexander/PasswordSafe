@@ -11,15 +11,13 @@ Clone the project [zxcvbn-rs-py](https://github.com/fief-dev/zxcvbn-rs-py), chec
 
     flatpak-pip-generator validators -o flatpak/python3-validators
 
-# Update python3-pyotp.json
-
-    flatpak-pip-generator pyotp -o flatpak/python3-pyotp
-
 # Update python3-pykeepass.json
 
     flatpak-pip-generator --build-isolation pykeepass -o flatpak/python3-pykeepass
 
 Then add `"pykeepass-build-sources.json"` as a source and `--ignore-installed` to the `pip3` command.
+
+    jq --indent 4  '.sources += ["pykeepass-build-sources.json"]' flatpak/python3-pykeepass.json > flatpak/python3-pykeepass.json.tmp && mv --force flatpak/python3-pykeepass.json{.tmp,}
 
 # Update python3-pykcs11-sources.json
 

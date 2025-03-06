@@ -11,7 +11,7 @@ project_id = 'org.gnome.World.Secrets'
 project_name = 'Secrets'
 
 message('Looking for dependencies')
-# We need pykeepass>=4.1.0 and pyotp>=2.4.0.
+# We need pykeepass>=4.1.1 and pyotp>=2.4.0.
 python_bin = python.find_installation('python3', modules:[
   'pykeepass',
   'pyotp',

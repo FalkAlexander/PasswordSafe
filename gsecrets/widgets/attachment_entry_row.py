@@ -42,7 +42,7 @@ class AttachmentEntryRow(Adw.ActionRow):
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _button):
         self.entry.delete_attachment(self.attachment)
-        listbox = self.get_parent()
+        listbox = self.get_parent().get_parent()
         listbox.remove(self)
 
     def _replace_contents_callback(self, gfile, result):

@@ -488,7 +488,9 @@ class EntryPage(Adw.Bin):
 
     def add_attachment_row(self, attachment: Attachment) -> None:
         safe_entry: SafeEntry = self.props.safe_entry
-        attachment_row = AttachmentEntryRow(safe_entry, attachment)
+        attachment_row = AttachmentEntryRow(
+            safe_entry, attachment, self.attachment_list_box
+        )
         self.attachment_list_box.append(attachment_row)
 
     @Gtk.Template.Callback()

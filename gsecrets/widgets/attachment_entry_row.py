@@ -10,6 +10,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
+    from gsecrets.add_list_box import AddListBox
     from gsecrets.safe_element import SafeEntry
 
 
@@ -20,11 +21,14 @@ class AttachmentEntryRow(Adw.ActionRow):
     download_button = Gtk.Template.Child()
     delete_button = Gtk.Template.Child()
 
-    def __init__(self, entry: SafeEntry, attachment: Attachment) -> None:
+    def __init__(
+        self, entry: SafeEntry, attachment: Attachment, listbox: AddListBox
+    ) -> None:
         super().__init__()
 
         self.entry = entry
         self.attachment = attachment
+        self._listbox = listbox
 
         self.set_title(attachment.filename)
         # TODO Display mime type in subtitle
@@ -42,8 +46,7 @@ class AttachmentEntryRow(Adw.ActionRow):
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _button):
         self.entry.delete_attachment(self.attachment)
-        listbox = self.get_parent().get_parent()
-        listbox.remove(self)
+        self._listbox.remove(self)
 
     def _replace_contents_callback(self, gfile, result):
         try:

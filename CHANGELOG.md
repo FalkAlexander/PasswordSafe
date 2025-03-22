@@ -2,10 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
-- Update mime type database after installing
-- Port tags to AdwFlowBox
-- Add a changelog
+## 11.0 - 2025-04-05
+Use newer widgets from libadwaita 1.7. and update to the GNOME 48 SDK.
+- Show real database path
+- Update to pykeepass 4.1.1.post1
+- Add quick unlock setting
+- Add fingerprint reader support
+- Improve sidebar's width
+- Various bug fixes
+- Updated translations
 
 ## 10.4 - 2024-12-26
 Minor release.

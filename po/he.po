@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-02-24 12:11+0000\n"
-"PO-Revision-Date: 2025-02-28 10:41+0200\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2025-03-22 17:47+0000\n"
+"PO-Revision-Date: 2025-03-23 08:27+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3)\n"
-"X-Generator: Gtranslator 47.1\n"
+"2 : 3);\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -129,7 +129,7 @@ msgstr "_ססמה"
 msgid "_Confirm Password"
 msgstr "_אישור הססמה"
 
-#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:45
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:59
 msgid "Additional Credentials"
 msgstr "פרטי גישה נוספים"
 
@@ -569,7 +569,7 @@ msgid "Search"
 msgstr "חיפוש"
 
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:53 data/gtk/unlock_database.ui:37
+#: data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
 msgid "Password"
 msgstr "ססמה"
 
@@ -726,120 +726,144 @@ msgstr "לשמור _אוטומטית"
 msgid "Save every change automatically."
 msgstr "לשמור כל שינוי אוטומטית."
 
-#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:35
+#: data/org.gnome.World.Secrets.gschema.xml.in:112
+msgid "Enable Quick Unlock"
+msgstr "הפעלת שחרור נעילה מהיר"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:36
+msgid ""
+"Re-unlock using the last four characters of the password for a single "
+"attempt."
+msgstr ""
+"אפשר לשחרר נעילה מחדש בעזרת ארבע התווים האחרונים של הסיסמה בניסיון יחיד."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:42
+msgid "Enable Fingerprint Unlock"
+msgstr "הפעלת שחרור נעילה בטביעת אצבע"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:43
+msgid "Use the fingerprint reader to quickly unlock the safe."
+msgstr "להשתמש בטביעת אצבע כדי לשחרר את נעילת הכספת במהירות."
+
+#: data/gtk/settings_dialog.ui:51 gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock"
 msgstr "שחרור נעילה"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:40
+#: data/gtk/settings_dialog.ui:54
 msgid "Remember Composite _Key"
 msgstr "לזכור את המפתח המ_רוכב"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:41
+#: data/gtk/settings_dialog.ui:55
 msgid "Remember last used composite key."
 msgstr "לזכור את המפתח המרוכב האחרון שנעשה בו שימוש."
 
-#: data/gtk/settings_dialog.ui:56
+#: data/gtk/settings_dialog.ui:70
 msgid "Password Generation"
 msgstr "יצירת ססמה"
 
-#: data/gtk/settings_dialog.ui:59
+#: data/gtk/settings_dialog.ui:73
 msgid "Password Length"
 msgstr "אורך הססמה"
 
-#: data/gtk/settings_dialog.ui:60
+#: data/gtk/settings_dialog.ui:74
 msgid "Number of characters when generating a password."
 msgstr "מספר התווים בעת יצירת ססמה."
 
-#: data/gtk/settings_dialog.ui:74
+#: data/gtk/settings_dialog.ui:88
 msgid "_Uppercase Characters"
 msgstr "אותיות _גדולות"
 
-#: data/gtk/settings_dialog.ui:75
+#: data/gtk/settings_dialog.ui:89
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "להשתמש באותיות גדולות A-Z בעת יצירת ססמה."
 
-#: data/gtk/settings_dialog.ui:82
+#: data/gtk/settings_dialog.ui:96
 msgid "_Lowercase Characters"
 msgstr "אותיות _קטנות"
 
-#: data/gtk/settings_dialog.ui:83
+#: data/gtk/settings_dialog.ui:97
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "להשתמש באותיות קטנות a-z בעת יצירת ססמה."
 
-#: data/gtk/settings_dialog.ui:90
+#: data/gtk/settings_dialog.ui:104
 msgid "_Numeric Characters"
 msgstr "תווים מ_ספריים"
 
-#: data/gtk/settings_dialog.ui:91
+#: data/gtk/settings_dialog.ui:105
 msgid "Use numeric characters when generating a password."
 msgstr "להשתמש בתווים מספריים בעת יצירת ססמה."
 
-#: data/gtk/settings_dialog.ui:98
+#: data/gtk/settings_dialog.ui:112
 msgid "_Special Characters"
 msgstr "_תווים מיוחדים"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:99
+#: data/gtk/settings_dialog.ui:113
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "להשתמש בתווי ASCII בלתי מספריים בעת יצירת ססמה."
 
-#: data/gtk/settings_dialog.ui:108
+#: data/gtk/settings_dialog.ui:122
 msgid "Passphrase Generation"
 msgstr "יצירת מילות צופן"
 
-#: data/gtk/settings_dialog.ui:111
+#: data/gtk/settings_dialog.ui:125
 msgid "Passphrase Length"
 msgstr "אורך מילת הצופן"
 
-#: data/gtk/settings_dialog.ui:112
+#: data/gtk/settings_dialog.ui:126
 #: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
 msgstr "מספר המילים לשימוש בעת יצירת מילת צופן."
 
-#: data/gtk/settings_dialog.ui:126
+#: data/gtk/settings_dialog.ui:140
 msgid "Separator"
 msgstr "מפריד"
 
-#: data/gtk/settings_dialog.ui:136 data/gtk/settings_dialog.ui:139
+#: data/gtk/settings_dialog.ui:150 data/gtk/settings_dialog.ui:153
 msgid "Security"
 msgstr "אבטחה"
 
-#: data/gtk/settings_dialog.ui:142
+#: data/gtk/settings_dialog.ui:156
 msgid "Safe Lock Timeout"
 msgstr "תום זמן נעילת כספת"
 
-#: data/gtk/settings_dialog.ui:143
+#: data/gtk/settings_dialog.ui:157
 msgid "Lock safe on idle after X minutes."
 msgstr "לנעול את הכספת אם אינה פעילה לאחר X דקות."
 
-#: data/gtk/settings_dialog.ui:157
+#: data/gtk/settings_dialog.ui:171
 msgid "Lock on _Session Lock"
 msgstr "נעילה עם נעילת הה_פעלה"
 
-#: data/gtk/settings_dialog.ui:158
+#: data/gtk/settings_dialog.ui:172
 #: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "לנעול עם נעילת ההפעלה."
 
-#: data/gtk/settings_dialog.ui:165
+#: data/gtk/settings_dialog.ui:179
 msgid "Clear Clipboard"
 msgstr "פינוי לוח הגזירים"
 
-#: data/gtk/settings_dialog.ui:166
+#: data/gtk/settings_dialog.ui:180
 msgid "Clear clipboard after X seconds."
 msgstr "לפנות את לוח הגזירים לאחר X שניות."
 
-#: data/gtk/settings_dialog.ui:180
+#: data/gtk/settings_dialog.ui:194
 msgid "Clear Recent List"
 msgstr "פינוי רשימת אחרונים"
 
-#: data/gtk/settings_dialog.ui:181
+#: data/gtk/settings_dialog.ui:195
 msgid "Clear the recently opened safes list."
 msgstr "פינוי רשימת הכספות שנפתחו לאחרונה."
 
-#: data/gtk/settings_dialog.ui:188
+#: data/gtk/settings_dialog.ui:202
 msgid "Clear"
 msgstr "ניקוי"
 
@@ -847,7 +871,11 @@ msgstr "ניקוי"
 msgid "Unlock Safe"
 msgstr "שחרור נעילת כספת"
 
-#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
+#: data/gtk/unlock_database.ui:38
+msgid "Fingerprint Unlock available"
+msgstr "שחרור נעילה עם טביעת אצבע זמינה"
+
+#: data/gtk/unlock_database.ui:65 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "_שחרור נעילה"
 
@@ -1082,8 +1110,8 @@ msgstr "לגבות את מסד הנתונים עם שחרור הנעילה"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/secrets/backups"
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
 msgstr ""
 "אם אירעה שגיאה במהלך שמירת מסד הנתונים, ניתן למצוא גיבוי תחת ‎~/.cache/"
 "secrets/backups"
@@ -1148,6 +1176,24 @@ msgstr "מפריד כשמייצרים מילת צופן"
 msgid "Word separator to use when generating a passphrase."
 msgstr "מפריד בין מילים לשימוש בעת יצירת מילת צופן."
 
+#: data/org.gnome.World.Secrets.gschema.xml.in:113
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four "
+"characters of the password. If the first try is wrong, the full password is "
+"needed to unlock the safe."
+msgstr ""
+"כששחרור נעילה מהיר פעילה, אפשר להיכנס מחדש לכספת באמצעות 4 הספרות האחרונות "
+"של הסיסמה. אם הניסיון הראשון שגוי צריך את הסיסמה המלאה כדי לשחרר את נעילת "
+"הכספת."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:117
+msgid "Enable Fingerprint Quick Unlock"
+msgstr "הפעלת שחרור נעילה מהיר עם טביעת אצבע"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:118
+msgid "Use the fingerprint reader to quick unlock a locked safe."
+msgstr "להשתמש בקורא טביעות האצבע כדי לשחרר כספת נעולה במהירות."
+
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
 msgstr "@NAME@"
@@ -1195,7 +1241,7 @@ msgstr "הססמאות אינן תואמות"
 msgid "Unable to create database"
 msgstr "לא ניתן ליצור מסד נתונים"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:98
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "יצירת מפתח מורכב נכשלה"
@@ -1217,7 +1263,7 @@ msgstr "שמירה בהיסטוריה"
 msgid "Username copied"
 msgstr "שם המשתמש הועתק"
 
-#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:497
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:499
 msgid "Address copied"
 msgstr "כתובת הועתקה"
 
@@ -1460,15 +1506,27 @@ msgstr "הפעולה בוטלה: העברת הקבוצה שפעילה כרגע"
 msgid "Move completed"
 msgstr "ההעברה הושלמה"
 
+#: gsecrets/unlock_database.py:105
+msgid "Quick Unlock active"
+msgstr "שחרור נעילה מהירה פעיל"
+
 #. TRANSLATORS For example: "Safe ~/MySafe.kdbx is already open"
-#: gsecrets/unlock_database.py:106
+#: gsecrets/unlock_database.py:150
 #, python-brace-format
 msgid "Safe {path} is already open"
 msgstr "הכספת {path} כבר פתוחה"
 
-#: gsecrets/unlock_database.py:187
+#: gsecrets/unlock_database.py:239
 msgid "Failed to unlock Safe"
 msgstr "שחרור נעילת הכספת נכשל"
+
+#: gsecrets/unlock_database.py:404
+msgid "Please unlock using the password."
+msgstr "נא לשחרר את הנעילה עם הסיסמה."
+
+#: gsecrets/unlock_database.py:413
+msgid "Maximum tries reached. Please unlock using the password."
+msgstr "הגעת למספר הניסיונות המרבי. נא לשחרר באמצעות הסיסמה."
 
 #: gsecrets/unlocked_database.py:251
 msgid "Safe saved"
@@ -1526,11 +1584,11 @@ msgid "Attribute key already exists"
 msgstr "מפתח התכונה כבר קיים"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:41
 msgid "Save Attachment"
 msgstr "שמירת צרופה"
 
-#: gsecrets/widgets/attachment_entry_row.py:54
+#: gsecrets/widgets/attachment_entry_row.py:57
 msgid "Could not store attachment"
 msgstr "לא ניתן לאחסן צרופה"
 

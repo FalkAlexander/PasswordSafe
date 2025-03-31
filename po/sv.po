@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-01-31 23:26+0000\n"
-"PO-Revision-Date: 2025-02-01 01:03+0100\n"
+"POT-Creation-Date: 2025-03-22 18:50+0000\n"
+"PO-Revision-Date: 2025-03-31 14:17+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -102,7 +102,7 @@ msgstr "Färg"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:237
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
 msgid "Create Safe"
 msgstr "Skapa kassaskåp"
 
@@ -128,7 +128,7 @@ msgstr "_Lösenord"
 msgid "_Confirm Password"
 msgstr "_Bekräfta lösenord"
 
-#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:45
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:59
 msgid "Additional Credentials"
 msgstr "Ytterligare autentiseringsuppgifter"
 
@@ -567,7 +567,7 @@ msgid "Search"
 msgstr "Sök"
 
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:53 data/gtk/unlock_database.ui:37
+#: data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
 msgid "Password"
 msgstr "Lösenord"
 
@@ -687,12 +687,12 @@ msgstr "Vill du skriva alla ändringar till kassaskåpet?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:418
+#: gsecrets/widgets/window.py:419
 msgid "_Quit Without Saving"
 msgstr "_Avsluta utan att spara"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:419
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
 msgid "_Don't Quit"
 msgstr "Avsluta _inte"
 
@@ -711,8 +711,8 @@ msgstr "Öppna det senast öppnade kassaskåpet igen."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
-#: gsecrets/widgets/window.py:229 gsecrets/widgets/window.py:241
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
 msgid "Safe"
 msgstr "Kassaskåp"
 
@@ -724,120 +724,144 @@ msgstr "_Spara automatiskt"
 msgid "Save every change automatically."
 msgstr "Spara varje ändring automatiskt."
 
-#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:35
+#: data/org.gnome.World.Secrets.gschema.xml.in:112
+msgid "Enable Quick Unlock"
+msgstr "Aktivera snabb upplåsning"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:36
+msgid ""
+"Re-unlock using the last four characters of the password for a single "
+"attempt."
+msgstr ""
+"Lås upp igen med de sista fyra tecknen i lösenordet för ett enda försök."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:42
+msgid "Enable Fingerprint Unlock"
+msgstr "Aktivera fingeravtrycksupplåsning"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:43
+msgid "Use the fingerprint reader to quickly unlock the safe."
+msgstr "Använd fingeravtrycksläsaren för att snabbt låsa upp kassaskåpet."
+
+#: data/gtk/settings_dialog.ui:51 gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock"
 msgstr "Lås upp"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:40
+#: data/gtk/settings_dialog.ui:54
 msgid "Remember Composite _Key"
 msgstr "_Kom ihåg sammansatt nyckel"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:41
+#: data/gtk/settings_dialog.ui:55
 msgid "Remember last used composite key."
 msgstr "Kom ihåg senast använd sammansatt nyckel."
 
-#: data/gtk/settings_dialog.ui:56
+#: data/gtk/settings_dialog.ui:70
 msgid "Password Generation"
 msgstr "Lösenordsgenerering"
 
-#: data/gtk/settings_dialog.ui:59
+#: data/gtk/settings_dialog.ui:73
 msgid "Password Length"
 msgstr "Lösenordslängd"
 
-#: data/gtk/settings_dialog.ui:60
+#: data/gtk/settings_dialog.ui:74
 msgid "Number of characters when generating a password."
 msgstr "Antalet tecken då ett lösenord genereras."
 
-#: data/gtk/settings_dialog.ui:74
+#: data/gtk/settings_dialog.ui:88
 msgid "_Uppercase Characters"
 msgstr "_Versaler"
 
-#: data/gtk/settings_dialog.ui:75
+#: data/gtk/settings_dialog.ui:89
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Använd versalerna A-Z då ett lösenord genereras."
 
-#: data/gtk/settings_dialog.ui:82
+#: data/gtk/settings_dialog.ui:96
 msgid "_Lowercase Characters"
 msgstr "_Gemener"
 
-#: data/gtk/settings_dialog.ui:83
+#: data/gtk/settings_dialog.ui:97
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Använd gemenerna a-z då ett lösenord genereras."
 
-#: data/gtk/settings_dialog.ui:90
+#: data/gtk/settings_dialog.ui:104
 msgid "_Numeric Characters"
 msgstr "_Numeriska tecken"
 
-#: data/gtk/settings_dialog.ui:91
+#: data/gtk/settings_dialog.ui:105
 msgid "Use numeric characters when generating a password."
 msgstr "Använd siffror då ett lösenord genereras."
 
-#: data/gtk/settings_dialog.ui:98
+#: data/gtk/settings_dialog.ui:112
 msgid "_Special Characters"
 msgstr "_Specialtecken"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:99
+#: data/gtk/settings_dialog.ui:113
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Använd icke-alfanumeriska ASCII-symboler då ett lösenord genereras."
 
-#: data/gtk/settings_dialog.ui:108
+#: data/gtk/settings_dialog.ui:122
 msgid "Passphrase Generation"
 msgstr "Lösenfrasgenerering"
 
-#: data/gtk/settings_dialog.ui:111
+#: data/gtk/settings_dialog.ui:125
 msgid "Passphrase Length"
 msgstr "Lösenfraslängd"
 
-#: data/gtk/settings_dialog.ui:112
+#: data/gtk/settings_dialog.ui:126
 #: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
 msgstr "Antalet ord att använda då en lösenfras genereras."
 
-#: data/gtk/settings_dialog.ui:126
+#: data/gtk/settings_dialog.ui:140
 msgid "Separator"
 msgstr "Avgränsare"
 
-#: data/gtk/settings_dialog.ui:136 data/gtk/settings_dialog.ui:139
+#: data/gtk/settings_dialog.ui:150 data/gtk/settings_dialog.ui:153
 msgid "Security"
 msgstr "Säkerhet"
 
-#: data/gtk/settings_dialog.ui:142
+#: data/gtk/settings_dialog.ui:156
 msgid "Safe Lock Timeout"
 msgstr "Tidsgräns för låsning av kassaskåp"
 
-#: data/gtk/settings_dialog.ui:143
+#: data/gtk/settings_dialog.ui:157
 msgid "Lock safe on idle after X minutes."
 msgstr "Lås kassaskåpet vid inaktivitet efter X minuter."
 
-#: data/gtk/settings_dialog.ui:157
+#: data/gtk/settings_dialog.ui:171
 msgid "Lock on _Session Lock"
 msgstr "Lå_s vid sessionslås"
 
-#: data/gtk/settings_dialog.ui:158
+#: data/gtk/settings_dialog.ui:172
 #: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "Lås automatiskt när sessionen låses."
 
-#: data/gtk/settings_dialog.ui:165
+#: data/gtk/settings_dialog.ui:179
 msgid "Clear Clipboard"
 msgstr "Töm urklipp"
 
-#: data/gtk/settings_dialog.ui:166
+#: data/gtk/settings_dialog.ui:180
 msgid "Clear clipboard after X seconds."
 msgstr "Töm urklipp efter X sekunder."
 
-#: data/gtk/settings_dialog.ui:180
+#: data/gtk/settings_dialog.ui:194
 msgid "Clear Recent List"
 msgstr "Töm lista över senaste"
 
-#: data/gtk/settings_dialog.ui:181
+#: data/gtk/settings_dialog.ui:195
 msgid "Clear the recently opened safes list."
 msgstr "Töm listan över senast öppnade kassaskåp."
 
-#: data/gtk/settings_dialog.ui:188
+#: data/gtk/settings_dialog.ui:202
 msgid "Clear"
 msgstr "Töm"
 
@@ -845,7 +869,11 @@ msgstr "Töm"
 msgid "Unlock Safe"
 msgstr "Lås upp kassaskåp"
 
-#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
+#: data/gtk/unlock_database.ui:38
+msgid "Fingerprint Unlock available"
+msgstr "Fingeravtrycksupplåsning tillgänglig"
+
+#: data/gtk/unlock_database.ui:65 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "Lås _upp"
 
@@ -962,7 +990,7 @@ msgid "Create or import a new Keepass safe"
 msgstr "Skapa eller importera ett nytt Keepass-kassaskåp"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/gtk/window.ui:6 data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/gtk/window.ui:4 data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Secrets"
 
@@ -1150,6 +1178,25 @@ msgstr "Avskiljare när en lösenfras genereras"
 msgid "Word separator to use when generating a passphrase."
 msgstr "Ordavskiljare att använda när en lösenfras genereras."
 
+#: data/org.gnome.World.Secrets.gschema.xml.in:113
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four "
+"characters of the password. If the first try is wrong, the full password is "
+"needed to unlock the safe."
+msgstr ""
+"Med snabb upplåsning aktiverad kan du komma in i ett kassaskåp igen med de "
+"sista fyra tecknen i lösenordet. Om det första försöket är fel kommer det "
+"fullständiga lösenordet behövas för att låsa upp kassaskåpet."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:117
+msgid "Enable Fingerprint Quick Unlock"
+msgstr "Aktivera snabb fingeravtrycksupplåsning"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:118
+msgid "Use the fingerprint reader to quick unlock a locked safe."
+msgstr ""
+"Använd fingeravtrycksläsaren för att snabbt låsa upp ett låst kassaskåp."
+
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
 msgstr "@NAME@"
@@ -1197,7 +1244,7 @@ msgstr "Lösenord stämmer inte överens"
 msgid "Unable to create database"
 msgstr "Kunde inte skapa databas"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:98
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "Misslyckades med att generera sammansatt nyckel"
@@ -1219,7 +1266,7 @@ msgstr "Sparat i historiken"
 msgid "Username copied"
 msgstr "Användarnamn kopierat"
 
-#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:497
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:499
 msgid "Address copied"
 msgstr "Adress kopierad"
 
@@ -1285,7 +1332,7 @@ msgid "Exclude Symbols"
 msgstr "Exkludera symboler"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:86
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:110
 msgid "Keyfile"
 msgstr "Nyckelfil"
 
@@ -1437,7 +1484,7 @@ msgstr "Klon"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:536
-#: gsecrets/widgets/window.py:417
+#: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "Kunde inte spara kassaskåp"
 
@@ -1463,15 +1510,27 @@ msgstr "Åtgärden avbröts: Flyttar för närvarande aktiv grupp"
 msgid "Move completed"
 msgstr "Flytt slutförd"
 
+#: gsecrets/unlock_database.py:105
+msgid "Quick Unlock active"
+msgstr "Snabb upplåsning aktiv"
+
 #. TRANSLATORS For example: "Safe ~/MySafe.kdbx is already open"
-#: gsecrets/unlock_database.py:106
+#: gsecrets/unlock_database.py:150
 #, python-brace-format
 msgid "Safe {path} is already open"
 msgstr "Kassaskåpet {path} är redan öppnat"
 
-#: gsecrets/unlock_database.py:187
+#: gsecrets/unlock_database.py:239
 msgid "Failed to unlock Safe"
 msgstr "Misslyckades med att låsa upp kassaskåp"
+
+#: gsecrets/unlock_database.py:404
+msgid "Please unlock using the password."
+msgstr "Lås upp med lösenordet."
+
+#: gsecrets/unlock_database.py:413
+msgid "Maximum tries reached. Please unlock using the password."
+msgstr "Maximala antalet försök uppnått. Lås upp med lösenordet."
 
 #: gsecrets/unlocked_database.py:251
 msgid "Safe saved"
@@ -1525,11 +1584,11 @@ msgid "Attribute key already exists"
 msgstr "Attributnyckel finns redan"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:41
 msgid "Save Attachment"
 msgstr "Spara bilaga"
 
-#: gsecrets/widgets/attachment_entry_row.py:54
+#: gsecrets/widgets/attachment_entry_row.py:57
 msgid "Could not store attachment"
 msgstr "Kunde inte lagra bilaga"
 
@@ -1568,38 +1627,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:308
-#: gsecrets/widgets/database_settings_dialog.py:322
+#: gsecrets/widgets/database_settings_dialog.py:316
+#: gsecrets/widgets/database_settings_dialog.py:330
 msgid "Unknown"
 msgstr "Okänd"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:312
+#: gsecrets/widgets/database_settings_dialog.py:320
 msgid "AES 256-bit"
 msgstr "AES 256-bitars"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:315
+#: gsecrets/widgets/database_settings_dialog.py:323
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bitars"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:318
+#: gsecrets/widgets/database_settings_dialog.py:326
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bitars"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:326
+#: gsecrets/widgets/database_settings_dialog.py:334
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:329
+#: gsecrets/widgets/database_settings_dialog.py:337
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:332
+#: gsecrets/widgets/database_settings_dialog.py:340
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1612,7 +1671,7 @@ msgstr "Post utgången"
 msgid "Hide Text"
 msgstr "Dölj text"
 
-#: gsecrets/widgets/notes_dialog.py:60
+#: gsecrets/widgets/notes_dialog.py:105
 msgid "Selection copied"
 msgstr "Markering kopierad"
 
@@ -1663,40 +1722,40 @@ msgstr "Spara säkerhetskopia"
 msgid "Could not backup safe"
 msgstr "Kunde inte säkerhetskopiera kassaskåp"
 
-#: gsecrets/widgets/window.py:150
+#: gsecrets/widgets/window.py:151
 msgid "Any file type"
 msgstr "Alla filtyper"
 
-#: gsecrets/widgets/window.py:157
+#: gsecrets/widgets/window.py:158
 msgid "Select Safe"
 msgstr "Välj kassaskåp"
 
-#: gsecrets/widgets/window.py:174
+#: gsecrets/widgets/window.py:175
 msgid "File does not have a valid path"
 msgstr "Filen har ingen giltig sökväg"
 
-#: gsecrets/widgets/window.py:207
+#: gsecrets/widgets/window.py:208
 msgid "Safe is already open"
 msgstr "Kassaskåp är redan öppnat"
 
-#: gsecrets/widgets/window.py:239
+#: gsecrets/widgets/window.py:240
 msgid "_Create"
 msgstr "S_kapa"
 
-#: gsecrets/widgets/window.py:261
+#: gsecrets/widgets/window.py:262
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Kan inte skapa kassaskåp: Kassaskåp är redan öppnat"
 
-#: gsecrets/widgets/window.py:304 gsecrets/widgets/window.py:317
+#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
 msgid "Could not create new Safe"
 msgstr "Kunde inte skapa nytt kassaskåp"
 
-#: gsecrets/widgets/window.py:394
+#: gsecrets/widgets/window.py:395
 msgid "Could not save safe"
 msgstr "Kunde inte spara kassaskåp"
 
 #. TRANSLATORS Add your name to the translator credits list
-#: gsecrets/widgets/window.py:560
+#: gsecrets/widgets/window.py:561
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"

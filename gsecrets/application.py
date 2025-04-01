@@ -126,6 +126,10 @@ class Application(Adw.Application):
     def do_activate(self):  # pylint: disable=arguments-differ
         Adw.Application.do_activate(self)
 
+        if window := self.get_active_window():
+            window.present()
+            return
+
         window = self.new_window()
         window.invoke_initial_screen()
         window.present()

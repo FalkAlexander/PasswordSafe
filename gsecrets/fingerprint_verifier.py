@@ -72,13 +72,14 @@ class FingerprintVerifier:
                 return
 
             try:
-                device_str = await manager_proxy.call(
+                variant = await manager_proxy.call(
                     "GetDefaultDevice",
                     None,
                     Gio.DBusCallFlags.NO_AUTO_START,
                     DBUS_TIMEOUT,
                     None,
-                )[0]
+                )
+                device_str = variant[0]
             except GLib.GError:
                 logging.exception("Failed to get default fingerprint device")
                 return

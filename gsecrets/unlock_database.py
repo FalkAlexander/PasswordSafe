@@ -243,6 +243,8 @@ class UnlockDatabase(Adw.Bin):
         self._set_sensitive(True)
         self._progress.end_pulse()
 
+        self.quick_unlock_failed = True
+
         # Regrab the focus of the entry.
         self.password_entry.grab_focus()
 

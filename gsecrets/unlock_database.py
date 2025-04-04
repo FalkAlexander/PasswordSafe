@@ -349,8 +349,9 @@ class UnlockDatabase(Adw.Bin):
             return
 
         async def disconnect():
-            await self.fprint.verify_stop()
-            self.fprint.disconnect()
+            if self.fprint:
+                await self.fprint.verify_stop()
+                self.fprint.disconnect()
             self.fingerprint_img.props.visible = False
 
         app = Gio.Application.get_default()

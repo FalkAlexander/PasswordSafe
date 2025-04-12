@@ -9,6 +9,7 @@ conf.set('DATA_DIR', DATA_DIR)
 conf.set('PROFILE', profile)
 conf.set('APPID', application_id)
 conf.set('PKCS11_LIB', join_paths(get_option('prefix'), get_option('libdir'), 'opensc-pkcs11.so'))
+conf.set('VERSION', meson.project_version())
 
 configure_file(
   input: 'const.py.in',

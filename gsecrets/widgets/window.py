@@ -542,6 +542,7 @@ class Window(Adw.ApplicationWindow):
         """Invoked when we click "about" in the main menu."""
         about_dialog = Adw.AboutDialog.new_from_appdata(
             f"/org/gnome/World/Secrets/{const.APP_ID}.metainfo.xml",
+            const.VERSION,
         )
         about_dialog.set_designers(["Christopher Davis", "Tobias Bernard"])
         about_dialog.set_developers(

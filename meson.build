@@ -36,7 +36,7 @@ dependency('gio-2.0', version: '>= 2.66')
 dependency('gobject-introspection-1.0', version: '>=1.66.0')
 dependency('gtk4', version: '>=4.15.3')
 dependency('libadwaita-1', version: '>=1.7.alpha')
-dependency('pygobject-3.0', version: '>= 3.50.0')
+dependency('pygobject-3.0', version: '>= 3.52')
 dependency('gtksourceview-5', version: '>= 5.0')
 
 python_dir = python_bin.get_install_dir()

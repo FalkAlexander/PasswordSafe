@@ -5,7 +5,9 @@ include:
   - project: 'gnome/citemplates'
     file: 'flatpak/flatpak_ci_initiative.yml'
   - project: 'GNOME/citemplates'
-    file: 'templates/basic-release.yml'
+    file: 'templates/basic-release-with-dist.yml'
+    inputs:
+      dist-job-name: "flatpak@x86_64"
 
 stages:
   - check

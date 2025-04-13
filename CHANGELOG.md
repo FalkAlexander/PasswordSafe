@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## 11.1.1 - 2025-04-13
+Fixup ci release job
+
 ## 11.1 - 2025-04-13
 Declare on meson that we depend on pygobject 3.52.
 - Updated translations

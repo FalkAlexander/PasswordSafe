@@ -1,5 +1,5 @@
 project('secrets',
-        version: '11.1',
+        version: '11.1.1',
         meson_version: '>= 0.64',
         license: 'GPL-3.0-only'
        )

@@ -108,6 +108,9 @@ class SafeElement(GObject.Object):
 
         return False
 
+    def __hash__(self):  # pylint: disable=arguments-differ
+        return hash(self.uuid)
+
     @GObject.Signal(flags=GObject.SignalFlags.ACTION)
     def updated(self):
         """Update the entry.

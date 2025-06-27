@@ -7,7 +7,6 @@ import stat
 import typing
 from gettext import gettext as _
 from pathlib import Path
-from typing import Generic, TypeVar
 
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
@@ -114,10 +113,7 @@ class KeyFileFilter:
         self.file_filter.add_mime_type("application/x-iwork-keynote-sffkey")
 
 
-T = TypeVar("T")
-
-
-class LazyValue(Generic[T]):
+class LazyValue[T]:
     """A lazy value, i.e. a value which is only computed when it is actually needed."""
 
     def __init__(self, compute: Callable[[], T]):

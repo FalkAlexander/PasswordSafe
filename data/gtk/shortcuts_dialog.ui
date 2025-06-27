@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="AdwShortcutsDialog" id="shortcuts_dialog">
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="Shortcut window description">Application</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Create Safe</property>
+            <property name="action-name">win.new_database</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Go Back</property>
+            <property name="action-name">win.go_back</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Open Safe</property>
+            <property name="action-name">win.open_database('')</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Open Preferences</property>
+            <property name="action-name">win.settings</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Show Shortcuts</property>
+            <property name="action-name">app.shortcuts</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Close Window</property>
+            <property name="action-name">window.close</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">New Window</property>
+            <property name="action-name">app.new-window</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Quit</property>
+            <property name="action-name">app.quit</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="Shortcut window description">Safe</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Lock Safe</property>
+            <property name="action-name">win.db.lock</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Save Safe</property>
+            <property name="action-name">win.db.save</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Open Search</property>
+            <property name="action-name">win.db.search</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Create Entry</property>
+            <property name="action-name">win.db.add_entry</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Create Group</property>
+            <property name="action-name">win.db.add_group</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="Shortcut window description">Entry</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Copy Password</property>
+            <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;C</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Copy Address</property>
+            <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;V</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Copy Username</property>
+            <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;B</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Copy One-Time Password</property>
+            <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;T</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Show History</property>
+            <property name="accelerator">&lt;Control&gt;H</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Save in History</property>
+            <property name="accelerator">&lt;Control&gt;&lt;Shift&gt;S</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

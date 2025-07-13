@@ -65,11 +65,13 @@ class ReferencesDialog(Adw.Dialog):
             self.__signal_handle = 0
 
     @Gtk.Template.Callback()
-    def _open_codes_popover(self, _gesture, _n_points, _x, _y):
+    def _open_codes_popover(self, gesture, _n_points, _x, _y):
+        gesture.set_state(Gtk.EventSequenceState.Claimed)
         self._codes_popover.popup()
 
     @Gtk.Template.Callback()
-    def _open_uuid_popover(self, _gesture, _n_points, _x, _y):
+    def _open_uuid_popover(self, gesture, _n_points, _x, _y):
+        gesture.set_state(Gtk.EventSequenceState.Claimed)
         self._uuid_popover.popup()
 
     @Gtk.Template.Callback()

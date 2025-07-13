@@ -86,12 +86,13 @@ class GroupRow(Adw.Bin):
     @Gtk.Template.Callback()
     def _on_group_row_button_pressed(
         self,
-        _gesture: Gtk.GestureClick,
+        gesture: Gtk.GestureClick,
         _n_press: int,
         _event_x: float,
         _event_y: float,
     ) -> None:
         # pylint: disable=too-many-arguments
+        gesture.set_state(Gtk.EventSequenceState.Claimed)
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()
 
@@ -146,6 +147,7 @@ class GroupRow(Adw.Bin):
         self._prefix_stack.props.visible_child = visible_child
 
     @Gtk.Template.Callback()
-    def _on_long_press_gesture_pressed(self, _gesture, _x, _y):
+    def _on_long_press_gesture_pressed(self, gesture, _x, _y):
+        gesture.set_state(Gtk.EventSequenceState.Claimed)
         self.unlocked_database.props.selection_mode = True
         self._safe_group.props.selected = not self._safe_group.props.selected

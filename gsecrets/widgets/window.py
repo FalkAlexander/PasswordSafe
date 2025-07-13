@@ -576,11 +576,12 @@ class Window(Adw.ApplicationWindow):
     @Gtk.Template.Callback()
     def on_back_button_pressed(
         self,
-        _gesture: Gtk.GestureClick,
+        gesture: Gtk.GestureClick,
         _n_press: int,
         _event_x: float,
         _event_y: float,
     ) -> None:
+        gesture.set_state(Gtk.EventSequenceState.Claimed)
         self.lookup_action("go_back").activate()
 
     @property

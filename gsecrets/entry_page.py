@@ -327,17 +327,17 @@ class EntryPage(Adw.Bin):
     # Events
     #
 
-    def _on_password_history_action(self, _widget, _action, _param):
-        safe_entry = self.props.safe_entry
+    def _on_password_history_action(self, widget, _action, _param):
+        safe_entry = widget.props.safe_entry
 
-        window = HistoryWindow(safe_entry, self.unlocked_database)
-        window.present(self)
+        window = HistoryWindow(safe_entry, widget.unlocked_database)
+        window.present(widget)
 
-    def _on_save_in_history_action(self, _widget, _action, _param):
-        safe_entry = self.props.safe_entry
+    def _on_save_in_history_action(self, widget, _action, _param):
+        safe_entry = widget.props.safe_entry
         safe_entry.save_history()
 
-        self.unlocked_database.window.send_notification(_("Saved in history"))
+        widget.unlocked_database.window.send_notification(_("Saved in history"))
 
     def _on_history_saved(self, entry):
         if not entry.history:
@@ -347,28 +347,28 @@ class EntryPage(Adw.Bin):
 
     def _on_copy_action(
         self,
-        _widget: Gtk.Widget,
+        widget: Gtk.Widget,
         action_name: str,
         _parameter: GLib.Variant,
     ) -> None:
-        if self.unlocked_database.props.database_locked:
+        if widget.unlocked_database.props.database_locked:
             return
 
         if action_name == "entry.copy_user":
-            username = self.credentials_group.username
-            self.unlocked_database.send_to_clipboard(username, _("Username copied"))
+            username = widget.credentials_group.username
+            widget.unlocked_database.send_to_clipboard(username, _("Username copied"))
         elif action_name == "entry.copy_password":
-            self.credentials_group.copy_password()
+            widget.credentials_group.copy_password()
         elif action_name == "entry.copy_url":
-            url = self.url_entry_row.props.text
-            self.unlocked_database.send_to_clipboard(url, _("Address copied"))
+            url = widget.url_entry_row.props.text
+            widget.unlocked_database.send_to_clipboard(url, _("Address copied"))
         elif action_name == "entry.copy_otp":
-            safe_entry: SafeEntry = self.props.safe_entry
+            safe_entry: SafeEntry = widget.props.safe_entry
             otp_token = safe_entry.otp_token() or ""
             if otp_token == "":
                 return
 
-            self.unlocked_database.send_to_clipboard(
+            widget.unlocked_database.send_to_clipboard(
                 otp_token,
                 _("One-time password copied"),
             )
@@ -428,10 +428,10 @@ class EntryPage(Adw.Bin):
             _("One-time password copied"),
         )
 
-    def _on_add_attribute(self, _widget, _action_name, _pspec):
-        window = self.unlocked_database.window
-        entry = self.props.safe_entry
-        db_manager = self.unlocked_database.database_manager
+    def _on_add_attribute(self, widget, _action_name, _pspec):
+        window = widget.unlocked_database.window
+        entry = widget.props.safe_entry
+        db_manager = widget.unlocked_database.database_manager
         dialog = AddAttributeDialog(db_manager, entry)
         dialog.present(window)
 
@@ -445,8 +445,8 @@ class EntryPage(Adw.Bin):
         attachment = list_box_row.attachment
         AttachmentWarningDialog(self, attachment).present(self)
 
-    def _on_add_attachment(self, _widget, _action_name, _pspec):
-        self.unlocked_database.start_database_lock_timer()
+    def _on_add_attachment(self, widget, _action_name, _pspec):
+        widget.unlocked_database.start_database_lock_timer()
 
         dialog = Gtk.FileDialog.new()
         # NOTE: Filechooser title for selecting attachment file
@@ -454,12 +454,12 @@ class EntryPage(Adw.Bin):
         dialog.props.accept_label = _("_Add")
 
         dialog.open_multiple(
-            self.unlocked_database.window,
+            widget.unlocked_database.window,
             None,
-            self._on_select_filechooser_response,
+            widget.on_select_filechooser_response,
         )
 
-    def _on_select_filechooser_response(
+    def on_select_filechooser_response(
         self,
         dialog: Gtk.FileDialog,
         result: Gio.AsyncResult,

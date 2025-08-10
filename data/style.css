@@ -51,6 +51,36 @@ image.colored {
   --accent-fg-color: white;
 }
 
+@media (prefers-color-scheme: dark) {
+  .blue {
+    --accent-bg-color: var(--blue-5);
+  }
+
+  .green {
+    --accent-bg-color: var(--green-5);
+  }
+
+  .yellow {
+    --accent-bg-color: var(--yellow-5);
+  }
+
+  .orange {
+    --accent-bg-color: var(--orange-5);
+  }
+
+  .red {
+    --accent-bg-color: var(--red-5);
+  }
+
+  .purple {
+    --accent-bg-color: var(--purple-5);
+  }
+
+  .brown {
+    --accent-bg-color: var(--brown-5);
+  }
+}
+
 /* Password strength level bar styles */
 
 levelbar block.insecure, levelbar block.low, levelbar block.high, levelbar block.full {

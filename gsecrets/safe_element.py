@@ -565,14 +565,22 @@ class SafeGroup(SafeElement):
             self._subgroups_filter.changed(Gtk.FilterChange.DIFFERENT)  # type: ignore
 
     def init_subgroups(self):
-        self._subgroups_filter = Gtk.CustomFilter.new(self._group_filter_func)
+        expr = Gtk.PropertyExpression.new(
+            SafeElement.__gtype__, None, "parent_uuid_str"
+        )
+        self._subgroups_filter = Gtk.StringFilter.new(expr)
+        self._subgroups_filter.props.search = str(self.uuid)
         self._subgroups = Gtk.FilterListModel.new(
             self._db_manager.groups,
             self._subgroups_filter,
         )
 
     def init_entries(self):
-        self._entries_filter = Gtk.CustomFilter.new(self._group_filter_func)
+        expr = Gtk.PropertyExpression.new(
+            SafeElement.__gtype__, None, "parent_uuid_str"
+        )
+        self._entries_filter = Gtk.StringFilter.new(expr)
+        self._entries_filter.props.search = str(self.uuid)
         self._entries = Gtk.FilterListModel.new(
             self._db_manager.entries,
             self._entries_filter,
@@ -596,15 +604,6 @@ class SafeGroup(SafeElement):
     def group(self) -> Group:
         """Returns the private pykeepass group."""
         return self._group
-
-    def _entry_filter_func(self, entry: SafeEntry) -> bool:
-        return entry.parentgroup_uuid == self.uuid
-
-    def _group_filter_func(self, group: SafeGroup) -> bool:
-        if group.is_root_group:
-            return False
-
-        return group.parentgroup_uuid == self.uuid
 
     def emit_children_changed(self, removed, added):
         self.emit(self.children_changed, removed, added)

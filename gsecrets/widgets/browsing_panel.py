@@ -9,7 +9,7 @@ from gi.repository import Adw, Gio, GObject, Gtk
 import gsecrets.config_manager as config
 from gsecrets.entry_row import EntryRow
 from gsecrets.group_row import GroupRow
-from gsecrets.safe_element import SafeGroup
+from gsecrets.safe_element import SafeElement, SafeGroup
 from gsecrets.single_selection import SingleSelection
 from gsecrets.sorting import SortingHat
 
@@ -60,7 +60,13 @@ class BrowsingPanel(Adw.Bin):
 
         flatten_model = Gtk.FlattenListModel.new(flatten)
 
-        self._filter = Gtk.CustomFilter.new(self._parent_filter_fn)
+        expr = Gtk.PropertyExpression.new(
+            SafeElement.__gtype__, None, "parent_uuid_str"
+        )
+        self._filter = Gtk.StringFilter.new(expr)
+        root_group = SafeGroup.get_root(dbm)
+        self._filter.props.search = str(root_group.uuid)
+
         self._search_filter = Gtk.CustomFilter.new(self._search_filter_fn)
 
         self._list_model = Gtk.FilterListModel.new(flatten_model, self._filter)
@@ -98,7 +104,7 @@ class BrowsingPanel(Adw.Bin):
         self.current_group = group
         self._signals.props.target = group
         self.unlocked_database.props.search_active = False
-        self._filter.changed(Gtk.FilterChange.DIFFERENT)
+        self._filter.props.search = str(group.uuid)
 
     def set_search(self, query: str | None) -> None:
         if self._query == query:
@@ -196,12 +202,6 @@ class BrowsingPanel(Adw.Bin):
             change = Gtk.FilterChange.DIFFERENT
 
         self._filter.changed(change)
-
-    def _parent_filter_fn(self, item):
-        if item.is_root_group:
-            return False
-
-        return item.parentgroup == self.current_group
 
     def _search_filter_fn(self, item: SafeEntry | SafeGroup) -> bool:
         if item.is_root_group:

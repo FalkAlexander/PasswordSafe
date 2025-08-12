@@ -66,12 +66,12 @@ class ReferencesDialog(Adw.Dialog):
 
     @Gtk.Template.Callback()
     def _open_codes_popover(self, gesture, _n_points, _x, _y):
-        gesture.set_state(Gtk.EventSequenceState.Claimed)
+        gesture.set_state(Gtk.EventSequenceState.CLAIMED)
         self._codes_popover.popup()
 
     @Gtk.Template.Callback()
     def _open_uuid_popover(self, gesture, _n_points, _x, _y):
-        gesture.set_state(Gtk.EventSequenceState.Claimed)
+        gesture.set_state(Gtk.EventSequenceState.CLAIMED)
         self._uuid_popover.popup()
 
     @Gtk.Template.Callback()

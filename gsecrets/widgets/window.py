@@ -581,7 +581,7 @@ class Window(Adw.ApplicationWindow):
         _event_x: float,
         _event_y: float,
     ) -> None:
-        gesture.set_state(Gtk.EventSequenceState.Claimed)
+        gesture.set_state(Gtk.EventSequenceState.CLAIMED)
         self.lookup_action("go_back").activate()
 
     @property

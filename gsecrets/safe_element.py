@@ -378,6 +378,25 @@ class SafeElement(GObject.Object):
             time.second,
         )
 
+    @GObject.Property(type=int, flags=GObject.ParamFlags.READABLE)
+    def ctime_int(self) -> int:
+        try:
+            time = self._element.ctime
+        except ValueError:
+            logging.exception("Invalid creation time")
+            return -1
+        except OverflowError:
+            logging.exception("Creation time for %s overflows", self.name)
+            return -1
+        except Exception:  # pylint: disable=broad-except
+            logging.exception("Could not read creation time")
+            return -1
+
+        if not time:
+            return -1
+
+        return time.timestamp()
+
     @property
     def ctime(self) -> GLib.DateTime | None:
         """The UTC creation time of the element."""

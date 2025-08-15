@@ -347,6 +347,18 @@ class SafeElement(GObject.Object):
         """
         return self._element.uuid
 
+    @GObject.Property(type=str, flags=GObject.ParamFlags.READABLE)
+    def parent_uuid_str(self) -> str:
+        """UUID of the parent group of the element.
+
+        :returns: uuid of the parent
+        :rtype: UUID
+        """
+        if self.is_root_group:
+            return ""
+
+        return str(self.parentgroup_uuid)
+
     @property
     def path(self) -> list[str]:
         return self._element.path

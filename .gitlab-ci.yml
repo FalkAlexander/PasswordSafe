@@ -55,7 +55,7 @@ codespell:
 mypy:
   stage: check
   script:
-    - dnf install --quiet -y pip python3-mypy python3-pyotp
+    - dnf install --quiet -y python3-mypy python3-pyotp
     - mypy gsecrets
 
 ruff:

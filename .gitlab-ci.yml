@@ -68,9 +68,9 @@ ruff:
 check-potfiles:
   stage: check
   script:
-    - dnf install --quiet -y gettext python3 git-core
-    - git clone --quiet --depth=1 https://gitlab.gnome.org/msandova/check-potfiles.git
-    - python3 check-potfiles/check_potfiles.py
+    - dnf install --quiet -y gettext python3
+    - curl --silent -O https://gitlab.gnome.org/msandova/check-potfiles/-/raw/master/check_potfiles.py
+    - python3 check_potfiles.py
         --directory gsecrets
         --directory data
         --exclude data/org.gnome.World.Secrets.xml

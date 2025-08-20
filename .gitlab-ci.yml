@@ -69,7 +69,8 @@ check-potfiles:
   stage: check
   script:
     - dnf install --quiet -y gettext python3
-    - curl --silent -O https://gitlab.gnome.org/msandova/check-potfiles/-/raw/master/check_potfiles.py
+    - curl --proto '=https' --tlsv1.2 -sSf -O
+        https://gitlab.gnome.org/msandova/check-potfiles/-/raw/master/check_potfiles.py
     - python3 check_potfiles.py
         --directory gsecrets
         --directory data

@@ -63,9 +63,12 @@
         {
             "name": "swig",
             "buildsystem": "autotools",
+            "config-opts": [
+                "--without-alllang",
+                "--without-pcre"
+            ],
             "cleanup": [
-                "/bin",
-                "/share/swig"
+                "*"
             ],
             "sources": [
                 {
@@ -78,11 +81,10 @@
         {
             "name": "pcsc-tools",
             "cleanup": [
-                "/bin",
-                "/share/applications",
-                "/share/locale",
-                "/share/man",
-                "/share/pcsc"
+                "*"
+            ],
+            "config-opts": [
+                "--disable-gettext"
             ],
             "sources": [
                 {

@@ -1,6 +1,9 @@
 {
     "name": "python3-pyhibp",
     "buildsystem": "simple",
+    "cleanup": [
+        "/bin"
+    ],
     "build-commands": [
         "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pyhibp\" --no-build-isolation"
     ],

@@ -17,16 +17,15 @@
                 "--disable-documentation"
             ],
             "cleanup": [
-                "/include",
+                "/bin",
                 "/bin/pcsc-spy",
+                "/include",
                 "/lib/libpcscspy*",
                 "/lib/pkg-config",
+                "/sbin",
+                "/sbin/pcscd",
                 "/share/doc",
                 "/share/man"
-            ],
-            "post-install": [
-                "rm /app/sbin/pcscd",
-                "rmdir /app/sbin || true"
             ],
             "sources": [
                 {
@@ -45,7 +44,9 @@
                 "--disable-tests"
             ],
             "cleanup": [
-                "/app/lib/share/bash-completion/completions"
+                "/bin",
+                "/share/opensc",
+                "/lib/share/bash-completion/completions"
             ],
             "sources": [
                 {
@@ -64,7 +65,7 @@
             "buildsystem": "autotools",
             "cleanup": [
                 "/bin",
-                "/share"
+                "/share/swig"
             ],
             "sources": [
                 {
@@ -76,6 +77,13 @@
         },
         {
             "name": "pcsc-tools",
+            "cleanup": [
+                "/bin",
+                "/share/applications",
+                "/share/locale",
+                "/share/man",
+                "/share/pcsc"
+            ],
             "sources": [
                 {
                     "type": "archive",

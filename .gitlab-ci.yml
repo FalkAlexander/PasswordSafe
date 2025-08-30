@@ -21,13 +21,6 @@ variables:
     APP_ID: "org.gnome.World.Secrets.Devel"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
 
-.flatpak_cache_template: &flatpak_cache
-    cache:
-        key: "flatpak"
-        paths:
-          - .flatpak-builder/cache/
-          - _build/target/
-
 flatpak_x86_64:
     extends: .flatpak@x86_64
     stage: build

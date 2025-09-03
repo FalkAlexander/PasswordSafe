@@ -148,21 +148,36 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         }
         self.unique_passwords_row.set_subtitle(str(len(unique_dict)))
 
+        thread = threading.Thread(target=self.check_network_access)
+        thread.daemon = True
+        thread.start()
+
+        self.hibp_stack.set_visible_child_name("button")
+
+    def check_network_access(self):
+        reachable = True
+        status_code_ok = True
+
         try:
             check_url = requests.get("https://haveibeenpwned.com/", timeout=3)
         except requests.exceptions.RequestException:
+            reachable = False
+        else:
+            status_code_ok = check_url.status_code == requests.codes.ok
+
+        GLib.idle_add(self.update_hibp_ui, reachable, status_code_ok)
+
+    def update_hibp_ui(self, reachable, status_code_ok):
+        if not reachable:
             self.hibp_refresh_button.set_sensitive(False)
 
             row = Adw.ActionRow()
             row.set_title("No Network Access Configured")
             row.set_subtitle("Add --share=network to your Flatpak manifest")
             self.hibp_group.add(row)
-        else:
-            self.hibp_refresh_button.set_sensitive(
-                check_url.status_code == requests.codes.ok
-            )
+            return
 
-        self.hibp_stack.set_visible_child_name("button")
+        self.hibp_refresh_button.set_sensitive(status_code_ok)
 
     @Gtk.Template.Callback()
     def on_hibp_refresh_clicked(self, _entry: Gtk.Entry) -> None:

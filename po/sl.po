@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-08-30 10:15+0000\n"
-"PO-Revision-Date: 2025-08-30 12:45+0200\n"
+"POT-Creation-Date: 2025-09-07 16:48+0000\n"
+"PO-Revision-Date: 2025-09-07 22:17+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -203,8 +203,8 @@ msgid "New Additional Credentials"
 msgstr "Nove dodatne poverilnice"
 
 #: data/gtk/database_settings_dialog.ui:75
-#: gsecrets/widgets/database_settings_dialog.py:319
-#: gsecrets/widgets/database_settings_dialog.py:381
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
 msgstr "_Uveljavi spremembe"
 
@@ -1252,6 +1252,11 @@ msgstr "Odklepanje sefa"
 msgid "Safe creation"
 msgstr "Ustvarjanje sefa"
 
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:405
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Omogoči razhroščevalni način"
@@ -1270,7 +1275,7 @@ msgid "Unable to create database"
 msgstr "Zbirke podatkov ni mogoče ustvariti"
 
 #: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Failed to generate composite key"
 msgstr "Tvorjenje sestavljenega ključa je spodletelo"
 
@@ -1416,7 +1421,7 @@ msgid "Please insert smartcard and retry."
 msgstr "Vstavite pametno kartico in poskusite znova."
 
 #: gsecrets/provider/pkcs11_provider.py:200
-#: gsecrets/widgets/database_settings_dialog.py:369
+#: gsecrets/widgets/database_settings_dialog.py:384
 msgid "_OK"
 msgstr "V _redu"
 
@@ -1637,31 +1642,31 @@ msgstr "Šibko"
 msgid "No weak passwords found"
 msgstr "Ni najdenih šibkih gesel"
 
-#: gsecrets/widgets/database_settings_dialog.py:211
+#: gsecrets/widgets/database_settings_dialog.py:226
 msgid "No records found"
 msgstr "Ni najdenih zapisov"
 
-#: gsecrets/widgets/database_settings_dialog.py:298
-#: gsecrets/widgets/database_settings_dialog.py:302
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
 msgid "Could not apply changes"
 msgstr "Sprememb ni mogoče uveljaviti"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:305
+#: gsecrets/widgets/database_settings_dialog.py:320
 msgid "Changes Applied"
 msgstr "Spremembe so uveljavljene"
 
-#: gsecrets/widgets/database_settings_dialog.py:359
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Could not change credentials"
 msgstr "Poverilnic ni bilo mogoče spremeniti"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:379
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Spori pri shranjevanju"
 
-#: gsecrets/widgets/database_settings_dialog.py:366
+#: gsecrets/widgets/database_settings_dialog.py:381
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1671,38 +1676,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:439
-#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
 msgid "Unknown"
 msgstr "Neznano"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:443
+#: gsecrets/widgets/database_settings_dialog.py:458
 msgid "AES 256-bit"
 msgstr "AES 256-bitni"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:446
+#: gsecrets/widgets/database_settings_dialog.py:461
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bitni"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:449
+#: gsecrets/widgets/database_settings_dialog.py:464
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bitni"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:457
+#: gsecrets/widgets/database_settings_dialog.py:472
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:460
+#: gsecrets/widgets/database_settings_dialog.py:475
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:463
+#: gsecrets/widgets/database_settings_dialog.py:478
 msgid "AES-KDF"
 msgstr "AES-KDF"
 

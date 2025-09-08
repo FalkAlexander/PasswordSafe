@@ -297,11 +297,10 @@ class UnlockedDatabase(Adw.BreakpointBin):
         n_del = len(elements)
         if n_del:
             label = ngettext(
-                # pylint: disable=consider-using-f-string
                 "Element deleted",
-                "{} Elements deleted".format(n_del),
+                "{} Elements deleted",
                 n_del,
-            )
+            ).format(n_del)
         else:
             label = _("Deletion completed")
 

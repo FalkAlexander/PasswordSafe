@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-09-01 09:40+0000\n"
-"PO-Revision-Date: 2025-09-01 15:01+0200\n"
+"POT-Creation-Date: 2025-09-08 02:00+0000\n"
+"PO-Revision-Date: 2025-09-09 22:32+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -201,8 +201,8 @@ msgid "New Additional Credentials"
 msgstr "Új további hitelesítési adatok"
 
 #: data/gtk/database_settings_dialog.ui:75
-#: gsecrets/widgets/database_settings_dialog.py:319
-#: gsecrets/widgets/database_settings_dialog.py:381
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
 msgstr "Változtatások _alkalmazása"
 
@@ -278,22 +278,18 @@ msgid "Audit"
 msgstr "Ellenőrzés"
 
 #: data/gtk/database_settings_dialog.ui:222
-#| msgid "Stats"
 msgid "Statistics"
 msgstr "Statisztikák"
 
 #: data/gtk/database_settings_dialog.ui:225
-#| msgid "One-Time Password"
 msgid "Unique Passwords"
 msgstr "Egyedi jelszavak"
 
 #: data/gtk/database_settings_dialog.ui:234
-#| msgid "Passwords"
 msgid "Reused Passwords"
 msgstr "Újrahasznált jelszavak"
 
 #: data/gtk/database_settings_dialog.ui:245
-#| msgid "Passwords"
 msgid "Weak Passwords"
 msgstr "Gyenge jelszavak"
 
@@ -306,8 +302,8 @@ msgid ""
 "Ask online whether your passwords have been hacked. The passwords won't be "
 "sent online! The following passwords have been leaked:"
 msgstr ""
-"Kérdezze meg az interneten, hogy feltörték-e a jelszavait. A jelszavak nem les"
-"znek elküldve az interneten! A következő jelszavak szivárogtak ki:"
+"Kérdezze meg az interneten, hogy feltörték-e a jelszavait. A jelszavak nem "
+"lesznek elküldve az interneten! A következő jelszavak szivárogtak ki:"
 
 #: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
@@ -1221,9 +1217,9 @@ msgid ""
 "characters of the password. If the first try is wrong, the full password is "
 "needed to unlock the safe."
 msgstr ""
-"A gyors feloldás engedélyezésével újra be tud lépni a széfbe a jelszó utolsó n"
-"égy karakterének használatával. Ha az első próbálkozás hibás, akkor a teljes j"
-"elszó szükséges a széf feloldásához."
+"A gyors feloldás engedélyezésével újra be tud lépni a széfbe a jelszó utolsó "
+"négy karakterének használatával. Ha az első próbálkozás hibás, akkor a "
+"teljes jelszó szükséges a széf feloldásához."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:117
 msgid "Enable Fingerprint Quick Unlock"
@@ -1263,6 +1259,11 @@ msgstr "Széf feloldása"
 msgid "Safe creation"
 msgstr "Széf létrehozása"
 
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:405
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Hibakeresési naplózás engedélyezése"
@@ -1281,7 +1282,7 @@ msgid "Unable to create database"
 msgstr "Nem lehet létrehozni adatbázist"
 
 #: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Failed to generate composite key"
 msgstr "Nem sikerült előállítani az összetett kulcsot"
 
@@ -1427,7 +1428,7 @@ msgid "Please insert smartcard and retry."
 msgstr "Helyezze be az intelligens kártyát, és próbálja újra."
 
 #: gsecrets/provider/pkcs11_provider.py:200
-#: gsecrets/widgets/database_settings_dialog.py:369
+#: gsecrets/widgets/database_settings_dialog.py:384
 msgid "_OK"
 msgstr "_Rendben"
 
@@ -1546,7 +1547,6 @@ msgid "Move completed"
 msgstr "Áthelyezés befejezve"
 
 #: gsecrets/unlock_database.py:105
-#| msgid "Unlock Safe"
 msgid "Quick Unlock active"
 msgstr "Gyors feloldás aktív"
 
@@ -1646,31 +1646,31 @@ msgstr "Gyenge"
 msgid "No weak passwords found"
 msgstr "Nem találhatók gyenge jelszavak"
 
-#: gsecrets/widgets/database_settings_dialog.py:211
+#: gsecrets/widgets/database_settings_dialog.py:226
 msgid "No records found"
 msgstr "Nem találhatók bejegyzések"
 
-#: gsecrets/widgets/database_settings_dialog.py:298
-#: gsecrets/widgets/database_settings_dialog.py:302
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
 msgid "Could not apply changes"
 msgstr "Nem sikerült alkalmazni a változtatásokat"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:305
+#: gsecrets/widgets/database_settings_dialog.py:320
 msgid "Changes Applied"
 msgstr "Változtatások alkalmazva"
 
-#: gsecrets/widgets/database_settings_dialog.py:359
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Could not change credentials"
 msgstr "Nem sikerült megváltoztatni a hitelesítési adatokat"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:379
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Ütközés a mentés során"
 
-#: gsecrets/widgets/database_settings_dialog.py:366
+#: gsecrets/widgets/database_settings_dialog.py:381
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1680,38 +1680,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:439
-#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
 msgid "Unknown"
 msgstr "Ismeretlen"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:443
+#: gsecrets/widgets/database_settings_dialog.py:458
 msgid "AES 256-bit"
 msgstr "256 bites AES"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:446
+#: gsecrets/widgets/database_settings_dialog.py:461
 msgid "ChaCha20 256-bit"
 msgstr "256 bites ChaCha20"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:449
+#: gsecrets/widgets/database_settings_dialog.py:464
 msgid "Twofish 256-bit"
 msgstr "256 bites Twofish"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:457
+#: gsecrets/widgets/database_settings_dialog.py:472
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:460
+#: gsecrets/widgets/database_settings_dialog.py:475
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:463
+#: gsecrets/widgets/database_settings_dialog.py:478
 msgid "AES-KDF"
 msgstr "AES-KDF"
 

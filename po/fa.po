@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-08-31 00:32+0000\n"
-"PO-Revision-Date: 2025-08-31 04:07+0330\n"
+"POT-Creation-Date: 2025-09-10 08:33+0000\n"
+"PO-Revision-Date: 2025-09-10 15:35+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -199,8 +199,8 @@ msgid "New Additional Credentials"
 msgstr "گواهی‌های اضافی جدید"
 
 #: data/gtk/database_settings_dialog.ui:75
-#: gsecrets/widgets/database_settings_dialog.py:319
-#: gsecrets/widgets/database_settings_dialog.py:381
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
 msgstr "_اعمال دگرگونی‌ها"
 
@@ -903,7 +903,7 @@ msgstr "_قفل‌گشایی"
 msgid "Browser"
 msgstr "مرورگر"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
 msgid "Select Items"
 msgstr "گزینش موارد"
 
@@ -1233,6 +1233,11 @@ msgstr "قفل‌گشایی گاوصندوق"
 msgid "Safe creation"
 msgstr "ایجاد گاوصندوق"
 
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:405
+msgid "Falk Alexander Seidl"
+msgstr "فالک الکساندر سیدل"
+
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "به کار انداختن گزارش اشکال‌زدایی"
@@ -1250,7 +1255,7 @@ msgid "Unable to create database"
 msgstr "ناتوان در ایجاد پایگاه داده"
 
 #: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Failed to generate composite key"
 msgstr "شکست در تولید کلید ترکیبی"
 
@@ -1394,7 +1399,7 @@ msgid "Please insert smartcard and retry."
 msgstr "لطفاً کارت هوشمند را وارد کرده و دوباره تلاش کنید."
 
 #: gsecrets/provider/pkcs11_provider.py:200
-#: gsecrets/widgets/database_settings_dialog.py:369
+#: gsecrets/widgets/database_settings_dialog.py:384
 msgid "_OK"
 msgstr "_تأیید"
 
@@ -1486,7 +1491,7 @@ msgstr "شبیه‌سازی"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:536
+#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "نتواسنت گاوصندوق را ذخیره کند"
@@ -1542,36 +1547,35 @@ msgstr "گاوصندوق ذخیره شد"
 msgid "No changes made"
 msgstr "هیچ تغییری ایجاد نشد"
 
-#. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:301
+#: gsecrets/unlocked_database.py:300
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "عنصر حذف شد"
 msgstr[1] "{} عنصر حذف شدند"
 
-#: gsecrets/unlocked_database.py:306
+#: gsecrets/unlocked_database.py:305
 msgid "Deletion completed"
 msgstr "حذف کامل شد"
 
-#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
+#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
 msgid "Undo"
 msgstr "برگردان"
 
-#: gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:333
 msgid "Attribute deleted"
 msgstr "مشخّصه حذف شد"
 
-#: gsecrets/unlocked_database.py:363
+#: gsecrets/unlocked_database.py:362
 msgid "Copied"
 msgstr "رونوشت شد"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:463
+#: gsecrets/unlocked_database.py:462
 msgid "Safe locked due to inactivity"
 msgstr "گاوصندوق به خاطر غیرفعّال بودن قفل شد"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:701
+#: gsecrets/unlocked_database.py:700
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] ""
@@ -1613,31 +1617,31 @@ msgstr "ضعیف"
 msgid "No weak passwords found"
 msgstr "هیچ گذرواژهٔ ضعیفی پیدا نشد"
 
-#: gsecrets/widgets/database_settings_dialog.py:211
+#: gsecrets/widgets/database_settings_dialog.py:226
 msgid "No records found"
 msgstr "هیچ رکوردی پیدا نشد"
 
-#: gsecrets/widgets/database_settings_dialog.py:298
-#: gsecrets/widgets/database_settings_dialog.py:302
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
 msgid "Could not apply changes"
 msgstr "نتوانست دگرگونی‌ها را اعمال کند"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:305
+#: gsecrets/widgets/database_settings_dialog.py:320
 msgid "Changes Applied"
 msgstr "دگرگونی‌ها اعمال شدند"
 
-#: gsecrets/widgets/database_settings_dialog.py:359
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Could not change credentials"
 msgstr "نتوانست گواهی‌ّا را دگرگون کند"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:379
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "مغایرت هنگام ذخیره کردن"
 
-#: gsecrets/widgets/database_settings_dialog.py:366
+#: gsecrets/widgets/database_settings_dialog.py:381
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts from "
 "the main window when saving."
@@ -1647,38 +1651,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:439
-#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
 msgid "Unknown"
 msgstr "ناشناخته"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:443
+#: gsecrets/widgets/database_settings_dialog.py:458
 msgid "AES 256-bit"
 msgstr "AES ۲۵۶بیتی"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:446
+#: gsecrets/widgets/database_settings_dialog.py:461
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 ۲۵۶بیتی"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:449
+#: gsecrets/widgets/database_settings_dialog.py:464
 msgid "Twofish 256-bit"
 msgstr "Twofish ۲۵۶بیتی"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:457
+#: gsecrets/widgets/database_settings_dialog.py:472
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:460
+#: gsecrets/widgets/database_settings_dialog.py:475
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:463
+#: gsecrets/widgets/database_settings_dialog.py:478
 msgid "AES-KDF"
 msgstr "AES-KDF"
 

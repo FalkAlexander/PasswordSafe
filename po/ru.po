@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-09-02 05:46+0000\n"
-"PO-Revision-Date: 2025-09-02 11:37+0300\n"
+"POT-Creation-Date: 2025-09-10 23:08+0000\n"
+"PO-Revision-Date: 2025-09-11 13:28+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -203,8 +203,8 @@ msgid "New Additional Credentials"
 msgstr "Новые дополнительные учетные данные"
 
 #: data/gtk/database_settings_dialog.ui:75
-#: gsecrets/widgets/database_settings_dialog.py:319
-#: gsecrets/widgets/database_settings_dialog.py:381
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
 msgstr "Применить _изменения"
 
@@ -304,8 +304,8 @@ msgid ""
 "Ask online whether your passwords have been hacked. The passwords won't be "
 "sent online! The following passwords have been leaked:"
 msgstr ""
-"Проверьте в интернете, не были ли ваши пароли скомпрометированы. Ваши "
-"пароли не будут переданы в сеть! Утечка затронула следующие пароли:"
+"Проверьте в интернете, не были ли ваши пароли скомпрометированы. Ваши пароли "
+"не будут переданы в сеть! Утечка затронула следующие пароли:"
 
 #: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
@@ -916,7 +916,7 @@ msgstr "_Разблокировать"
 msgid "Browser"
 msgstr "Обзор"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
 msgid "Select Items"
 msgstr "Выбрать элементы"
 
@@ -1254,6 +1254,11 @@ msgstr "Разблокировка сейфа"
 msgid "Safe creation"
 msgstr "Создание сейфа"
 
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:405
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Включить журналирование отладки"
@@ -1272,7 +1277,7 @@ msgid "Unable to create database"
 msgstr "Невозможно создать базу данных"
 
 #: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Failed to generate composite key"
 msgstr "Не удалось сгенерировать составной ключ"
 
@@ -1418,7 +1423,7 @@ msgid "Please insert smartcard and retry."
 msgstr "Пожалуйста, вставьте смарт-карту и повторите попытку."
 
 #: gsecrets/provider/pkcs11_provider.py:200
-#: gsecrets/widgets/database_settings_dialog.py:369
+#: gsecrets/widgets/database_settings_dialog.py:384
 msgid "_OK"
 msgstr "_OK"
 
@@ -1510,7 +1515,7 @@ msgstr "Клон"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:536
+#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "Не удалось сохранить сейф"
@@ -1567,37 +1572,36 @@ msgstr "Сейф сохранён"
 msgid "No changes made"
 msgstr "Изменений не было"
 
-#. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:301
+#: gsecrets/unlocked_database.py:300
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Элемент удален"
 msgstr[1] "{} элемента удалено"
 msgstr[2] "{} элементов удалено"
 
-#: gsecrets/unlocked_database.py:306
+#: gsecrets/unlocked_database.py:305
 msgid "Deletion completed"
 msgstr "Удаление завершено"
 
-#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
+#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
 msgid "Undo"
 msgstr "Вернуть"
 
-#: gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:333
 msgid "Attribute deleted"
 msgstr "Атрибут удалён"
 
-#: gsecrets/unlocked_database.py:363
+#: gsecrets/unlocked_database.py:362
 msgid "Copied"
 msgstr "Скопировано"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:463
+#: gsecrets/unlocked_database.py:462
 msgid "Safe locked due to inactivity"
 msgstr "Сейф заблокирован из-за бездействия"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:701
+#: gsecrets/unlocked_database.py:700
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} выбран"
@@ -1638,31 +1642,31 @@ msgstr "Ненадежный"
 msgid "No weak passwords found"
 msgstr "Не найдено ненадежных паролей"
 
-#: gsecrets/widgets/database_settings_dialog.py:211
+#: gsecrets/widgets/database_settings_dialog.py:226
 msgid "No records found"
 msgstr "Не найдено ни одной записи"
 
-#: gsecrets/widgets/database_settings_dialog.py:298
-#: gsecrets/widgets/database_settings_dialog.py:302
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
 msgid "Could not apply changes"
 msgstr "Не удалось применить изменения"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:305
+#: gsecrets/widgets/database_settings_dialog.py:320
 msgid "Changes Applied"
 msgstr "Изменения применены"
 
-#: gsecrets/widgets/database_settings_dialog.py:359
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Could not change credentials"
 msgstr "Не удалось изменить учетные данные"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:379
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Конфликты при сохранении"
 
-#: gsecrets/widgets/database_settings_dialog.py:366
+#: gsecrets/widgets/database_settings_dialog.py:381
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1672,38 +1676,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:439
-#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
 msgid "Unknown"
 msgstr "Неизвестный"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:443
+#: gsecrets/widgets/database_settings_dialog.py:458
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:446
+#: gsecrets/widgets/database_settings_dialog.py:461
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:449
+#: gsecrets/widgets/database_settings_dialog.py:464
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:457
+#: gsecrets/widgets/database_settings_dialog.py:472
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:460
+#: gsecrets/widgets/database_settings_dialog.py:475
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:463
+#: gsecrets/widgets/database_settings_dialog.py:478
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1868,9 +1872,6 @@ msgstr ""
 
 #~ msgid "Username not specified"
 #~ msgstr "Не указано имя пользователя"
-
-#~ msgid "Falk Alexander Seidl"
-#~ msgstr "Falk Alexander Seidl"
 
 #~ msgid "Ok"
 #~ msgstr "Ok"

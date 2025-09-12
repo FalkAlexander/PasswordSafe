@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 12.0 - 2025-09-13
+Use newer widgets from libadwaita 1.8 and update to the GNOME 49 SDK.
+- Various bug fixes
+- Improve performance when sorting and filtering entries
+- Add Audit feature
+- Updated translations
+
 ## 11.1.1 - 2025-04-13
 Fixup ci release job
 

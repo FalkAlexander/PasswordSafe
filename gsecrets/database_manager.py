@@ -5,6 +5,7 @@ import io
 import json
 import logging
 from pathlib import Path
+from time import perf_counter
 
 from gi.repository import Gio, GLib, GObject
 from pykeepass import PyKeePass
@@ -15,6 +16,12 @@ from gsecrets.err import ErrorType, error, generic_error
 from gsecrets.recent_manager import RecentManager
 from gsecrets.safe_element import SafeEntry, SafeGroup
 from gsecrets.utils import LazyValue, compare_passwords
+
+# GTK uses G_PRIORITY_HIGH_IDLE + 10 for resizing operations, and
+# G_PRIORITY_HIGH_IDLE + 20 for redrawing operations. We use a slightly lower
+# priority.
+PRIORITY = GLib.PRIORITY_HIGH_IDLE + 25
+BATCH_SIZE: int = 10
 
 
 class DatabaseManager(GObject.Object):
@@ -127,13 +134,50 @@ class DatabaseManager(GObject.Object):
         logging.debug("Opening of safe %s was successful", self.path)
 
         if not self._elements_loaded:
-            self.entries.splice(0, 0, [SafeEntry(self, e) for e in db.entries])
-            self.groups.splice(0, 0, [SafeGroup(self, g) for g in db.groups])
+            now = perf_counter()
+            GLib.idle_add(self._load_groups, now, priority=PRIORITY)
+            GLib.idle_add(self._load_entries, now, priority=PRIORITY)
 
             self._elements_loaded = True
 
         self.notify("description")
         self.notify("name")
+
+    def _load_groups(self, then):
+        total = len(self.db.groups)
+        n_loaded = self.groups.get_n_items()
+
+        if n_loaded == total:
+            elapsed = perf_counter() - then
+            logging.debug("Finished loading %s groups in %.2fs", n_loaded, elapsed)
+            return GLib.SOURCE_REMOVE
+
+        to_load = min(BATCH_SIZE, total - n_loaded)
+
+        groups = [
+            SafeGroup(self, g) for g in self.db.groups[n_loaded : n_loaded + to_load]
+        ]
+        self.groups.splice(n_loaded, 0, groups)
+
+        return GLib.SOURCE_CONTINUE
+
+    def _load_entries(self, then):
+        total = len(self.db.entries)
+        n_loaded = self.entries.get_n_items()
+
+        if n_loaded == total:
+            elapsed = perf_counter() - then
+            logging.debug("Finished loading %s entries in %.2fs", n_loaded, elapsed)
+            return GLib.SOURCE_REMOVE
+
+        to_load = min(BATCH_SIZE, total - n_loaded)
+
+        entries = [
+            SafeEntry(self, e) for e in self.db.entries[n_loaded : n_loaded + to_load]
+        ]
+        self.entries.splice(n_loaded, 0, entries)
+
+        return GLib.SOURCE_CONTINUE
 
     #
     # Database Modifications

@@ -486,8 +486,6 @@ class SafeGroup(SafeElement):
         """
         super().__init__(db_manager, group)
 
-        self._group: Group = group
-
         if self.is_root_group:
             self._db_manager.root = self
 
@@ -609,7 +607,7 @@ class SafeGroup(SafeElement):
     @property
     def group(self) -> Group:
         """Returns the private pykeepass group."""
-        return self._group
+        return self._element
 
     def emit_children_changed(self, removed, added):
         self.emit(self.children_changed, removed, added)
@@ -641,8 +639,6 @@ class SafeEntry(SafeElement):
         """
         super().__init__(db_manager, entry)
 
-        self._entry: Entry = entry
-
         self._check_expiration()
 
     @property
@@ -652,7 +648,7 @@ class SafeEntry(SafeElement):
         :returns: entry
         :rtype: Entry
         """
-        return self._entry
+        return self._element
 
     def duplicate(self) -> None:
         """Duplicate an entry."""
@@ -720,13 +716,13 @@ class SafeEntry(SafeElement):
     def save_history(self) -> None:
         """Save current version of the entry in its history."""
         # NOTE Attachments are references, so duplicating them is ok.
-        self._entry.save_history()
+        self._element.save_history()
         self.updated()
         self.emit(self.history_saved)
 
     def delete_history(self, entry: SafeEntry) -> None:
         """Delete entry from the history of self."""
-        self._entry.delete_history(entry.entry)
+        self._element.delete_history(entry.entry)
         self.updated()
         self.emit(self.history_saved)
 
@@ -748,7 +744,7 @@ class SafeEntry(SafeElement):
         assert self._attachments is not None
 
         attachment_id = self._db_manager.db.add_binary(byte_buffer)
-        attachment = self._entry.add_attachment(attachment_id, filename)
+        attachment = self._element.add_attachment(attachment_id, filename)
         self._attachments.append(attachment)
         self.updated()
         self.notify("attachments")
@@ -829,12 +825,12 @@ class SafeEntry(SafeElement):
         if self.props.attributes.get(key) == value:
             return
 
-        if self._entry.get_custom_property(
+        if self._element.get_custom_property(
             key,
-        ) == value and protected == self._entry.is_custom_property_protected(key):
+        ) == value and protected == self._element.is_custom_property_protected(key):
             return
 
-        self._entry.set_custom_property(key, value, protect=protected)
+        self._element.set_custom_property(key, value, protect=protected)
 
         self._attributes.insert(key, value)
 
@@ -851,7 +847,7 @@ class SafeEntry(SafeElement):
         if not self.has_attribute(key):
             return
 
-        self._entry.delete_custom_property(key)
+        self._element.delete_custom_property(key)
         self._attributes.pop(key)
         self.updated()
         self.notify("attributes")
@@ -871,7 +867,7 @@ class SafeEntry(SafeElement):
         :rtype: str
         """
         if self._color is None:
-            color_value: str = self._entry.get_custom_property(self._color_key)
+            color_value: str = self._element.get_custom_property(self._color_key)
             self._color: str = color_value or EntryColor.NONE.value
 
         return self._color
@@ -884,12 +880,12 @@ class SafeEntry(SafeElement):
         """
         if new_color != self._color:
             self._color = new_color
-            self._entry.set_custom_property(self._color_key, new_color)
+            self._element.set_custom_property(self._color_key, new_color)
             self.updated()
 
     @property
     def history(self) -> list[SafeEntry]:
-        history = self._entry.history
+        history = self._element.history
         return [SafeEntry(self._db_manager, entry) for entry in history]
 
     @GObject.Property(type=object)
@@ -900,7 +896,7 @@ class SafeEntry(SafeElement):
         :rtype: str
         """
         if self._icon_nr is None:
-            self._icon_nr: str = self._entry.icon or ""
+            self._icon_nr: str = self._element.icon or ""
 
         try:
             return ICONS[self._icon_nr]
@@ -915,7 +911,7 @@ class SafeEntry(SafeElement):
         """
         if new_icon_nr != self._icon_nr:
             self._icon_nr = new_icon_nr
-            self._entry.icon = new_icon_nr
+            self._element.icon = new_icon_nr
             self.notify("icon-name")
             self.updated()
 
@@ -1033,7 +1029,7 @@ class SafeEntry(SafeElement):
         """
         if new_password != self._password:
             self._password = new_password
-            self._entry.password = new_password
+            self._element.password = new_password
             self.updated()
 
     @GObject.Property(type=str, default="")
@@ -1056,7 +1052,7 @@ class SafeEntry(SafeElement):
         """
         if new_url != self._url:
             self._url = new_url
-            self._entry.url = new_url
+            self._element.url = new_url
             self.updated()
 
     @GObject.Property(type=str, default="")
@@ -1079,7 +1075,7 @@ class SafeEntry(SafeElement):
         """
         if new_username != self._username:
             self._username = new_username
-            self._entry.username = new_username
+            self._element.username = new_username
             self.updated()
 
     @GObject.Property(type=bool, default=False)

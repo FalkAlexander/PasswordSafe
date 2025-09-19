@@ -81,6 +81,9 @@ class SafeElement(GObject.Object):
     sensitive = GObject.Property(type=bool, default=True)
     sorted_handler_id: int | None = None
 
+    _notes = None
+    _name = None
+
     def __init__(self, db_manager: DatabaseManager, element: Entry | Group):
         """GObject to handle a safe element.
 
@@ -95,12 +98,6 @@ class SafeElement(GObject.Object):
 
         self.is_group = isinstance(self, SafeGroup)
         self.is_entry = isinstance(self, SafeEntry)
-
-        self._notes: str = element.notes or ""
-        if self.is_group:
-            self._name = element.name or ""
-        else:
-            self._name = element.title or ""
 
     def __eq__(self, other):  # pylint: disable=arguments-differ
         if isinstance(other, SafeElement):
@@ -244,6 +241,12 @@ class SafeElement(GObject.Object):
         :returns: name or an empty string if there is none
         :rtype: str
         """
+        if self._name is None:
+            if self.is_group:
+                self._name = self._element.name or ""
+            else:
+                self._name = self._element.title or ""
+
         return self._name
 
     @name.setter  # type: ignore
@@ -279,6 +282,9 @@ class SafeElement(GObject.Object):
         :returns: notes or an empty string if there is none
         :rtype: str
         """
+        if self._notes is None:
+            self._notes = self._element.notes or ""
+
         return self._notes
 
     @notes.setter  # type: ignore
@@ -617,6 +623,13 @@ class SafeEntry(SafeElement):
     _note_key = "Notes"
     _otp: TOTP | None = None
     _otp_key = "otp"
+    _attributes: AttributesModel | None = None
+    _attachments: list[Attachment] | None = None
+    _username: str | None = None
+    _url: str | None = None
+    _password: str | None = None
+    _color: EntryColor | None = None
+    _icon_nr: str | None = None
 
     history_saved = GObject.Signal()
 
@@ -629,40 +642,6 @@ class SafeEntry(SafeElement):
         super().__init__(db_manager, entry)
 
         self._entry: Entry = entry
-
-        self._attachments: list[Attachment] = entry.attachments or []
-
-        # NOTE Can fail at libpykeepass, see
-        # https://github.com/libkeepass/pykeepass/issues/254
-        # TODO Read as many attributes as possible until we see an error.
-        try:
-            attributes = {
-                key: value
-                for key, value in entry.custom_properties.items()
-                if key not in (self._color_key, self._note_key, self._otp_key)
-            }
-        except Exception:  # pylint: disable=broad-except
-            logging.exception("Could not read attributes")
-            attributes = {}
-
-        self._attributes = AttributesModel(attributes)
-
-        color_value: str = entry.get_custom_property(self._color_key)
-        self._color: str = color_value or EntryColor.NONE.value
-
-        self._icon_nr: str = entry.icon or ""
-        self._password: str = entry.password or ""
-        self._url: str = entry.url or ""
-        self._username: str = entry.username or ""
-
-        if otp_uri := entry.otp:
-            try:
-                if otp_uri.startswith("otpauth://"):
-                    self._otp = parse_uri(otp_uri)  # type: ignore
-                else:
-                    self._otp = TOTP(otp_uri)
-            except ValueError:
-                logging.exception("Could not parse OTP")
 
         self._check_expiration()
 
@@ -753,6 +732,9 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(type=object, flags=GObject.ParamFlags.READABLE)
     def attachments(self) -> list[Attachment]:
+        if self._attachments is None:
+            self._attachments: list[Attachment] = self._element.attachments or []
+
         return self._attachments
 
     def add_attachment(self, byte_buffer: bytes, filename: str) -> Attachment:
@@ -763,6 +745,8 @@ class SafeEntry(SafeElement):
         :returns: attachment
         :rtype: Attachment
         """
+        assert self._attachments is not None
+
         attachment_id = self._db_manager.db.add_binary(byte_buffer)
         attachment = self._entry.add_attachment(attachment_id, filename)
         self._attachments.append(attachment)
@@ -776,6 +760,8 @@ class SafeEntry(SafeElement):
 
         :param Attachmennt attachment: attachment to delete
         """
+        assert self._attachments is not None
+
         self._db_manager.db.delete_binary(attachment.id)
         self._attachments.remove(attachment)
         self.notify("attachments")
@@ -788,6 +774,8 @@ class SafeEntry(SafeElement):
         :returns: attachment
         :rtype: Attachment
         """
+        assert self._attachments is not None
+
         for attachment in self._attachments:
             if str(attachment.id) == id_:
                 return attachment
@@ -803,6 +791,22 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(type=object, flags=GObject.ParamFlags.READABLE)
     def attributes(self) -> AttributesModel:
+        if self._attributes is None:
+            # NOTE Can fail at libpykeepass, see
+            # https://github.com/libkeepass/pykeepass/issues/254
+            # TODO Read as many attributes as possible until we see an error.
+            try:
+                attributes = {
+                    key: value
+                    for key, value in self._element.custom_properties.items()
+                    if key not in (self._color_key, self._note_key, self._otp_key)
+                }
+            except Exception:  # pylint: disable=broad-except
+                logging.exception("Could not read attributes")
+                attributes = {}
+
+            self._attributes = AttributesModel(attributes)
+
         return self._attributes
 
     def has_attribute(self, key: str) -> bool:
@@ -810,6 +814,8 @@ class SafeEntry(SafeElement):
 
         :param str key: attribute key to check
         """
+        assert self._attributes is not None
+
         return self._attributes.has_attribute(key)
 
     def set_attribute(self, key: str, value: str, protected: bool = False) -> None:
@@ -818,6 +824,8 @@ class SafeEntry(SafeElement):
         :param str key: attribute key
         :param str value: attribute value
         """
+        assert self._attributes is not None
+
         if self.props.attributes.get(key) == value:
             return
 
@@ -838,6 +846,8 @@ class SafeEntry(SafeElement):
 
         :param key: attribute key to delete
         """
+        assert self._attributes is not None
+
         if not self.has_attribute(key):
             return
 
@@ -860,6 +870,10 @@ class SafeEntry(SafeElement):
         :returns: color as string
         :rtype: str
         """
+        if self._color is None:
+            color_value: str = self._entry.get_custom_property(self._color_key)
+            self._color: str = color_value or EntryColor.NONE.value
+
         return self._color
 
     @color.setter  # type: ignore
@@ -885,6 +899,9 @@ class SafeEntry(SafeElement):
         :returns: icon number or "0" if no icon
         :rtype: str
         """
+        if self._icon_nr is None:
+            self._icon_nr: str = self._entry.icon or ""
+
         try:
             return ICONS[self._icon_nr]
         except KeyError:
@@ -922,6 +939,19 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(type=str, default="")
     def otp(self) -> str:
+        if self._otp is None:
+            if otp_uri := self._element.otp:
+                try:
+                    if otp_uri.startswith("otpauth://"):
+                        self._otp = parse_uri(otp_uri)  # type: ignore
+                    else:
+                        self._otp = TOTP(otp_uri)
+                except ValueError:
+                    logging.exception("Could not parse OTP")
+                    self._otp = ""
+            else:
+                self._otp = ""
+
         if self._otp:
             return self._otp.secret
 
@@ -990,6 +1020,9 @@ class SafeEntry(SafeElement):
         :returns: password or an empty string if there is none
         :rtype: str
         """
+        if self._password is None:
+            self._password: str = self._element.password or ""
+
         return self._password
 
     @password.setter  # type: ignore
@@ -1010,6 +1043,9 @@ class SafeEntry(SafeElement):
         :returns: url or an empty string if there is none
         :rtype: str
         """
+        if self._url is None:
+            self._url: str = self._element.url or ""
+
         return self._url
 
     @url.setter  # type: ignore
@@ -1030,6 +1066,9 @@ class SafeEntry(SafeElement):
         :returns: username or an empty string if there is none
         :rtype: str
         """
+        if self._username is None:
+            self._username: str = self._element.username or ""
+
         return self._username
 
     @username.setter  # type: ignore

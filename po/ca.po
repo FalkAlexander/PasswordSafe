@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-10-19 00:08+0000\n"
-"PO-Revision-Date: 2025-10-20 12:02+0200\n"
+"POT-Creation-Date: 2025-10-25 13:27+0000\n"
+"PO-Revision-Date: 2025-10-27 12:55+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan (https://www.transifex.com/softcatala/teams/62837/"
 "ca)\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-DamnedLies-Scope: partial\n"
 "X-Generator: Poedit 3.6\n"
+"X-DamnedLies-Scope: partial\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -648,6 +648,12 @@ msgid "Save every change automatically."
 msgstr "Desa cada canvi automàticament."
 
 #. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:35
+#: data/org.gnome.World.Secrets.gschema.xml.in:112
+msgid "Enable Quick Unlock"
+msgstr "Activa el desbloqueig ràpid"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
 #: data/gtk/settings_dialog.ui:36
 msgid ""
 "Re-unlock using the last four characters of the password for a single "
@@ -1023,6 +1029,10 @@ msgstr "Un gestor de contrasenyes del GNOME"
 msgid "keepass;encrypt;secure;"
 msgstr "mot de pas;encripta;segur;xifrat;keepass;contrasenyes;guardar;"
 
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Lock on session lock"
+msgstr "Bloqueja en bloquejar la sessió"
+
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
 msgstr "Reobre la darrera base de dades oberta"
@@ -1195,6 +1205,16 @@ msgstr "Separador a usar en generar una frase de contrasenya"
 #: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
 msgstr "Separador de paraules en generar una frase de contrasenya."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:117
+msgid "Enable Fingerprint Quick Unlock"
+msgstr "Activa el desbloqueig ràpid amb empremta digital"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:118
+msgid "Use the fingerprint reader to quick unlock a locked safe."
+msgstr ""
+"Feu servir el lector d'empremtes dactilars per desbloquejar ràpidament una "
+"caixa forta."
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"

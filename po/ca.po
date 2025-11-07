@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-10-25 13:27+0000\n"
-"PO-Revision-Date: 2025-10-27 12:55+0100\n"
+"POT-Creation-Date: 2025-10-27 19:03+0000\n"
+"PO-Revision-Date: 2025-11-06 20:42+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan (https://www.transifex.com/softcatala/teams/62837/"
 "ca)\n"
@@ -766,6 +766,11 @@ msgstr "Bloqueja la caixa forta després de X minuts d'inactivitat."
 msgid "Lock on _Session Lock"
 msgstr "Bloqueja en _bloquejar la sessió"
 
+#: data/gtk/settings_dialog.ui:172
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid "Automatically lock when the session is locked."
+msgstr "Bloqueja automàticament quan la sessió estigui bloquejada."
+
 #: data/gtk/settings_dialog.ui:179
 msgid "Clear Clipboard"
 msgstr "Neteja el porta-retalls"
@@ -1205,6 +1210,17 @@ msgstr "Separador a usar en generar una frase de contrasenya"
 #: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
 msgstr "Separador de paraules en generar una frase de contrasenya."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:113
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four "
+"characters of the password. If the first try is wrong, the full password is "
+"needed to unlock the safe."
+msgstr ""
+"Amb el desbloqueig ràpid activat, es pot tornar a obrir una caixa forta "
+"utilitzant els últims quatre caràcters de la contrasenya. Si el primer "
+"intent és incorrecte, es necessita la contrasenya completa per desbloquejar "
+"la caixa forta."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:117
 msgid "Enable Fingerprint Quick Unlock"

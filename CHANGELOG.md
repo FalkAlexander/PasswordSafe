@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 12.1 - 2025-12-13
+- Load Entry properties lazily
+- Load Entry widgets in an add_idle with low priority
+- Updated translations
+
 ## 12.0 - 2025-09-13
 Use newer widgets from libadwaita 1.8 and update to the GNOME 49 SDK.
 - Various bug fixes

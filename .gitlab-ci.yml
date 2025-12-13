@@ -55,6 +55,7 @@ ruff:
   stage: check
   script:
     - dnf install --quiet -y ruff
+    - ruff version
     - ruff format --check
     - ruff check
 

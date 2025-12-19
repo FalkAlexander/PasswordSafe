@@ -639,6 +639,15 @@ class SafeEntry(SafeElement):
         """
         super().__init__(db_manager, entry)
 
+        if otp_uri := entry.otp:
+            try:
+                if otp_uri.startswith("otpauth://"):
+                    self._otp = parse_uri(otp_uri)  # type: ignore
+                else:
+                    self._otp = TOTP(otp_uri)
+            except ValueError:
+                logging.exception("Could not parse OTP")
+
         self._check_expiration()
 
     @property
@@ -935,19 +944,6 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(type=str, default="")
     def otp(self) -> str:
-        if self._otp is None:
-            if otp_uri := self._element.otp:
-                try:
-                    if otp_uri.startswith("otpauth://"):
-                        self._otp = parse_uri(otp_uri)  # type: ignore
-                    else:
-                        self._otp = TOTP(otp_uri)
-                except ValueError:
-                    logging.exception("Could not parse OTP")
-                    self._otp = ""
-            else:
-                self._otp = ""
-
         if self._otp:
             return self._otp.secret
 

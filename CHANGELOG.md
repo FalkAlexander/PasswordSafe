@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## 12.2 - 2025-12-23
+- Fix regression where OTPs codes were not loaded from 12.1
+
 ## 12.1 - 2025-12-13
 - Load Entry properties lazily
 - Load Entry widgets in an add_idle with low priority

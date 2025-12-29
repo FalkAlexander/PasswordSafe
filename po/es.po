@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-08-31 00:38+0000\n"
-"PO-Revision-Date: 2025-08-31 11:13+0200\n"
+"POT-Creation-Date: 2025-12-25 16:36+0000\n"
+"PO-Revision-Date: 2025-12-26 22:55+0100\n"
 "Last-Translator: Julián Villodre <jvillodrede@gmail.com>\n"
 "Language-Team: es_ES\n"
 "Language: es_ES\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 48.0\n"
+"X-Generator: Gtranslator 49.0\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -201,8 +201,8 @@ msgid "New Additional Credentials"
 msgstr "Credenciales adicionales nuevas"
 
 #: data/gtk/database_settings_dialog.ui:75
-#: gsecrets/widgets/database_settings_dialog.py:319
-#: gsecrets/widgets/database_settings_dialog.py:381
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
 msgstr "_Aplicar cambios"
 
@@ -302,8 +302,12 @@ msgid ""
 "Ask online whether your passwords have been hacked. The passwords won't be "
 "sent online! The following passwords have been leaked:"
 msgstr ""
-"Compruebe en línea si ha pirateado sus contraseñas. Sus contraseñas no "
-"se enviarán en línea. Se filtraron las siguientes contraseñas:"
+"Compruebe en línea si ha pirateado sus contraseñas. Sus contraseñas no se "
+"enviarán en línea. Se filtraron las siguientes contraseñas:"
+
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Ayuda"
 
 #: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
@@ -918,7 +922,7 @@ msgstr "Desbloq_uear"
 msgid "Browser"
 msgstr "Explorador"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
 msgid "Select Items"
 msgstr "Seleccionar elementos"
 
@@ -1250,17 +1254,22 @@ msgstr ""
 "integra perfectamente con el escritorio GNOME y proporciona una interfaz "
 "limpia y sencilla para la gestión de bases de datos de contraseñas."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:384
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
 msgid "Password management"
 msgstr "Gestión de contraseñas"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:388
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
 msgid "Safe unlocking"
 msgstr "Desbloqueo del depósito seguro"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:392
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
 msgid "Safe creation"
 msgstr "Creación del depósito seguro"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
@@ -1280,7 +1289,7 @@ msgid "Unable to create database"
 msgstr "No se pudo crear la base de datos"
 
 #: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Failed to generate composite key"
 msgstr "Falló al generar la clave de composición"
 
@@ -1426,7 +1435,7 @@ msgid "Please insert smartcard and retry."
 msgstr "Inserte una tarjeta inteligente y vuelva a intentarlo."
 
 #: gsecrets/provider/pkcs11_provider.py:200
-#: gsecrets/widgets/database_settings_dialog.py:369
+#: gsecrets/widgets/database_settings_dialog.py:384
 msgid "_OK"
 msgstr "_Aceptar"
 
@@ -1511,14 +1520,14 @@ msgstr "Morado"
 msgid "Brown"
 msgstr "Marrón"
 
-#: gsecrets/safe_element.py:689
+#: gsecrets/safe_element.py:673
 msgid "Clone"
 msgstr "Clon"
 
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:536
+#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "No se pudo guardar el depósito seguro"
@@ -1575,37 +1584,36 @@ msgstr "Depósito seguro guardado"
 msgid "No changes made"
 msgstr "No se han hecho cambios"
 
-#. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:301
+#: gsecrets/unlocked_database.py:300
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Elemento eliminado"
 msgstr[1] "{} elementos eliminados"
 
-#: gsecrets/unlocked_database.py:306
+#: gsecrets/unlocked_database.py:305
 msgid "Deletion completed"
 msgstr "Eliminación completada"
 
-#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
+#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
 msgid "Undo"
 msgstr "Deshacer"
 
-#: gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:333
 msgid "Attribute deleted"
 msgstr "Atributo eliminado"
 
-#: gsecrets/unlocked_database.py:363
+#: gsecrets/unlocked_database.py:362
 msgid "Copied"
 msgstr "Copiado"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:463
+#: gsecrets/unlocked_database.py:462
 msgid "Safe locked due to inactivity"
 msgstr "Depósito seguro bloqueado por inactividad"
 
 # Se refiere a las entradas
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:701
+#: gsecrets/unlocked_database.py:700
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} Seleccionada"
@@ -1645,31 +1653,31 @@ msgstr "Débil"
 msgid "No weak passwords found"
 msgstr "No se encontraron contraseñas débiles"
 
-#: gsecrets/widgets/database_settings_dialog.py:211
+#: gsecrets/widgets/database_settings_dialog.py:226
 msgid "No records found"
 msgstr "No se encontraron registros"
 
-#: gsecrets/widgets/database_settings_dialog.py:298
-#: gsecrets/widgets/database_settings_dialog.py:302
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
 msgid "Could not apply changes"
 msgstr "No se pudo aplicar los cambios"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:305
+#: gsecrets/widgets/database_settings_dialog.py:320
 msgid "Changes Applied"
 msgstr "Cambios aplicados"
 
-#: gsecrets/widgets/database_settings_dialog.py:359
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Could not change credentials"
 msgstr "No se pudo guardar las credenciales"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:379
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Conflictos al guardar"
 
-#: gsecrets/widgets/database_settings_dialog.py:366
+#: gsecrets/widgets/database_settings_dialog.py:381
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1679,38 +1687,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:439
-#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
 msgid "Unknown"
 msgstr "Desconocido"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:443
+#: gsecrets/widgets/database_settings_dialog.py:458
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:446
+#: gsecrets/widgets/database_settings_dialog.py:461
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:449
+#: gsecrets/widgets/database_settings_dialog.py:464
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:457
+#: gsecrets/widgets/database_settings_dialog.py:472
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:460
+#: gsecrets/widgets/database_settings_dialog.py:475
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:463
+#: gsecrets/widgets/database_settings_dialog.py:478
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1919,9 +1927,6 @@ msgstr ""
 
 #~ msgid "_Select Keyfile"
 #~ msgstr "_Seleccionar el archivo de claves"
-
-#~ msgid "Falk Alexander Seidl"
-#~ msgstr "Falk Alexander Seidl"
 
 #~ msgid "Generating…"
 #~ msgstr "Generando…"

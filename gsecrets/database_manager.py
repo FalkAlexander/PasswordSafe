@@ -295,9 +295,6 @@ class DatabaseManager(GObject.Object):
         recents = RecentManager()
         recents.add_item(gfile)
 
-        # Set last opened database.
-        config.set_last_opened_database(uri)
-
         if not config.get_remember_composite_key():
             return
 

@@ -122,5 +122,4 @@ class SettingsDialog(Adw.PreferencesDialog):
     def _on_settings_clear_recents_clicked(self, widget):
         recents = RecentManager()
         recents.purge_items()
-        config.set_last_opened_database("")
         widget.set_sensitive(False)

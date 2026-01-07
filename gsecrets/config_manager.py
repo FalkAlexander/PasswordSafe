@@ -14,7 +14,6 @@ setting = Gio.Settings.new(const.APP_ID)
 CLEAR_CLIPBOARD = "clear-clipboard"
 DB_LOCK_TIMEOUT = "database-lock-timeout"
 SHOW_START_SCREEN = "first-start-screen"
-LAST_OPENED_DB = "last-opened-database"
 SAVE_AUTOMATICALLY = "save-automatically"
 SORT_ORDER = "sort-order"
 REMEMBER_COMPOSITE_KEY = "remember-composite-key"
@@ -116,20 +115,6 @@ def get_first_start_screen():
 
 def set_first_start_screen(value):
     setting.set_boolean(SHOW_START_SCREEN, value)
-
-
-def get_last_opened_database() -> str:
-    """Get uri of the last opened database.
-
-    returns the empty string when there
-    is none.
-    """
-    return setting.get_string(LAST_OPENED_DB)
-
-
-def set_last_opened_database(value: str) -> None:
-    """Set the uri of the last opened database."""
-    setting.set_string(LAST_OPENED_DB, value)
 
 
 def get_save_automatically():

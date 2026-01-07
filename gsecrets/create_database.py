@@ -73,6 +73,7 @@ class CreateDatabase(Adw.Bin):
         self.stack.set_visible_child_name("safe-successfully-create")
         self.clear_input_fields()
         self.open_safe_button.grab_focus()
+        self.window.save_last_opened_safe(self.database_manager.path)
 
     def failure_page(self):
         self.stack.set_visible_child_name("select-auth-method")

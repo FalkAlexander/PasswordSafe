@@ -223,7 +223,9 @@ class Window(Adw.ApplicationWindow):
     # Create Database Methods
     #
 
-    def on_new_database_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
+    def on_new_database_action(
+        self, _widget: Gtk.Widget, _action_name: str, _parameter: GLib.Variant
+    ) -> None:
         """Callback function to create a new safe."""
         filter_text = Gtk.FileFilter()
         # TRANSLATORS Safe as in strongbox.
@@ -452,9 +454,7 @@ class Window(Adw.ApplicationWindow):
         self.add_action(settings_action)
         settings_action.connect("activate", self.on_settings_action)
 
-        new_database_action = Gio.SimpleAction.new("new_database", None)
-        self.add_action(new_database_action)
-        new_database_action.connect("activate", self.on_new_database_action)
+        self.install_action("win.new_database", None, self.on_new_database_action)
 
         def on_visible_dialog_notify(window, _pspec):
             enabled = window.props.visible_dialog is None

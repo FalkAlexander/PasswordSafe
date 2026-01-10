@@ -218,6 +218,8 @@ class UnlockDatabase(Adw.Bin):
 
         opened = Gio.File.new_for_path(database_manager.path)
 
+        self.window.action_set_enabled("win.new_database", False)
+
         if gsecrets.config_manager.get_development_backup_mode():
             self.store_backup(opened)
 

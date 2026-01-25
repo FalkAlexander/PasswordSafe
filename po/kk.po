@@ -1,0 +1,1810 @@
+# Kazakh translation for secrets.
+# Copyright (C) 2026 secrets's COPYRIGHT HOLDER
+# This file is distributed under the same license as the secrets package.
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>,  2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: secrets master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2026-01-11 11:04+0000\n"
+"PO-Revision-Date: 2026-01-25 22:48+0500\n"
+"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
+"Language-Team: Kazakh <Kazakh>\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.8\n"
+
+#: data/gtk/add_attribute_dialog.ui:5
+msgid "Add Attribute"
+msgstr "Атрибутты қосу"
+
+#: data/gtk/add_attribute_dialog.ui:37
+msgid "Key"
+msgstr "Кілт"
+
+#: data/gtk/add_attribute_dialog.ui:43
+msgid "Value"
+msgstr "Мән"
+
+#: data/gtk/add_attribute_dialog.ui:49
+msgid "Sensitive"
+msgstr "Құпия"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Contains sensitive data."
+msgstr "Құпия деректерді қамтиды."
+
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
+msgid "_Add"
+msgstr "Қо_су"
+
+#: data/gtk/attachment_entry_row.ui:9
+msgid "Download Attachment"
+msgstr "Қосымша файлды жүктеп алу"
+
+#: data/gtk/attachment_entry_row.ui:20
+msgid "Remove Attachment"
+msgstr "Қосымша файлды өшіру"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/attachment_warning_dialog.ui:4
+msgid "Safety Info"
+msgstr "Қауіпсіздік ақпараты"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/attachment_warning_dialog.ui:5
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"Сыртқы қолданбалардың осы қосымша файлдың шифрланбаған жасырын немесе "
+"уақытша көшірмелерін жасауы мүмкін! Сақ болыңыз."
+
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Артқа"
+
+#: data/gtk/attachment_warning_dialog.ui:10
+msgid "_Proceed"
+msgstr "Ж_алғастыру"
+
+#: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+msgid "Copy Attribute"
+msgstr "Атрибутты көшіру"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
+msgid "Remove Attribute"
+msgstr "Атрибутты өшіру"
+
+#: data/gtk/browsing_panel.ui:23
+msgid "Add elements with the ➕ button"
+msgstr "Элементтерді ➕ батырмасы арқылы қосыңыз"
+
+#: data/gtk/browsing_panel.ui:24
+msgid "Empty Group"
+msgstr "Бос топ"
+
+#: data/gtk/browsing_panel.ui:30
+msgid "No Search Results"
+msgstr "Іздеу нәтижелері жоқ"
+
+#: data/gtk/color_entry_row.ui:4
+msgid "Color"
+msgstr "Түс"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:240
+msgid "Create Safe"
+msgstr "Сейфті жасау"
+
+#: data/gtk/create_database.ui:17
+msgid "Back"
+msgstr "Артқа"
+
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:40
+msgid "Main Menu"
+msgstr "Негізгі мәзір"
+
+#: data/gtk/create_database.ui:44
+msgid "Protect your safe"
+msgstr "Сейфіңізді қорғаңыз"
+
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
+#: data/gtk/references_dialog.ui:177
+msgid "_Password"
+msgstr "_Пароль"
+
+#: data/gtk/create_database.ui:64
+msgid "_Confirm Password"
+msgstr "Парольді _растау"
+
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:59
+msgid "Additional Credentials"
+msgstr "Қосымша тіркелгі мәліметтері"
+
+#: data/gtk/create_database.ui:90
+msgid "C_reate"
+msgstr "Жа_сау"
+
+#: data/gtk/create_database.ui:115
+msgid "Safe Successfully Created"
+msgstr "Сейф сәтті жасалды"
+
+#: data/gtk/create_database.ui:118
+msgid "_Open Safe"
+msgstr "Сейфті _ашу"
+
+#: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:94
+msgid "_Preferences"
+msgstr "Қа_лаулар"
+
+#: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:98
+msgid "_Keyboard Shortcuts"
+msgstr "Пернетақта _жарлықтары"
+
+#. "Secrets" is the application name, do not translate
+#: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:102
+msgid "_About Secrets"
+msgstr "Secrets _туралы"
+
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "Пайдаланушы _аты"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:131
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:345
+msgid "Copy"
+msgstr "Көшіру"
+
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
+msgid "Generate New Password"
+msgstr "Жаңа парольді жасау"
+
+#: data/gtk/database_settings_dialog.ui:5
+msgid "Safe Settings"
+msgstr "Сейф баптаулары"
+
+#: data/gtk/database_settings_dialog.ui:9
+msgid "Authentication"
+msgstr "Аутентификация"
+
+#: data/gtk/database_settings_dialog.ui:15
+msgid "Current Password"
+msgstr "Ағымдағы пароль"
+
+#: data/gtk/database_settings_dialog.ui:25
+msgid "New Password"
+msgstr "Жаңа пароль"
+
+#: data/gtk/database_settings_dialog.ui:46
+msgid "Confirm New Password"
+msgstr "Жаңа парольді растау"
+
+#: data/gtk/database_settings_dialog.ui:60
+msgid "New Additional Credentials"
+msgstr "Жаңа қосымша тіркелгі мәліметтері"
+
+#: data/gtk/database_settings_dialog.ui:75
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
+msgid "_Apply Changes"
+msgstr "Өзгерістерді іске _асыру"
+
+#: data/gtk/database_settings_dialog.ui:93 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
+msgid "General"
+msgstr "Жалпы"
+
+#: data/gtk/database_settings_dialog.ui:97
+msgid "Database"
+msgstr "Дерекқор"
+
+#: data/gtk/database_settings_dialog.ui:100
+msgid "Name"
+msgstr "Аты"
+
+#: data/gtk/database_settings_dialog.ui:108
+msgid "Description"
+msgstr "Сипаттамасы"
+
+#: data/gtk/database_settings_dialog.ui:116
+msgid "Default User"
+msgstr "Әдеттегі пайдаланушы"
+
+#: data/gtk/database_settings_dialog.ui:127
+msgid "Details"
+msgstr "Толығырақ"
+
+#: data/gtk/database_settings_dialog.ui:130
+msgid "Path"
+msgstr "Жол"
+
+#: data/gtk/database_settings_dialog.ui:139
+msgid "File Size"
+msgstr "Файл өлшемі"
+
+#. KeePass is a proper noun
+#: data/gtk/database_settings_dialog.ui:148
+msgid "KeePass Version"
+msgstr "KeePass нұсқасы"
+
+#: data/gtk/database_settings_dialog.ui:157
+msgid "Creation Date"
+msgstr "Жасалған күні"
+
+#: data/gtk/database_settings_dialog.ui:165
+msgid "Encryption Algorithm"
+msgstr "Шифрлау алгоритмі"
+
+#: data/gtk/database_settings_dialog.ui:173
+msgid "Derivation Algorithm"
+msgstr "Туынды алгоритм"
+
+#. Statistics
+#: data/gtk/database_settings_dialog.ui:183
+msgid "Stats"
+msgstr "Статистика"
+
+#: data/gtk/database_settings_dialog.ui:186
+msgid "Number of Entries"
+msgstr "Жазбалар саны"
+
+#: data/gtk/database_settings_dialog.ui:195
+msgid "Number of Groups"
+msgstr "Топтар саны"
+
+#: data/gtk/database_settings_dialog.ui:204
+msgid "Passwords"
+msgstr "Парольдер"
+
+#: data/gtk/database_settings_dialog.ui:218
+msgid "Audit"
+msgstr "Аудит"
+
+#: data/gtk/database_settings_dialog.ui:222
+msgid "Statistics"
+msgstr "Статистика"
+
+#: data/gtk/database_settings_dialog.ui:225
+msgid "Unique Passwords"
+msgstr "Бірегей парольдер"
+
+#: data/gtk/database_settings_dialog.ui:234
+msgid "Reused Passwords"
+msgstr "Қайта қолданылған парольдер"
+
+#: data/gtk/database_settings_dialog.ui:245
+msgid "Weak Passwords"
+msgstr "Әлсіз парольдер"
+
+#: data/gtk/database_settings_dialog.ui:250
+msgid "Check passwords for online breaches"
+msgstr "Парольдерді желідегі бұзылуларға тексеру"
+
+#: data/gtk/database_settings_dialog.ui:251
+msgid ""
+"Ask online whether your passwords have been hacked. The passwords won't be "
+"sent online! The following passwords have been leaked:"
+msgstr ""
+"Парольдеріңіздің бұзылғанын желіден тексеру. Парольдер желіге жіберілмейді! "
+"Келесі парольдер жарияланып кеткен:"
+
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Көмек"
+
+#: data/gtk/entry_page.ui:55
+msgid "Entry Menu"
+msgstr "Жазба мәзірі"
+
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:26
+#: data/gtk/references_dialog.ui:169
+msgid "_Title"
+msgstr "_Тақырыбы"
+
+#: data/gtk/entry_page.ui:75
+msgid "U_RL"
+msgstr "U_RL"
+
+#: data/gtk/entry_page.ui:81
+msgid "Open Address"
+msgstr "Адресті ашу"
+
+#: data/gtk/entry_page.ui:109
+msgid "One-Time Password"
+msgstr "Бір реттік пароль"
+
+#: data/gtk/entry_page.ui:121
+msgid "Remaining Time"
+msgstr "Қалған уақыт"
+
+#: data/gtk/entry_page.ui:143
+msgid "One-_Time Password Secret"
+msgstr "Бір _реттік пароль құпиясы"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:149
+msgid "Could not Generate OTP Token"
+msgstr "OTP токенін жасау мүмкін болмады"
+
+#: data/gtk/entry_page.ui:157 data/gtk/group_page.ui:34
+#: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Ескертпелер"
+
+#: data/gtk/entry_page.ui:161 data/gtk/group_page.ui:38
+msgid "Edit in a Window"
+msgstr "Терезеде түзету"
+
+#: data/gtk/entry_page.ui:199
+msgid "Icon"
+msgstr "Таңбаша"
+
+#: data/gtk/entry_page.ui:219
+msgid "Tags"
+msgstr "Тегтер"
+
+#: data/gtk/entry_page.ui:224 gsecrets/entry_page.py:295
+msgid "Add New Tag"
+msgstr "Жаңа тегті қосу"
+
+#: data/gtk/entry_page.ui:241
+msgid "Attachments"
+msgstr "Қосымша файлдар"
+
+#: data/gtk/entry_page.ui:245
+msgid "_Add Attachment"
+msgstr "Қосымша файлды қо_су"
+
+#: data/gtk/entry_page.ui:254
+msgid "Attributes"
+msgstr "Атрибуттар"
+
+#: data/gtk/entry_page.ui:259
+msgid "Add Attr_ibute"
+msgstr "Атриб_утты қосу"
+
+#: data/gtk/entry_page.ui:267
+msgid "Expiration Date"
+msgstr "Мерзімінің аяқталу күні"
+
+#: data/gtk/entry_page.ui:280
+msgid "_Show More"
+msgstr "Көбірек _көрсету"
+
+#: data/gtk/entry_page.ui:294
+msgid "D_uplicate"
+msgstr "Көш_ірмесін жасау"
+
+#: data/gtk/entry_page.ui:298
+msgid "_References"
+msgstr "_Сілтемелер"
+
+#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:75
+msgid "_Properties"
+msgstr "Қасие_ттері"
+
+#: data/gtk/entry_page.ui:308
+msgid "_Save in History"
+msgstr "Тарихқа _сақтау"
+
+#: data/gtk/entry_page.ui:312
+msgid "Show _History"
+msgstr "Тарихты _көрсету"
+
+#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "Ө_шіру"
+
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "Өшіру"
+
+#: data/gtk/entry_row.ui:38
+msgid "Select Entry"
+msgstr "Жазбаны таңдау"
+
+#: data/gtk/entry_row.ui:81
+msgid "Copy One-Time Password"
+msgstr "Бір реттік парольді көшіру"
+
+#: data/gtk/entry_row.ui:92
+msgid "Copy Username"
+msgstr "Пайдаланушы атын көшіру"
+
+#: data/gtk/entry_row.ui:102
+msgid "Copy Password"
+msgstr "Парольді көшіру"
+
+#: data/gtk/expiration_date_row.ui:8
+#: gsecrets/widgets/expiration_date_row.py:82
+msgid "Expiration Date not Set"
+msgstr "Мерзімінің аяқталу күні орнатылмаған"
+
+#: data/gtk/expiration_date_row.ui:22
+msgid "Edit Expiration Date"
+msgstr "Мерзімінің аяқталу күнін түзету"
+
+#: data/gtk/expiration_date_row.ui:30
+msgid "Remove Expiration Date"
+msgstr "Мерзімінің аяқталу күнін өшіру"
+
+#: data/gtk/expiration_date_row.ui:63
+msgid "_Set Expiration Date"
+msgstr "Мерзімінің аяқталу күнін _орнату"
+
+#: data/gtk/group_page.ui:14
+msgid "Group Menu"
+msgstr "Топ мәзірі"
+
+#: data/gtk/group_row.ui:38
+msgid "Select Group"
+msgstr "Топты таңдау"
+
+#: data/gtk/group_row.ui:67
+msgid "Edit"
+msgstr "Түзету"
+
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
+msgid "Show Text"
+msgstr "Мәтінді көрсету"
+
+#: data/gtk/history_row.ui:39
+msgid "Remove from History"
+msgstr "Тарихтан өшіру"
+
+#: data/gtk/history_window.ui:8
+msgid "Password History"
+msgstr "Парольдер тарихы"
+
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_Ашу"
+
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
+msgid "_New Safe"
+msgstr "_Жаңа сейф"
+
+#: data/gtk/notes_dialog.ui:20
+msgid "_Copy"
+msgstr "_Көшіру"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:33 data/gtk/notes_dialog.ui:58
+#: data/gtk/unlocked_headerbar.ui:26
+msgid "Search"
+msgstr "Іздеу"
+
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
+msgid "Password"
+msgstr "Пароль"
+
+#: data/gtk/password_generator_popover.ui:32
+msgid "Length"
+msgstr "Ұзындығы"
+
+#: data/gtk/password_generator_popover.ui:50
+msgid "Characters"
+msgstr "Таңбалар"
+
+#: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:213
+msgid "Passphrase"
+msgstr "Кілттік фраза"
+
+#: data/gtk/password_generator_popover.ui:99
+msgid "Words"
+msgstr "Сөздер"
+
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:126
+#: gsecrets/provider/file_provider.py:196
+msgid "_Generate"
+msgstr "_Генерациялау"
+
+#: data/gtk/properties_dialog.ui:6
+msgid "Properties"
+msgstr "Қасиеттері"
+
+#: data/gtk/properties_dialog.ui:26 data/gtk/references_dialog.ui:153
+msgid "UUID"
+msgstr "UUID"
+
+#: data/gtk/properties_dialog.ui:35
+msgid "Accessed"
+msgstr "Қол жеткізілген"
+
+#: data/gtk/properties_dialog.ui:44
+msgid "Modified"
+msgstr "Өзгертілген"
+
+#: data/gtk/properties_dialog.ui:53
+msgid "Created"
+msgstr "Жасалған"
+
+#: data/gtk/references_dialog.ui:15
+msgid "Code"
+msgstr "Код"
+
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:241
+#: data/gtk/references_dialog.ui:337
+msgid "Property"
+msgstr "Қасиет"
+
+#: data/gtk/references_dialog.ui:48
+msgid "Title"
+msgstr "Тақырыбы"
+
+#: data/gtk/references_dialog.ui:69
+msgid "Username"
+msgstr "Пайдаланушы аты"
+
+#: data/gtk/references_dialog.ui:129
+msgid "URL"
+msgstr "URL"
+
+#: data/gtk/references_dialog.ui:181
+msgid "_URL"
+msgstr "_URL"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_Ескертпелер"
+
+#: data/gtk/references_dialog.ui:191
+msgid "References"
+msgstr "Сілтемелер"
+
+#: data/gtk/references_dialog.ui:212
+msgid "Syntax"
+msgstr "Синтаксис"
+
+#: data/gtk/references_dialog.ui:221
+msgid "The placeholder syntax for field references is the following:"
+msgstr "Өріс сілтемелеріне арналған толтырғыш синтаксисі келесідей:"
+
+#: data/gtk/references_dialog.ui:240 data/gtk/references_dialog.ui:268
+msgid "Show Field Codes"
+msgstr "Өріс кодтарын көрсету"
+
+#: data/gtk/references_dialog.ui:269
+msgid "Identifier"
+msgstr "Идентификатор"
+
+#: data/gtk/references_dialog.ui:326
+msgid "Reference"
+msgstr "Сілтеме"
+
+#: data/gtk/references_dialog.ui:365
+msgid ""
+"Each entry has a unique identifier called UUID. It can be found in the "
+"properties of the entry."
+msgstr ""
+"Әрбір жазбаның UUID деп аталатын бірегей идентификаторы болады. Оны "
+"жазбаның қасиеттерінен табуға болады."
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/save_dialog.ui:4
+msgid "Unsaved Changes"
+msgstr "Сақталмаған өзгерістер"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/save_dialog.ui:5
+msgid "Do you want to write all changes to the safe?"
+msgstr "Барлық өзгерістерді сейфке жазуды қалайсыз ба?"
+
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:428
+msgid "_Quit Without Saving"
+msgstr "Сақтамастан _шығу"
+
+#. _Cancel exiting the program
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:429
+msgid "_Don't Quit"
+msgstr "Шық_пау"
+
+#. _Save all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:12
+msgid "_Save and Quit"
+msgstr "Сақтау және _шығу"
+
+#: data/gtk/settings_dialog.ui:14
+msgid "_Hide First Start Screen"
+msgstr "Бірінші іске қосу экранын жа_сыру"
+
+#: data/gtk/settings_dialog.ui:15
+msgid "Reopen last opened safe."
+msgstr "Соңғы ашылған сейфті қайта ашу."
+
+#. TRANSLATORS Safe as in strongbox.
+#. NOTE: Safe as in strongbox
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:232 gsecrets/widgets/window.py:244
+msgid "Safe"
+msgstr "Сейф"
+
+#: data/gtk/settings_dialog.ui:27
+msgid "_Save Automatically"
+msgstr "Автоматты түрде _сақтау"
+
+#: data/gtk/settings_dialog.ui:28
+msgid "Save every change automatically."
+msgstr "Әрбір өзгерісті автоматты түрде сақтау."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked
+#. once.
+#: data/gtk/settings_dialog.ui:35
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
+msgid "Enable Quick Unlock"
+msgstr "Жылдам құлпын ашуды іске қосу"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked
+#. once.
+#: data/gtk/settings_dialog.ui:36
+msgid ""
+"Re-unlock using the last four characters of the password for a single "
+"attempt."
+msgstr ""
+"Бір реттік әрекет үшін парольдің соңғы төрт таңбасын пайдаланып қайта "
+"құлпын ашу."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked
+#. once.
+#: data/gtk/settings_dialog.ui:42
+msgid "Enable Fingerprint Unlock"
+msgstr "Саусақ ізімен құлпын ашуды іске қосу"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked
+#. once.
+#: data/gtk/settings_dialog.ui:43
+msgid "Use the fingerprint reader to quickly unlock the safe."
+msgstr ""
+"Сейфтің құлпын жылдам ашу үшін саусақ ізін оқу құрылғысын пайдаланыңыз."
+
+#: data/gtk/settings_dialog.ui:51 gsecrets/provider/pkcs11_provider.py:216
+msgid "Unlock"
+msgstr "Құлпын ашу"
+
+#. A composite key is a authentication method where the user needs both
+#. password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:54
+msgid "Remember Composite _Key"
+msgstr "Құрамдас _кілтті есте сақтау"
+
+#. A composite key is a authentication method where the user needs both
+#. password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:55
+msgid "Remember last used composite key."
+msgstr "Соңғы пайдаланылған құрамдас кілтті есте сақтау."
+
+#: data/gtk/settings_dialog.ui:70
+msgid "Password Generation"
+msgstr "Пароль генерациясы"
+
+#: data/gtk/settings_dialog.ui:73
+msgid "Password Length"
+msgstr "Пароль ұзындығы"
+
+#: data/gtk/settings_dialog.ui:74
+msgid "Number of characters when generating a password."
+msgstr "Парольді генерациялау кезіндегі таңбалар саны."
+
+#: data/gtk/settings_dialog.ui:88
+msgid "_Uppercase Characters"
+msgstr "_Бас әріптер"
+
+#: data/gtk/settings_dialog.ui:89
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "Парольді генерациялау кезінде A-Z бас әріптерін пайдалану."
+
+#: data/gtk/settings_dialog.ui:96
+msgid "_Lowercase Characters"
+msgstr "_Кіші әріптер"
+
+#: data/gtk/settings_dialog.ui:97
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "Парольді генерациялау кезінде a-z кіші әріптерін пайдалану."
+
+#: data/gtk/settings_dialog.ui:104
+msgid "_Numeric Characters"
+msgstr "_Сандық таңбалар"
+
+#: data/gtk/settings_dialog.ui:105
+msgid "Use numeric characters when generating a password."
+msgstr "Парольді генерациялау кезінде сандық таңбаларды пайдалану."
+
+#: data/gtk/settings_dialog.ui:112
+msgid "_Special Characters"
+msgstr "_Арнайы таңбалар"
+
+#. ASCII is a proper name
+#: data/gtk/settings_dialog.ui:113
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr ""
+"Парольді генерациялау кезінде әріптік-сандық емес ASCII таңбаларын "
+"пайдалану."
+
+#: data/gtk/settings_dialog.ui:122
+msgid "Passphrase Generation"
+msgstr "Кілттік фраза генерациясы"
+
+#: data/gtk/settings_dialog.ui:125
+msgid "Passphrase Length"
+msgstr "Кілттік фраза ұзындығы"
+
+#: data/gtk/settings_dialog.ui:126
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
+msgid "Number of words to use when generating a passphrase."
+msgstr "Кілттік фразаны генерациялау кезінде пайдаланылатын сөздер саны."
+
+#: data/gtk/settings_dialog.ui:140
+msgid "Separator"
+msgstr "Ажыратқыш"
+
+#: data/gtk/settings_dialog.ui:150 data/gtk/settings_dialog.ui:153
+msgid "Security"
+msgstr "Қауіпсіздік"
+
+#: data/gtk/settings_dialog.ui:156
+msgid "Safe Lock Timeout"
+msgstr "Сейфті құлыптау күту уақыты"
+
+#: data/gtk/settings_dialog.ui:157
+msgid "Lock safe on idle after X minutes."
+msgstr "Әрекетсіздіктен кейін X минуттан соң сейфті құлыптау."
+
+#: data/gtk/settings_dialog.ui:171
+msgid "Lock on _Session Lock"
+msgstr "Сессия құ_лыпталғанда құлыптау"
+
+#: data/gtk/settings_dialog.ui:172
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid "Automatically lock when the session is locked."
+msgstr "Сессия құлыпталған кезде автоматты түрде құлыптау."
+
+#: data/gtk/settings_dialog.ui:179
+msgid "Clear Clipboard"
+msgstr "Алмасу буферін тазарту"
+
+#: data/gtk/settings_dialog.ui:180
+msgid "Clear clipboard after X seconds."
+msgstr "X секундтан кейін алмасу буферін тазарту."
+
+#: data/gtk/settings_dialog.ui:194
+msgid "Clear Recent List"
+msgstr "Соңғылар тізімін тазарту"
+
+#: data/gtk/settings_dialog.ui:195
+msgid "Clear the recently opened safes list."
+msgstr "Жақында ашылған сейфтер тізімін тазарту."
+
+#: data/gtk/settings_dialog.ui:202
+msgid "Clear"
+msgstr "Тазарту"
+
+#: data/gtk/shortcuts_dialog.ui:6
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Қолданба"
+
+#: data/gtk/shortcuts_dialog.ui:9
+msgctxt "Shortcut window description"
+msgid "Create Safe"
+msgstr "Сейфті жасау"
+
+#: data/gtk/shortcuts_dialog.ui:15
+msgctxt "Shortcut window description"
+msgid "Go Back"
+msgstr "Артқа қайту"
+
+#: data/gtk/shortcuts_dialog.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Safe"
+msgstr "Сейфті ашу"
+
+#: data/gtk/shortcuts_dialog.ui:27
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Қалауларды ашу"
+
+#: data/gtk/shortcuts_dialog.ui:33
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Жарлықтарды көрсету"
+
+#: data/gtk/shortcuts_dialog.ui:39
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "Терезені жабу"
+
+#: data/gtk/shortcuts_dialog.ui:45
+msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Жаңа терезе"
+
+#: data/gtk/shortcuts_dialog.ui:51
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Шығу"
+
+#: data/gtk/shortcuts_dialog.ui:59
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Сейф"
+
+#: data/gtk/shortcuts_dialog.ui:62
+msgctxt "Shortcut window description"
+msgid "Lock Safe"
+msgstr "Сейфті құлыптау"
+
+#: data/gtk/shortcuts_dialog.ui:68
+msgctxt "Shortcut window description"
+msgid "Save Safe"
+msgstr "Сейфті сақтау"
+
+#: data/gtk/shortcuts_dialog.ui:74
+msgctxt "Shortcut window description"
+msgid "Open Search"
+msgstr "Іздеуді ашу"
+
+#: data/gtk/shortcuts_dialog.ui:80
+msgctxt "Shortcut window description"
+msgid "Create Entry"
+msgstr "Жазбаны жасау"
+
+#: data/gtk/shortcuts_dialog.ui:86
+msgctxt "Shortcut window description"
+msgid "Create Group"
+msgstr "Топты жасау"
+
+#: data/gtk/shortcuts_dialog.ui:94
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Жазба"
+
+#: data/gtk/shortcuts_dialog.ui:97
+msgctxt "Shortcut window description"
+msgid "Copy Password"
+msgstr "Парольді көшіру"
+
+#: data/gtk/shortcuts_dialog.ui:103
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Адресті көшіру"
+
+#: data/gtk/shortcuts_dialog.ui:109
+msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "Пайдаланушы атын көшіру"
+
+#: data/gtk/shortcuts_dialog.ui:115
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Бір реттік парольді көшіру"
+
+#: data/gtk/shortcuts_dialog.ui:121
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Тарихты көрсету"
+
+#: data/gtk/shortcuts_dialog.ui:127
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Тарихқа сақтау"
+
+#: data/gtk/unlock_database.ui:20
+msgid "Unlock Safe"
+msgstr "Сейфтің құлпын ашу"
+
+#: data/gtk/unlock_database.ui:38
+msgid "Fingerprint Unlock available"
+msgstr "Саусақ ізімен құлпын ашу қолжетімді"
+
+#: data/gtk/unlock_database.ui:65 gsecrets/provider/pkcs11_provider.py:218
+msgid "_Unlock"
+msgstr "Құл_пын ашу"
+
+#: data/gtk/unlocked_database.ui:18
+msgid "Browser"
+msgstr "Браузер"
+
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
+msgid "Select Items"
+msgstr "Элементтерді таңдау"
+
+#: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
+msgid "Go Back"
+msgstr "Артқа қайту"
+
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "Бас _тарту"
+
+#: data/gtk/unlocked_database.ui:54 data/gtk/unlocked_database.ui:60
+msgid "Search Safe"
+msgstr "Сейфтен іздеу"
+
+#: data/gtk/unlocked_database.ui:73
+msgid "_Clear"
+msgstr "_Тазарту"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/unlocked_database.ui:83
+msgid "Delete Selection"
+msgstr "Таңдалғанды өшіру"
+
+#. Button tooltip in selection mode to move every selected entry/group to
+#. another place
+#: data/gtk/unlocked_database.ui:93
+msgid "Move Selection"
+msgstr "Таңдалғанды жылжыту"
+
+#: data/gtk/unlocked_database.ui:100
+msgid "Paste Selection"
+msgstr "Таңдалғанды кірістіру"
+
+#: data/gtk/unlocked_database.ui:125
+msgid "Select an Entry"
+msgstr "Жазбаны таңдау"
+
+#: data/gtk/unlocked_headerbar.ui:18
+msgid "New Entry or Group"
+msgstr "Жаңа жазба немесе топ"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can
+#. tick password entries and groups
+#: data/gtk/unlocked_headerbar.ui:33
+msgid "Selection Mode"
+msgstr "Таңдау режимі"
+
+#. s
+#: data/gtk/unlocked_headerbar.ui:54
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Save"
+msgstr "_Сақтау"
+
+#. s
+#: data/gtk/unlocked_headerbar.ui:58
+msgid "_Lock"
+msgstr "Құ_лыптау"
+
+#: data/gtk/unlocked_headerbar.ui:64
+msgid "So_rting"
+msgstr "Сұ_рыптау"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:66
+msgid "_A-Z"
+msgstr "_A-Z"
+
+#: data/gtk/unlocked_headerbar.ui:71
+msgid "_Newest First"
+msgstr "Алдымен _жаңалары"
+
+#: data/gtk/unlocked_headerbar.ui:76
+msgid "_Oldest First"
+msgstr "Алдымен _ескілері"
+
+#: data/gtk/unlocked_headerbar.ui:84
+msgid "New _Window"
+msgstr "Жаңа _терезе"
+
+#: data/gtk/unlocked_headerbar.ui:88
+msgid "Sa_fe Settings"
+msgstr "Сейф _баптаулары"
+
+#: data/gtk/unlocked_headerbar.ui:110
+msgid "New _Entry"
+msgstr "Жаңа _жазба"
+
+#: data/gtk/unlocked_headerbar.ui:114
+msgid "New _Group"
+msgstr "Жаңа _топ"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/gtk/welcome_page.ui:11
+msgid "Secure Secrets"
+msgstr "Қауіпсіз құпиялар"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a
+#. sentence which gives the user a starting point what he can do if he opens
+#. the application for the first time.
+#: data/gtk/welcome_page.ui:12
+msgid "Create or import a new Keepass safe"
+msgstr "Жаңа Keepass сейфін жасау немесе импорттау"
+
+#. Translators: Secrets is the app name, do not translate
+#: data/gtk/window.ui:6 data/org.gnome.World.Secrets.desktop.in.in:3
+msgid "Secrets"
+msgstr "Құпиялар"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "A password manager for GNOME"
+msgstr "GNOME-ға арналған парольдер менеджері"
+
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.World.Secrets.desktop.in.in:13
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;шифрлау;қауіпсіз;"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Lock on session lock"
+msgstr "Сеанс құлыпталғанда құлыптау"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
+msgid "Reopen last opened database"
+msgstr "Соңғы ашылған дерекқорды қайта ашу"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Соңғы ашылған дерекқордың құлпын ашу экранын автоматты түрде ашу, әйтпесе "
+"қарсы алу экранын көрсету."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
+msgid "Save every change automatically"
+msgstr "Әрбір өзгерісті автоматты түрде сақтау"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
+msgid ""
+"Save every change you made instantly into the database. Please note that "
+"you cannot revert changes if Autosave is enabled."
+msgstr ""
+"Жасалған әрбір өзгерісті дерекқорға бірден сақтау. Автосақтау іске қосылған "
+"болса, өзгерістерді кері қайтара алмайтыныңызды ескеріңіз."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
+msgid "Lock database after X minutes"
+msgstr "Дерекқорды X минуттан кейін құлыптау"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Қауіпсіздікті арттыру үшін дерекқорды көрсетілген минут санынан кейін "
+"автоматты түрде құлыптау."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
+msgid "Clear clipboard after X seconds"
+msgstr "Алмасу буферін X секундтан кейін тазарту"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr ""
+"Парольді көшіргеннен кейін, қауіпсіздік мақсатында алмасу буферін тазарту."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Last opened databases"
+msgstr "Соңғы ашылған дерекқорлар"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "A list of the last opened databases."
+msgstr "Соңғы ашылған дерекқорлардың тізімі."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Remember composite key"
+msgstr "Құрамдас кілтті есте сақтау"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "Remember last used composite key for database unlocking."
+msgstr ""
+"Дерекқордың құлпын ашу үшін соңғы пайдаланылған құрамдас кілтті есте сақтау."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last used key provider"
+msgstr "Соңғы пайдаланылған кілт провайдері"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "Key provider for composite database unlocking."
+msgstr "Дерекқордың құрамдас құлпын ашуға арналған кілт провайдері."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+msgid "Remember unlock method"
+msgstr "Құлпын ашу әдісін есте сақтау"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+msgid "Remember last used unlock method for future database unlocking."
+msgstr ""
+"Болашақта дерекқордың құлпын ашу үшін соңғы пайдаланылған әдісті есте "
+"сақтау."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
+msgid "Backup the database on unlock"
+msgstr "Құлпын ашқан кезде дерекқордың сақтық көшірмесін жасау"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
+msgid ""
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
+msgstr ""
+"Дерекқорды сақтау кезінде қате орын алса, сақтық көшірмені ~/.cache/secrets/"
+"backups жолынан табуға болады"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
+msgid "Sorting order of groups and entries"
+msgstr "Топтар мен жазбаларды сұрыптау реті"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
+msgid "Order of the rows in the groups and entries view."
+msgstr "Топтар мен жазбалар көрінісіндегі жолдардың реті."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
+msgid "Use uppercases when generating a password"
+msgstr "Парольді жасау кезінде бас әріптерді пайдалану"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "Кездейсоқ парольді жасау кезінде A-Z бас әріптерін пайдалану."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
+msgid "Use lowercases when generating a password"
+msgstr "Парольді жасау кезінде кіші әріптерді пайдалану"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "Кездейсоқ парольді жасау кезінде a-z кіші әріптерін пайдалану."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
+msgid "Use numbers when generating a password"
+msgstr "Парольді жасау кезінде сандарды пайдалану"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Кездейсоқ парольді жасау кезінде 0-9 сандарын пайдалану."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
+msgid "Use symbols when generating a password"
+msgstr "Парольді жасау кезінде таңбаларды пайдалану"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr ""
+"Кездейсоқ парольді жасау кезінде әріптік-сандық емес ASCII таңбаларын "
+"пайдалану."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
+msgid "Password length when generating a password"
+msgstr "Парольді жасау кезіндегі пароль ұзындығы"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
+msgid "Number of single characters when generating a password."
+msgstr "Парольді жасау кезіндегі жеке таңбалар саны."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
+msgid "Number of words when generating a passphrase"
+msgstr "Кілттік фразаны жасау кезіндегі сөздер саны"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
+msgid "Separator when generating a passphrase"
+msgstr "Кілттік фразаны жасау кезіндегі ажыратқыш"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
+msgid "Word separator to use when generating a passphrase."
+msgstr "Кілттік фразаны жасау кезінде пайдаланылатын сөз ажыратқышы."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four "
+"characters of the password. If the first try is wrong, the full password is "
+"needed to unlock the safe."
+msgstr ""
+"Жылдам құлпын ашу іске қосылғанда, сейфке парольдің соңғы төрт таңбасы "
+"арқылы қайта кіруге болады. Бірінші әрекет қате болса, сейфтің құлпын ашу "
+"үшін толық пароль қажет болады."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
+msgid "Enable Fingerprint Quick Unlock"
+msgstr "Саусақ ізімен жылдам құлпын ашуды іске қосу"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Use the fingerprint reader to quick unlock a locked safe."
+msgstr ""
+"Құлыпталған сейфтің құлпын жылдам ашу үшін саусақ ізі сканерін пайдалану."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
+msgid "@NAME@"
+msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Парольдеріңізді басқару"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
+msgid ""
+"Secrets is a password manager which makes use of the KeePass v.4 format. It "
+"integrates perfectly with the GNOME desktop and provides an easy and "
+"uncluttered interface for the management of password databases."
+msgstr ""
+"Secrets — KeePass v.4 пішімін пайдаланатын парольдер менеджері. Ол GNOME "
+"жұмыс үстелімен тамаша үйлеседі және парольдер дерекқорларын басқаруға "
+"арналған қарапайым интерфейсті ұсынады."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
+msgid "Password management"
+msgstr "Парольдерді басқару"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
+msgid "Safe unlocking"
+msgstr "Сейфтің құлпын ашу"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
+msgid "Safe creation"
+msgstr "Сейфті жасау"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
+#: gsecrets/application.py:40
+msgid "Enable debug logging"
+msgstr "Жөндеу журналын іске қосу"
+
+#: gsecrets/attachment_warning_dialog.py:71
+#: gsecrets/attachment_warning_dialog.py:82
+msgid "Could not load attachment"
+msgstr "Тіркемені жүктеу мүмкін емес"
+
+#: gsecrets/create_database.py:65
+msgid "Passwords do not match"
+msgstr "Парольдер сәйкес келмейді"
+
+#: gsecrets/create_database.py:81
+msgid "Unable to create database"
+msgstr "Дерекқорды жасау мүмкін емес"
+
+#: gsecrets/create_database.py:112 gsecrets/unlock_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:346
+msgid "Failed to generate composite key"
+msgstr "Құрамдас кілтті жасау сәтсіз аяқталды"
+
+#: gsecrets/entry_page.py:289
+msgid "Enter tag name"
+msgstr "Тег атын енгізіңіз"
+
+#: gsecrets/entry_page.py:319
+msgid "The tag already exists"
+msgstr "Тег бұрыннан бар"
+
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:103
+msgid "Saved in history"
+msgstr "Тарихта сақталды"
+
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:164
+#: gsecrets/widgets/credentials_group.py:98
+msgid "Username copied"
+msgstr "Пайдаланушы аты көшірілді"
+
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:499
+msgid "Address copied"
+msgstr "Адрес көшірілді"
+
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
+msgid "One-time password copied"
+msgstr "Бір реттік пароль көшірілді"
+
+#: gsecrets/entry_page.py:406
+msgid "Could not open URL"
+msgstr "URL ашу мүмкін емес"
+
+#: gsecrets/entry_page.py:416
+msgid "The address is not valid"
+msgstr "Адрес жарамсыз"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: gsecrets/entry_page.py:453
+msgid "Select Attachments"
+msgstr "Тіркемелерді таңдау"
+
+#: gsecrets/entry_row.py:157 gsecrets/widgets/credentials_group.py:110
+msgid "Password copied"
+msgstr "Пароль көшірілді"
+
+#: gsecrets/entry_row.py:172
+msgid "One-Time Password copied"
+msgstr "Бір реттік пароль көшірілді"
+
+#: gsecrets/entry_row.py:186 gsecrets/group_row.py:137
+msgid "Title not Specified"
+msgstr "Тақырыбы көрсетілмеген"
+
+#: gsecrets/password_generator_popover.py:74
+msgid "Include Lowercase"
+msgstr "Кіші әріптерді қосу"
+
+#: gsecrets/password_generator_popover.py:76
+msgid "Exclude Lowercase"
+msgstr "Кіші әріптерді алып тастау"
+
+#: gsecrets/password_generator_popover.py:79
+msgid "Include Uppercase"
+msgstr "Бас әріптерді қосу"
+
+#: gsecrets/password_generator_popover.py:81
+msgid "Exclude Uppercase"
+msgstr "Бас әріптерді алып тастау"
+
+#: gsecrets/password_generator_popover.py:84
+msgid "Include Numbers"
+msgstr "Сандарды қосу"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Exclude Numbers"
+msgstr "Сандарды алып тастау"
+
+#: gsecrets/password_generator_popover.py:89
+msgid "Include Symbols"
+msgstr "Таңбаларды қосу"
+
+#: gsecrets/password_generator_popover.py:91
+msgid "Exclude Symbols"
+msgstr "Таңбаларды алып тастау"
+
+#: gsecrets/provider/file_provider.py:34
+#: gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
+msgid "Keyfile"
+msgstr "Кілт файлы"
+
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
+msgid "Select Keyfile"
+msgstr "Кілт файлын таңдау"
+
+#: gsecrets/provider/file_provider.py:51
+#: gsecrets/provider/file_provider.py:142
+msgid "Clear Keyfile"
+msgstr "Кілт файлын тазарту"
+
+#: gsecrets/provider/file_provider.py:70
+msgid "Select keyfile"
+msgstr "Кілт файлын таңдау"
+
+#: gsecrets/provider/file_provider.py:108
+msgid "Could not load keyfile"
+msgstr "Кілт файлын жүктеу мүмкін емес"
+
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
+msgid "Generate Keyfile"
+msgstr "Кілт файлын жасау"
+
+#: gsecrets/provider/file_provider.py:159
+msgid "Use a file to increase security"
+msgstr "Қауіпсіздікті арттыру үшін файлды пайдалану"
+
+#: gsecrets/provider/file_provider.py:181
+msgid "Could not create keyfile"
+msgstr "Кілт файлын жасау мүмкін емес"
+
+#: gsecrets/provider/pkcs11_provider.py:99
+msgid "No Smartcard"
+msgstr "Смарт-карта жоқ"
+
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "RSA сертификаты жоқ"
+
+#: gsecrets/provider/pkcs11_provider.py:119
+#: gsecrets/provider/pkcs11_provider.py:268
+msgid "Smartcard"
+msgstr "Смарт-карта"
+
+#: gsecrets/provider/pkcs11_provider.py:120
+msgid "Select certificate"
+msgstr "Сертификатты таңдау"
+
+#: gsecrets/provider/pkcs11_provider.py:196
+msgid "No smartcard present"
+msgstr "Смарт-карта салынбаған"
+
+#: gsecrets/provider/pkcs11_provider.py:197
+msgid "Please insert smartcard and retry."
+msgstr "Смарт-картаны салып, қайталап көріңіз."
+
+#: gsecrets/provider/pkcs11_provider.py:200
+#: gsecrets/widgets/database_settings_dialog.py:384
+msgid "_OK"
+msgstr "_ОК"
+
+#: gsecrets/provider/pkcs11_provider.py:216
+msgid "Unlock your smartcard"
+msgstr "Смарт-картаңыздың құлпын ашыңыз"
+
+#: gsecrets/provider/pkcs11_provider.py:261
+msgid "Failed to unlock Smartcard"
+msgstr "Смарт-карта құлпын ашу сәтсіз аяқталды"
+
+#: gsecrets/provider/pkcs11_provider.py:269
+msgid "Use a smartcard"
+msgstr "Смарт-картаны пайдалану"
+
+#: gsecrets/provider/pkcs11_provider.py:323
+msgid "Refresh Certificate List"
+msgstr "Сертификаттар тізімін жаңарту"
+
+#: gsecrets/provider/yubikey_provider.py:36
+msgid "No Key"
+msgstr "Кілт жоқ"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:39
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] - {slot} слоты"
+
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:205
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:144
+msgid "Select key"
+msgstr "Кілтті таңдау"
+
+#. TRANSLATORS YubiKey is a proper name key, see
+#. https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
+msgid "Select YubiKey slot"
+msgstr "YubiKey слотын таңдау"
+
+#: gsecrets/provider/yubikey_provider.py:246
+msgid "Touch YubiKey"
+msgstr "YubiKey-ге тиіңіз"
+
+#: gsecrets/recent_files_menu.py:29
+msgid "Recent Files"
+msgstr "Соңғы файлдар"
+
+#: gsecrets/safe_element.py:43
+msgid "White"
+msgstr "Ақ"
+
+#: gsecrets/safe_element.py:45
+msgid "Blue"
+msgstr "Көк"
+
+#: gsecrets/safe_element.py:47
+msgid "Green"
+msgstr "Жасыл"
+
+#: gsecrets/safe_element.py:49
+msgid "Yellow"
+msgstr "Сары"
+
+#: gsecrets/safe_element.py:51
+msgid "Orange"
+msgstr "Қызғылт сары"
+
+#: gsecrets/safe_element.py:53
+msgid "Red"
+msgstr "Қызыл"
+
+#: gsecrets/safe_element.py:55
+msgid "Purple"
+msgstr "Күлгін"
+
+#: gsecrets/safe_element.py:57
+msgid "Brown"
+msgstr "Қоңыр"
+
+#: gsecrets/safe_element.py:673
+msgid "Clone"
+msgstr "Клондау"
+
+#. This shouldn't happen
+#. TODO Set the body of the message based on the error kind.
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
+#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
+#: gsecrets/widgets/window.py:427
+msgid "Could not save Safe"
+msgstr "Сейфті сақтау мүмкін емес"
+
+#: gsecrets/selection_manager.py:58
+msgid "Operation aborted: deleting currently active group"
+msgstr "Операция тоқтатылды: ағымдағы белсенді топ өшірілуде"
+
+#: gsecrets/selection_manager.py:106
+msgid "Warning"
+msgstr "Ескерту"
+
+#: gsecrets/selection_manager.py:108
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be "
+"undone."
+msgstr ""
+"Сіз қоқыс шелегіндегі элементтерді өшіріп жатырсыз, бұл әрекетті қайтару "
+"мүмкін емес."
+
+#: gsecrets/selection_manager.py:142
+msgid "Operation aborted: moving currently active group"
+msgstr "Операция тоқтатылды: ағымдағы белсенді топ жылжытылуда"
+
+#: gsecrets/selection_manager.py:155
+msgid "Move completed"
+msgstr "Жылжыту аяқталды"
+
+#: gsecrets/unlock_database.py:105
+msgid "Quick Unlock active"
+msgstr "Жылдам құлпын ашу белсенді"
+
+#. TRANSLATORS For example: "Safe ~/MySafe.kdbx is already open"
+#: gsecrets/unlock_database.py:150
+#, python-brace-format
+msgid "Safe {path} is already open"
+msgstr "{path} сейфі ашық тұр"
+
+#: gsecrets/unlock_database.py:242
+msgid "Failed to unlock Safe"
+msgstr "Сейфтің құлпын ашу сәтсіз аяқталды"
+
+#: gsecrets/unlock_database.py:410
+msgid "Please unlock using the password."
+msgstr "Пароль арқылы құлпын ашыңыз."
+
+#: gsecrets/unlock_database.py:419
+msgid "Maximum tries reached. Please unlock using the password."
+msgstr "Әрекеттердің максималды санына жетті. Пароль арқылы құлпын ашыңыз."
+
+#: gsecrets/unlocked_database.py:251
+msgid "Safe saved"
+msgstr "Сейф сақталды"
+
+#: gsecrets/unlocked_database.py:253
+msgid "No changes made"
+msgstr "Өзгерістер жасалған жоқ"
+
+#: gsecrets/unlocked_database.py:300
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "{} элемент өшірілді"
+
+#: gsecrets/unlocked_database.py:305
+msgid "Deletion completed"
+msgstr "Өшіру аяқталды"
+
+#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
+msgid "Undo"
+msgstr "Болдырмау"
+
+#: gsecrets/unlocked_database.py:333
+msgid "Attribute deleted"
+msgstr "Атрибут өшірілді"
+
+#: gsecrets/unlocked_database.py:362
+msgid "Copied"
+msgstr "Көшірілді"
+
+#. NOTE: Notification that a safe has been locked.
+#: gsecrets/unlocked_database.py:462
+msgid "Safe locked due to inactivity"
+msgstr "Сейф әрекетсіздік салдарынан құлыпталды"
+
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
+#: gsecrets/unlocked_database.py:700
+msgid "{} Selected"
+msgid_plural "{} Selected"
+msgstr[0] "{} таңдалды"
+
+#: gsecrets/widgets/add_attribute_dialog.py:36
+msgid "Attribute key contains an illegal character"
+msgstr "Атрибут кілтінде рұқсат етілмеген таңба бар"
+
+#: gsecrets/widgets/add_attribute_dialog.py:46
+msgid "Attribute key already exists"
+msgstr "Атрибут кілті бұрыннан бар"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: gsecrets/widgets/attachment_entry_row.py:41
+msgid "Save Attachment"
+msgstr "Тіркемені сақтау"
+
+#: gsecrets/widgets/attachment_entry_row.py:57
+msgid "Could not store attachment"
+msgstr "Тіркемені сақтау мүмкін емес"
+
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
+msgid "Attribute copied"
+msgstr "Атрибут көшірілді"
+
+#: gsecrets/widgets/database_settings_dialog.py:128
+msgid "Insecure"
+msgstr "Қауіпсіз емес"
+
+#: gsecrets/widgets/database_settings_dialog.py:130
+msgid "Weak"
+msgstr "Әлсіз"
+
+#: gsecrets/widgets/database_settings_dialog.py:137
+msgid "No weak passwords found"
+msgstr "Әлсіз парольдер табылмады"
+
+#: gsecrets/widgets/database_settings_dialog.py:226
+msgid "No records found"
+msgstr "Жазбалар табылмады"
+
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
+msgid "Could not apply changes"
+msgstr "Өзгерістерді іске асыру мүмкін емес"
+
+#. Still executes the finally block
+#: gsecrets/widgets/database_settings_dialog.py:320
+msgid "Changes Applied"
+msgstr "Өзгерістер іске асырылды"
+
+#: gsecrets/widgets/database_settings_dialog.py:374
+msgid "Could not change credentials"
+msgstr "Тіркелгі мәліметтерін өзгерту мүмкін емес"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:379
+#: gsecrets/widgets/saving_conflict_dialog.py:22
+msgid "Conflicts While Saving"
+msgstr "Сақтау кезіндегі қақтығыстар"
+
+#: gsecrets/widgets/database_settings_dialog.py:381
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"Сейф басқа жерден өзгертілген. Сақтау кезінде осы қайшылықтарды негізгі "
+"терезеден шешіңіз."
+
+#. Encryption Algorithm
+#. Derivation Algorithm
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
+msgid "Unknown"
+msgstr "Белгісіз"
+
+#. NOTE: AES is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:458
+msgid "AES 256-bit"
+msgstr "AES 256-бит"
+
+#. NOTE: ChaCha20 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:461
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 256-бит"
+
+#. NOTE: Twofish is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:464
+msgid "Twofish 256-bit"
+msgstr "Twofish 256-бит"
+
+#. NOTE: Argon2 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:472
+msgid "Argon2"
+msgstr "Argon2"
+
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:475
+msgid "Argon2id"
+msgstr "Argon2id"
+
+#. NOTE: AES-KDF is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:478
+msgid "AES-KDF"
+msgstr "AES-KDF"
+
+#: gsecrets/widgets/expiration_date_row.py:56
+#: gsecrets/widgets/expiration_date_row.py:64
+msgid "Entry expired"
+msgstr "Жазбаның мерзімі аяқталды"
+
+#: gsecrets/widgets/history_row.py:43
+msgid "Hide Text"
+msgstr "Мәтінді жасыру"
+
+#: gsecrets/widgets/notes_dialog.py:105
+msgid "Selection copied"
+msgstr "Таңдалған нәрсе көшірілді"
+
+#: gsecrets/widgets/password_level_bar.py:22
+msgid "Password Strength"
+msgstr "Пароль төзімділігі"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:18
+msgid "Unsaved Changes Conflict"
+msgstr "Сақталмаған өзгерістер қайшылығы"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:20
+msgid "Save and Quit"
+msgstr "Сақтау және шығу"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Back up, Save, and Quit"
+msgstr "Резервтік көшірме жасау, сақтау және шығу"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Don't Quit"
+msgstr "Шықпау"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:25
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"Сейф басқа жерден өзгертілген. Сақтау олардың сейф нұсқасын біздің ағымдағы "
+"нұсқамызбен алмастырады.\n"
+"\n"
+" Сондай-ақ, олардың сейф нұсқасының резервтік көшірмесін жасауға болады."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:33
+msgid "_Back up and Save"
+msgstr "_Резервтік көшірме жасау және сақтау"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:45
+msgid "Save Backup"
+msgstr "Резервтік көшірмені сақтау"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:55
+msgid "Could not backup safe"
+msgstr "Сейфтің резервтік көшірмесін жасау мүмкін емес"
+
+#: gsecrets/widgets/window.py:150
+msgid "Any file type"
+msgstr "Кез келген файл түрі"
+
+#: gsecrets/widgets/window.py:157
+msgid "Select Safe"
+msgstr "Сейфті таңдау"
+
+#: gsecrets/widgets/window.py:174
+msgid "File does not have a valid path"
+msgstr "Файлдың адресі дұрыс емес"
+
+#: gsecrets/widgets/window.py:207
+msgid "Safe is already open"
+msgstr "Сейф ашық тұр"
+
+#: gsecrets/widgets/window.py:242
+msgid "_Create"
+msgstr "_Жасау"
+
+#: gsecrets/widgets/window.py:264
+msgid "Cannot create Safe: Safe is already open"
+msgstr "Сейфті жасау мүмкін емес: сейф ашық тұр"
+
+#: gsecrets/widgets/window.py:307 gsecrets/widgets/window.py:320
+msgid "Could not create new Safe"
+msgstr "Жаңа сейфті жасау мүмкін емес"
+
+#: gsecrets/widgets/window.py:405
+msgid "Could not save safe"
+msgstr "Сейфті сақтау мүмкін емес"
+
+#. TRANSLATORS Add your name to the translator credits list
+#: gsecrets/widgets/window.py:569
+msgid "translator-credits"
+msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"

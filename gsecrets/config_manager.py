@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 from typing import cast
 
-from gi.repository import Gio
+from gi.repository import Gio, GLib
 
 from gsecrets import const
 from gsecrets.sorting import SortingHat
@@ -16,6 +16,7 @@ DB_LOCK_TIMEOUT = "database-lock-timeout"
 SHOW_START_SCREEN = "first-start-screen"
 LAST_OPENED_DB = "last-opened-database"
 SAVE_AUTOMATICALLY = "save-automatically"
+WINDOW_SIZE = "window-size"
 SORT_ORDER = "sort-order"
 REMEMBER_COMPOSITE_KEY = "remember-composite-key"
 LAST_USED_KEY_PROVIDER = "last-used-key-provider"
@@ -138,6 +139,15 @@ def get_save_automatically():
 
 def set_save_automatically(value):
     setting.set_boolean(SAVE_AUTOMATICALLY, value)
+
+
+def get_window_size():
+    return setting.get_value(WINDOW_SIZE)
+
+
+def set_window_size(lis: list[int]) -> None:
+    g_variant = GLib.Variant("ai", lis)
+    setting.set_value(WINDOW_SIZE, g_variant)
 
 
 def get_sort_order() -> SortingHat.SortOrder:

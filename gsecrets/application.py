@@ -26,7 +26,6 @@ class Application(Adw.Application):
             flags=Gio.ApplicationFlags.HANDLES_OPEN,
             resource_base_path="/org/gnome/World/Secrets",
             register_session=True,
-            support_save=True,
         )
 
         asyncio.set_event_loop_policy(GLibEventLoopPolicy())
@@ -40,19 +39,6 @@ class Application(Adw.Application):
             _("Enable debug logging"),
             None,
         )
-
-    def do_restore_window(self, reason: Gtk.RestoreReason, state: GLib.Variant) -> None:  # pylint: disable=arguments-differ
-        logging.debug("Restoring window")
-
-        # We want to restore only the most recently used window for normal
-        # launches by the user (i.e. from the app grid). Otherwise activate will
-        # handle it.
-        if reason <= Gtk.RestoreReason.LAUNCH and self.get_active_window():
-            return
-
-        window = self.new_window()
-        window.restore(reason, state)
-        window.present()
 
     def do_startup(self):  # pylint: disable=arguments-differ
         Adw.Application.do_startup(self)
@@ -158,7 +144,8 @@ class Application(Adw.Application):
         self.add_action(new_window_action)
 
     def on_quit_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
-        self.quit()
+        for window in self.get_windows():
+            window.close()
 
     def on_new_window_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         window = self.new_window()

@@ -57,9 +57,7 @@ class Window(Adw.ApplicationWindow):
 
         self.application = self.get_application()
 
-        if self.props.application.development_mode:
-            self.add_css_class("devel")
-
+        self.assemble_window()
         self.setup_actions()
 
         if self.application.development_mode is True:
@@ -90,6 +88,13 @@ class Window(Adw.ApplicationWindow):
             create_view := self._create_view
         ):
             create_view.close_banner()
+
+    def assemble_window(self) -> None:
+        window_size = gsecrets.config_manager.get_window_size()
+        self.set_default_size(window_size[0], window_size[1])
+
+        if self.props.application.development_mode:
+            self.add_css_class("devel")
 
     def do_enable_debugging(  # pylint: disable=arguments-differ
         self,
@@ -123,12 +128,6 @@ class Window(Adw.ApplicationWindow):
                 return
 
         self.view = self.View.WELCOME
-
-    def restore(self, _reason: Gtk.RestoreReason, _state: GLib.Variant) -> None:
-        # Due to safety concerns we do not restore an unlocked database. If this
-        # changes, also remove the self.get_active_window() check in
-        # do_restore_window so that multiple windows can be recovered.
-        self.invoke_initial_screen()
 
     #
     # Open Database Methods
@@ -346,6 +345,12 @@ class Window(Adw.ApplicationWindow):
                 copy_callback,
             )
 
+    def save_window_size(self):
+        width = self.get_width()
+        height = self.get_height()
+        logging.debug("Saving window geometry: (%s, %s)", width, height)
+        gsecrets.config_manager.set_window_size([width, height])
+
     def force_close(self):
         """Method to close a window with unsaved changes.
 
@@ -356,10 +361,6 @@ class Window(Adw.ApplicationWindow):
 
         self.close()
 
-    def do_save_state(self, _state):  # pylint: disable=arguments-differ
-        logging.debug("Saving window state")
-        return False
-
     def do_close_request(self) -> bool:  # pylint: disable=arguments-differ
         """Invoked when the window close button is pressed.
 
@@ -369,6 +370,7 @@ class Window(Adw.ApplicationWindow):
         Return: True to stop other handlers from being invoked for the signal.
         """
         if not self.unlocked_db:
+            self.save_window_size()
             return False
 
         dbm = self.unlocked_db.database_manager
@@ -407,6 +409,7 @@ class Window(Adw.ApplicationWindow):
             dbm.check_file_changes_async(on_check_file_changes)
             return True
 
+        self.save_window_size()
         return False
 
     def show_quit_confirmation_dialog(self):

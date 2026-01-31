@@ -34,7 +34,7 @@ endif
 dependency('glib-2.0', version: '>= 2.73.1')
 dependency('gio-2.0', version: '>= 2.66')
 dependency('gobject-introspection-1.0', version: '>=1.66.0')
-dependency('gtk4', version: '>= 4.21')
+dependency('gtk4', version: '>=4.15.3')
 dependency('libadwaita-1', version: '>=1.8.beta')
 dependency('pygobject-3.0', version: '>= 3.52')
 dependency('gtksourceview-5', version: '>= 5.0')

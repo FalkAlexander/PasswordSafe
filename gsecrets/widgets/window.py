@@ -13,14 +13,11 @@ from gsecrets.create_database import CreateDatabase
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.err import QUARK, ErrorType
 from gsecrets.provider.providers import Providers
+from gsecrets.recent_manager import RecentManager
 from gsecrets.save_dialog import SaveDialog
 from gsecrets.settings_dialog import SettingsDialog
 from gsecrets.unlock_database import UnlockDatabase
 from gsecrets.widgets.quit_conflict_dialog import QuitConflictDialog
-
-
-class State:
-    db_path: str = ""
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/window.ui")
@@ -50,8 +47,6 @@ class Window(Adw.ApplicationWindow):
         super().__init__(*args, **kwargs)
 
         self.key_providers = Providers(self)
-
-        self._state: State = State()
 
         for provider in self.key_providers.get_key_providers():
             if not provider.available:
@@ -107,26 +102,33 @@ class Window(Adw.ApplicationWindow):
         return Adw.ApplicationWindow.do_enable_debugging(self, toggle)
 
     def invoke_initial_screen(self) -> None:
-        """Present the first start screen."""
-        if filepath := self._state.db_path:
-            self.start_database_opening_routine(filepath)
-            return
+        """Present the first start screen if required or autoload files.
+
+        If the configuration is set to automatically load the last
+        opened safe, this function does that. If it is not set to
+        autoload, it presents a list of recently loaded files (or
+        displays the empty welcome page if there are no recently
+        loaded files).
+        """
+        if gsecrets.config_manager.get_first_start_screen():
+            # simply load the last opened file
+            uri = gsecrets.config_manager.get_last_opened_database()
+            gfile: Gio.File = Gio.File.new_for_uri(uri)
+            recents = RecentManager()
+            recent_uris = [f.get_uri() for f in recents]
+            if gfile.query_exists() and uri in recent_uris:
+                filepath = gfile.get_path()
+                logging.debug("Opening last opened database: %s", filepath)
+                self.start_database_opening_routine(filepath)
+                return
 
         self.view = self.View.WELCOME
 
-    def restore(self, _reason: Gtk.RestoreReason, state: GLib.Variant) -> None:
+    def restore(self, _reason: Gtk.RestoreReason, _state: GLib.Variant) -> None:
         # Due to safety concerns we do not restore an unlocked database. If this
         # changes, also remove the self.get_active_window() check in
         # do_restore_window so that multiple windows can be recovered.
-        if (
-            gsecrets.config_manager.get_first_start_screen()
-            and (val := state.lookup_value("last-opened-file", GLib.VariantType("s")))
-            and (filepath := val.get_string())
-        ):
-            self.start_database_opening_routine(filepath)
-            return
-
-        self.view = self.View.WELCOME
+        self.invoke_initial_screen()
 
     #
     # Open Database Methods
@@ -214,7 +216,6 @@ class Window(Adw.ApplicationWindow):
         # TODO Use a Gio.File instead of a path.
         database = Gio.File.new_for_path(filepath)
         unlock_db = UnlockDatabase(self, database)
-        self._state.db_path = filepath
         self._unlock_database_bin.props.child = unlock_db
         self.view = self.View.UNLOCK_DATABASE
         unlock_db.grab_entry_focus()
@@ -355,20 +356,9 @@ class Window(Adw.ApplicationWindow):
 
         self.close()
 
-    def do_save_state(self, state):  # pylint: disable=arguments-differ
+    def do_save_state(self, _state):  # pylint: disable=arguments-differ
         logging.debug("Saving window state")
-
-        if gsecrets.config_manager.get_first_start_screen():
-            if unlocked_db := self.unlocked_db:
-                path = unlocked_db.database_manager.path
-                state.insert_value("last-opened-file", GLib.Variant("s", path))
-            elif path := self._state.db_path:
-                state.insert_value("last-opened-file", GLib.Variant("s", path))
-
         return False
-
-    def save_last_opened_safe(self, db_path: str) -> None:
-        self._state.db_path = db_path
 
     def do_close_request(self) -> bool:  # pylint: disable=arguments-differ
         """Invoked when the window close button is pressed.

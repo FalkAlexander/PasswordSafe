@@ -223,7 +223,6 @@ class UnlockDatabase(Adw.Bin):
         if gsecrets.config_manager.get_development_backup_mode():
             self.store_backup(opened)
 
-        self.window.save_last_opened_safe(database_manager.path)
         database_manager.add_to_history()
 
         if self.window.unlocked_db is None:

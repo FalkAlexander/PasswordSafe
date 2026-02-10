@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-09-10 23:08+0000\n"
-"PO-Revision-Date: 2025-09-11 13:28+0300\n"
+"POT-Creation-Date: 2026-01-31 10:06+0000\n"
+"PO-Revision-Date: 2026-02-07 22:19+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -105,7 +105,7 @@ msgstr "Цвет"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:240
 msgid "Create Safe"
 msgstr "Создать сейф"
 
@@ -148,18 +148,18 @@ msgid "_Open Safe"
 msgstr "О_ткрыть сейф"
 
 #: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Параметры"
 
 #: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Комбинации клавиш"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:106
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_О приложении"
 
@@ -307,6 +307,10 @@ msgstr ""
 "Проверьте в интернете, не были ли ваши пароли скомпрометированы. Ваши пароли "
 "не будут переданы в сеть! Утечка затронула следующие пароли:"
 
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Справка"
+
 #: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
 msgstr "Меню записи"
@@ -419,15 +423,15 @@ msgstr "Удалить"
 msgid "Select Entry"
 msgstr "Выбрать запись"
 
-#: data/gtk/entry_row.ui:82
+#: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
 msgstr "Копировать одноразовый пароль"
 
-#: data/gtk/entry_row.ui:93
+#: data/gtk/entry_row.ui:92
 msgid "Copy Username"
 msgstr "Копировать имя пользователя"
 
-#: data/gtk/entry_row.ui:103
+#: data/gtk/entry_row.ui:102
 msgid "Copy Password"
 msgstr "Копировать пароль"
 
@@ -455,7 +459,7 @@ msgstr "Меню группы"
 msgid "Select Group"
 msgstr "Выбрать группу"
 
-#: data/gtk/group_row.ui:68
+#: data/gtk/group_row.ui:67
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -475,8 +479,7 @@ msgstr "История паролей"
 msgid "_Open"
 msgstr "О_ткрыть"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:84
-#: data/gtk/welcome_page.ui:18
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "_Новый сейф"
 
@@ -611,12 +614,12 @@ msgstr "Внести все изменения в сейф?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:419
+#: gsecrets/widgets/window.py:421
 msgid "_Quit Without Saving"
 msgstr "_Закрыть без сохранения"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
 msgid "_Don't Quit"
 msgstr "_Не закрывать"
 
@@ -636,7 +639,7 @@ msgstr "Повторно открыть последний открытый се
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
 #: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+#: gsecrets/widgets/window.py:232 gsecrets/widgets/window.py:244
 msgid "Safe"
 msgstr "Сейф"
 
@@ -993,19 +996,19 @@ msgstr "Сначала _новые"
 msgid "_Oldest First"
 msgstr "Сначала _старые"
 
-#: data/gtk/unlocked_headerbar.ui:88
+#: data/gtk/unlocked_headerbar.ui:84
 msgid "New _Window"
 msgstr "Новое _окно"
 
-#: data/gtk/unlocked_headerbar.ui:92
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "_Настройки сейфа"
 
-#: data/gtk/unlocked_headerbar.ui:114
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "Новая _запись"
 
-#: data/gtk/unlocked_headerbar.ui:118
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "Новая _группа"
 
@@ -1242,20 +1245,20 @@ msgstr ""
 "отлично интегрируется с рабочим столом GNOME и предоставляет простой и "
 "лаконичный интерфейс для управления базами данных паролей."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:384
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
 msgid "Password management"
 msgstr "Управление паролями"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:388
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
 msgid "Safe unlocking"
 msgstr "Разблокировка сейфа"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:392
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
 msgid "Safe creation"
 msgstr "Создание сейфа"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:405
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1508,7 +1511,7 @@ msgstr "Пурпурный"
 msgid "Brown"
 msgstr "Коричневый"
 
-#: gsecrets/safe_element.py:689
+#: gsecrets/safe_element.py:673
 msgid "Clone"
 msgstr "Клон"
 
@@ -1516,7 +1519,7 @@ msgstr "Клон"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:418
+#: gsecrets/widgets/window.py:420
 msgid "Could not save Safe"
 msgstr "Не удалось сохранить сейф"
 
@@ -1551,15 +1554,15 @@ msgstr "Быстрая разблокировка активна"
 msgid "Safe {path} is already open"
 msgstr "Сейф {path} уже открыт"
 
-#: gsecrets/unlock_database.py:239
+#: gsecrets/unlock_database.py:241
 msgid "Failed to unlock Safe"
 msgstr "Не удалось разблокировать сейф"
 
-#: gsecrets/unlock_database.py:407
+#: gsecrets/unlock_database.py:409
 msgid "Please unlock using the password."
 msgstr "Разблокируйте, используя пароль."
 
-#: gsecrets/unlock_database.py:416
+#: gsecrets/unlock_database.py:418
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr ""
 "Достигнуто максимальное количество попыток. Разблокируйте, используя пароль."
@@ -1787,19 +1790,19 @@ msgstr "Нет корректного пути к файлу"
 msgid "Safe is already open"
 msgstr "Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:240
+#: gsecrets/widgets/window.py:242
 msgid "_Create"
 msgstr "_Создать"
 
-#: gsecrets/widgets/window.py:262
+#: gsecrets/widgets/window.py:264
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Не удалось создать сейф: Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
+#: gsecrets/widgets/window.py:307 gsecrets/widgets/window.py:320
 msgid "Could not create new Safe"
 msgstr "Не удалось создать новый сейф"
 
-#: gsecrets/widgets/window.py:395
+#: gsecrets/widgets/window.py:397
 msgid "Could not save safe"
 msgstr "Не удалось сохранить сейф"
 

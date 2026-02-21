@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-01-11 11:04+0000\n"
-"PO-Revision-Date: 2026-01-23 16:40+0100\n"
+"POT-Creation-Date: 2026-02-21 08:13+0000\n"
+"PO-Revision-Date: 2026-02-21 12:47+0100\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -300,9 +300,9 @@ msgid ""
 "Ask online whether your passwords have been hacked. The passwords won't be "
 "sent online! The following passwords have been leaked:"
 msgstr ""
-"Попитайте в Интернет дали паролите ви са били хакнати. Паролите няма да "
-"бъдат изпратени в Интернет! Следните пароли са били открити в изтекли бази "
-"от данни:"
+"Проверка в Интернет дали паролите ви са изтекли. При проверката вашите "
+"пароли не се пращат в Интернет! Следните пароли са били открити в изтекли "
+"бази от данни:"
 
 #: data/gtk/database_settings_dialog.ui:261
 msgid "Help"
@@ -612,12 +612,12 @@ msgstr "Искате ли да запазите всичките промени 
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:428
+#: gsecrets/widgets/window.py:421
 msgid "_Quit Without Saving"
 msgstr "_Спиране на програмата без запазване"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:429
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
 msgid "_Don't Quit"
 msgstr "_Програмата да продължи работа"
 
@@ -636,7 +636,7 @@ msgstr "Отваряне на последно отваряния сейф."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
 #: gsecrets/widgets/window.py:232 gsecrets/widgets/window.py:244
 msgid "Safe"
 msgstr "Сейф"
@@ -651,7 +651,7 @@ msgstr "Автоматично запазване след всяка промя
 
 #. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
 #: data/gtk/settings_dialog.ui:35
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:112
 msgid "Enable Quick Unlock"
 msgstr "Бързо отключване"
 
@@ -744,7 +744,7 @@ msgid "Passphrase Length"
 msgstr "Дължина на парола-фраза"
 
 #: data/gtk/settings_dialog.ui:126
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
 msgstr "Брой думи за парола-фраза."
 
@@ -1023,7 +1023,7 @@ msgid "Create or import a new Keepass safe"
 msgstr "Създадете или качете нов сейф на Keepass"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/gtk/window.ui:6 data/org.gnome.World.Secrets.desktop.in.in:3
+#: data/gtk/window.ui:4 data/org.gnome.World.Secrets.desktop.in.in:3
 msgid "Secrets"
 msgstr "Тайни"
 
@@ -1033,8 +1033,8 @@ msgstr "Управление на пароли за GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;криптиране;шифриране;защитен;сейф;трезор;парола;кийпас;"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;encrypt;secure;password;manager;keepass;криптиране;шифриране;защитен;сейф;трезор;парола;кийпас;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1085,46 +1085,62 @@ msgid "After copying the password clear the clipboard for security reasons."
 msgstr "След копиране на парола буферът за обмен да се изчиства за сигурност."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Window size"
+msgstr "Размер на прозореца"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "Remember the window size."
+msgstr "Запомняне на размера на прозореца."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
 msgid "Last opened databases"
 msgstr "Последно отворени бази от данни"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:38
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
 msgid "A list of the last opened databases."
 msgstr "Списък с последно отваряните бази от данни."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:42
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last opened database"
+msgstr "Последно отворена база от данни"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "Path to the last opened database."
+msgstr "Път към последно отваряната база от данни."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
 msgstr "Запомняне на съставен ключ"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:43
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
 "Запомняне на последно използвания съставен ключ за отключване на база от "
 "данни."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:47
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used key provider"
 msgstr "Последно използван доставчик на ключове"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Key provider for composite database unlocking."
 msgstr "Доставчик на съставни ключове за отключване на бази от данни."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
 msgstr "Запомняне на метода за отключване"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
 "Запомняне на последно използвания метод за отключване при следващо "
 "отключване на база от данни."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:57
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
 msgstr "Запазване на резервно копие на базата от данни при отключване"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
 "If an error occurs while saving the database, a backup can be found at "
 "~/.cache/secrets/backups"
@@ -1132,70 +1148,70 @@ msgstr ""
 "Ако възникне грешка при запазване на базата от данни, може да намерите "
 "резервно копие в „~/.cache/secrets/backups“"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
 msgstr "Вид подредба на групи и записи"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
 msgstr "Подредба в изгледа на групи и записи."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
 msgstr "Използване на главни букви при генериране на парола"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
 msgstr "Използване на главни букви A-Z при генериране на парола."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
 msgstr "Използване на малки букви при генериране на парола"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr "Използване на малки букви a-z при генериране на парола."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
 msgstr "Използване на цифри при генериране на парола"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
 msgstr "Използване на цифрите между 0-9 при генериране на парола."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
 msgstr "Използване на знаци при генериране на парола"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
 "Използване на знаци от ASCII, които не са букви или цифри, при генериране на "
 "парола."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
 msgstr "Дължина на генерираната парола"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
 msgstr "Брой единични знаци при генериране на парола."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
 msgstr "Брой думи при генериране на парола-фраза"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
 msgid "Separator when generating a passphrase"
 msgstr "Разделител при генериране на парола-фраза"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
 msgstr ""
 "Разделител на думи, който да се използва при генериране на парола-фраза."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/org.gnome.World.Secrets.gschema.xml.in:113
 msgid ""
 "With quick unlock enabled, a safe can be re-entered using the last four "
 "characters of the password. If the first try is wrong, the full password is "
@@ -1205,11 +1221,11 @@ msgstr ""
 "паролата. Ако сгрешите при първия опит, ще трябва да въведете цялата парола "
 "за отключване."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:107
+#: data/org.gnome.World.Secrets.gschema.xml.in:117
 msgid "Enable Fingerprint Quick Unlock"
 msgstr "Бързо отключване с пръстов отпечатък"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:108
+#: data/org.gnome.World.Secrets.gschema.xml.in:118
 msgid "Use the fingerprint reader to quick unlock a locked safe."
 msgstr "Ползвайте четеца на пръстови отпечатъци за бърдо отключване на сейфа."
 
@@ -1248,7 +1264,7 @@ msgstr "Настройки на сейфа"
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
-#: gsecrets/application.py:40
+#: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Включване на съобщенията за отстраняване на грешки"
 
@@ -1261,11 +1277,11 @@ msgstr "Неуспешно зареждане на прикачения файл
 msgid "Passwords do not match"
 msgstr "Паролите не съвпадат"
 
-#: gsecrets/create_database.py:81
+#: gsecrets/create_database.py:80
 msgid "Unable to create database"
 msgstr "Неуспешно създаване на база от данни"
 
-#: gsecrets/create_database.py:112 gsecrets/unlock_database.py:142
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
 #: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Failed to generate composite key"
 msgstr "Неуспешно генериране на съставен ключ"
@@ -1505,7 +1521,7 @@ msgstr "Клониране"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:427
+#: gsecrets/widgets/window.py:420
 msgid "Could not save Safe"
 msgstr "Неуспешно запазване на сейфа"
 
@@ -1542,15 +1558,15 @@ msgstr "Бързо отключване на сейфа"
 msgid "Safe {path} is already open"
 msgstr "Сейфът „{path}“ вече е отворен"
 
-#: gsecrets/unlock_database.py:242
+#: gsecrets/unlock_database.py:241
 msgid "Failed to unlock Safe"
 msgstr "Неуспешно отключване на сейфа"
 
-#: gsecrets/unlock_database.py:410
+#: gsecrets/unlock_database.py:409
 msgid "Please unlock using the password."
-msgstr "Отключете с парола."
+msgstr "Отключване с парола."
 
-#: gsecrets/unlock_database.py:419
+#: gsecrets/unlock_database.py:418
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr "Максималният брой опити е достигнат. Отключете с парола."
 
@@ -1628,11 +1644,11 @@ msgstr "Слаба"
 
 #: gsecrets/widgets/database_settings_dialog.py:137
 msgid "No weak passwords found"
-msgstr "Няма намерени слаби пароли"
+msgstr "Не са намерени слаби пароли"
 
 #: gsecrets/widgets/database_settings_dialog.py:226
 msgid "No records found"
-msgstr "Няма намерени записи"
+msgstr "Не са намерени записи"
 
 #: gsecrets/widgets/database_settings_dialog.py:313
 #: gsecrets/widgets/database_settings_dialog.py:317
@@ -1759,19 +1775,19 @@ msgstr "Запазване на резервно копие"
 msgid "Could not backup safe"
 msgstr "Неуспешно запазване на резервно копие на сейфа"
 
-#: gsecrets/widgets/window.py:150
+#: gsecrets/widgets/window.py:151
 msgid "Any file type"
 msgstr "Всеки вид файл"
 
-#: gsecrets/widgets/window.py:157
+#: gsecrets/widgets/window.py:158
 msgid "Select Safe"
 msgstr "Избор на сейф"
 
-#: gsecrets/widgets/window.py:174
+#: gsecrets/widgets/window.py:175
 msgid "File does not have a valid path"
 msgstr "Неправилен път към файл"
 
-#: gsecrets/widgets/window.py:207
+#: gsecrets/widgets/window.py:208
 msgid "Safe is already open"
 msgstr "Сейфът вече е отворен"
 
@@ -1787,12 +1803,12 @@ msgstr "Неуспешно създаване на сейф: сейфът веч
 msgid "Could not create new Safe"
 msgstr "Неуспешно създаване на нов сейф"
 
-#: gsecrets/widgets/window.py:405
+#: gsecrets/widgets/window.py:397
 msgid "Could not save safe"
 msgstr "Неуспешно запазване на сейф"
 
 #. TRANSLATORS Add your name to the translator credits list
-#: gsecrets/widgets/window.py:569
+#: gsecrets/widgets/window.py:562
 msgid "translator-credits"
 msgstr ""
 "Twlvnn Kraftwerk &lt;<a "
@@ -1804,20 +1820,9 @@ msgstr ""
 "Докладвайте за грешки в превода в <a href='https://fsa-bg.org/project/gtp/"
 "newticket'>съответния раздел</a>."
 
-#~ msgid "Window size"
-#~ msgstr "Размер на прозореца"
+msgid "_Z-A"
+msgstr "_Z-A"
 
-#~ msgid "Remember the window size."
-#~ msgstr "Запомняне на размера на прозореца."
-
-#~ msgid "Last opened database"
-#~ msgstr "Последно отворена база от данни"
-
-#~ msgid "Path to the last opened database."
-#~ msgstr "Път към последно отваряната база от данни."
-
-#~ msgid "_Z-A"
-#~ msgstr "_Z-A"
-
+#, fuzzy
 #~ msgid "New Window"
 #~ msgstr "Нов прозорец"

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 12.3 - 2026-02-22
+- Fix crash when opening attachment
+- Add more search keywords to dekstop file
+- ci: Use fedora image from their registry
+
 ## 12.2 - 2025-12-23
 - Fix regression where OTPs codes were not loaded from 12.1
 

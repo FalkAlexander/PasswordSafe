@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-10-11 02:42+0000\n"
+"POT-Creation-Date: 2026-02-22 08:37+0000\n"
 "PO-Revision-Date: 2019-11-30 22:28+0200\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Greek, Modern (1453-) <gnome-el-list@gnome.org>\n"
@@ -18,29 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Gtranslator 3.32.1\n"
 
-#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
-#| msgid "Enter Password"
-msgid "Manage your passwords"
-msgstr "Διαχείριση των συνθηματικών σας"
-
-#. Add your name to the translator credits list
-#: data/about_dialog.ui.in:10
-msgid "translator-credits"
-msgstr ""
-"Ελληνική μεταφραστική ομάδα GNOME\n"
-" Ευστάθιος Ιωσηφίδης <iosifidis@opensuse.org>\n"
-"\n"
-"Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
-"https://gr.gnome.org/"
-
-#. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
-#: data/org.gnome.World.Secrets.desktop.in.in:3
-msgid "Secrets"
-msgstr "Secrets"
-
 #: data/gtk/add_attribute_dialog.ui:5
-#| msgid "Attributes"
 msgid "Add Attribute"
 msgstr "Προσθήκη χαρακτηριστικού"
 
@@ -60,8 +38,8 @@ msgstr "Ευαίσθητο"
 msgid "Contains sensitive data."
 msgstr "Περιέχει ευαίσθητα δεδομένα."
 
-#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:291
-#: gsecrets/entry_page.py:448
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
 msgid "_Add"
 msgstr "_Προσθήκη"
 
@@ -70,7 +48,6 @@ msgid "Download Attachment"
 msgstr "Λήψη Συνημμένου"
 
 #: data/gtk/attachment_entry_row.ui:20
-#| msgid "Remove attribute"
 msgid "Remove Attachment"
 msgstr "Αφαίρεση συνημμένου"
 
@@ -85,12 +62,11 @@ msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
 msgstr ""
-"Είναι πιθανό εξωτερικές εφαρμογές να δημιουργήσουν μη κρυπτογραφημένα "
-"κρυφά ή προσωρινά αντίγραφα αυτού του συνημμένου αρχείου! Παρακαλούμε "
-"προχωρήστε με προσοχή."
+"Είναι πιθανό εξωτερικές εφαρμογές να δημιουργήσουν μη κρυπτογραφημένα κρυφά "
+"ή προσωρινά αντίγραφα αυτού του συνημμένου αρχείου! Παρακαλούμε προχωρήστε "
+"με προσοχή."
 
 #: data/gtk/attachment_warning_dialog.ui:9
-#| msgid "Back"
 msgid "_Back"
 msgstr "_Πίσω"
 
@@ -100,13 +76,11 @@ msgstr "_Συνέχεια"
 
 #: data/gtk/attribute_entry_row.ui:8
 #: gsecrets/widgets/protected_attribute_entry_row.py:28
-#| msgid "Attributes"
 msgid "Copy Attribute"
 msgstr "Αντιγραφή χαρακτηριστικού"
 
 #: data/gtk/attribute_entry_row.ui:19
 #: gsecrets/widgets/protected_attribute_entry_row.py:34
-#| msgid "Remove attribute"
 msgid "Remove Attribute"
 msgstr "Αφαίρεση χαρακτηριστικού"
 
@@ -115,12 +89,10 @@ msgid "Add elements with the ➕ button"
 msgstr "Προσθέστε στοιχεία με το κουμπί ➕"
 
 #: data/gtk/browsing_panel.ui:24
-#| msgid "Empty group"
 msgid "Empty Group"
 msgstr "Κενή ομάδα"
 
 #: data/gtk/browsing_panel.ui:30
-#| msgid "No search results"
 msgid "No Search Results"
 msgstr "Κανένα αποτέλεσμα αναζήτησης"
 
@@ -130,7 +102,7 @@ msgstr "Χρώμα"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Δημιουργία Ασφαλούς"
 
@@ -149,63 +121,58 @@ msgstr "Προστασία του ασφαλούς σας"
 
 #: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
-#| msgid "Password"
 msgid "_Password"
 msgstr "_Συνθηματικό"
 
 #: data/gtk/create_database.ui:64
-#| msgid "Enter Password"
 msgid "_Confirm Password"
 msgstr "_Επιβεβαίωση συνθηματικού"
 
-#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:45
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:59
 msgid "Additional Credentials"
 msgstr "Πρόσθετα διαπιστευτήρια"
 
 #: data/gtk/create_database.ui:90
-#| msgid "Creation Date"
-msgid "Create"
-msgstr "Δημιουργία"
+#| msgid "Create"
+msgid "C_reate"
+msgstr "_Δημιουργία"
 
-#: data/gtk/create_database.ui:113
+#: data/gtk/create_database.ui:115
 msgid "Safe Successfully Created"
 msgstr "Το Ασφαλές Δημιουργήθηκε Επιτυχώς"
 
-#: data/gtk/create_database.ui:116
+#: data/gtk/create_database.ui:118
 msgid "_Open Safe"
 msgstr "_Άνοιγμα κρύπτης"
 
-#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:103
-#| msgid "Preferences"
+#: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Προτιμήσεις"
 
-#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "Συντομεύσεις _Πληκτρολογίου"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_Περί του Secrets"
 
 #: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
-#| msgid "Username"
 msgid "_Username"
 msgstr "_Όνομα Χρήστη"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
-#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:130
-#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:347
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:131
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:345
 msgid "Copy"
 msgstr "Αντιγραφή"
 
 #: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
 #: gsecrets/create_database.py:40
-#| msgid "Generate Password"
 msgid "Generate New Password"
 msgstr "Δημιουργία νέου συνθηματικού"
 
@@ -218,17 +185,14 @@ msgid "Authentication"
 msgstr "Πιστοποίηση"
 
 #: data/gtk/database_settings_dialog.ui:15
-#| msgid "Enter Password"
 msgid "Current Password"
 msgstr "Τρέχον Συνθηματικό"
 
 #: data/gtk/database_settings_dialog.ui:25
-#| msgid "Password"
 msgid "New Password"
 msgstr "Νέο Συνθηματικό"
 
 #: data/gtk/database_settings_dialog.ui:46
-#| msgid "Generate Password"
 msgid "Confirm New Password"
 msgstr "Επιβεβαίωση νέου συνθηματικού"
 
@@ -237,89 +201,121 @@ msgid "New Additional Credentials"
 msgstr "Νέα πρόσθετα διαπιστευτήρια"
 
 #: data/gtk/database_settings_dialog.ui:75
-#: gsecrets/widgets/database_settings_dialog.py:196
-#: gsecrets/widgets/database_settings_dialog.py:258
-#| msgid "Apply Changes"
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
 msgstr "_Εφαρμογή αλλαγών"
 
-#: data/gtk/database_settings_dialog.ui:92 data/gtk/settings_dialog.ui:8
+#: data/gtk/database_settings_dialog.ui:93 data/gtk/settings_dialog.ui:8
 #: data/gtk/settings_dialog.ui:11
 msgid "General"
 msgstr "Γενικά"
 
-#: data/gtk/database_settings_dialog.ui:96
-#| msgid "Recent Databases"
+#: data/gtk/database_settings_dialog.ui:97
 msgid "Database"
 msgstr "Βάση Δεδομένων"
 
-#: data/gtk/database_settings_dialog.ui:99
+#: data/gtk/database_settings_dialog.ui:100
 msgid "Name"
 msgstr "Όνομα"
 
-#: data/gtk/database_settings_dialog.ui:107
+#: data/gtk/database_settings_dialog.ui:108
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: data/gtk/database_settings_dialog.ui:115
+#: data/gtk/database_settings_dialog.ui:116
 msgid "Default User"
 msgstr "Προεπιλεγμένος χρήστης"
 
-#: data/gtk/database_settings_dialog.ui:126
+#: data/gtk/database_settings_dialog.ui:127
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
-#: data/gtk/database_settings_dialog.ui:129
+#: data/gtk/database_settings_dialog.ui:130
 msgid "Path"
 msgstr "Διαδρομή"
 
-#: data/gtk/database_settings_dialog.ui:138
+#: data/gtk/database_settings_dialog.ui:139
 msgid "File Size"
 msgstr "Μέγεθος αρχείου"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:147
+#: data/gtk/database_settings_dialog.ui:148
 msgid "KeePass Version"
 msgstr "Έκδοση KeePass"
 
-#: data/gtk/database_settings_dialog.ui:156
+#: data/gtk/database_settings_dialog.ui:157
 msgid "Creation Date"
 msgstr "Ημερομηνία δημιουργίας"
 
-#: data/gtk/database_settings_dialog.ui:164
+#: data/gtk/database_settings_dialog.ui:165
 msgid "Encryption Algorithm"
 msgstr "Αλγόριθμος κρυπτογράφησης"
 
-#: data/gtk/database_settings_dialog.ui:172
+#: data/gtk/database_settings_dialog.ui:173
 msgid "Derivation Algorithm"
 msgstr "Αλγόριθμος παραγωγής"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:182
+#: data/gtk/database_settings_dialog.ui:183
 msgid "Stats"
 msgstr "Στατιστικά"
 
-#: data/gtk/database_settings_dialog.ui:185
+#: data/gtk/database_settings_dialog.ui:186
 msgid "Number of Entries"
 msgstr "Αριθμός εγγραφών"
 
-#: data/gtk/database_settings_dialog.ui:194
+#: data/gtk/database_settings_dialog.ui:195
 msgid "Number of Groups"
 msgstr "Αριθμός ομάδων"
 
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:204
 msgid "Passwords"
 msgstr "Συνθηματικά"
 
+#: data/gtk/database_settings_dialog.ui:218
+msgid "Audit"
+msgstr "Έλεγχος"
+
+#: data/gtk/database_settings_dialog.ui:222
+msgid "Statistics"
+msgstr "Στατιστικά"
+
+#: data/gtk/database_settings_dialog.ui:225
+msgid "Unique Passwords"
+msgstr "Μοναδικά συνθηματικά"
+
+#: data/gtk/database_settings_dialog.ui:234
+msgid "Reused Passwords"
+msgstr "Επαναχρησιμοποιημένα συνθηματικά"
+
+#: data/gtk/database_settings_dialog.ui:245
+msgid "Weak Passwords"
+msgstr "Ασθενή συνθηματικά"
+
+#: data/gtk/database_settings_dialog.ui:250
+msgid "Check passwords for online breaches"
+msgstr "Έλεγχος συνθηματικών για διαδικτυακές διαρροές"
+
+#: data/gtk/database_settings_dialog.ui:251
+msgid ""
+"Ask online whether your passwords have been hacked. The passwords won't be "
+"sent online! The following passwords have been leaked:"
+msgstr ""
+"Ελέγξτε στο διαδίκτυο εάν τα συνθηματικά σας έχουν παραβιαστεί. Τα "
+"συνθηματικά δεν θα σταλούν στο διαδίκτυο! Τα παρακάτω συνθηματικά έχουν "
+"διαρρεύσει:"
+
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Βοήθεια"
+
 #: data/gtk/entry_page.ui:55
-#| msgctxt "Shortcut window description"
-#| msgid "Entry"
 msgid "Entry Menu"
 msgstr "Μενού εγγραφής"
 
 #: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:26
 #: data/gtk/references_dialog.ui:169
-#| msgid "Title"
 msgid "_Title"
 msgstr "_Τίτλος"
 
@@ -332,127 +328,125 @@ msgid "Open Address"
 msgstr "Άνοιγμα διεύθυνσης"
 
 #: data/gtk/entry_page.ui:109
-#| msgid "Enter Password"
 msgid "One-Time Password"
 msgstr "Συνθηματικό μίας χρήσης"
 
-#: data/gtk/entry_page.ui:142
+#: data/gtk/entry_page.ui:121
+msgid "Remaining Time"
+msgstr "Υπολειπόμενος χρόνος"
+
+#: data/gtk/entry_page.ui:143
 msgid "One-_Time Password Secret"
-msgstr "Μυστικό Συνθηματικού Μίας _Χρήσης"
+msgstr "Μυστικό συνθηματικού μίας _χρήσης"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:148
+#: data/gtk/entry_page.ui:149
 msgid "Could not Generate OTP Token"
 msgstr "Αδυναμία Δημιουργίας Διακριτικού OTP"
 
-#: data/gtk/entry_page.ui:156 data/gtk/group_page.ui:34
+#: data/gtk/entry_page.ui:157 data/gtk/group_page.ui:34
 #: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Σημειώσεις"
 
-#: data/gtk/entry_page.ui:160 data/gtk/group_page.ui:38
+#: data/gtk/entry_page.ui:161 data/gtk/group_page.ui:38
 msgid "Edit in a Window"
 msgstr "Επεξεργασία σε Παράθυρο"
 
-#: data/gtk/entry_page.ui:198
+#: data/gtk/entry_page.ui:199
 msgid "Icon"
 msgstr "Εικονίδιο"
 
-#: data/gtk/entry_page.ui:218
+#: data/gtk/entry_page.ui:219
 msgid "Tags"
 msgstr "Ετικέτες"
 
-#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:289
+#: data/gtk/entry_page.ui:224 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "Προσθήκη Νέας Ετικέτας"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:241
 msgid "Attachments"
 msgstr "Συνημμένα"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:245
 msgid "_Add Attachment"
 msgstr "_Προσθήκη Συνημμένου"
 
-#: data/gtk/entry_page.ui:258
+#: data/gtk/entry_page.ui:254
 msgid "Attributes"
 msgstr "Χαρακτηριστικά"
 
-#: data/gtk/entry_page.ui:263
-#| msgid "Attributes"
+#: data/gtk/entry_page.ui:259
 msgid "Add Attr_ibute"
 msgstr "Προσθήκη Χαρακτηρ_ιστικού"
 
-#: data/gtk/entry_page.ui:271
-#| msgid "Creation Date"
+#: data/gtk/entry_page.ui:267
 msgid "Expiration Date"
 msgstr "Ημερομηνία λήξης"
 
-#: data/gtk/entry_page.ui:284
+#: data/gtk/entry_page.ui:280
 msgid "_Show More"
 msgstr "_Εμφάνιση Περισσότερων"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:294
 msgid "D_uplicate"
 msgstr "Α_ντίγραφο"
 
-#: data/gtk/entry_page.ui:302
-#| msgid "Preferences"
+#: data/gtk/entry_page.ui:298
 msgid "_References"
 msgstr "_Αναφορές"
 
-#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "_Ιδιότητες"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:308
 msgid "_Save in History"
 msgstr "_Αποθήκευση στο Ιστορικό"
 
-#: data/gtk/entry_page.ui:316
+#: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "Εμφάνιση _Ιστορικού"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:81
+#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
 #: gsecrets/selection_manager.py:112
-#| msgid "Delete"
 msgid "_Delete"
 msgstr "_Διαγραφή"
 
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "Αφαίρεση"
+
+#: data/gtk/entry_row.ui:38
+msgid "Select Entry"
+msgstr "Επιλογή καταχώρισης"
+
 #: data/gtk/entry_row.ui:81
-#| msgctxt "Shortcut window description"
-#| msgid "Copy password"
 msgid "Copy One-Time Password"
 msgstr "Αντιγραφή συνθηματικού μίας χρήσης"
 
 #: data/gtk/entry_row.ui:92
-#| msgid "Username"
 msgid "Copy Username"
 msgstr "Αντιγραφή ονόματος χρήστη"
 
 #: data/gtk/entry_row.ui:102
-#| msgctxt "Shortcut window description"
-#| msgid "Copy password"
 msgid "Copy Password"
 msgstr "Αντιγραφή συνθηματικού"
 
 #: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
-#| msgid "Creation Date"
 msgid "Expiration Date not Set"
 msgstr "Δεν ορίστηκε ημερομηνία λήξης"
 
 #: data/gtk/expiration_date_row.ui:22
-#| msgid "Creation Date"
 msgid "Edit Expiration Date"
 msgstr "Επεξεργασία ημερομηνίας λήξης"
 
 #: data/gtk/expiration_date_row.ui:30
-#| msgid "Remove attribute"
 msgid "Remove Expiration Date"
 msgstr "Αφαίρεση ημερομηνίας λήξης"
 
 #: data/gtk/expiration_date_row.ui:63
-#| msgid "Creation Date"
 msgid "_Set Expiration Date"
 msgstr "_Ορισμός ημερομηνίας λήξης"
 
@@ -460,133 +454,15 @@ msgstr "_Ορισμός ημερομηνίας λήξης"
 msgid "Group Menu"
 msgstr "Μενού Ομάδας"
 
+#: data/gtk/group_row.ui:38
+#| msgctxt "Shortcut window description"
+#| msgid "Create Group"
+msgid "Select Group"
+msgstr "Επιλογή ομάδας"
+
 #: data/gtk/group_row.ui:67
 msgid "Edit"
 msgstr "Επεξεργασία"
-
-#: data/gtk/help-overlay.ui:11
-msgctxt "Shortcut window description"
-msgid "Application"
-msgstr "Εφαρμογή"
-
-#: data/gtk/help-overlay.ui:14
-#| msgid "Creation Date"
-msgctxt "Shortcut window description"
-msgid "Create Safe"
-msgstr "Δημιουργία κρύπτης"
-
-#: data/gtk/help-overlay.ui:20
-#| msgid "Back"
-msgctxt "Shortcut window description"
-msgid "Go Back"
-msgstr "Μετάβαση πίσω"
-
-#: data/gtk/help-overlay.ui:26
-#| msgid "Safe"
-msgctxt "Shortcut window description"
-msgid "Open Safe"
-msgstr "Άνοιγμα κρύπτης"
-
-#: data/gtk/help-overlay.ui:32
-#| msgid "Preferences"
-msgctxt "Shortcut window description"
-msgid "Open Preferences"
-msgstr "Άνοιγμα προτιμήσεων"
-
-#: data/gtk/help-overlay.ui:38
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr "Εμφάνιση συντομεύσεων"
-
-#: data/gtk/help-overlay.ui:44
-msgctxt "Shortcut window description"
-msgid "Close Window"
-msgstr "Κλείσιμο παραθύρου"
-
-#: data/gtk/help-overlay.ui:50
-msgctxt "Shortcut window description"
-msgid "New Window"
-msgstr "Νέο παράθυρο"
-
-#: data/gtk/help-overlay.ui:56
-#| msgid "Quit"
-msgctxt "Shortcut window description"
-msgid "Quit"
-msgstr "Έξοδος"
-
-#: data/gtk/help-overlay.ui:64
-msgctxt "Shortcut window description"
-msgid "Safe"
-msgstr "Κρύπτη"
-
-#: data/gtk/help-overlay.ui:67
-#| msgid "Safe"
-msgctxt "Shortcut window description"
-msgid "Lock Safe"
-msgstr "Κλείδωμα κρύπτης"
-
-#: data/gtk/help-overlay.ui:73
-#| msgid "Save"
-msgctxt "Shortcut window description"
-msgid "Save Safe"
-msgstr "Αποθήκευση κρύπτης"
-
-#: data/gtk/help-overlay.ui:79
-#| msgid "Search"
-msgctxt "Shortcut window description"
-msgid "Open Search"
-msgstr "Άνοιγμα αναζήτησης"
-
-#: data/gtk/help-overlay.ui:85
-msgctxt "Shortcut window description"
-msgid "Create Entry"
-msgstr "Δημιουργία εγγραφής"
-
-#: data/gtk/help-overlay.ui:91
-#| msgid "Create group…"
-msgctxt "Shortcut window description"
-msgid "Create Group"
-msgstr "Δημιουργία ομάδας"
-
-#: data/gtk/help-overlay.ui:99
-msgctxt "Shortcut window description"
-msgid "Entry"
-msgstr "Εγγραφή"
-
-#: data/gtk/help-overlay.ui:102
-#| msgctxt "Shortcut window description"
-#| msgid "Copy password"
-msgctxt "Shortcut window description"
-msgid "Copy Password"
-msgstr "Αντιγραφή συνθηματικού"
-
-#: data/gtk/help-overlay.ui:108
-msgctxt "Shortcut window description"
-msgid "Copy Address"
-msgstr "Αντιγραφή διεύθυνσης"
-
-#: data/gtk/help-overlay.ui:114
-#| msgid "Username"
-msgctxt "Shortcut window description"
-msgid "Copy Username"
-msgstr "Αντιγραφή ονόματος χρήστη"
-
-#: data/gtk/help-overlay.ui:120
-#| msgctxt "Shortcut window description"
-#| msgid "Copy password"
-msgctxt "Shortcut window description"
-msgid "Copy One-Time Password"
-msgstr "Αντιγραφή συνθηματικού μίας χρήσης"
-
-#: data/gtk/help-overlay.ui:126
-msgctxt "Shortcut window description"
-msgid "Show History"
-msgstr "Εμφάνιση ιστορικού"
-
-#: data/gtk/help-overlay.ui:132
-msgctxt "Shortcut window description"
-msgid "Save in History"
-msgstr "Αποθήκευση στο ιστορικό"
 
 #: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
 msgid "Show Text"
@@ -597,18 +473,14 @@ msgid "Remove from History"
 msgstr "Αφαίρεση από το ιστορικό"
 
 #: data/gtk/history_window.ui:8
-#| msgid "Passwords"
 msgid "Password History"
 msgstr "Ιστορικό συνθηματικών"
 
 #: data/gtk/locked_headerbar.ui:14
-#| msgid "Open"
 msgid "_Open"
 msgstr "_Άνοιγμα"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:89
-#: data/gtk/welcome_page.ui:18
-#| msgid "Safe"
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "_Νέα κρύπτη"
 
@@ -617,13 +489,13 @@ msgid "_Copy"
 msgstr "_Αντιγραφή"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:32 data/gtk/notes_dialog.ui:57
+#: data/gtk/notes_dialog.ui:33 data/gtk/notes_dialog.ui:58
 #: data/gtk/unlocked_headerbar.ui:26
 msgid "Search"
 msgstr "Αναζήτηση"
 
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:53 data/gtk/unlock_database.ui:37
+#: data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
 msgid "Password"
 msgstr "Συνθηματικό"
 
@@ -640,14 +512,13 @@ msgstr "Χαρακτήρες"
 msgid "Passphrase"
 msgstr "Φράση πρόσβασης"
 
-#: data/gtk/password_generator_popover.ui:103
+#: data/gtk/password_generator_popover.ui:99
 msgid "Words"
 msgstr "Λέξεις"
 
 #. Button to generate a password
-#: data/gtk/password_generator_popover.ui:132
+#: data/gtk/password_generator_popover.ui:126
 #: gsecrets/provider/file_provider.py:196
-#| msgid "Generate"
 msgid "_Generate"
 msgstr "_Δημιουργία"
 
@@ -668,7 +539,6 @@ msgid "Modified"
 msgstr "Τροποποιήθηκε"
 
 #: data/gtk/properties_dialog.ui:53
-#| msgid "Creation Date"
 msgid "Created"
 msgstr "Δημιουργήθηκε"
 
@@ -676,8 +546,8 @@ msgstr "Δημιουργήθηκε"
 msgid "Code"
 msgstr "Κώδικας"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:242
-#: data/gtk/references_dialog.ui:339
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:241
+#: data/gtk/references_dialog.ui:337
 msgid "Property"
 msgstr "Ιδιότητα"
 
@@ -698,37 +568,34 @@ msgid "_URL"
 msgstr "_URL"
 
 #: data/gtk/references_dialog.ui:185
-#| msgid "Notes"
 msgid "_Notes"
 msgstr "_Σημειώσεις"
 
 #: data/gtk/references_dialog.ui:191
-#| msgid "Preferences"
 msgid "References"
 msgstr "Αναφορές"
 
-#: data/gtk/references_dialog.ui:213
+#: data/gtk/references_dialog.ui:212
 msgid "Syntax"
 msgstr "Σύνταξη"
 
-#: data/gtk/references_dialog.ui:222
+#: data/gtk/references_dialog.ui:221
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Η σύνταξη placeholder για αναφορές πεδίων είναι η ακόλουθη:"
 
-#: data/gtk/references_dialog.ui:241 data/gtk/references_dialog.ui:269
+#: data/gtk/references_dialog.ui:240 data/gtk/references_dialog.ui:268
 msgid "Show Field Codes"
 msgstr "Εμφάνιση Κωδικών Πεδίων"
 
-#: data/gtk/references_dialog.ui:270
+#: data/gtk/references_dialog.ui:269
 msgid "Identifier"
 msgstr "Αναγνωριστικό"
 
-#: data/gtk/references_dialog.ui:328
-#| msgid "Preferences"
+#: data/gtk/references_dialog.ui:326
 msgid "Reference"
 msgstr "Αναφορά"
 
-#: data/gtk/references_dialog.ui:367
+#: data/gtk/references_dialog.ui:365
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -748,12 +615,12 @@ msgstr "Θέλετε να γράψετε όλες τις αλλαγές στην
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:419
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "_Έξοδος χωρίς αποθήκευση"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "_Να μην γίνει έξοδος"
 
@@ -772,150 +639,284 @@ msgstr "Επαναφορά του τελευταίας ανοιχτής κρύπ
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Κρύπτη"
 
 #: data/gtk/settings_dialog.ui:27
-#| msgid "Save automatically"
 msgid "_Save Automatically"
 msgstr "Αυτόματη _αποθήκευση"
 
 #: data/gtk/settings_dialog.ui:28
-#| msgid "Save automatically"
 msgid "Save every change automatically."
 msgstr "Αποθήκευση κάθε αλλαγής αυτόματα."
 
-#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:35
+#: data/org.gnome.World.Secrets.gschema.xml.in:112
+msgid "Enable Quick Unlock"
+msgstr "Ενεργοποίηση γρήγορου ξεκλειδώματος"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:36
+msgid ""
+"Re-unlock using the last four characters of the password for a single "
+"attempt."
+msgstr ""
+"Επαναξεκλείδωμα με χρήση των τεσσάρων τελευταίων χαρακτήρων του συνθηματικού "
+"για μία μόνο προσπάθεια."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:42
+msgid "Enable Fingerprint Unlock"
+msgstr "Ενεργοποίηση ξεκλειδώματος με αποτύπωμα"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:43
+msgid "Use the fingerprint reader to quickly unlock the safe."
+msgstr ""
+"Χρήση του αναγνώστη δακτυλικών αποτυπωμάτων για το γρήγορο ξεκλείδωμα του "
+"χρηματοκιβωτίου."
+
+#: data/gtk/settings_dialog.ui:51 gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock"
 msgstr "Ξεκλείδωμα"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:40
+#: data/gtk/settings_dialog.ui:54
 msgid "Remember Composite _Key"
 msgstr "Απομνημόνευση σύνθετου _κλειδιού"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:41
+#: data/gtk/settings_dialog.ui:55
 msgid "Remember last used composite key."
 msgstr "Απομνημόνευση του τελευταίου χρησιμοποιημένου σύνθετου κλειδιού."
 
-#: data/gtk/settings_dialog.ui:56
+#: data/gtk/settings_dialog.ui:70
 msgid "Password Generation"
 msgstr "Δημιουργία σσυνθηματικού"
 
-#: data/gtk/settings_dialog.ui:59
-#| msgid "Password"
+#: data/gtk/settings_dialog.ui:73
 msgid "Password Length"
 msgstr "Μήκος συνθηματικού"
 
-#: data/gtk/settings_dialog.ui:60
+#: data/gtk/settings_dialog.ui:74
 msgid "Number of characters when generating a password."
 msgstr "Αριθμός χαρακτήρων κατά τη δημιουργία συνθηματικού."
 
-#: data/gtk/settings_dialog.ui:74
-#| msgid "Characters"
+#: data/gtk/settings_dialog.ui:88
 msgid "_Uppercase Characters"
 msgstr "_Κεφαλαίοι χαρακτήρες"
 
-#: data/gtk/settings_dialog.ui:75
+#: data/gtk/settings_dialog.ui:89
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Χρήση κεφαλαίων χαρακτήρων A-Z κατά τη δημιουργία συνθηματικού."
 
-#: data/gtk/settings_dialog.ui:82
-#| msgid "Characters"
+#: data/gtk/settings_dialog.ui:96
 msgid "_Lowercase Characters"
 msgstr "_Πεζοί χαρακτήρες"
 
-#: data/gtk/settings_dialog.ui:83
+#: data/gtk/settings_dialog.ui:97
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Χρήση πεζών χαρακτήρων a-z κατά τη δημιουργία συνθηματικού."
 
-#: data/gtk/settings_dialog.ui:90
-#| msgid "Characters"
+#: data/gtk/settings_dialog.ui:104
 msgid "_Numeric Characters"
 msgstr "_Αριθμητικοί χαρακτήρες"
 
-#: data/gtk/settings_dialog.ui:91
+#: data/gtk/settings_dialog.ui:105
 msgid "Use numeric characters when generating a password."
 msgstr "Χρήση αριθμητικών χαρακτήρων κατά τη δημιουργία συνθηματικού."
 
-#: data/gtk/settings_dialog.ui:98
-#| msgid "Characters"
+#: data/gtk/settings_dialog.ui:112
 msgid "_Special Characters"
 msgstr "_Ειδικοί χαρακτήρες"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:99
+#: data/gtk/settings_dialog.ui:113
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
-msgstr "Χρήση μη αλφαριθμητικών συμβόλων ASCII κατά τη δημιουργία συνθηματικού."
+msgstr ""
+"Χρήση μη αλφαριθμητικών συμβόλων ASCII κατά τη δημιουργία συνθηματικού."
 
-#: data/gtk/settings_dialog.ui:108
+#: data/gtk/settings_dialog.ui:122
 msgid "Passphrase Generation"
 msgstr "Δημιουργία φράσης πρόσβασης"
 
-#: data/gtk/settings_dialog.ui:111
+#: data/gtk/settings_dialog.ui:125
 msgid "Passphrase Length"
 msgstr "Μήκος φράσης πρόσβασης"
 
-#: data/gtk/settings_dialog.ui:112
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
-msgid "Number of words to use when generating a passphrase."
-msgstr "Αριθμός λέξεων που θα χρησιμοποιηθούν κατά τη δημιουργία φράσης πρόσβασης."
-
 #: data/gtk/settings_dialog.ui:126
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Number of words to use when generating a passphrase."
+msgstr ""
+"Αριθμός λέξεων που θα χρησιμοποιηθούν κατά τη δημιουργία φράσης πρόσβασης."
+
+#: data/gtk/settings_dialog.ui:140
 msgid "Separator"
 msgstr "Διαχωριστικό"
 
-#: data/gtk/settings_dialog.ui:136 data/gtk/settings_dialog.ui:139
+#: data/gtk/settings_dialog.ui:150 data/gtk/settings_dialog.ui:153
 msgid "Security"
 msgstr "Ασφάλεια"
 
-#: data/gtk/settings_dialog.ui:142
+#: data/gtk/settings_dialog.ui:156
 msgid "Safe Lock Timeout"
 msgstr "Χρονικό όριο κλειδώματος κρύπτης"
 
-#: data/gtk/settings_dialog.ui:143
+#: data/gtk/settings_dialog.ui:157
 msgid "Lock safe on idle after X minutes."
 msgstr "Κλείδωμα κρύπτης κατά την αδράνεια μετά από X λεπτά."
 
-#: data/gtk/settings_dialog.ui:157
+#: data/gtk/settings_dialog.ui:171
 msgid "Lock on _Session Lock"
 msgstr "Κλείδωμα κατά το κλείδωμα _συνεδρίας"
 
-#: data/gtk/settings_dialog.ui:158
+#: data/gtk/settings_dialog.ui:172
 #: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "Αυτόματο κλείδωμα όταν η συνεδρία είναι κλειδωμένη."
 
-#: data/gtk/settings_dialog.ui:165
+#: data/gtk/settings_dialog.ui:179
 msgid "Clear Clipboard"
 msgstr "Εκκαθάριση προχείρου"
 
-#: data/gtk/settings_dialog.ui:166
+#: data/gtk/settings_dialog.ui:180
 msgid "Clear clipboard after X seconds."
 msgstr "Εκκαθάριση προχείρου μετά από X δευτερόλεπτα."
 
-#: data/gtk/settings_dialog.ui:180
+#: data/gtk/settings_dialog.ui:194
 msgid "Clear Recent List"
 msgstr "Εκκαθάριση πρόσφατης λίστας"
 
-#: data/gtk/settings_dialog.ui:181
+#: data/gtk/settings_dialog.ui:195
 msgid "Clear the recently opened safes list."
 msgstr "Εκκαθάριση της λίστας πρόσφατα ανοιχτών κρυπτών."
 
-#: data/gtk/settings_dialog.ui:188
+#: data/gtk/settings_dialog.ui:202
 msgid "Clear"
 msgstr "Εκκαθάριση"
 
+#: data/gtk/shortcuts_dialog.ui:6
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Εφαρμογή"
+
+#: data/gtk/shortcuts_dialog.ui:9
+msgctxt "Shortcut window description"
+msgid "Create Safe"
+msgstr "Δημιουργία κρύπτης"
+
+#: data/gtk/shortcuts_dialog.ui:15
+msgctxt "Shortcut window description"
+msgid "Go Back"
+msgstr "Μετάβαση πίσω"
+
+#: data/gtk/shortcuts_dialog.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Safe"
+msgstr "Άνοιγμα κρύπτης"
+
+#: data/gtk/shortcuts_dialog.ui:27
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Άνοιγμα προτιμήσεων"
+
+#: data/gtk/shortcuts_dialog.ui:33
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Εμφάνιση συντομεύσεων"
+
+#: data/gtk/shortcuts_dialog.ui:39
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "Κλείσιμο παραθύρου"
+
+#: data/gtk/shortcuts_dialog.ui:45
+msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Νέο παράθυρο"
+
+#: data/gtk/shortcuts_dialog.ui:51
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Έξοδος"
+
+#: data/gtk/shortcuts_dialog.ui:59
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Κρύπτη"
+
+#: data/gtk/shortcuts_dialog.ui:62
+msgctxt "Shortcut window description"
+msgid "Lock Safe"
+msgstr "Κλείδωμα κρύπτης"
+
+#: data/gtk/shortcuts_dialog.ui:68
+msgctxt "Shortcut window description"
+msgid "Save Safe"
+msgstr "Αποθήκευση κρύπτης"
+
+#: data/gtk/shortcuts_dialog.ui:74
+msgctxt "Shortcut window description"
+msgid "Open Search"
+msgstr "Άνοιγμα αναζήτησης"
+
+#: data/gtk/shortcuts_dialog.ui:80
+msgctxt "Shortcut window description"
+msgid "Create Entry"
+msgstr "Δημιουργία εγγραφής"
+
+#: data/gtk/shortcuts_dialog.ui:86
+msgctxt "Shortcut window description"
+msgid "Create Group"
+msgstr "Δημιουργία ομάδας"
+
+#: data/gtk/shortcuts_dialog.ui:94
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Εγγραφή"
+
+#: data/gtk/shortcuts_dialog.ui:97
+msgctxt "Shortcut window description"
+msgid "Copy Password"
+msgstr "Αντιγραφή συνθηματικού"
+
+#: data/gtk/shortcuts_dialog.ui:103
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Αντιγραφή διεύθυνσης"
+
+#: data/gtk/shortcuts_dialog.ui:109
+msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "Αντιγραφή ονόματος χρήστη"
+
+#: data/gtk/shortcuts_dialog.ui:115
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Αντιγραφή συνθηματικού μίας χρήσης"
+
+#: data/gtk/shortcuts_dialog.ui:121
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Εμφάνιση ιστορικού"
+
+#: data/gtk/shortcuts_dialog.ui:127
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Αποθήκευση στο ιστορικό"
+
 #: data/gtk/unlock_database.ui:20
-#| msgid "Unlock"
 msgid "Unlock Safe"
 msgstr "Ξεκλείδωμα κρύπτης"
 
-#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
-#| msgid "Unlock"
+#: data/gtk/unlock_database.ui:38
+msgid "Fingerprint Unlock available"
+msgstr "Το ξεκλείδωμα με αποτύπωμα είναι διαθέσιμο"
+
+#: data/gtk/unlock_database.ui:65 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "_Ξεκλείδωμα"
 
@@ -923,51 +924,43 @@ msgstr "_Ξεκλείδωμα"
 msgid "Browser"
 msgstr "Περιηγητής"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:693
-#| msgid "Select all"
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
 msgid "Select Items"
 msgstr "Επιλογή στοιχείων"
 
 #: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
-#| msgid "Back"
 msgid "Go Back"
 msgstr "Μετάβαση πίσω"
 
-#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:290
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
 #: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
-#| msgid "Cancel"
 msgid "_Cancel"
 msgstr "_Ακύρωση"
 
-#: data/gtk/unlocked_database.ui:53 data/gtk/unlocked_database.ui:59
-#| msgid "Search"
+#: data/gtk/unlocked_database.ui:54 data/gtk/unlocked_database.ui:60
 msgid "Search Safe"
 msgstr "Αναζήτηση κρύπτης"
 
-#: data/gtk/unlocked_database.ui:72
+#: data/gtk/unlocked_database.ui:73
 msgid "_Clear"
 msgstr "_Εκκαθάριση"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/gtk/unlocked_database.ui:81
-#| msgid "Delete selection"
+#: data/gtk/unlocked_database.ui:83
 msgid "Delete Selection"
 msgstr "Διαγραφή επιλογής"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/gtk/unlocked_database.ui:91
-#| msgid "Move selection"
+#: data/gtk/unlocked_database.ui:93
 msgid "Move Selection"
 msgstr "Μετακίνηση επιλογής"
 
-#: data/gtk/unlocked_database.ui:98
-#| msgid "Delete selection"
+#: data/gtk/unlocked_database.ui:100
 msgid "Paste Selection"
 msgstr "Επικόλληση επιλογής"
 
-#: data/gtk/unlocked_database.ui:123
-#| msgid "Select all"
+#: data/gtk/unlocked_database.ui:125
 msgid "Select an Entry"
 msgstr "Επιλογή εγγραφής"
 
@@ -983,18 +976,15 @@ msgstr "Λειτουργία επιλογής"
 #. s
 #: data/gtk/unlocked_headerbar.ui:54
 #: gsecrets/widgets/saving_conflict_dialog.py:34
-#| msgid "Save"
 msgid "_Save"
 msgstr "_Αποθήκευση"
 
 #. s
 #: data/gtk/unlocked_headerbar.ui:58
-#| msgid "Lock"
 msgid "_Lock"
 msgstr "_Κλείδωμα"
 
 #: data/gtk/unlocked_headerbar.ui:64
-#| msgid "Settings"
 msgid "So_rting"
 msgstr "Ταξ_ινόμηση"
 
@@ -1003,35 +993,27 @@ msgstr "Ταξ_ινόμηση"
 msgid "_A-Z"
 msgstr "_A-Ω"
 
-#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:71
-msgid "_Z-A"
-msgstr "_Ω-Α"
-
-#: data/gtk/unlocked_headerbar.ui:76
 msgid "_Newest First"
 msgstr "_Νεότερα πρώτα"
 
-#: data/gtk/unlocked_headerbar.ui:81
+#: data/gtk/unlocked_headerbar.ui:76
 msgid "_Oldest First"
 msgstr "_Παλαιότερα πρώτα"
 
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/unlocked_headerbar.ui:84
 msgid "New _Window"
 msgstr "Νέο _παράθυρο"
 
-#: data/gtk/unlocked_headerbar.ui:97
-#| msgid "Settings"
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "Ρυθμίσεις _κρύπτης"
 
-#: data/gtk/unlocked_headerbar.ui:119
-#| msgctxt "Shortcut window description"
-#| msgid "Entry"
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "Νέα _εγγραφή"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "Νέα _ομάδα"
 
@@ -1045,22 +1027,23 @@ msgstr "Ασφαλή μυστικά"
 msgid "Create or import a new Keepass safe"
 msgstr "Δημιουργήστε ή εισάγετε ένα νέο ασφαλές Keepass"
 
+#. Translators: Secrets is the app name, do not translate
+#: data/gtk/window.ui:4 data/org.gnome.World.Secrets.desktop.in.in:3
+msgid "Secrets"
+msgstr "Secrets"
+
 #: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "Ένας διαχειριστής συνθηματικών για το GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;κρυπτογράφηση;ασφαλές;συνθηματικό;"
-
-#: data/org.gnome.World.Secrets.desktop.in.in:20
-msgid "New Window"
-msgstr "Νέο παράθυρο"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;κρυπτογράφηση;ασφάλεια;συνθηματικό;διαχειριστής;encrypt;secure;password;manager;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
-msgstr "Κλείδωμα κατά το κλείδωμα συνεδρίας"
+msgstr "Κλείδωμα κατά το κλείδωμα της συνεδρίας"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1105,7 +1088,9 @@ msgstr "Εκκαθάριση προχείρου μετά από X δευτερό
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
-msgstr "Μετά την αντιγραφή του συνθηματικού, εκκαθάριση του προχείρου για λόγους ασφαλείας."
+msgstr ""
+"Μετά την αντιγραφή του συνθηματικού, εκκαθάριση του προχείρου για λόγους "
+"ασφαλείας."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
@@ -1116,42 +1101,54 @@ msgid "Remember the window size."
 msgstr "Απομνημόνευση του μεγέθους παραθύρου."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened databases"
+msgstr "Πρόσφατα ανοιγμένες βάσεις δεδομένων"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "A list of the last opened databases."
+msgstr "Μια λίστα με τις πρόσφατα ανοιγμένες βάσεις δεδομένων."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Last opened database"
 msgstr "Τελευταία ανοιγμένη βάση δεδομένων"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:43
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "Path to the last opened database."
 msgstr "Διαδρομή προς την τελευταία ανοιγμένη βάση δεδομένων."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:47
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
 msgstr "Απομνημόνευση σύνθετου κλειδιού"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
-msgstr "Απομνημόνευση του τελευταίου χρησιμοποιημένου σύνθετου κλειδιού για ξεκλείδωμα βάσης δεδομένων."
+msgstr ""
+"Απομνημόνευση του τελευταίου χρησιμοποιημένου σύνθετου κλειδιού για "
+"ξεκλείδωμα βάσης δεδομένων."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used key provider"
 msgstr "Τελευταίος πάροχος κλειδιού"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Key provider for composite database unlocking."
 msgstr "Πάροχος κλειδιού για σύνθετο ξεκλείδωμα βάσης δεδομένων."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:57
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
 msgstr "Απομνημόνευση μεθόδου ξεκλειδώματος"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
-msgstr "Απομνημόνευση της τελευταίας χρησιμοποιημένης μεθόδου ξεκλειδώματος για μελλοντικό ξεκλείδωμα βάσης δεδομένων."
+msgstr ""
+"Απομνημόνευση της τελευταίας χρησιμοποιημένης μεθόδου ξεκλειδώματος για "
+"μελλοντικό ξεκλείδωμα βάσης δεδομένων."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
 msgstr "Δημιουργία αντιγράφου ασφαλείας της βάσης δεδομένων κατά το ξεκλείδωμα"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
 "If an error occurs while saving the database, a backup can be found at "
 "~/.cache/secrets/backups"
@@ -1159,69 +1156,100 @@ msgstr ""
 "Αν προκύψει σφάλμα κατά την αποθήκευση της βάσης δεδομένων, ένα αντίγραφο "
 "ασφαλείας μπορεί να βρεθεί στο ~/.cache/secrets/backups"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
 msgstr "Σειρά ταξινόμησης ομάδων και εγγραφών"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
 msgstr "Σειρά των γραμμών στην προβολή ομάδων και εγγραφών."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
 msgstr "Χρήση κεφαλαίων κατά τη δημιουργία συνθηματικού"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
-msgstr "Χρήση κεφαλαίων χαρακτήρων A-Z κατά τη δημιουργία τυχαίου συνθηματικού."
+msgstr ""
+"Χρήση κεφαλαίων χαρακτήρων A-Z κατά τη δημιουργία τυχαίου συνθηματικού."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
 msgstr "Χρήση πεζών κατά τη δημιουργία συνθηματικού"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr "Χρήση πεζών χαρακτήρων a-z κατά τη δημιουργία τυχαίου συνθηματικού."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
 msgstr "Χρήση αριθμών κατά τη δημιουργία συνθηματικού"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
-msgstr "Χρήση αριθμητικών χαρακτήρων 0-9 κατά τη δημιουργία τυχαίου συνθηματικού."
+msgstr ""
+"Χρήση αριθμητικών χαρακτήρων 0-9 κατά τη δημιουργία τυχαίου συνθηματικού."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
 msgstr "Χρήση συμβόλων κατά τη δημιουργία συνθηματικού"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
-msgstr "Χρήση μη αλφαριθμητικών συμβόλων ASCII κατά τη δημιουργία τυχαίου συνθηματικού."
+msgstr ""
+"Χρήση μη αλφαριθμητικών συμβόλων ASCII κατά τη δημιουργία τυχαίου "
+"συνθηματικού."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
 msgstr "Μήκος συνθηματικού κατά τη δημιουργία συνθηματικού"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
 msgstr "Αριθμός μεμονωμένων χαρακτήρων κατά τη δημιουργία συνθηματικού."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
 msgstr "Αριθμός λέξεων κατά τη δημιουργία φράσης πρόσβασης"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
 msgid "Separator when generating a passphrase"
 msgstr "Διαχωριστικό κατά τη δημιουργία φράσης πρόσβασης"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
-msgstr "Διαχωριστικό λέξεων που θα χρησιμοποιηθεί κατά τη δημιουργία φράσης πρόσβασης."
+msgstr ""
+"Διαχωριστικό λέξεων που θα χρησιμοποιηθεί κατά τη δημιουργία φράσης "
+"πρόσβασης."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:113
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four "
+"characters of the password. If the first try is wrong, the full password is "
+"needed to unlock the safe."
+msgstr ""
+"Με το γρήγορο ξεκλείδωμα ενεργοποιημένο, η πρόσβαση σε ένα χρηματοκιβώτιο "
+"μπορεί να ανακτηθεί χρησιμοποιώντας τους τέσσερις τελευταίους χαρακτήρες "
+"του συνθηματικού. Αν η πρώτη προσπάθεια είναι εσφαλμένη, απαιτείται το "
+"πλήρες συνθηματικό για το ξεκλείδωμα του χρηματοκιβωτίου."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:117
+msgid "Enable Fingerprint Quick Unlock"
+msgstr "Ενεργοποίηση γρήγορου ξεκλειδώματος με αποτύπωμα"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:118
+msgid "Use the fingerprint reader to quick unlock a locked safe."
+msgstr ""
+"Χρήση του αναγνώστη δακτυλικών αποτυπωμάτων για το γρήγορο ξεκλείδωμα ενός "
+"κλειδωμένου χρηματοκιβωτίου."
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
 msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Διαχείριση των συνθηματικών σας"
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
 msgid ""
@@ -1234,17 +1262,26 @@ msgstr ""
 "παρέχει μια εύκολη και απλή διεπαφή για τη διαχείριση βάσεων δεδομένων "
 "συνθηματικών."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:357
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
 msgid "Password management"
 msgstr "Διαχείριση συνθηματικών"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:361
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
 msgid "Safe unlocking"
 msgstr "Ξεκλείδωμα ασφαλούς"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:365
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
 msgid "Safe creation"
 msgstr "Δημιουργία ασφαλούς"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
+#: gsecrets/application.py:39
+msgid "Enable debug logging"
+msgstr "Ενεργοποίηση καταγραφής αποσφαλμάτωσης"
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1256,66 +1293,61 @@ msgid "Passwords do not match"
 msgstr "Τα συνθηματικά δεν ταιριάζουν"
 
 #: gsecrets/create_database.py:80
-#| msgid "Last opened database"
 msgid "Unable to create database"
 msgstr "Αδυναμία δημιουργίας βάσης δεδομένων"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:98
-#: gsecrets/widgets/database_settings_dialog.py:208
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Failed to generate composite key"
 msgstr "Αποτυχία δημιουργίας σύνθετου κλειδιού"
 
-#: gsecrets/entry_page.py:283
+#: gsecrets/entry_page.py:289
 msgid "Enter tag name"
 msgstr "Εισαγωγή ονόματος ετικέτας"
 
-#: gsecrets/entry_page.py:313
-#| msgid "File already exists"
+#: gsecrets/entry_page.py:319
 msgid "The tag already exists"
 msgstr "Η ετικέτα υπάρχει ήδη"
 
-#: gsecrets/entry_page.py:334 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:103
 msgid "Saved in history"
 msgstr "Αποθηκεύτηκε στο ιστορικό"
 
-#: gsecrets/entry_page.py:353 gsecrets/entry_row.py:163
-#: gsecrets/widgets/credentials_group.py:95
-#| msgid "Username"
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:164
+#: gsecrets/widgets/credentials_group.py:98
 msgid "Username copied"
 msgstr "Αντιγράφηκε το όνομα χρήστη"
 
-#: gsecrets/entry_page.py:358 gsecrets/entry_page.py:491
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:499
 msgid "Address copied"
 msgstr "Αντιγράφηκε η διεύθυνση"
 
-#: gsecrets/entry_page.py:367 gsecrets/entry_page.py:422
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
 msgid "One-time password copied"
 msgstr "Αντιγράφηκε το συνθηματικό μίας χρήσης"
 
-#: gsecrets/entry_page.py:400
+#: gsecrets/entry_page.py:406
 msgid "Could not open URL"
 msgstr "Αδυναμία ανοίγματος URL"
 
-#: gsecrets/entry_page.py:410
+#: gsecrets/entry_page.py:416
 msgid "The address is not valid"
 msgstr "Η διεύθυνση δεν είναι έγκυρη"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:447
+#: gsecrets/entry_page.py:453
 msgid "Select Attachments"
 msgstr "Επιλογή συνημμένων"
 
-#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:107
-#| msgid "Password"
+#: gsecrets/entry_row.py:157 gsecrets/widgets/credentials_group.py:110
 msgid "Password copied"
 msgstr "Αντιγράφηκε το συνθηματικό"
 
-#: gsecrets/entry_row.py:171
+#: gsecrets/entry_row.py:172
 msgid "One-Time Password copied"
 msgstr "Αντιγράφηκε το συνθηματικό μίας χρήσης"
 
-#: gsecrets/entry_row.py:185 gsecrets/group_row.py:136
-#| msgid "Title not specified"
+#: gsecrets/entry_row.py:186 gsecrets/group_row.py:137
 msgid "Title not Specified"
 msgstr "Δεν καθορίστηκε ο τίτλος"
 
@@ -1352,12 +1384,11 @@ msgid "Exclude Symbols"
 msgstr "Αποκλεισμός συμβόλων"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:86
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
 msgid "Keyfile"
 msgstr "Αρχείο κλειδιού"
 
 #: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
-#| msgid "Select all"
 msgid "Select Keyfile"
 msgstr "Επιλογή αρχείου κλειδιού"
 
@@ -1366,7 +1397,6 @@ msgid "Clear Keyfile"
 msgstr "Εκκαθάριση αρχείου κλειδιού"
 
 #: gsecrets/provider/file_provider.py:70
-#| msgid "Select all"
 msgid "Select keyfile"
 msgstr "Επιλογή αρχείου κλειδιού"
 
@@ -1405,7 +1435,6 @@ msgid "Select certificate"
 msgstr "Επιλογή πιστοποιητικού"
 
 #: gsecrets/provider/pkcs11_provider.py:196
-#| msgid "No search results"
 msgid "No smartcard present"
 msgstr "Δεν υπάρχει έξυπνη κάρτα"
 
@@ -1414,7 +1443,7 @@ msgid "Please insert smartcard and retry."
 msgstr "Παρακαλούμε εισάγετε έξυπνη κάρτα και δοκιμάστε ξανά."
 
 #: gsecrets/provider/pkcs11_provider.py:200
-#: gsecrets/widgets/database_settings_dialog.py:246
+#: gsecrets/widgets/database_settings_dialog.py:384
 msgid "_OK"
 msgstr "_ΟΚ"
 
@@ -1450,7 +1479,6 @@ msgid "YubiKey"
 msgstr "YubiKey"
 
 #: gsecrets/provider/yubikey_provider.py:144
-#| msgid "Select all"
 msgid "Select key"
 msgstr "Επιλογή κλειδιού"
 
@@ -1464,8 +1492,7 @@ msgstr "Επιλογή θέσης YubiKey"
 msgid "Touch YubiKey"
 msgstr "Αγγίξτε το YubiKey"
 
-#: gsecrets/recent_files_menu.py:43
-#| msgid "Recent Databases"
+#: gsecrets/recent_files_menu.py:29
 msgid "Recent Files"
 msgstr "Πρόσφατα αρχεία"
 
@@ -1501,15 +1528,15 @@ msgstr "Μωβ"
 msgid "Brown"
 msgstr "Καφέ"
 
-#: gsecrets/safe_element.py:656
+#: gsecrets/safe_element.py:673
 msgid "Clone"
 msgstr "Κλώνος"
 
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:243 gsecrets/unlocked_database.py:531
-#: gsecrets/widgets/window.py:418
+#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
+#: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Αδυναμία αποθήκευσης κρύπτης"
 
@@ -1525,8 +1552,8 @@ msgstr "Προειδοποίηση"
 msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr ""
-"Διαγράφετε στοιχεία στον κάδο ανακύκλωσης, αυτές οι διαγραφές δεν μπορούν "
-"να αναιρεθούν."
+"Διαγράφετε στοιχεία στον κάδο ανακύκλωσης, αυτές οι διαγραφές δεν μπορούν να "
+"αναιρεθούν."
 
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
@@ -1536,54 +1563,67 @@ msgstr "Η λειτουργία ακυρώθηκε: μετακίνηση τρέ�
 msgid "Move completed"
 msgstr "Η μετακίνηση ολοκληρώθηκε"
 
-#. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:106
-msgid "Safe {} is already open"
-msgstr "Η κρύππτη {} είναι ήδη ανοιχτή"
+#: gsecrets/unlock_database.py:105
+msgid "Quick Unlock active"
+msgstr "Το γρήγορο ξεκλείδωμα είναι ενεργό"
 
-#: gsecrets/unlock_database.py:185
+#. TRANSLATORS For example: "Safe ~/MySafe.kdbx is already open"
+#: gsecrets/unlock_database.py:150
+#, python-brace-format
+msgid "Safe {path} is already open"
+msgstr "Το χρηματοκιβώτιο {path} είναι ήδη ανοιχτό"
+
+#: gsecrets/unlock_database.py:241
 msgid "Failed to unlock Safe"
-msgstr "Αποτυχία ξεκλειδώματος κρύπτης"
+msgstr "Αποτυχία ξεκλειδώματος του χρηματοκιβωτίου"
 
-#: gsecrets/unlocked_database.py:246
+#: gsecrets/unlock_database.py:409
+msgid "Please unlock using the password."
+msgstr "Παρακαλούμε ξεκλειδώστε χρησιμοποιώντας το συνθηματικό."
+
+#: gsecrets/unlock_database.py:418
+msgid "Maximum tries reached. Please unlock using the password."
+msgstr ""
+"Συμπληρώθηκε ο μέγιστος αριθμός προσπαθειών. Παρακαλούμε ξεκλειδώστε "
+"χρησιμοποιώντας το συνθηματικό."
+
+#: gsecrets/unlocked_database.py:251
 msgid "Safe saved"
 msgstr "Αποθηκεύτηκε η κρύπτη"
 
-#: gsecrets/unlocked_database.py:248
+#: gsecrets/unlocked_database.py:253
 msgid "No changes made"
 msgstr "Δεν έγιναν αλλαγές"
 
-#. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:296
+#: gsecrets/unlocked_database.py:300
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Διαγράφηκε στοιχείο"
 msgstr[1] "Διαγράφηκαν {} στοιχεία"
 
-#: gsecrets/unlocked_database.py:301
+#: gsecrets/unlocked_database.py:305
 msgid "Deletion completed"
 msgstr "Η διαγραφή ολοκληρώθηκε"
 
-#: gsecrets/unlocked_database.py:306 gsecrets/unlocked_database.py:330
+#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
 msgid "Undo"
 msgstr "Αναίρεση"
 
-#: gsecrets/unlocked_database.py:329
-#| msgid "Attributes"
+#: gsecrets/unlocked_database.py:333
 msgid "Attribute deleted"
 msgstr "Διαγράφηκε χαρακτηριστικό"
 
-#: gsecrets/unlocked_database.py:358
+#: gsecrets/unlocked_database.py:362
 msgid "Copied"
 msgstr "Αντιγράφηκε"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:458
+#: gsecrets/unlocked_database.py:462
 msgid "Safe locked due to inactivity"
 msgstr "Το Ασφαλές κλειδώθηκε λόγω αδράνειας"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:696
+#: gsecrets/unlocked_database.py:700
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} Επιλεγμένο"
@@ -1598,42 +1638,56 @@ msgid "Attribute key already exists"
 msgstr "Το κλειδί χαρακτηριστικού υπάρχει ήδη"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:41
 msgid "Save Attachment"
 msgstr "Αποθήκευση συνημμένου"
 
-#: gsecrets/widgets/attachment_entry_row.py:54
+#: gsecrets/widgets/attachment_entry_row.py:57
 msgid "Could not store attachment"
 msgstr "Αδυναμία αποθήκευσης συνημμένου"
 
 #: gsecrets/widgets/attribute_entry_row.py:43
 #: gsecrets/widgets/protected_attribute_entry_row.py:60
-#| msgid "Attributes"
 msgid "Attribute copied"
 msgstr "Αντιγράφηκε χαρακτηριστικό"
 
-#: gsecrets/widgets/database_settings_dialog.py:175
-#: gsecrets/widgets/database_settings_dialog.py:179
-#| msgid "Apply Changes"
+#: gsecrets/widgets/database_settings_dialog.py:128
+msgid "Insecure"
+msgstr "Μη ασφαλές"
+
+#: gsecrets/widgets/database_settings_dialog.py:130
+msgid "Weak"
+msgstr "Ασθενές"
+
+#: gsecrets/widgets/database_settings_dialog.py:137
+msgid "No weak passwords found"
+msgstr "Δεν βρέθηκαν ασθενή συνθηματικά"
+
+#: gsecrets/widgets/database_settings_dialog.py:226
+msgid "No records found"
+msgstr "Δεν βρέθηκαν εγγραφές"
+
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
 msgid "Could not apply changes"
 msgstr "Αδυναμία εφαρμογής αλλαγών"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:182
+#: gsecrets/widgets/database_settings_dialog.py:320
 msgid "Changes Applied"
 msgstr "Εφαρμόστηκαν σλλαγές"
 
-#: gsecrets/widgets/database_settings_dialog.py:236
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Could not change credentials"
 msgstr "Αδυναμία αλλαγής διαπιστευτηρίων"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:241
+#: gsecrets/widgets/database_settings_dialog.py:379
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Συγκρούσεις κατά την αποθήκευση"
 
-#: gsecrets/widgets/database_settings_dialog.py:243
+#: gsecrets/widgets/database_settings_dialog.py:381
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1643,38 +1697,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:308
-#: gsecrets/widgets/database_settings_dialog.py:322
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
 msgid "Unknown"
 msgstr "Άγνωστο"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:312
+#: gsecrets/widgets/database_settings_dialog.py:458
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:315
+#: gsecrets/widgets/database_settings_dialog.py:461
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:318
+#: gsecrets/widgets/database_settings_dialog.py:464
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:326
+#: gsecrets/widgets/database_settings_dialog.py:472
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:329
+#: gsecrets/widgets/database_settings_dialog.py:475
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:332
+#: gsecrets/widgets/database_settings_dialog.py:478
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1687,18 +1741,16 @@ msgstr "Η εγγραφή έληξε"
 msgid "Hide Text"
 msgstr "Απόκρυψη κειμένου"
 
-#: gsecrets/widgets/notes_dialog.py:60
+#: gsecrets/widgets/notes_dialog.py:105
 msgid "Selection copied"
 msgstr "Αντιγράφηκε η επιλογή"
 
 #: gsecrets/widgets/password_level_bar.py:22
-#| msgid "Password"
 msgid "Password Strength"
 msgstr "Ισχύς συνθηματικού"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
 #: gsecrets/widgets/quit_conflict_dialog.py:18
-#| msgid "Unsaved Changes"
 msgid "Unsaved Changes Conflict"
 msgstr "Σύγκρουση μη αποθηκευμένων αλλαγών"
 
@@ -1722,8 +1774,8 @@ msgid ""
 "\n"
 " You can also make a backup of their version of the safe."
 msgstr ""
-"Η κρύπτη τροποποιήθηκε από αλλού. Η αποθήκευση θα αντικαταστήσει την "
-"εκδοχή της κρύπτης με την τρέχουσα εκδοχή μας.\n"
+"Η κρύπτη τροποποιήθηκε από αλλού. Η αποθήκευση θα αντικαταστήσει την εκδοχή "
+"της κρύπτης με την τρέχουσα εκδοχή μας.\n"
 "\n"
 " Μπορείτε επίσης να δημιουργήσετε ένα αντίγραφο ασφαλείας της εκδοχής τους "
 "της κρύπτης."
@@ -1741,39 +1793,53 @@ msgstr "Αποθήκευση αντιγράφου ασφαλείας"
 msgid "Could not backup safe"
 msgstr "Αδυναμία δημιουργίας αντιγράφου ασφαλείας"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "Οποιοσδήποτε τύπος αρχείου"
 
-#: gsecrets/widgets/window.py:158
-#| msgid "Select all"
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "Επιλογή κρύπτης"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:177
 msgid "File does not have a valid path"
 msgstr "Το αρχείο δεν έχει έγκυρη διαδρομή"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "Safe is already open"
 msgstr "Η κρύπτη είναι ήδη ανοιχτή"
 
-#: gsecrets/widgets/window.py:240
-#| msgid "Creation Date"
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "_Δημιουργία"
 
-#: gsecrets/widgets/window.py:262
+#: gsecrets/widgets/window.py:266
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Αδυναμία δημιουργίας κρύπτης: Η κρύπτη είναι ήδη ανοιχτή"
 
-#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
 msgid "Could not create new Safe"
 msgstr "Αδυναμία δημιουργίας νέας κρύπτης"
 
-#: gsecrets/widgets/window.py:395
+#: gsecrets/widgets/window.py:399
 msgid "Could not save safe"
 msgstr "Αδυναμία αποθήκευσης κρύπτης"
+
+#. TRANSLATORS Add your name to the translator credits list
+#: gsecrets/widgets/window.py:562
+msgid "translator-credits"
+msgstr ""
+"Ελληνική μεταφραστική ομάδα GNOME\n"
+" Ευστάθιος Ιωσηφίδης <iosifidis@opensuse.org>\n"
+"\n"
+"Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
+"https://gr.gnome.org/"
+
+#~ msgid "_Z-A"
+#~ msgstr "_Ω-Α"
+
+#~ msgid "New Window"
+#~ msgstr "Νέο παράθυρο"
 
 #~ msgid "New"
 #~ msgstr "Νέο"
@@ -1798,9 +1864,6 @@ msgstr "Αδυναμία αποθήκευσης κρύπτης"
 
 #~ msgid "Open…"
 #~ msgstr "Άνοιγμα…"
-
-#~ msgid "Falk Alexander Seidl"
-#~ msgstr "Falk Alexander Seidl"
 
 #~ msgid "Use dark GTK+ theme"
 #~ msgstr "Χρήση σκούρου θέματος GTK+"

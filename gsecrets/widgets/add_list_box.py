@@ -11,7 +11,7 @@ class AddListBox(Adw.Bin):
 
     _n_items: int = 0
 
-    row_activated = GObject.Signal(arg_types=(Gtk.ListBox, Gtk.ListBoxRow))
+    row_activated = GObject.Signal(arg_types=(Gtk.ListBoxRow,))
 
     def __init__(self):
         super().__init__()
@@ -30,8 +30,8 @@ class AddListBox(Adw.Bin):
         self._row = add_more_row
         self._model = None
 
-    def _on_row_activated(self, list_box, row):
-        self.emit(self.row_activated, list_box, row)
+    def _on_row_activated(self, _list_box, row):
+        self.emit(self.row_activated, row)
 
     @GObject.Property(type=str, default="")
     def action_name(self):

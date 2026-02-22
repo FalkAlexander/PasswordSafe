@@ -3,14 +3,14 @@
 # This file is distributed under the same license as PasswordSafe package.
 # Damned <damnedlies@163.com>, 2020.
 # Dingzhong Chen <wsxy162@gmail.com>, 2021.
-# lumingzh <lumingzh@qq.com>, 2022-2025.
+# lumingzh <lumingzh@qq.com>, 2022-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-12-25 16:36+0000\n"
-"PO-Revision-Date: 2025-12-26 08:01+0800\n"
+"POT-Creation-Date: 2026-02-21 08:13+0000\n"
+"PO-Revision-Date: 2026-02-22 10:04+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -101,7 +101,7 @@ msgstr "颜色"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:240
 msgid "Create Safe"
 msgstr "创建保险箱"
 
@@ -144,18 +144,18 @@ msgid "_Open Safe"
 msgstr "打开保险箱(_O)"
 
 #: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
 #: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:106
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "关于秘密(_A)"
 
@@ -417,15 +417,15 @@ msgstr "移除"
 msgid "Select Entry"
 msgstr "选择条目"
 
-#: data/gtk/entry_row.ui:82
+#: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
 msgstr "复制动态口令"
 
-#: data/gtk/entry_row.ui:93
+#: data/gtk/entry_row.ui:92
 msgid "Copy Username"
 msgstr "复制用户名"
 
-#: data/gtk/entry_row.ui:103
+#: data/gtk/entry_row.ui:102
 msgid "Copy Password"
 msgstr "复制密码"
 
@@ -453,7 +453,7 @@ msgstr "分组菜单"
 msgid "Select Group"
 msgstr "选择分组"
 
-#: data/gtk/group_row.ui:68
+#: data/gtk/group_row.ui:67
 msgid "Edit"
 msgstr "编辑"
 
@@ -473,8 +473,7 @@ msgstr "密码历史"
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:84
-#: data/gtk/welcome_page.ui:18
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "新建保险箱(_N)"
 
@@ -607,12 +606,12 @@ msgstr "是否将所有更改写入保险箱？"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:419
+#: gsecrets/widgets/window.py:421
 msgid "_Quit Without Saving"
 msgstr "不保存并退出(_Q)"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
 msgid "_Don't Quit"
 msgstr "不退出(_D)"
 
@@ -632,7 +631,7 @@ msgstr "重新打开上次打开的保险箱。"
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
 #: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+#: gsecrets/widgets/window.py:232 gsecrets/widgets/window.py:244
 msgid "Safe"
 msgstr "保险箱"
 
@@ -987,19 +986,19 @@ msgstr "最新的优先(_N)"
 msgid "_Oldest First"
 msgstr "最旧的优先(_O)"
 
-#: data/gtk/unlocked_headerbar.ui:88
+#: data/gtk/unlocked_headerbar.ui:84
 msgid "New _Window"
 msgstr "新建窗口(_W)"
 
-#: data/gtk/unlocked_headerbar.ui:92
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "保险箱设置(_F)"
 
-#: data/gtk/unlocked_headerbar.ui:114
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "新建条目(_E)"
 
-#: data/gtk/unlocked_headerbar.ui:118
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "新建分组(_G)"
 
@@ -1024,8 +1023,8 @@ msgstr "GNOME 的密码管理器"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;encrypt;secure;加密;保护;密码;安全;"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;encrypt;secure;password;manager;加密;保护;密码;安全;管理;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1496,7 +1495,7 @@ msgstr "克隆"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:418
+#: gsecrets/widgets/window.py:420
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
 
@@ -1531,15 +1530,15 @@ msgstr "快速解锁激活"
 msgid "Safe {path} is already open"
 msgstr "保险箱 {path} 已打开"
 
-#: gsecrets/unlock_database.py:239
+#: gsecrets/unlock_database.py:241
 msgid "Failed to unlock Safe"
 msgstr "保险箱解锁失败"
 
-#: gsecrets/unlock_database.py:407
+#: gsecrets/unlock_database.py:409
 msgid "Please unlock using the password."
 msgstr "请使用密码解锁。"
 
-#: gsecrets/unlock_database.py:416
+#: gsecrets/unlock_database.py:418
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr "达到最大尝试次数。请使用密码解锁。"
 
@@ -1759,19 +1758,19 @@ msgstr "文件不具有有效路径"
 msgid "Safe is already open"
 msgstr "保险箱已打开"
 
-#: gsecrets/widgets/window.py:240
+#: gsecrets/widgets/window.py:242
 msgid "_Create"
 msgstr "创建(_C)"
 
-#: gsecrets/widgets/window.py:262
+#: gsecrets/widgets/window.py:264
 msgid "Cannot create Safe: Safe is already open"
 msgstr "无法创建保险箱：保险箱已打开"
 
-#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
+#: gsecrets/widgets/window.py:307 gsecrets/widgets/window.py:320
 msgid "Could not create new Safe"
 msgstr "无法创建新保险箱"
 
-#: gsecrets/widgets/window.py:395
+#: gsecrets/widgets/window.py:397
 msgid "Could not save safe"
 msgstr "无法保存保险箱"
 
@@ -1780,7 +1779,7 @@ msgstr "无法保存保险箱"
 msgid "translator-credits"
 msgstr ""
 "Damned <damnedlies@163.com>, 2020.\n"
-"lumingzh <lumingzh@qq.com>,2022-2025."
+"lumingzh <lumingzh@qq.com>,2022-2026."
 
 #~ msgid "_Z-A"
 #~ msgstr "_Z-A"

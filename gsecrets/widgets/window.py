@@ -44,6 +44,8 @@ class Window(Adw.ApplicationWindow):
     _view = View.WELCOME
 
     def __init__(self, *args, **kwargs):
+        self.install_action("win.new_database", None, self.on_new_database_action)
+
         super().__init__(*args, **kwargs)
 
         self.key_providers = Providers(self)
@@ -446,8 +448,6 @@ class Window(Adw.ApplicationWindow):
         settings_action = Gio.SimpleAction.new("settings", None)
         self.add_action(settings_action)
         settings_action.connect("activate", self.on_settings_action)
-
-        self.install_action("win.new_database", None, self.on_new_database_action)
 
         def on_visible_dialog_notify(window, _pspec):
             enabled = window.props.visible_dialog is None

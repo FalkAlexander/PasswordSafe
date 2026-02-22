@@ -3,8 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## 12.3 - 2026-02-22
-- Fix crash when opening attachment
-- Add more search keywords to dekstop file
+- Fix crash when opening attachments
+- Add more search keywords to desktop file
 - ci: Use fedora image from their registry
 
 ## 12.2 - 2025-12-23

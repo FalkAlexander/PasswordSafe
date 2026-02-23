@@ -277,7 +277,7 @@ class EntryPage(Adw.Bin):
         # Remove
         tags = safe_entry.tags
         tags.remove(tag_name)
-        safe_entry.tags = tags if tags else ""
+        safe_entry.tags = tags or ""
 
         # Update tag flowbox
         self._update_tags()

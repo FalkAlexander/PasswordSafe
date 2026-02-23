@@ -34,7 +34,7 @@ interface for the management of password databases.
 * AES-KDF KDBX 3.1
 
 ## Install Development Flatpak
-Download the latest artifact for [x86_64](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak) or [aarch64](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak_aarch64) and extract it.
+Download the latest artifact for [x86_64](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak_x86_64) or [aarch64](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak_aarch64) and extract it.
 To install, open the Flatpak package with GNOME Software. Alternatively, run:
 ```
 flatpak install --user ./org.gnome.World.Secrets.Devel.flatpak

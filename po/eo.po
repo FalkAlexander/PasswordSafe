@@ -1,0 +1,1803 @@
+# Esperanto translation for secrets.
+# Copyright (C) 2026 secrets's COPYRIGHT HOLDER
+# This file is distributed under the same license as the secrets package.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: secrets master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2026-02-23 06:58+0000\n"
+"PO-Revision-Date: 2026-02-27 10:10+0100\n"
+"Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
+"Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 49.0\n"
+
+#: data/gtk/add_attribute_dialog.ui:5
+msgid "Add Attribute"
+msgstr "Aldoni atributon"
+
+#: data/gtk/add_attribute_dialog.ui:37
+msgid "Key"
+msgstr "Ŝlosilo"
+
+#: data/gtk/add_attribute_dialog.ui:43
+msgid "Value"
+msgstr "Valoro"
+
+#: data/gtk/add_attribute_dialog.ui:49
+msgid "Sensitive"
+msgstr "Sentema"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Contains sensitive data."
+msgstr "Enhavas sentemajn datumojn."
+
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
+msgid "_Add"
+msgstr "_Aldoni"
+
+#: data/gtk/attachment_entry_row.ui:9
+msgid "Download Attachment"
+msgstr "Elŝuti aldonaĵon"
+
+#: data/gtk/attachment_entry_row.ui:20
+msgid "Remove Attachment"
+msgstr "Forigi aldonaĵon"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/attachment_warning_dialog.ui:4
+msgid "Safety Info"
+msgstr "Sekureca informo"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/attachment_warning_dialog.ui:5
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"Estas eble ke eksteraj programoj kreu neĉifritajn kaŝitajn aŭ provizorajn "
+"kopiojn de ĉi tiu aldonaĵodosiero! Bonvolu daŭrigi singarde."
+
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Reen"
+
+#: data/gtk/attachment_warning_dialog.ui:10
+msgid "_Proceed"
+msgstr "_Daŭrigi"
+
+#: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+msgid "Copy Attribute"
+msgstr "Kopii atributon"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
+msgid "Remove Attribute"
+msgstr "Forigi atributon"
+
+#: data/gtk/browsing_panel.ui:23
+msgid "Add elements with the ➕ button"
+msgstr "Aldonu erojn per la ➕ butono"
+
+#: data/gtk/browsing_panel.ui:24
+msgid "Empty Group"
+msgstr "Malplena grupo"
+
+#: data/gtk/browsing_panel.ui:30
+msgid "No Search Results"
+msgstr "Neniuj serĉrezultoj"
+
+#: data/gtk/color_entry_row.ui:4
+msgid "Color"
+msgstr "Koloro"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
+msgid "Create Safe"
+msgstr "Krei sekurejon"
+
+#: data/gtk/create_database.ui:17
+msgid "Back"
+msgstr "Reen"
+
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:40
+msgid "Main Menu"
+msgstr "Ĉefmenuo"
+
+#: data/gtk/create_database.ui:44
+msgid "Protect your safe"
+msgstr "Protektu vian sekurejon"
+
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
+#: data/gtk/references_dialog.ui:177
+msgid "_Password"
+msgstr "_Pasvorto"
+
+#: data/gtk/create_database.ui:64
+msgid "_Confirm Password"
+msgstr "_Konfirmi pasvorton"
+
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:59
+msgid "Additional Credentials"
+msgstr "Viaj aldonaj akreditaĵoj"
+
+#: data/gtk/create_database.ui:90
+msgid "C_reate"
+msgstr "K_rei"
+
+#: data/gtk/create_database.ui:115
+msgid "Safe Successfully Created"
+msgstr "Sekurejo kreita sukcese"
+
+#: data/gtk/create_database.ui:118
+msgid "_Open Safe"
+msgstr "_Malfermi sekurejon"
+
+#: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:94
+msgid "_Preferences"
+msgstr "_Preferoj"
+
+#: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:98
+msgid "_Keyboard Shortcuts"
+msgstr "_Klavarfuŝklavoj"
+
+#. "Secrets" is the application name, do not translate
+#: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:102
+msgid "_About Secrets"
+msgstr "_Pri Secrets"
+
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "_Uzantnomo"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:131
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:345
+msgid "Copy"
+msgstr "Kopii"
+
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
+msgid "Generate New Password"
+msgstr "Generi novan pasvorton"
+
+#: data/gtk/database_settings_dialog.ui:5
+msgid "Safe Settings"
+msgstr "Agordoj de sekurejo"
+
+#: data/gtk/database_settings_dialog.ui:9
+msgid "Authentication"
+msgstr "Aŭtentikigo"
+
+#: data/gtk/database_settings_dialog.ui:15
+msgid "Current Password"
+msgstr "Aktuala pasvorto"
+
+#: data/gtk/database_settings_dialog.ui:25
+msgid "New Password"
+msgstr "Nova pasvorto"
+
+#: data/gtk/database_settings_dialog.ui:46
+msgid "Confirm New Password"
+msgstr "Konfirmi novan pasvorton"
+
+#: data/gtk/database_settings_dialog.ui:60
+msgid "New Additional Credentials"
+msgstr "Novaj aldonaj akreditaĵoj"
+
+#: data/gtk/database_settings_dialog.ui:75
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
+msgid "_Apply Changes"
+msgstr "_Apliki ŝanĝojn"
+
+#: data/gtk/database_settings_dialog.ui:93 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
+msgid "General"
+msgstr "Ĝenerala"
+
+#: data/gtk/database_settings_dialog.ui:97
+msgid "Database"
+msgstr "Datumbazo"
+
+#: data/gtk/database_settings_dialog.ui:100
+msgid "Name"
+msgstr "Nomo"
+
+#: data/gtk/database_settings_dialog.ui:108
+msgid "Description"
+msgstr "Priskribo"
+
+#: data/gtk/database_settings_dialog.ui:116
+msgid "Default User"
+msgstr "Defaŭlta uzanto"
+
+#: data/gtk/database_settings_dialog.ui:127
+msgid "Details"
+msgstr "Detaloj"
+
+#: data/gtk/database_settings_dialog.ui:130
+msgid "Path"
+msgstr "Vojo"
+
+#: data/gtk/database_settings_dialog.ui:139
+msgid "File Size"
+msgstr "Dosiergrando"
+
+#. KeePass is a proper noun
+#: data/gtk/database_settings_dialog.ui:148
+msgid "KeePass Version"
+msgstr "KeePass-versio"
+
+#: data/gtk/database_settings_dialog.ui:157
+msgid "Creation Date"
+msgstr "Kreodato"
+
+#: data/gtk/database_settings_dialog.ui:165
+msgid "Encryption Algorithm"
+msgstr "Ĉifroalgoritmo"
+
+#: data/gtk/database_settings_dialog.ui:173
+msgid "Derivation Algorithm"
+msgstr "Derivaalgoritmo"
+
+#. Statistics
+#: data/gtk/database_settings_dialog.ui:183
+msgid "Stats"
+msgstr "Statistikoj"
+
+#: data/gtk/database_settings_dialog.ui:186
+msgid "Number of Entries"
+msgstr "Nombro de eroj"
+
+#: data/gtk/database_settings_dialog.ui:195
+msgid "Number of Groups"
+msgstr "Nombro de grupoj"
+
+#: data/gtk/database_settings_dialog.ui:204
+msgid "Passwords"
+msgstr "Pasvortoj"
+
+#: data/gtk/database_settings_dialog.ui:218
+msgid "Audit"
+msgstr "Revizio"
+
+#: data/gtk/database_settings_dialog.ui:222
+msgid "Statistics"
+msgstr "Statistikoj"
+
+#: data/gtk/database_settings_dialog.ui:225
+msgid "Unique Passwords"
+msgstr "Unikaj pasvortoj"
+
+#: data/gtk/database_settings_dialog.ui:234
+msgid "Reused Passwords"
+msgstr "Reuzigataj pasvortoj"
+
+#: data/gtk/database_settings_dialog.ui:245
+msgid "Weak Passwords"
+msgstr "Malfortaj pasvortoj"
+
+#: data/gtk/database_settings_dialog.ui:250
+msgid "Check passwords for online breaches"
+msgstr "Kontroli pasvortojn pri retaj breĉoj"
+
+#: data/gtk/database_settings_dialog.ui:251
+msgid ""
+"Ask online whether your passwords have been hacked. The passwords won't be "
+"sent online! The following passwords have been leaked:"
+msgstr ""
+"Peti rete ĉu viaj pasvortoj estis retpiratitaj. La pasvortoj ne estos "
+"senditaj rete! La jenaj pasvortoj estis elfluigitaj:"
+
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Helpo"
+
+#: data/gtk/entry_page.ui:55
+msgid "Entry Menu"
+msgstr "Menuo de ero"
+
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:26
+#: data/gtk/references_dialog.ui:169
+msgid "_Title"
+msgstr "_Titolo"
+
+#: data/gtk/entry_page.ui:75
+msgid "U_RL"
+msgstr "U_RL"
+
+#: data/gtk/entry_page.ui:81
+msgid "Open Address"
+msgstr "Malfermi adreson"
+
+#: data/gtk/entry_page.ui:109
+msgid "One-Time Password"
+msgstr "Unufojaĵa pasvorto"
+
+#: data/gtk/entry_page.ui:121
+msgid "Remaining Time"
+msgstr "Restanta tempo"
+
+#: data/gtk/entry_page.ui:143
+msgid "One-_Time Password Secret"
+msgstr "Sekreto de unufojaĵa _pasvorto"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:149
+msgid "Could not Generate OTP Token"
+msgstr "Ne eblis generi OTP-ĵetonon"
+
+#: data/gtk/entry_page.ui:157 data/gtk/group_page.ui:34
+#: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Notoj"
+
+#: data/gtk/entry_page.ui:161 data/gtk/group_page.ui:38
+msgid "Edit in a Window"
+msgstr "Redakti en fenestro"
+
+#: data/gtk/entry_page.ui:199
+msgid "Icon"
+msgstr "Ikono"
+
+#: data/gtk/entry_page.ui:219
+msgid "Tags"
+msgstr "Etikedoj"
+
+#: data/gtk/entry_page.ui:224 gsecrets/entry_page.py:295
+msgid "Add New Tag"
+msgstr "Aldoni novan etikedon"
+
+#: data/gtk/entry_page.ui:241
+msgid "Attachments"
+msgstr "Aldonaĵoj"
+
+#: data/gtk/entry_page.ui:245
+msgid "_Add Attachment"
+msgstr "_Aldoni aldonaĵon"
+
+#: data/gtk/entry_page.ui:254
+msgid "Attributes"
+msgstr "Atributoj"
+
+#: data/gtk/entry_page.ui:259
+msgid "Add Attr_ibute"
+msgstr "Aldoni atr_ibuton"
+
+#: data/gtk/entry_page.ui:267
+msgid "Expiration Date"
+msgstr "Limdato"
+
+#: data/gtk/entry_page.ui:280
+msgid "_Show More"
+msgstr "_Montri pli"
+
+#: data/gtk/entry_page.ui:294
+msgid "D_uplicate"
+msgstr "D_upliki"
+
+#: data/gtk/entry_page.ui:298
+msgid "_References"
+msgstr "_Referencoj"
+
+#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:75
+msgid "_Properties"
+msgstr "_Ecoj"
+
+#: data/gtk/entry_page.ui:308
+msgid "_Save in History"
+msgstr "_Konservi en historio"
+
+#: data/gtk/entry_page.ui:312
+msgid "Show _History"
+msgstr "Montri _historion"
+
+#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_Forigi"
+
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "Forigi"
+
+#: data/gtk/entry_row.ui:38
+msgid "Select Entry"
+msgstr "Elekti eron"
+
+#: data/gtk/entry_row.ui:81
+msgid "Copy One-Time Password"
+msgstr "Kopii unufojaĵan pasvorton"
+
+#: data/gtk/entry_row.ui:92
+msgid "Copy Username"
+msgstr "Kopii uzantnomon"
+
+#: data/gtk/entry_row.ui:102
+msgid "Copy Password"
+msgstr "Kopii pasvorton"
+
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
+msgid "Expiration Date not Set"
+msgstr "Limdato ne agordita"
+
+#: data/gtk/expiration_date_row.ui:22
+msgid "Edit Expiration Date"
+msgstr "Redakti limdaton"
+
+#: data/gtk/expiration_date_row.ui:30
+msgid "Remove Expiration Date"
+msgstr "Forigi limdaton"
+
+#: data/gtk/expiration_date_row.ui:63
+msgid "_Set Expiration Date"
+msgstr "_Agordi limdaton"
+
+#: data/gtk/group_page.ui:14
+msgid "Group Menu"
+msgstr "Menuo de grupo"
+
+#: data/gtk/group_row.ui:38
+msgid "Select Group"
+msgstr "Elekti grupon"
+
+#: data/gtk/group_row.ui:67
+msgid "Edit"
+msgstr "Redakti"
+
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
+msgid "Show Text"
+msgstr "Montri tekston"
+
+#: data/gtk/history_row.ui:39
+msgid "Remove from History"
+msgstr "Forigi el historio"
+
+#: data/gtk/history_window.ui:8
+msgid "Password History"
+msgstr "Pasvort-historio"
+
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_Malfermi"
+
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
+msgid "_New Safe"
+msgstr "_Nova sekurejo"
+
+#: data/gtk/notes_dialog.ui:20
+msgid "_Copy"
+msgstr "_Kopii"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:33 data/gtk/notes_dialog.ui:58
+#: data/gtk/unlocked_headerbar.ui:26
+msgid "Search"
+msgstr "Serĉi"
+
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
+msgid "Password"
+msgstr "Pasvorto"
+
+#: data/gtk/password_generator_popover.ui:32
+msgid "Length"
+msgstr "Longo"
+
+#: data/gtk/password_generator_popover.ui:50
+msgid "Characters"
+msgstr "Signoj"
+
+#: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:213
+msgid "Passphrase"
+msgstr "Pasfrazo"
+
+#: data/gtk/password_generator_popover.ui:99
+msgid "Words"
+msgstr "Vortoj"
+
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:126
+#: gsecrets/provider/file_provider.py:196
+msgid "_Generate"
+msgstr "_Generi"
+
+#: data/gtk/properties_dialog.ui:6
+msgid "Properties"
+msgstr "Ecoj"
+
+#: data/gtk/properties_dialog.ui:26 data/gtk/references_dialog.ui:153
+msgid "UUID"
+msgstr "UUID"
+
+#: data/gtk/properties_dialog.ui:35
+msgid "Accessed"
+msgstr "Alirita"
+
+#: data/gtk/properties_dialog.ui:44
+msgid "Modified"
+msgstr "Modifita"
+
+#: data/gtk/properties_dialog.ui:53
+msgid "Created"
+msgstr "Kreita"
+
+#: data/gtk/references_dialog.ui:15
+msgid "Code"
+msgstr "Kodo"
+
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:241
+#: data/gtk/references_dialog.ui:337
+msgid "Property"
+msgstr "Eco"
+
+#: data/gtk/references_dialog.ui:48
+msgid "Title"
+msgstr "Titolo"
+
+#: data/gtk/references_dialog.ui:69
+msgid "Username"
+msgstr "Uzantnomo"
+
+#: data/gtk/references_dialog.ui:129
+msgid "URL"
+msgstr "URL"
+
+#: data/gtk/references_dialog.ui:181
+msgid "_URL"
+msgstr "_URL"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_Notoj"
+
+#: data/gtk/references_dialog.ui:191
+msgid "References"
+msgstr "Referencoj"
+
+#: data/gtk/references_dialog.ui:212
+msgid "Syntax"
+msgstr "Sintakso"
+
+#: data/gtk/references_dialog.ui:221
+msgid "The placeholder syntax for field references is the following:"
+msgstr "La lokteniila sintakso por kampreferencoj estas la jena:"
+
+#: data/gtk/references_dialog.ui:240 data/gtk/references_dialog.ui:268
+msgid "Show Field Codes"
+msgstr "Montri kampkodojn"
+
+#: data/gtk/references_dialog.ui:269
+msgid "Identifier"
+msgstr "Identigilo"
+
+#: data/gtk/references_dialog.ui:326
+msgid "Reference"
+msgstr "Referenco"
+
+#: data/gtk/references_dialog.ui:365
+msgid ""
+"Each entry has a unique identifier called UUID. It can be found in the "
+"properties of the entry."
+msgstr ""
+"Ĉiu ero havas unikan identigilon nomatan UUID. Ĝi troveblas en la ecoj de la "
+"ero."
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/save_dialog.ui:4
+msgid "Unsaved Changes"
+msgstr "Nekonservitaj ŝanĝoj"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/save_dialog.ui:5
+msgid "Do you want to write all changes to the safe?"
+msgstr "Ĉu vi volas skribi ĉiujn ŝanĝojn en la sekurejon?"
+
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:423
+msgid "_Quit Without Saving"
+msgstr "_Eliri sen konservado"
+
+#. _Cancel exiting the program
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
+msgid "_Don't Quit"
+msgstr "_Ne eliri"
+
+#. _Save all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:12
+msgid "_Save and Quit"
+msgstr "_Konservi kaj eliri"
+
+#: data/gtk/settings_dialog.ui:14
+msgid "_Hide First Start Screen"
+msgstr "_Kaŝi ekranon de unua ekfunkciado"
+
+#: data/gtk/settings_dialog.ui:15
+msgid "Reopen last opened safe."
+msgstr "Remalfermi la lastan malfermitan sekurejon."
+
+#. TRANSLATORS Safe as in strongbox.
+#. NOTE: Safe as in strongbox
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
+msgid "Safe"
+msgstr "Sekurejo"
+
+#: data/gtk/settings_dialog.ui:27
+msgid "_Save Automatically"
+msgstr "_Konservi aŭtomate"
+
+#: data/gtk/settings_dialog.ui:28
+msgid "Save every change automatically."
+msgstr "Konservi ĉiun ŝanĝon aŭtomate."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:35
+#: data/org.gnome.World.Secrets.gschema.xml.in:112
+msgid "Enable Quick Unlock"
+msgstr "Ebligi rapidan malŝlosadon"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:36
+msgid ""
+"Re-unlock using the last four characters of the password for a single "
+"attempt."
+msgstr ""
+"Remalŝlosi uzante la lastajn kvar signojn de la pasvorto por unu provo."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:42
+msgid "Enable Fingerprint Unlock"
+msgstr "Ebligi malŝlosadon per fingrospuro"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:43
+msgid "Use the fingerprint reader to quickly unlock the safe."
+msgstr "Uzi la fingrospurlegiston por rapide malŝlosi la sekurejon."
+
+#: data/gtk/settings_dialog.ui:51 gsecrets/provider/pkcs11_provider.py:216
+msgid "Unlock"
+msgstr "Malŝlosi"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:54
+msgid "Remember Composite _Key"
+msgstr "Memori kombinitan _ŝlosilon"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:55
+msgid "Remember last used composite key."
+msgstr "Memori la lastan uzitan kombinitan ŝlosilon."
+
+#: data/gtk/settings_dialog.ui:70
+msgid "Password Generation"
+msgstr "Pasvortgenerado"
+
+#: data/gtk/settings_dialog.ui:73
+msgid "Password Length"
+msgstr "Pasvorta longo"
+
+#: data/gtk/settings_dialog.ui:74
+msgid "Number of characters when generating a password."
+msgstr "Nombro de signoj dum generado de pasvorto."
+
+#: data/gtk/settings_dialog.ui:88
+msgid "_Uppercase Characters"
+msgstr "_Majusklaj signoj"
+
+#: data/gtk/settings_dialog.ui:89
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "Uzi majusklajn signojn A-Z dum generado de pasvorto."
+
+#: data/gtk/settings_dialog.ui:96
+msgid "_Lowercase Characters"
+msgstr "_Minusklaj signoj"
+
+#: data/gtk/settings_dialog.ui:97
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "Uzi minusklajn signojn a-z dum generado de pasvorto."
+
+#: data/gtk/settings_dialog.ui:104
+msgid "_Numeric Characters"
+msgstr "_Ciferaj signoj"
+
+#: data/gtk/settings_dialog.ui:105
+msgid "Use numeric characters when generating a password."
+msgstr "Uzi ciferajn signojn dum generado de pasvorto."
+
+#: data/gtk/settings_dialog.ui:112
+msgid "_Special Characters"
+msgstr "_Specialaj signoj"
+
+#. ASCII is a proper name
+#: data/gtk/settings_dialog.ui:113
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr "Uzi ne-alfanumerajn ASCII-simbolojn dum generado de pasvorto."
+
+#: data/gtk/settings_dialog.ui:122
+msgid "Passphrase Generation"
+msgstr "Pasfrazgenerado"
+
+#: data/gtk/settings_dialog.ui:125
+msgid "Passphrase Length"
+msgstr "Pasfrazo longo"
+
+#: data/gtk/settings_dialog.ui:126
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Number of words to use when generating a passphrase."
+msgstr "Nombro de vortoj uzataj dum generado de pasfrazo."
+
+#: data/gtk/settings_dialog.ui:140
+msgid "Separator"
+msgstr "Apartigilo"
+
+#: data/gtk/settings_dialog.ui:150 data/gtk/settings_dialog.ui:153
+msgid "Security"
+msgstr "Sekureco"
+
+#: data/gtk/settings_dialog.ui:156
+msgid "Safe Lock Timeout"
+msgstr "Templimdaŭro por sekurejo-ŝlosado"
+
+#: data/gtk/settings_dialog.ui:157
+msgid "Lock safe on idle after X minutes."
+msgstr "Ŝlosi sekurejon dum neaktiveco post X minutoj."
+
+#: data/gtk/settings_dialog.ui:171
+msgid "Lock on _Session Lock"
+msgstr "Ŝlosi ĉe _sesia ŝlosado"
+
+#: data/gtk/settings_dialog.ui:172
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid "Automatically lock when the session is locked."
+msgstr "Aŭtomate ŝlosi kiam la sesio estas ŝlosita."
+
+#: data/gtk/settings_dialog.ui:179
+msgid "Clear Clipboard"
+msgstr "Viŝi tondujon"
+
+#: data/gtk/settings_dialog.ui:180
+msgid "Clear clipboard after X seconds."
+msgstr "Viŝi tondujon post X sekundoj."
+
+#: data/gtk/settings_dialog.ui:194
+msgid "Clear Recent List"
+msgstr "Viŝi liston de lastatempaj dosieroj"
+
+#: data/gtk/settings_dialog.ui:195
+msgid "Clear the recently opened safes list."
+msgstr "Viŝi liston de lastatempe malfermitaj sekurejoj."
+
+#: data/gtk/settings_dialog.ui:202
+msgid "Clear"
+msgstr "Viŝi"
+
+#: data/gtk/shortcuts_dialog.ui:6
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Programo"
+
+#: data/gtk/shortcuts_dialog.ui:9
+msgctxt "Shortcut window description"
+msgid "Create Safe"
+msgstr "Krei sekurejon"
+
+#: data/gtk/shortcuts_dialog.ui:15
+msgctxt "Shortcut window description"
+msgid "Go Back"
+msgstr "Iri reen"
+
+#: data/gtk/shortcuts_dialog.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Safe"
+msgstr "Malfermi sekurejon"
+
+#: data/gtk/shortcuts_dialog.ui:27
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Malfermi preferojn"
+
+#: data/gtk/shortcuts_dialog.ui:33
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Montri fuŝklavojn"
+
+#: data/gtk/shortcuts_dialog.ui:39
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "Fermi fenestron"
+
+#: data/gtk/shortcuts_dialog.ui:45
+msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Nova fenestro"
+
+#: data/gtk/shortcuts_dialog.ui:51
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Eliri"
+
+#: data/gtk/shortcuts_dialog.ui:59
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Sekurejo"
+
+#: data/gtk/shortcuts_dialog.ui:62
+msgctxt "Shortcut window description"
+msgid "Lock Safe"
+msgstr "Ŝlosi sekurejon"
+
+#: data/gtk/shortcuts_dialog.ui:68
+msgctxt "Shortcut window description"
+msgid "Save Safe"
+msgstr "Konservi sekurejon"
+
+#: data/gtk/shortcuts_dialog.ui:74
+msgctxt "Shortcut window description"
+msgid "Open Search"
+msgstr "Malfermi serĉon"
+
+#: data/gtk/shortcuts_dialog.ui:80
+msgctxt "Shortcut window description"
+msgid "Create Entry"
+msgstr "Krei eron"
+
+#: data/gtk/shortcuts_dialog.ui:86
+msgctxt "Shortcut window description"
+msgid "Create Group"
+msgstr "Krei grupon"
+
+#: data/gtk/shortcuts_dialog.ui:94
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Ero"
+
+#: data/gtk/shortcuts_dialog.ui:97
+msgctxt "Shortcut window description"
+msgid "Copy Password"
+msgstr "Kopii pasvorton"
+
+#: data/gtk/shortcuts_dialog.ui:103
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Kopii adreson"
+
+#: data/gtk/shortcuts_dialog.ui:109
+msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "Kopii uzantnomon"
+
+#: data/gtk/shortcuts_dialog.ui:115
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Kopii unufojaĵan pasvorton"
+
+#: data/gtk/shortcuts_dialog.ui:121
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Montri historion"
+
+#: data/gtk/shortcuts_dialog.ui:127
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Konservi en historio"
+
+#: data/gtk/unlock_database.ui:20
+msgid "Unlock Safe"
+msgstr "Malŝlosi sekurejon"
+
+#: data/gtk/unlock_database.ui:38
+msgid "Fingerprint Unlock available"
+msgstr "Malŝlosado per fingrospuro disponeblas"
+
+#: data/gtk/unlock_database.ui:65 gsecrets/provider/pkcs11_provider.py:218
+msgid "_Unlock"
+msgstr "_Malŝlosi"
+
+#: data/gtk/unlocked_database.ui:18
+msgid "Browser"
+msgstr "Foliumilo"
+
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
+msgid "Select Items"
+msgstr "Elekti erojn"
+
+#: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
+msgid "Go Back"
+msgstr "Iri reen"
+
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "_Nuligi"
+
+#: data/gtk/unlocked_database.ui:54 data/gtk/unlocked_database.ui:60
+msgid "Search Safe"
+msgstr "Serĉi en sekurejo"
+
+#: data/gtk/unlocked_database.ui:73
+msgid "_Clear"
+msgstr "_Viŝi"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/unlocked_database.ui:83
+msgid "Delete Selection"
+msgstr "Forigi elektitaĵon"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/gtk/unlocked_database.ui:93
+msgid "Move Selection"
+msgstr "Movi elektitaĵon"
+
+#: data/gtk/unlocked_database.ui:100
+msgid "Paste Selection"
+msgstr "Alglui elektitaĵon"
+
+#: data/gtk/unlocked_database.ui:125
+msgid "Select an Entry"
+msgstr "Elekti eron"
+
+#: data/gtk/unlocked_headerbar.ui:18
+msgid "New Entry or Group"
+msgstr "Nova ero aŭ grupo"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/gtk/unlocked_headerbar.ui:33
+msgid "Selection Mode"
+msgstr "Elekta reĝimo"
+
+#. s
+#: data/gtk/unlocked_headerbar.ui:54
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Save"
+msgstr "_Konservi"
+
+#. s
+#: data/gtk/unlocked_headerbar.ui:58
+msgid "_Lock"
+msgstr "_Ŝlosi"
+
+#: data/gtk/unlocked_headerbar.ui:64
+msgid "So_rting"
+msgstr "O_rdigo"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:66
+msgid "_A-Z"
+msgstr "_A-Z"
+
+#: data/gtk/unlocked_headerbar.ui:71
+msgid "_Newest First"
+msgstr "_Plej nova unue"
+
+#: data/gtk/unlocked_headerbar.ui:76
+msgid "_Oldest First"
+msgstr "_Plej malnova unue"
+
+#: data/gtk/unlocked_headerbar.ui:84
+msgid "New _Window"
+msgstr "Nova _fenestro"
+
+#: data/gtk/unlocked_headerbar.ui:88
+msgid "Sa_fe Settings"
+msgstr "_Agordoj de sekurejo"
+
+#: data/gtk/unlocked_headerbar.ui:110
+msgid "New _Entry"
+msgstr "Nova _ero"
+
+#: data/gtk/unlocked_headerbar.ui:114
+msgid "New _Group"
+msgstr "Nova _grupo"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/gtk/welcome_page.ui:11
+msgid "Secure Secrets"
+msgstr "Sekuraj sekretoj"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/gtk/welcome_page.ui:12
+msgid "Create or import a new Keepass safe"
+msgstr "Krei aŭ importi novan KeePass-sekurejon"
+
+#. Translators: Secrets is the app name, do not translate
+#: data/gtk/window.ui:4 data/org.gnome.World.Secrets.desktop.in.in:3
+msgid "Secrets"
+msgstr "Secrets"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "A password manager for GNOME"
+msgstr "Pasvortadministrilo por GNOME"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.World.Secrets.desktop.in.in:13
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;encrypt;secure;password;manager;"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Lock on session lock"
+msgstr "Ŝlosi ĉe sesia ŝlosado"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
+msgid "Reopen last opened database"
+msgstr "Remalfermi la lastan malfermitan datumbazon"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Aŭtomate malfermi la malŝlosman ekranon de la lasta malfermita datumbazo, "
+"alie montri la bonvenan ekranon."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
+msgid "Save every change automatically"
+msgstr "Konservi ĉiun ŝanĝon aŭtomate"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"Konservi ĉiun ŝanĝon tuj en la datumbazon. Bonvolu noti ke vi ne povas "
+"malnuligi ŝanĝojn se Aŭtomatkonservado estas ebligita."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
+msgid "Lock database after X minutes"
+msgstr "Ŝlosi datumbazon post X minutoj"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Aŭtomate ŝlosi vian datumbazon post donita nombro de minutoj por plibonigi "
+"la sekurecon."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
+msgid "Clear clipboard after X seconds"
+msgstr "Viŝi tondujon post X sekundoj"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr "Post kopiado de la pasvorto viŝi la tondujon pro sekurecaj kialoj."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Window size"
+msgstr "Fenestrograndeco"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "Remember the window size."
+msgstr "Memori la fenestrograndecon."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened databases"
+msgstr "Lastatempe malfermitaj datumbazoj"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "A list of the last opened databases."
+msgstr "Listo de lastatempe malfermitaj datumbazoj."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last opened database"
+msgstr "La lasta malfermita datumbazo"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "Path to the last opened database."
+msgstr "Vojo al la lasta malfermita datumbazo."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+msgid "Remember composite key"
+msgstr "Memori kombinitan ŝlosilon"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+msgid "Remember last used composite key for database unlocking."
+msgstr ""
+"Memori la lastan uzitan kombinitan ŝlosilon por malŝlosado de datumbazo."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
+msgid "Last used key provider"
+msgstr "Lasta uzita ŝlosil-provizanto"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
+msgid "Key provider for composite database unlocking."
+msgstr "Ŝlosil-provizanto por kombinita malŝlosado de datumbazo."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
+msgid "Remember unlock method"
+msgstr "Memori malŝlosadan metodon"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
+msgid "Remember last used unlock method for future database unlocking."
+msgstr ""
+"Memori la lastan uzitan malŝlosadan metodon por estonta malŝlosado de "
+"datumbazo."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
+msgid "Backup the database on unlock"
+msgstr "Savkopii datumbazon ĉe malŝlosado"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
+msgid ""
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
+msgstr ""
+"Se eraro okazas dum konservado de la datumbazo, savkopion troveblos ĉe "
+"~/.cache/secrets/backups"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
+msgid "Sorting order of groups and entries"
+msgstr "Ordigado de grupoj kaj eroj"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
+msgid "Order of the rows in the groups and entries view."
+msgstr "Ordo de vicoj en la vido de grupoj kaj eroj."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
+msgid "Use uppercases when generating a password"
+msgstr "Uzi majusklojn dum generado de pasvorto"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "Uzi majusklajn signojn A-Z dum generado de hazarda pasvorto."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
+msgid "Use lowercases when generating a password"
+msgstr "Uzi minusklojn dum generado de pasvorto"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "Uzi minusklajn signojn a-z dum generado de hazarda pasvorto."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
+msgid "Use numbers when generating a password"
+msgstr "Uzi nombrojn dum generado de pasvorto"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Uzi nombrajn signojn 0-9 dum generado de hazarda pasvorto."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
+msgid "Use symbols when generating a password"
+msgstr "Uzi simbolojn dum generado de pasvorto"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr "Uzi ne-alfanumerajn ASCII-simbolojn dum generado de hazarda pasvorto."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
+msgid "Password length when generating a password"
+msgstr "Pasvorta longo dum generado de pasvorto"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
+msgid "Number of single characters when generating a password."
+msgstr "Nombro de solaj signoj dum generado de pasvorto."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
+msgid "Number of words when generating a passphrase"
+msgstr "Nombro de vortoj dum generado de pasfrazo"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
+msgid "Separator when generating a passphrase"
+msgstr "Apartigilo dum generado de pasfrazo"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Word separator to use when generating a passphrase."
+msgstr "Vorta apartigilo uzata dum generado de pasfrazo."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:113
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four "
+"characters of the password. If the first try is wrong, the full password is "
+"needed to unlock the safe."
+msgstr ""
+"Kun rapida malŝlosado ebligita, sekurejon eblas reeniri uzante la lastajn "
+"kvar signojn de la pasvorto. Se la unua provo malsukcesas, la plena pasvorto "
+"estas bezonata por malŝlosi la sekurejon."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:117
+msgid "Enable Fingerprint Quick Unlock"
+msgstr "Ebligi rapidan malŝlosadon per fingrospuro"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:118
+msgid "Use the fingerprint reader to quick unlock a locked safe."
+msgstr "Uzi la fingrospurlegiston por rapide malŝlosi ŝlositan sekurejon."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
+msgid "@NAME@"
+msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Administri viajn pasvortojn"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
+msgid ""
+"Secrets is a password manager which makes use of the KeePass v.4 format. It "
+"integrates perfectly with the GNOME desktop and provides an easy and "
+"uncluttered interface for the management of password databases."
+msgstr ""
+"Secrets estas pasvortadministrilo kiu uzas la KeePass v.4-formaton. Ĝi "
+"integriĝas perfekte kun la GNOME-labortablo kaj provizas facilan kaj "
+"neŝarĝitan interfacon por administri pasvortdatumbazojn."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
+msgid "Password management"
+msgstr "Pasvorta administrado"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
+msgid "Safe unlocking"
+msgstr "Malŝlosado de sekurejo"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
+msgid "Safe creation"
+msgstr "Kreado de sekurejo"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander SEIDL"
+
+#: gsecrets/application.py:39
+msgid "Enable debug logging"
+msgstr "Ebligi sencimizadan protokoladon"
+
+#: gsecrets/attachment_warning_dialog.py:71
+#: gsecrets/attachment_warning_dialog.py:82
+msgid "Could not load attachment"
+msgstr "Ne eblis ŝargi aldonaĵon"
+
+#: gsecrets/create_database.py:65
+msgid "Passwords do not match"
+msgstr "Pasvortoj ne kongruas"
+
+#: gsecrets/create_database.py:80
+msgid "Unable to create database"
+msgstr "Ne eblas krei datumbazon"
+
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:346
+msgid "Failed to generate composite key"
+msgstr "Malsukcesis generi kombinitan ŝlosilon"
+
+#: gsecrets/entry_page.py:289
+msgid "Enter tag name"
+msgstr "Enigi nomon de etikedo"
+
+#: gsecrets/entry_page.py:319
+msgid "The tag already exists"
+msgstr "La etikedo jam ekzistas"
+
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:103
+msgid "Saved in history"
+msgstr "Konservita en historio"
+
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:164
+#: gsecrets/widgets/credentials_group.py:98
+msgid "Username copied"
+msgstr "Uzantnomo kopiita"
+
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:499
+msgid "Address copied"
+msgstr "Adreso kopiita"
+
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
+msgid "One-time password copied"
+msgstr "Unufojaĵa pasvorto kopiita"
+
+#: gsecrets/entry_page.py:406
+msgid "Could not open URL"
+msgstr "Ne eblis malfermi URL-on"
+
+#: gsecrets/entry_page.py:416
+msgid "The address is not valid"
+msgstr "La adreso estas nevalida"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: gsecrets/entry_page.py:453
+msgid "Select Attachments"
+msgstr "Elekti aldonaĵojn"
+
+#: gsecrets/entry_row.py:157 gsecrets/widgets/credentials_group.py:110
+msgid "Password copied"
+msgstr "Pasvorto kopiita"
+
+#: gsecrets/entry_row.py:172
+msgid "One-Time Password copied"
+msgstr "Unufojaĵa pasvorto kopiita"
+
+#: gsecrets/entry_row.py:186 gsecrets/group_row.py:137
+msgid "Title not Specified"
+msgstr "Titolo ne specifita"
+
+#: gsecrets/password_generator_popover.py:74
+msgid "Include Lowercase"
+msgstr "Inkluzivi minusklojn"
+
+#: gsecrets/password_generator_popover.py:76
+msgid "Exclude Lowercase"
+msgstr "Ekskludi minusklojn"
+
+#: gsecrets/password_generator_popover.py:79
+msgid "Include Uppercase"
+msgstr "Inkluzivi majusklojn"
+
+#: gsecrets/password_generator_popover.py:81
+msgid "Exclude Uppercase"
+msgstr "Ekskludi majusklojn"
+
+#: gsecrets/password_generator_popover.py:84
+msgid "Include Numbers"
+msgstr "Inkluzivi nombrojn"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Exclude Numbers"
+msgstr "Ekskludi nombrojn"
+
+#: gsecrets/password_generator_popover.py:89
+msgid "Include Symbols"
+msgstr "Inkluzivi simbolojn"
+
+#: gsecrets/password_generator_popover.py:91
+msgid "Exclude Symbols"
+msgstr "Ekskludi simbolojn"
+
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
+msgid "Keyfile"
+msgstr "Ŝlosilodosiero"
+
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
+msgid "Select Keyfile"
+msgstr "Elekti ŝlosilodosieron"
+
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
+msgid "Clear Keyfile"
+msgstr "Viŝi ŝlosilodosieron"
+
+#: gsecrets/provider/file_provider.py:70
+msgid "Select keyfile"
+msgstr "Elekti ŝlosilodosieron"
+
+#: gsecrets/provider/file_provider.py:108
+msgid "Could not load keyfile"
+msgstr "Ne eblis ŝargi ŝlosilodosieron"
+
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
+msgid "Generate Keyfile"
+msgstr "Generi ŝlosilodosieron"
+
+#: gsecrets/provider/file_provider.py:159
+msgid "Use a file to increase security"
+msgstr "Uzi dosieron por pliigi sekurecon"
+
+#: gsecrets/provider/file_provider.py:181
+msgid "Could not create keyfile"
+msgstr "Ne eblis krei ŝlosilodosieron"
+
+#: gsecrets/provider/pkcs11_provider.py:99
+msgid "No Smartcard"
+msgstr "Neniu inteligenta karto"
+
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "Neniu RSA-atestilo"
+
+#: gsecrets/provider/pkcs11_provider.py:119
+#: gsecrets/provider/pkcs11_provider.py:268
+msgid "Smartcard"
+msgstr "Inteligenta karto"
+
+#: gsecrets/provider/pkcs11_provider.py:120
+msgid "Select certificate"
+msgstr "Elekti atestilo"
+
+#: gsecrets/provider/pkcs11_provider.py:196
+msgid "No smartcard present"
+msgstr "Neniu inteligenta karto ĉeestas"
+
+#: gsecrets/provider/pkcs11_provider.py:197
+msgid "Please insert smartcard and retry."
+msgstr "Bonvolu enmeti inteligentan karton kaj reprovi."
+
+#: gsecrets/provider/pkcs11_provider.py:200
+#: gsecrets/widgets/database_settings_dialog.py:384
+msgid "_OK"
+msgstr "_Bone"
+
+#: gsecrets/provider/pkcs11_provider.py:216
+msgid "Unlock your smartcard"
+msgstr "Malŝlosi vian inteligentan karton"
+
+#: gsecrets/provider/pkcs11_provider.py:261
+msgid "Failed to unlock Smartcard"
+msgstr "Malsukcesis malŝlosi la inteligentan karton"
+
+#: gsecrets/provider/pkcs11_provider.py:269
+msgid "Use a smartcard"
+msgstr "Uzi inteligentan karton"
+
+#: gsecrets/provider/pkcs11_provider.py:323
+msgid "Refresh Certificate List"
+msgstr "Refreŝigi liston de atestiloj"
+
+#: gsecrets/provider/yubikey_provider.py:36
+msgid "No Key"
+msgstr "Neniu ŝlosilo"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:39
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] - Fendo {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:205
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:144
+msgid "Select key"
+msgstr "Elekti ŝlosilon"
+
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
+msgid "Select YubiKey slot"
+msgstr "Elekti YubiKey-fendon"
+
+#: gsecrets/provider/yubikey_provider.py:246
+msgid "Touch YubiKey"
+msgstr "Tuŝi YubiKey-on"
+
+#: gsecrets/recent_files_menu.py:29
+msgid "Recent Files"
+msgstr "Lastatempaj dosieroj"
+
+#: gsecrets/safe_element.py:43
+msgid "White"
+msgstr "Blanka"
+
+#: gsecrets/safe_element.py:45
+msgid "Blue"
+msgstr "Blua"
+
+#: gsecrets/safe_element.py:47
+msgid "Green"
+msgstr "Verda"
+
+#: gsecrets/safe_element.py:49
+msgid "Yellow"
+msgstr "Flava"
+
+#: gsecrets/safe_element.py:51
+msgid "Orange"
+msgstr "Oranĝa"
+
+#: gsecrets/safe_element.py:53
+msgid "Red"
+msgstr "Ruĝa"
+
+#: gsecrets/safe_element.py:55
+msgid "Purple"
+msgstr "Purpura"
+
+#: gsecrets/safe_element.py:57
+msgid "Brown"
+msgstr "Bruna"
+
+#: gsecrets/safe_element.py:673
+msgid "Clone"
+msgstr "Kloni"
+
+#. This shouldn't happen
+#. TODO Set the body of the message based on the error kind.
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
+#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
+#: gsecrets/widgets/window.py:422
+msgid "Could not save Safe"
+msgstr "Ne eblis konservi sekurejon"
+
+#: gsecrets/selection_manager.py:58
+msgid "Operation aborted: deleting currently active group"
+msgstr "Operacio nuligita: forigado de la aktuale aktiva grupo"
+
+#: gsecrets/selection_manager.py:106
+msgid "Warning"
+msgstr "Averto"
+
+#: gsecrets/selection_manager.py:108
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+"Vi forigas erojn el la rubujo, ĉi tiuj forigadoj ne estas nuligendeblaj."
+
+#: gsecrets/selection_manager.py:142
+msgid "Operation aborted: moving currently active group"
+msgstr "Operacio nuligita: movado de la aktuale aktiva grupo"
+
+#: gsecrets/selection_manager.py:155
+msgid "Move completed"
+msgstr "Movo finita"
+
+#: gsecrets/unlock_database.py:105
+msgid "Quick Unlock active"
+msgstr "Rapida malŝlosado aktiva"
+
+#. TRANSLATORS For example: "Safe ~/MySafe.kdbx is already open"
+#: gsecrets/unlock_database.py:150
+#, python-brace-format
+msgid "Safe {path} is already open"
+msgstr "Sekurejo {path} jam estas malfermita"
+
+#: gsecrets/unlock_database.py:241
+msgid "Failed to unlock Safe"
+msgstr "Malsukcesis malŝlosi sekurejon"
+
+#: gsecrets/unlock_database.py:409
+msgid "Please unlock using the password."
+msgstr "Bonvolu malŝlosi uzante la pasvorton."
+
+#: gsecrets/unlock_database.py:418
+msgid "Maximum tries reached. Please unlock using the password."
+msgstr "Maksimumo da provoj atingita. Bonvolu malŝlosi uzante la pasvorton."
+
+#: gsecrets/unlocked_database.py:251
+msgid "Safe saved"
+msgstr "Sekurejo konservita"
+
+#: gsecrets/unlocked_database.py:253
+msgid "No changes made"
+msgstr "Neniuj ŝanĝoj faritaj"
+
+#: gsecrets/unlocked_database.py:300
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "Ero forigita"
+msgstr[1] "{} eroj forigitaj"
+
+#: gsecrets/unlocked_database.py:305
+msgid "Deletion completed"
+msgstr "Forigado finita"
+
+#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
+msgid "Undo"
+msgstr "Malfari"
+
+#: gsecrets/unlocked_database.py:333
+msgid "Attribute deleted"
+msgstr "Atributo forigita"
+
+#: gsecrets/unlocked_database.py:362
+msgid "Copied"
+msgstr "Kopiita"
+
+#. NOTE: Notification that a safe has been locked.
+#: gsecrets/unlocked_database.py:462
+msgid "Safe locked due to inactivity"
+msgstr "Sekurejo ŝlosita pro neaktiveco"
+
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
+#: gsecrets/unlocked_database.py:700
+msgid "{} Selected"
+msgid_plural "{} Selected"
+msgstr[0] "{} elektita"
+msgstr[1] "{} elektita"
+
+#: gsecrets/widgets/add_attribute_dialog.py:36
+msgid "Attribute key contains an illegal character"
+msgstr "Atributa ŝlosilo enhavas nevalidan signon"
+
+#: gsecrets/widgets/add_attribute_dialog.py:46
+msgid "Attribute key already exists"
+msgstr "Atributa ŝlosilo jam ekzistas"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: gsecrets/widgets/attachment_entry_row.py:41
+msgid "Save Attachment"
+msgstr "Konservi aldonaĵon"
+
+#: gsecrets/widgets/attachment_entry_row.py:57
+msgid "Could not store attachment"
+msgstr "Ne eblis konservi aldonaĵon"
+
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
+msgid "Attribute copied"
+msgstr "Atributo kopiita"
+
+#: gsecrets/widgets/database_settings_dialog.py:128
+msgid "Insecure"
+msgstr "Nesekura"
+
+#: gsecrets/widgets/database_settings_dialog.py:130
+msgid "Weak"
+msgstr "Malforta"
+
+#: gsecrets/widgets/database_settings_dialog.py:137
+msgid "No weak passwords found"
+msgstr "Neniuj malfortaj pasvortoj trovitaj"
+
+#: gsecrets/widgets/database_settings_dialog.py:226
+msgid "No records found"
+msgstr "Neniuj registraĵoj trovitaj"
+
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
+msgid "Could not apply changes"
+msgstr "Ne eblis apliki ŝanĝojn"
+
+#. Still executes the finally block
+#: gsecrets/widgets/database_settings_dialog.py:320
+msgid "Changes Applied"
+msgstr "Ŝanĝoj aplikitaj"
+
+#: gsecrets/widgets/database_settings_dialog.py:374
+msgid "Could not change credentials"
+msgstr "Ne eblis ŝanĝi akreditaĵojn"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:379
+#: gsecrets/widgets/saving_conflict_dialog.py:22
+msgid "Conflicts While Saving"
+msgstr "Konfliktoj dum konservado"
+
+#: gsecrets/widgets/database_settings_dialog.py:381
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"La sekurejo estis modifita aliloke. Bonvolu solvi ĉi tiujn konfliktojn el la "
+"ĉeffenestro dum konservado."
+
+#. Encryption Algorithm
+#. Derivation Algorithm
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
+msgid "Unknown"
+msgstr "Nekonata"
+
+#. NOTE: AES is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:458
+msgid "AES 256-bit"
+msgstr "AES 256-bita"
+
+#. NOTE: ChaCha20 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:461
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 256-bita"
+
+#. NOTE: Twofish is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:464
+msgid "Twofish 256-bit"
+msgstr "Twofish 256-bita"
+
+#. NOTE: Argon2 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:472
+msgid "Argon2"
+msgstr "Argon2"
+
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:475
+msgid "Argon2id"
+msgstr "Argon2id"
+
+#. NOTE: AES-KDF is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:478
+msgid "AES-KDF"
+msgstr "AES-KDF"
+
+#: gsecrets/widgets/expiration_date_row.py:56
+#: gsecrets/widgets/expiration_date_row.py:64
+msgid "Entry expired"
+msgstr "Ero eksvalidiĝis"
+
+#: gsecrets/widgets/history_row.py:43
+msgid "Hide Text"
+msgstr "Kaŝi tekston"
+
+#: gsecrets/widgets/notes_dialog.py:105
+msgid "Selection copied"
+msgstr "Elektitaĵo kopiita"
+
+#: gsecrets/widgets/password_level_bar.py:22
+msgid "Password Strength"
+msgstr "Pasvortforto"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:18
+msgid "Unsaved Changes Conflict"
+msgstr "Konflikto de nekonservitaj ŝanĝoj"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:20
+msgid "Save and Quit"
+msgstr "Konservi kaj eliri"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Back up, Save, and Quit"
+msgstr "Savkopii, konservi kaj eliri"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Don't Quit"
+msgstr "Ne eliri"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:25
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"La sekurejo estis modifita aliloke. Konservado overwrite ilian version de la "
+"sekurejo per nia aktuala versio.\n"
+"\n"
+"Vi ankaŭ povas fari savkopion de ilia versio de la sekurejo."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:33
+msgid "_Back up and Save"
+msgstr "_Savkopii kaj konservi"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:45
+msgid "Save Backup"
+msgstr "Konservi savkopion"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:55
+msgid "Could not backup safe"
+msgstr "Ne eblis savkopii sekurejon"
+
+#: gsecrets/widgets/window.py:153
+msgid "Any file type"
+msgstr "Ĉia dosiertipo"
+
+#: gsecrets/widgets/window.py:160
+msgid "Select Safe"
+msgstr "Elekti sekurejon"
+
+#: gsecrets/widgets/window.py:177
+msgid "File does not have a valid path"
+msgstr "Dosiero ne havas validan vojon"
+
+#: gsecrets/widgets/window.py:210
+msgid "Safe is already open"
+msgstr "Sekurejo jam estas malfermita"
+
+#: gsecrets/widgets/window.py:244
+msgid "_Create"
+msgstr "_Krei"
+
+#: gsecrets/widgets/window.py:266
+msgid "Cannot create Safe: Safe is already open"
+msgstr "Ne eblas krei sekurejon: Sekurejo jam estas malfermita"
+
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
+msgid "Could not create new Safe"
+msgstr "Ne eblis krei novan sekurejon"
+
+#: gsecrets/widgets/window.py:399
+msgid "Could not save safe"
+msgstr "Ne eblis konservi sekurejon"
+
+#. TRANSLATORS Add your name to the translator credits list
+#: gsecrets/widgets/window.py:562
+msgid "translator-credits"
+msgstr "Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>"

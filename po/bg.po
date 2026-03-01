@@ -1,14 +1,14 @@
 # Bulgarian translation of secrets po-file.
-# Copyright (C) 2024, 2025 twlvnn kraftwerk <kraft_werk@tutanota.com>
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2024, 2025, 2026 twlvnn kraftwerk <kraft_werk@tutanota.com>
+# This file is distributed under the same license as the secrets package.
 # twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024, 2025, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-21 08:13+0000\n"
-"PO-Revision-Date: 2026-02-21 12:47+0100\n"
+"POT-Creation-Date: 2026-02-28 07:55+0000\n"
+"PO-Revision-Date: 2026-03-01 19:30+0100\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -101,7 +101,7 @@ msgstr "Цвят"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:240
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Създаване на сейф"
 
@@ -612,12 +612,12 @@ msgstr "Искате ли да запазите всичките промени 
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:421
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "_Спиране на програмата без запазване"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "_Програмата да продължи работа"
 
@@ -636,8 +636,8 @@ msgstr "Отваряне на последно отваряния сейф."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:232 gsecrets/widgets/window.py:244
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Сейф"
 
@@ -1521,7 +1521,7 @@ msgstr "Клониране"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:420
+#: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Неуспешно запазване на сейфа"
 
@@ -1775,35 +1775,35 @@ msgstr "Запазване на резервно копие"
 msgid "Could not backup safe"
 msgstr "Неуспешно запазване на резервно копие на сейфа"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "Всеки вид файл"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "Избор на сейф"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:177
 msgid "File does not have a valid path"
 msgstr "Неправилен път към файл"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "Safe is already open"
 msgstr "Сейфът вече е отворен"
 
-#: gsecrets/widgets/window.py:242
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "_Създаване"
 
-#: gsecrets/widgets/window.py:264
+#: gsecrets/widgets/window.py:266
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Неуспешно създаване на сейф: сейфът вече е отворен"
 
-#: gsecrets/widgets/window.py:307 gsecrets/widgets/window.py:320
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
 msgid "Could not create new Safe"
 msgstr "Неуспешно създаване на нов сейф"
 
-#: gsecrets/widgets/window.py:397
+#: gsecrets/widgets/window.py:399
 msgid "Could not save safe"
 msgstr "Неуспешно запазване на сейф"
 
@@ -1819,10 +1819,3 @@ msgstr ""
 "a> ни.\n"
 "Докладвайте за грешки в превода в <a href='https://fsa-bg.org/project/gtp/"
 "newticket'>съответния раздел</a>."
-
-msgid "_Z-A"
-msgstr "_Z-A"
-
-#, fuzzy
-#~ msgid "New Window"
-#~ msgstr "Нов прозорец"

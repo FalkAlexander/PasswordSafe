@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-01-31 10:06+0000\n"
-"PO-Revision-Date: 2026-02-05 07:11+0500\n"
+"POT-Creation-Date: 2026-02-28 07:55+0000\n"
+"PO-Revision-Date: 2026-03-01 19:49+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -101,7 +101,7 @@ msgstr "Түс"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:240
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Сейфті жасау"
 
@@ -610,12 +610,12 @@ msgstr "Барлық өзгерістерді сейфке жазуды қала
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:421
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "Сақтамастан _шығу"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "Шық_пау"
 
@@ -634,8 +634,8 @@ msgstr "Соңғы ашылған сейфті қайта ашу."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:232 gsecrets/widgets/window.py:244
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Сейф"
 
@@ -1031,8 +1031,9 @@ msgstr "GNOME-ға арналған парольдер менеджері"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;шифрлау;қауіпсіз;"
+#| msgid "keepass;encrypt;secure;"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;encrypt;secure;password;manager;шифрлау;қауіпсіз;пароль;басқарушы;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1518,7 +1519,7 @@ msgstr "Клондау"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:420
+#: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Сейфті сақтау мүмкін емес"
 
@@ -1770,35 +1771,35 @@ msgstr "Резервтік көшірмені сақтау"
 msgid "Could not backup safe"
 msgstr "Сейфтің резервтік көшірмесін жасау мүмкін емес"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "Кез келген файл түрі"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "Сейфті таңдау"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:177
 msgid "File does not have a valid path"
 msgstr "Файлдың адресі дұрыс емес"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "Safe is already open"
 msgstr "Сейф ашық тұр"
 
-#: gsecrets/widgets/window.py:242
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "_Жасау"
 
-#: gsecrets/widgets/window.py:264
+#: gsecrets/widgets/window.py:266
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Сейфті жасау мүмкін емес: сейф ашық тұр"
 
-#: gsecrets/widgets/window.py:307 gsecrets/widgets/window.py:320
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
 msgid "Could not create new Safe"
 msgstr "Жаңа сейфті жасау мүмкін емес"
 
-#: gsecrets/widgets/window.py:397
+#: gsecrets/widgets/window.py:399
 msgid "Could not save safe"
 msgstr "Сейфті сақтау мүмкін емес"
 

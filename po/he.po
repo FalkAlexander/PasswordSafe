@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-12-27 21:15+0000\n"
-"PO-Revision-Date: 2025-12-30 18:48+0200\n"
+"POT-Creation-Date: 2026-02-28 07:55+0000\n"
+"PO-Revision-Date: 2026-03-04 14:27+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -103,7 +103,7 @@ msgstr "צבע"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "יצירת כספת"
 
@@ -146,18 +146,18 @@ msgid "_Open Safe"
 msgstr "_פתיחת כספת"
 
 #: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "ה_עדפות"
 
 #: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_צירופי מקשים"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:106
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_על אודות Secrets"
 
@@ -479,8 +479,7 @@ msgstr "היסטוריית ססמאות"
 msgid "_Open"
 msgstr "_פתיחה"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:84
-#: data/gtk/welcome_page.ui:18
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "כספת _חדשה"
 
@@ -615,12 +614,12 @@ msgstr "לכתוב את כל השינויים לכספת?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:419
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "ל_צאת בלי לשמור"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "_לא לצאת"
 
@@ -639,8 +638,8 @@ msgstr "לפתוח את הכספת האחרונה שנפתחה."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "כספת"
 
@@ -996,19 +995,19 @@ msgstr "_חדש בהתחלה"
 msgid "_Oldest First"
 msgstr "_ישן בהתחלה"
 
-#: data/gtk/unlocked_headerbar.ui:88
+#: data/gtk/unlocked_headerbar.ui:84
 msgid "New _Window"
 msgstr "חלון _חדש"
 
-#: data/gtk/unlocked_headerbar.ui:92
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "ה_גדרות כספת"
 
-#: data/gtk/unlocked_headerbar.ui:114
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "_רשומה חדשה"
 
-#: data/gtk/unlocked_headerbar.ui:118
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "_קבוצה חדשה"
 
@@ -1033,8 +1032,8 @@ msgstr "מנהל ססמאות ל־GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "‫keepass;הצפנה;מוצפן;מפתח;מאובטח;אבטחה;ססמה;סיסמא;ססמה;ססמא;"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "‫keepass;הצפנה;מוצפן;מפתח;מאובטח;אבטחה;ססמה;סיסמא;ססמה;ססמא;מנהל;ניהול;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1513,7 +1512,7 @@ msgstr "שכפול"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:418
+#: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "לא ניתן לשמור את הכספת"
 
@@ -1548,15 +1547,15 @@ msgstr "שחרור נעילה מהירה פעיל"
 msgid "Safe {path} is already open"
 msgstr "הכספת {path} כבר פתוחה"
 
-#: gsecrets/unlock_database.py:239
+#: gsecrets/unlock_database.py:241
 msgid "Failed to unlock Safe"
 msgstr "שחרור נעילת הכספת נכשל"
 
-#: gsecrets/unlock_database.py:407
+#: gsecrets/unlock_database.py:409
 msgid "Please unlock using the password."
 msgstr "נא לשחרר את הנעילה עם הסיסמה."
 
-#: gsecrets/unlock_database.py:416
+#: gsecrets/unlock_database.py:418
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr "הגעת למספר הניסיונות המרבי. נא לשחרר באמצעות הסיסמה."
 
@@ -1767,35 +1766,35 @@ msgstr "שמירת גיבוי"
 msgid "Could not backup safe"
 msgstr "לא ניתן לגבות את הכספת"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "כל סוג של קובץ"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "בחירת כספת"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:177
 msgid "File does not have a valid path"
 msgstr "לקובץ אין נתיב תקף"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "Safe is already open"
 msgstr "הכספת כבר פתוחה"
 
-#: gsecrets/widgets/window.py:240
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "י_צירה"
 
-#: gsecrets/widgets/window.py:262
+#: gsecrets/widgets/window.py:266
 msgid "Cannot create Safe: Safe is already open"
 msgstr "לא ניתן ליצור כספת: הכספת כבר פתוחה"
 
-#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
 msgid "Could not create new Safe"
 msgstr "לא ניתן ליצור כספת חדשה"
 
-#: gsecrets/widgets/window.py:395
+#: gsecrets/widgets/window.py:399
 msgid "Could not save safe"
 msgstr "לא ניתן לשמור את הכספת"
 

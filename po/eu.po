@@ -1,13 +1,13 @@
 # Basque translation for PasswordSafe.
 # Copyright (C) 2019 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
-# Asier Saratsua Garmendia <asiersarasua@ni.eus>, 2019, 2021, 2023, 2024, 2025.
+# Asier Saratsua Garmendia <asiersarasua@ni.eus>, 2019, 2021, 2023, 2024, 2025, 2026.
 #
 msgid ""
 msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-09-13 17:51+0000\n"
-"PO-Revision-Date: 2025-09-14 10:00+0100\n"
+"POT-Creation-Date: 2026-02-28 07:55+0000\n"
+"PO-Revision-Date: 2026-03-07 10:00+0100\n"
 "Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -97,7 +97,7 @@ msgstr "Kolorea"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Sortu kutxa gotorra"
 
@@ -140,18 +140,18 @@ msgid "_Open Safe"
 msgstr "_Ireki kutxa gotorra"
 
 #: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Hobespenak"
 
 #: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "Las_ter-teklak"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:106
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "Secrets aplikazioari _buruz"
 
@@ -297,6 +297,10 @@ msgid ""
 "sent online! The following passwords have been leaked:"
 msgstr "Galdetu linean ea zure pasahitza hackeatu duten. Pasahitza ez da internet bidez bidaliko. Honako pasahitzak filtratu dira:"
 
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Laguntza"
+
 #: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
 msgstr "Sarrera-menua"
@@ -409,15 +413,15 @@ msgstr "Kendu"
 msgid "Select Entry"
 msgstr "Hautatu sarrera"
 
-#: data/gtk/entry_row.ui:82
+#: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
 msgstr "Kopiatu denbora bateko pasahitza"
 
-#: data/gtk/entry_row.ui:93
+#: data/gtk/entry_row.ui:92
 msgid "Copy Username"
 msgstr "Kopiatu erabiltzaile-izena"
 
-#: data/gtk/entry_row.ui:103
+#: data/gtk/entry_row.ui:102
 msgid "Copy Password"
 msgstr "Kopiatu pasahitza"
 
@@ -445,7 +449,7 @@ msgstr "Talde-menua"
 msgid "Select Group"
 msgstr "Hautatu taldea"
 
-#: data/gtk/group_row.ui:68
+#: data/gtk/group_row.ui:67
 msgid "Edit"
 msgstr "Editatu"
 
@@ -465,8 +469,7 @@ msgstr "Pasahitzen historia"
 msgid "_Open"
 msgstr "_Ireki"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:84
-#: data/gtk/welcome_page.ui:18
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "_Kutxa gotor berria"
 
@@ -599,12 +602,12 @@ msgstr "Aldaketak guztiak kutxa gotorrean idatzi nahi dituzu?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:419
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "_Irten gorde gabe"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "_Ez irten"
 
@@ -623,8 +626,8 @@ msgstr "Berrireki irekitako azken kutxa gotorra."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Segurua"
 
@@ -979,19 +982,19 @@ msgstr "_Berriena lehena"
 msgid "_Oldest First"
 msgstr "Za_harrena lehena"
 
-#: data/gtk/unlocked_headerbar.ui:88
+#: data/gtk/unlocked_headerbar.ui:84
 msgid "New _Window"
 msgstr "Leiho _berria"
 
-#: data/gtk/unlocked_headerbar.ui:92
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "Kut_xa gotorren ezarpenak"
 
-#: data/gtk/unlocked_headerbar.ui:114
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "_Sarrera berria"
 
-#: data/gtk/unlocked_headerbar.ui:118
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "_Talde berria"
 
@@ -1016,8 +1019,8 @@ msgstr "Pasahitzen kudeatzailea GNOMErako"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;zifratu;segurua;"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;zifratu;segurua;pasahitza;kudeatzailea;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1209,20 +1212,20 @@ msgid ""
 "uncluttered interface for the management of password databases."
 msgstr "Secrets aplikazioa Keepass v.4 formatua erabiltzen duen pasahitz-kudeatzaile bat da. GNOME mahaigainean ongi integratzen da eta interfaze erraz eta garbia eskaintzen du pasahitzen datu-baseak kudeatzeko."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:395
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
 msgid "Password management"
 msgstr "Pasahitz-kudeaketa"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:399
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
 msgid "Safe unlocking"
 msgstr "Kutxa gotorraren desblokeoa"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:403
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
 msgid "Safe creation"
 msgstr "Kutxa gotorraren sorrera"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:416
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1475,7 +1478,7 @@ msgstr "Morea"
 msgid "Brown"
 msgstr "Marroia"
 
-#: gsecrets/safe_element.py:689
+#: gsecrets/safe_element.py:673
 msgid "Clone"
 msgstr "Klonatu"
 
@@ -1483,7 +1486,7 @@ msgstr "Klonatu"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:418
+#: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Ezin izan da kutxa gotorra gorde"
 
@@ -1518,15 +1521,15 @@ msgstr "Desblokeo azkarra aktibo"
 msgid "Safe {path} is already open"
 msgstr "{path} kutxa gotorra irekita dago jadanik"
 
-#: gsecrets/unlock_database.py:239
+#: gsecrets/unlock_database.py:241
 msgid "Failed to unlock Safe"
 msgstr "Huts egin du kutxa gotorra desblokeatzeak"
 
-#: gsecrets/unlock_database.py:407
+#: gsecrets/unlock_database.py:409
 msgid "Please unlock using the password."
 msgstr "Desblokeatu pasahitza erabiliz."
 
-#: gsecrets/unlock_database.py:416
+#: gsecrets/unlock_database.py:418
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr "Gehieneko saiakera kopurua erabili da. Desblokeatu pasahitza erabiliz."
 
@@ -1731,35 +1734,35 @@ msgstr "Gorde babeskopia"
 msgid "Could not backup safe"
 msgstr "Ezin izan da kutxa gotorraren babeskopia egin"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "Edozein fitxategi mota"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "Hautatu kutxa gotorra"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:177
 msgid "File does not have a valid path"
 msgstr "Fitxategiak ez du baliozko bide-izenik."
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "Safe is already open"
 msgstr "Kutxa gotorra dagoeneko irekita dago"
 
-#: gsecrets/widgets/window.py:240
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "_Sortu"
 
-#: gsecrets/widgets/window.py:262
+#: gsecrets/widgets/window.py:266
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Ezin da kutxa gotorra sortu: dagoeneko irekita dago"
 
-#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
 msgid "Could not create new Safe"
 msgstr "Ezin da kutxa gotor berria sortu"
 
-#: gsecrets/widgets/window.py:395
+#: gsecrets/widgets/window.py:399
 msgid "Could not save safe"
 msgstr "Ezin izan da kutxa gotorra gorde"
 

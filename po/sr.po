@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
 "POT-Creation-Date: 2026-02-28 07:55+0000\n"
-"PO-Revision-Date: 2026-03-20 10:55+0100\n"
+"PO-Revision-Date: 2026-03-20 11:10+0100\n"
 "Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Poedit 3.9\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
@@ -58,8 +59,12 @@ msgstr "Безбедносни подаци"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
 #: data/gtk/attachment_warning_dialog.ui:5
-msgid "It is possible that external applications will create unencrypted hidden or temporary copies of this attachment file! Please proceed with caution."
-msgstr "Спољни програми могу направити скривене нешифроване или привремене примерке ове датотеке у прилогу. Обазриво наставите."
+msgid ""
+"It is possible that external applications will create unencrypted hidden or temporary copies of "
+"this attachment file! Please proceed with caution."
+msgstr ""
+"Спољни програми могу направити скривене нешифроване или привремене примерке ове датотеке у "
+"прилогу. Обазриво наставите."
 
 #: data/gtk/attachment_warning_dialog.ui:9
 msgid "_Back"
@@ -103,7 +108,8 @@ msgstr "Направите сеф"
 msgid "Back"
 msgstr "Назад"
 
-#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:40
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:40
 msgid "Main Menu"
 msgstr "Главни изборник"
 
@@ -111,7 +117,8 @@ msgstr "Главни изборник"
 msgid "Protect your safe"
 msgstr "Заштитите ваш сеф"
 
-#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23 data/gtk/references_dialog.ui:177
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
+#: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Лозинка"
 
@@ -135,16 +142,19 @@ msgstr "Сеф је успешно направљен"
 msgid "_Open Safe"
 msgstr "_Отвори сеф"
 
-#: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38 data/gtk/unlocked_headerbar.ui:94
+#: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Поставке"
 
-#: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42 data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "Пречице та_статуре"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_О Тајнама"
 
@@ -152,11 +162,13 @@ msgstr "_О Тајнама"
 msgid "_Username"
 msgstr "_Корисничко име"
 
-#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47 data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:131 data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:345
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47 data/gtk/entry_page.ui:93
+#: data/gtk/entry_page.ui:131 data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:345
 msgid "Copy"
 msgstr "Умножи"
 
-#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31 gsecrets/create_database.py:40
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
 msgid "Generate New Password"
 msgstr "Направи нову лозинку"
 
@@ -184,11 +196,13 @@ msgstr "Потврдите нову лозинку"
 msgid "New Additional Credentials"
 msgstr "Нови додатни акредитиви"
 
-#: data/gtk/database_settings_dialog.ui:75 gsecrets/widgets/database_settings_dialog.py:334 gsecrets/widgets/database_settings_dialog.py:396
+#: data/gtk/database_settings_dialog.ui:75 gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
 msgstr "П_римени измене"
 
-#: data/gtk/database_settings_dialog.ui:93 data/gtk/settings_dialog.ui:8 data/gtk/settings_dialog.ui:11
+#: data/gtk/database_settings_dialog.ui:93 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
 msgid "General"
 msgstr "Опште"
 
@@ -223,7 +237,7 @@ msgstr "Величина датотеке"
 #. KeePass is a proper noun
 #: data/gtk/database_settings_dialog.ui:148
 msgid "KeePass Version"
-msgstr "Издање Кипаса"
+msgstr "Издање Кипеса"
 
 #: data/gtk/database_settings_dialog.ui:157
 msgid "Creation Date"
@@ -279,8 +293,12 @@ msgid "Check passwords for online breaches"
 msgstr "Провери лозинке за мрежне пробоје"
 
 #: data/gtk/database_settings_dialog.ui:251
-msgid "Ask online whether your passwords have been hacked. The passwords won't be sent online! The following passwords have been leaked:"
-msgstr "Питајте на мрежи да ли су ваше лозинке хаковане. Лозинке неће бити послате на мрежу! Следеће лозинке су процуреле:"
+msgid ""
+"Ask online whether your passwords have been hacked. The passwords won't be sent online! The "
+"following passwords have been leaked:"
+msgstr ""
+"Питајте на мрежи да ли су ваше лозинке хаковане. Лозинке неће бити послате на мрежу! Следеће "
+"лозинке су процуреле:"
 
 #: data/gtk/database_settings_dialog.ui:261
 msgid "Help"
@@ -319,7 +337,8 @@ msgstr "Једнократна _тајна лозинке"
 msgid "Could not Generate OTP Token"
 msgstr "Не могу да створим ОТП скупину"
 
-#: data/gtk/entry_page.ui:157 data/gtk/group_page.ui:34 data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
+#: data/gtk/entry_page.ui:157 data/gtk/group_page.ui:34 data/gtk/notes_dialog.ui:6
+#: data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Белешке"
 
@@ -464,7 +483,8 @@ msgstr "_Умножи"
 msgid "Search"
 msgstr "Потражи"
 
-#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117 data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
 msgid "Password"
 msgstr "Лозинка"
 
@@ -513,7 +533,8 @@ msgstr "Датум стварања"
 msgid "Code"
 msgstr "Кȏд"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:241 data/gtk/references_dialog.ui:337
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:241
+#: data/gtk/references_dialog.ui:337
 msgid "Property"
 msgstr "Својство"
 
@@ -562,7 +583,8 @@ msgid "Reference"
 msgstr "Референца"
 
 #: data/gtk/references_dialog.ui:365
-msgid "Each entry has a unique identifier called UUID. It can be found in the properties of the entry."
+msgid ""
+"Each entry has a unique identifier called UUID. It can be found in the properties of the entry."
 msgstr "Сваки унос садржи јединствени одредник звани УУИД. Можете га наћи у својствима уноса."
 
 #. Dialog title which informs the user about unsaved changes.
@@ -576,7 +598,8 @@ msgid "Do you want to write all changes to the safe?"
 msgstr "Да ли желите да упишете све измене у сеф?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24 gsecrets/widgets/window.py:423
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "_Изађи без чувања"
 
@@ -600,7 +623,8 @@ msgstr "Поново отворите последњи сеф."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149 gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149 gsecrets/widgets/window.py:234
+#: gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Сеф"
 
@@ -881,7 +905,9 @@ msgstr "Изабери ставке"
 msgid "Go Back"
 msgstr "Иди назад"
 
-#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296 gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111 gsecrets/widgets/saving_conflict_dialog.py:31
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
+#: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Откажи"
 
@@ -937,7 +963,7 @@ msgstr "_Ређање"
 #. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
-msgstr "_A-Z"
+msgstr "_А-Ш"
 
 #: data/gtk/unlocked_headerbar.ui:71
 msgid "_Newest First"
@@ -971,7 +997,7 @@ msgstr "Безбедне Тајне"
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
 #: data/gtk/welcome_page.ui:12
 msgid "Create or import a new Keepass safe"
-msgstr "Направите или увезите нови Кипас сеф"
+msgstr "Направите или увезите нови Кипес сеф"
 
 #. Translators: Secrets is the app name, do not translate
 #: data/gtk/window.ui:4 data/org.gnome.World.Secrets.desktop.in.in:3
@@ -985,7 +1011,7 @@ msgstr "Управник лозинки за Гном"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
 msgid "keepass;encrypt;secure;password;manager;"
-msgstr "keepass;encrypt;secure;password;manager;кипас;кеепас;шифровање;безбедно;лозинка;управник;"
+msgstr "keepass;encrypt;secure;password;manager;кипас;кипес;кеепас;шифровање;безбедно;лозинка;управник;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -996,16 +1022,24 @@ msgid "Reopen last opened database"
 msgstr "Поново отвари последње отварану базу"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:18
-msgid "Automatically open the unlock screen of the last opened database, otherwise show the welcome screen."
-msgstr "Сам ће отворити екран за откључавање последње отваране базе, у супротном ће приказати екран добродошлице."
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise show the welcome "
+"screen."
+msgstr ""
+"Сам ће отворити екран за откључавање последње отваране базе, у супротном ће приказати екран "
+"добродошлице."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Save every change automatically"
 msgstr "Самостално чува сваку измену"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:23
-msgid "Save every change you made instantly into the database. Please note that you cannot revert changes if Autosave is enabled."
-msgstr "Сам ће чувати сваку начињену измену у базу. Знајте да не можете опозвати измене ако је ово укључено."
+msgid ""
+"Save every change you made instantly into the database. Please note that you cannot revert "
+"changes if Autosave is enabled."
+msgstr ""
+"Сам ће чувати сваку начињену измену у базу. Знајте да не можете опозвати измене ако је ово "
+"укључено."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Lock database after X minutes"
@@ -1076,8 +1110,11 @@ msgid "Backup the database on unlock"
 msgstr "Прави резерву базе при откључавању"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:68
-msgid "If an error occurs while saving the database, a backup can be found at ~/.cache/secrets/backups"
-msgstr "Ако се догоди грешка приликом чувања базе, резерва се може наћи у путањи „~/.cache/secrets/backups“"
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/.cache/secrets/backups"
+msgstr ""
+"Ако се догоди грешка приликом чувања базе, резерва се може наћи у путањи „~/.cache/secrets/"
+"backups“"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
@@ -1140,8 +1177,12 @@ msgid "Word separator to use when generating a passphrase."
 msgstr "Раздвајач речи који ће се користити приликом стварања фразе."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:113
-msgid "With quick unlock enabled, a safe can be re-entered using the last four characters of the password. If the first try is wrong, the full password is needed to unlock the safe."
-msgstr "Када је брзо откључавање омогућено, сефу се може поново приступити помоћу последња четири знака лозинке. Ако је први покушај погрешан, потребна је пуна лозинка за откључавање сефа."
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four characters of the "
+"password. If the first try is wrong, the full password is needed to unlock the safe."
+msgstr ""
+"Када је брзо откључавање омогућено, сефу се може поново приступити помоћу последња четири знака "
+"лозинке. Ако је први покушај погрешан, потребна је пуна лозинка за откључавање сефа."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:117
 msgid "Enable Fingerprint Quick Unlock"
@@ -1161,9 +1202,12 @@ msgstr "Управљајте вашим лозинкама"
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
 msgid ""
-"Secrets is a password manager which makes use of the KeePass v.4 format. It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management "
-"of password databases."
-msgstr "Тајне је управник лозинки који користи формат „Keepass“ 4. Савршено се уклапа у Гномову радну површ и пружа једноставно и прегледно сучеље за управљање базама лозинки."
+"Secrets is a password manager which makes use of the KeePass v.4 format. It integrates "
+"perfectly with the GNOME desktop and provides an easy and uncluttered interface for the "
+"management of password databases."
+msgstr ""
+"Тајне је управник лозинки који користи формат „Keepass“ 4. Савршено се уклапа у Гномову радну "
+"површ и пружа једноставно и прегледно сучеље за управљање базама лозинки."
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
 msgid "Password management"
@@ -1198,7 +1242,8 @@ msgstr "Лозинке се не подударају"
 msgid "Unable to create database"
 msgstr "Не могу да направим базу података"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142 gsecrets/widgets/database_settings_dialog.py:346
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Failed to generate composite key"
 msgstr "Није успело стварање сложеног кључа"
 
@@ -1283,7 +1328,8 @@ msgstr "Укључи симболе"
 msgid "Exclude Symbols"
 msgstr "Искључи симболе"
 
-#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131 gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
 msgid "Keyfile"
 msgstr "Датотека кључа"
 
@@ -1428,7 +1474,8 @@ msgstr "Клонирај"
 
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
-#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39 gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535 gsecrets/widgets/window.py:422
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39 gsecrets/unlocked_database.py:248
+#: gsecrets/unlocked_database.py:535 gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Не могу да сачувам Сеф"
 
@@ -1517,7 +1564,7 @@ msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} изабран"
 msgstr[1] "{} изабрана"
-msgstr[2] "{} _изабраних"
+msgstr[2] "{} изабраних"
 msgstr[3] "{} изабран"
 
 #: gsecrets/widgets/add_attribute_dialog.py:36
@@ -1557,7 +1604,8 @@ msgstr "Нису пронађене слабе лозинке"
 msgid "No records found"
 msgstr "Нису пронађени записи"
 
-#: gsecrets/widgets/database_settings_dialog.py:313 gsecrets/widgets/database_settings_dialog.py:317
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
 msgid "Could not apply changes"
 msgstr "Не могу да применим измене"
 
@@ -1576,12 +1624,15 @@ msgid "Conflicts While Saving"
 msgstr "Сукоби приликом чувања"
 
 #: gsecrets/widgets/database_settings_dialog.py:381
-msgid "The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving."
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts from the main window "
+"when saving."
 msgstr "Сеф је изменио неко други. Решите ове сукобе у главном прозору приликом чувања."
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:454 gsecrets/widgets/database_settings_dialog.py:468
+#: gsecrets/widgets/database_settings_dialog.py:454
+#: gsecrets/widgets/database_settings_dialog.py:468
 msgid "Unknown"
 msgstr "Непознато"
 
@@ -1603,17 +1654,17 @@ msgstr "Twofish 256-бита"
 #. NOTE: Argon2 is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:472
 msgid "Argon2"
-msgstr "Argon2"
+msgstr "Аргон2"
 
 #. NOTE: Argon2id is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:475
 msgid "Argon2id"
-msgstr "Argon2id"
+msgstr "Аргон2ид"
 
 #. NOTE: AES-KDF is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:478
 msgid "AES-KDF"
-msgstr "AES-KDF"
+msgstr "АЕС-КДФ"
 
 #: gsecrets/widgets/expiration_date_row.py:56 gsecrets/widgets/expiration_date_row.py:64
 msgid "Entry expired"
@@ -1651,7 +1702,8 @@ msgstr "Не затварај"
 #. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
 #: gsecrets/widgets/saving_conflict_dialog.py:25
 msgid ""
-"The safe was modified from somewhere else. Saving will overwrite their version of the safe with our current version.\n"
+"The safe was modified from somewhere else. Saving will overwrite their version of the safe with "
+"our current version.\n"
 "\n"
 " You can also make a backup of their version of the safe."
 msgstr ""
@@ -1709,386 +1761,6 @@ msgstr "Не могу да сачувам Сеф"
 msgid "translator-credits"
 msgstr ""
 "Марко М. Костић <marko.m.kostic@gmail.com>\n"
-"Мирослав Николић <miroslavnikolic@rocketmail.com>\r\n"
+"Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "\n"
 "https://гном.срб — превод Гнома на српски језик."
-
-#~ msgid "Add"
-#~ msgstr "Додај"
-
-#~ msgid "Use a password to secure your safe."
-#~ msgstr "Користите лозинку да бисте осигурали ваш сеф."
-
-#~ msgid "_Keyfile"
-#~ msgstr "_Датотека кључа"
-
-#~ msgid "_Composite"
-#~ msgstr "Двостру_ко"
-
-#~ msgid "Use a password in combination with a keyfile to secure your safe."
-#~ msgstr "Користите лозинку уз датотеку кључа да бисте осигурали ваш сеф."
-
-#~ msgid "Set password for safe."
-#~ msgstr "Подесите лозинку за сеф."
-
-#~ msgid "Next"
-#~ msgstr "Следеће"
-
-#~ msgid "Password Match Check"
-#~ msgstr "Провера подударања лозинке"
-
-#~ msgid "Repeat password for safe."
-#~ msgstr "Поновите лозинку сефа."
-
-#~ msgid "Check"
-#~ msgstr "Провери"
-
-#~ msgid "Match Check Failed"
-#~ msgstr "Провера подударања није успела"
-
-#~ msgid "Please try again."
-#~ msgstr "Покушајте поново."
-
-#~ msgid "_Confirm"
-#~ msgstr "П_отврди"
-
-#~ msgid "Set keyfile for safe"
-#~ msgstr "Подеси датотеку кључа за сеф"
-
-#~ msgid "_Select current keyfile if any"
-#~ msgstr "_Изабери тренутну датотеку кључа ако је има"
-
-#~ msgid "(Optional) _Generate new keyfile"
-#~ msgstr "(Изборно) _Направи нову датотеку кључа"
-
-#~ msgid "Menu"
-#~ msgstr "Изборник"
-
-#~ msgid "_Add Attribute"
-#~ msgstr "_Додај особину"
-
-#~ msgid "Enter character here…"
-#~ msgstr "Унесите знак овде…"
-
-#~ msgid "Enter Search Term"
-#~ msgstr "Унесите појам за претрагу"
-
-#~ msgid "Select _All"
-#~ msgstr "Из_абери све"
-
-#~ msgid "_Dark Theme"
-#~ msgstr "Та_мна тема"
-
-#~ msgid "Use dark GTK theme."
-#~ msgstr "Користи тамну Гтк тему."
-
-#~ msgid "_Select Keyfile"
-#~ msgstr "_Изабери датотеку кључа"
-
-#~ msgid "_Z-A"
-#~ msgstr "_Z-A"
-
-#~ msgid "Securely store your passwords, notes and data. <b>Create</b> or <b>import</b> a new Keepass safe."
-#~ msgstr "Безбедно чувајте ваше лозинке, белешке и податке. <b>Направите</b> или <b>увезите</b> нови сеф Кипеса."
-
-#~ msgid "Use dark GTK theme"
-#~ msgstr "Користи тамну ГТК тему"
-
-#~ msgid "Use the dark variant of your GTK+ theme. Please note that not every GTK+ theme has a dark variant."
-#~ msgstr "Користиће тамну варијанту ваше ГТК+ теме. Знајте да тамна варијанта није доступна у свакој ГТК+ теми."
-
-#~ msgid "Error: File {} does not exist"
-#~ msgstr "Грешка: Датотека „{}“ не постоји"
-
-#~ msgid "Error: Safe {} is already open"
-#~ msgstr "Грешка: Сеф „{}“ је већ отворен"
-
-#~ msgid "Generating…"
-#~ msgstr "Правим…"
-
-#~ msgid "Generate"
-#~ msgstr "Направи"
-
-#~| msgid "Could not backup safe"
-#~ msgid "Could not launch url"
-#~ msgstr "Не могу да покренем адресу"
-
-#~ msgid "Username not specified"
-#~ msgstr "Корисничко име није наведено"
-
-#~ msgid "_Try Again"
-#~ msgstr "_Покушај поново"
-
-#~ msgid "Select Current Keyfile"
-#~ msgstr "Изаберите тренутну датотеку кључа"
-
-#~ msgid "Ok"
-#~ msgstr "У реду"
-
-#~ msgid "Cancel"
-#~ msgstr "Откажи"
-
-#~ msgid "Delete"
-#~ msgstr "Обриши"
-
-#~ msgid "Exclude"
-#~ msgstr "Искључи"
-
-#~ msgid "Include"
-#~ msgstr "Укључи"
-
-#~ msgid "KeePass 3.1/4 Database"
-#~ msgstr "KeePass 3.1/4 база података"
-
-#~ msgid "Learn more about Secrets"
-#~ msgstr "Сазнајте више о Тајнама"
-
-#~ msgid "_New"
-#~ msgstr "_Нова"
-
-#~ msgid "C_onfirm"
-#~ msgstr "П_отврди"
-
-#~ msgid "_Current"
-#~ msgstr "_Тренутна"
-
-#~ msgid "New Safe"
-#~ msgstr "Нови сеф"
-
-#~ msgid "Open Safe"
-#~ msgstr "Отвори сеф"
-
-#~ msgid "The kdb Format is not Supported"
-#~ msgstr "Формат кбд није подржан"
-
-#~ msgid "Please Wait. Another Save is Running."
-#~ msgstr "Сачекајте. Још једно чување је већ у току."
-
-#~ msgid "Password Safe"
-#~ msgstr "Сеф за лозинке"
-
-#~ msgid "_About Password Safe"
-#~ msgstr "О сефу з_а лозинке"
-
-#~ msgid "Secure Password Safe"
-#~ msgstr "Безбедан сеф за лозинке"
-
-#~ msgid "ChaCha20: 256-bit"
-#~ msgstr "Ча-ча 20 (ChaCha20): 256-бита"
-
-#~ msgid "Twofish: 256-bit"
-#~ msgstr "Туфиш (Twofish): 256-бита"
-
-#~ msgid "AES: 256-bit"
-#~ msgstr "АЕС (AES): 256-бита"
-
-#~ msgid "Key Derivation Function"
-#~ msgstr "Функција извођења кључа"
-
-#~ msgid "Apply Changes"
-#~ msgstr "Примени измене"
-
-#~ msgid "Copy username to clipboard"
-#~ msgstr "Копирај корисничко у оставу"
-
-#~ msgid "Copy password to clipboard"
-#~ msgstr "Копирај лозинку у оставу"
-
-#~ msgctxt "Shortcut window description"
-#~ msgid "Create safe"
-#~ msgstr "Направи сеф"
-
-#~ msgctxt "Shortcut window description"
-#~ msgid "Open safe"
-#~ msgstr "Отвори сеф"
-
-#~ msgctxt "Shortcut window description"
-#~ msgid "Go back"
-#~ msgstr "Иди назад"
-
-#~ msgid "New…"
-#~ msgstr "Нови…"
-
-#~ msgid "Open…"
-#~ msgstr "Отвори…"
-
-#~ msgid "Display passwords in plain text"
-#~ msgstr "Прикажи лозинке као обичан текст"
-
-#~ msgid "Show the passwords in the entry fields by default."
-#~ msgstr "Подразумевано прикажи лозинке у пољима за унос."
-
-#~ msgid "Last used unlock method"
-#~ msgstr "Последњи коришћени начин откључавања"
-
-#~ msgid "Used to store the last used unlock method and to enable a faster unlock process."
-#~ msgstr "Користи се за чување последњег коришћеног начина откључавања зарад бржег откључавања."
-
-#~ msgid "Use full-text search"
-#~ msgstr "Претражуј цео текст"
-
-#~ msgid "Performs a search across all values of entries."
-#~ msgstr "Претражује вредности свих ставки."
-
-#~ msgid "Current group search"
-#~ msgstr "Претрага тренутне групе"
-
-#~ msgid "Only search entries in the current group."
-#~ msgstr "Само претражи ставке у тренутној групи."
-
-#~ msgid "Do you want to save all safes with unsaved changes?"
-#~ msgstr "Да ли желите да сачувате све сефове где има несачуваних измена?"
-
-#~ msgid "Select the safes you want to save."
-#~ msgstr "Изаберите сефове које желите сачувати."
-
-#~| msgid "Quit"
-#~ msgid "_Quit"
-#~ msgstr "_Изађи"
-
-#~ msgid "Remember _Unlock Method"
-#~ msgstr "Запамти начин откљ_учавања"
-
-#~ msgid "_Show Password Fields"
-#~ msgstr "Откриј _садржај поља за лозинке"
-
-#~ msgid "Display passwords in plain text."
-#~ msgstr "Прикажи лозинке као обичан текст."
-
-#~ msgid "Safe is Locked"
-#~ msgstr "Сеф је закључан"
-
-#~ msgid "Enter password to unlock"
-#~ msgstr "Унеси лозинку за откључавање"
-
-#~ msgid "Select keyfile to unlock"
-#~ msgstr "Изабери кључ-датотеку за откључавање"
-
-#~| msgid "Open Keyfile"
-#~ msgid "_Open Keyfile"
-#~ msgstr "_Отвори кључ-датотеку"
-
-#~ msgid "Enter password and select keyfile to unlock"
-#~ msgstr "Унеси лозинку и изабери кључ-датотеку за откључавање"
-
-#~ msgid "Composite"
-#~ msgstr "Двоструко"
-
-#~ msgid "Click on a checkbox to select"
-#~ msgstr "Кликни на кутију са кућицама за бирање"
-
-#~ msgid "_Last Added"
-#~ msgstr "Не_давно додато"
-
-#~ msgid "Unable to Quit: Could not save Safe"
-#~ msgstr "Не могу да изађем: Не могу да сачувам сеф"
-
-#~ msgid "Choose location for keyfile"
-#~ msgstr "Изабери место за кључ-датотеку"
-
-#~ msgid "Choose current keyfile"
-#~ msgstr "Изабери тренутну кључ-датотеку"
-
-#~ msgid "Apply…"
-#~ msgstr "Примени…"
-
-#~ msgid "Username copied to clipboard"
-#~ msgstr "Корисничко копирано у оставу"
-
-#~ msgid "Password copied to clipboard"
-#~ msgstr "Лозинка копирана у оставу"
-
-#~ msgid "Could not open file: Mime type not supported"
-#~ msgstr "Не могу да отворим датотеку: Миме врста није подржана"
-
-#~ msgid "Choose location for Keepass safe"
-#~ msgstr "Изабери место за Кипес (Keepass) сеф"
-
-#~ msgid "Choose a keyfile"
-#~ msgstr "Изабери кључ-датотеку"
-
-#~ msgid "Choose Keyfile"
-#~ msgstr "Изабери кључ-датотеку"
-
-#~ msgid "Copied to clipboard"
-#~ msgstr "Копирано у оставу"
-
-#~ msgid "Secret_Photo.png"
-#~ msgstr "Тајна_слика.png"
-
-#~ msgid "_Full-Text Search"
-#~ msgstr "Пре_трага целог текста"
-
-#~ msgid "_Current Group Search"
-#~ msgstr "Претра_га тренутне групе"
-
-#~ msgid "Save"
-#~ msgstr "Сачувај"
-
-#~ msgid "No group title specified"
-#~ msgstr "Назив групе није наведен"
-
-#~ msgid "Unable to open file \"{}\"."
-#~ msgstr "Не могу отворити датотеку „{}“."
-
-#~ msgid "Skipped moving group into itself"
-#~ msgstr "Прескачем премештање групе у себе"
-
-#~ msgid "%s locked"
-#~ msgstr "Сеф %s је закључан"
-
-#~ msgid "Preferences"
-#~ msgstr "Поставке"
-
-#~ msgid "New"
-#~ msgstr "Нова"
-
-#~ msgid "Show/hide password"
-#~ msgstr "Прикажи или сакриј лозинку"
-
-#~ msgid "Close"
-#~ msgstr "Затвори"
-
-#~ msgid "Discard"
-#~ msgstr "Одбаци"
-
-#~ msgid "First Start"
-#~ msgstr "Прво покретање"
-
-#~ msgid "Timeout"
-#~ msgstr "Време истека"
-
-#~ msgctxt "Shortcut window description"
-#~ msgid "Exit entry page"
-#~ msgstr "Напусти страницу уноса"
-
-#~ msgctxt "Shortcut window description"
-#~ msgid "Navigate to parent group"
-#~ msgstr "Одлазак на родитељску групу"
-
-#~ msgid "A-Z"
-#~ msgstr "А-Ш"
-
-#~ msgid "Z-A"
-#~ msgstr "Ш-А"
-
-#~ msgid "Local"
-#~ msgstr "Месно"
-
-#~ msgid "Do you want to override it?"
-#~ msgstr "Да ли желите да је препишете?"
-
-#~ msgid "Override"
-#~ msgstr "Препиши"
-
-#~ msgid "Settings"
-#~ msgstr "Подешавања"
-
-#~ msgid "@ICON@"
-#~ msgstr "@ICON@"
-
-#~ msgid "Create password…"
-#~ msgstr "Направи лозинку…"
-
-#~ msgid "Create group…"
-#~ msgstr "Направи групу…"

@@ -7,11 +7,14 @@ from gettext import gettext as _
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
+from gsecrets.attachment_delete_dialog import AttachmentDeleteDialog
+
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
     from gsecrets.add_list_box import AddListBox
     from gsecrets.safe_element import SafeEntry
+    from gsecrets.unlocked_database import UnlockedDatabase
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attachment_entry_row.ui")
@@ -22,9 +25,15 @@ class AttachmentEntryRow(Adw.ActionRow):
     delete_button = Gtk.Template.Child()
 
     def __init__(
-        self, entry: SafeEntry, attachment: Attachment, listbox: AddListBox
+        self,
+        unlocked_database: UnlockedDatabase,
+        entry: SafeEntry,
+        attachment: Attachment,
+        listbox: AddListBox,
     ) -> None:
         super().__init__()
+
+        self.__unlocked_database = unlocked_database
 
         self.entry = entry
         self.attachment = attachment
@@ -45,8 +54,13 @@ class AttachmentEntryRow(Adw.ActionRow):
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _button):
-        self.entry.delete_attachment(self.attachment)
-        self._listbox.remove(self)
+        def on_delete():
+            self.entry.delete_attachment(self.attachment)
+            self._listbox.remove(self)
+
+        AttachmentDeleteDialog(
+            self.__unlocked_database, self.attachment, on_delete
+        ).present(self.get_root())
 
     def _replace_contents_callback(self, gfile, result):
         try:

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="AttachmentDeleteDialog" parent="AdwAlertDialog">
+    <property name="heading" translatable="yes" comments="Dialog title which asks a confirmation from user to delete attachment.">Are you Sure?</property>
+    <property name="default-response">back</property>
+    <signal name="response::delete" handler="_on_delete"/>
+    <responses>
+      <response id="back" translatable="yes">_Back</response>
+      <response id="delete" translatable="yes" appearance="destructive">_Delete</response>
+    </responses>
+  </template>
+</interface>

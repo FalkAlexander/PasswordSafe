@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-23 06:58+0000\n"
-"PO-Revision-Date: 2026-02-26 22:13+0100\n"
+"POT-Creation-Date: 2026-03-29 15:49+0000\n"
+"PO-Revision-Date: 2026-03-30 13:25+0200\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan (https://www.transifex.com/softcatala/teams/62837/"
 "ca)\n"
@@ -46,6 +46,21 @@ msgstr "Conté dades sensibles."
 msgid "_Add"
 msgstr "_Afegeix"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Esteu segur?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Enrere"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:318
+#: data/gtk/group_page.ui:81 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "E_limina"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "Descarrega l'adjunció"
@@ -67,10 +82,6 @@ msgid ""
 msgstr ""
 "És possible que aplicacions externes creïn copies sense xifrar ocultes o "
 "temporals d'aquest fitxer adjunt! Si us plau, continueu amb precaució."
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "_Enrere"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -408,11 +419,6 @@ msgstr "_Desa a historial"
 #: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "Mostra _historial"
-
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "E_limina"
 
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
@@ -1274,6 +1280,12 @@ msgstr "Falk Alexander Seidl"
 msgid "Enable debug logging"
 msgstr "Activa el registre de depuració"
 
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr "S'eliminarà l'adjunt «{filename}». Aquesta acció no es pot desfer."
+
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
@@ -1627,11 +1639,11 @@ msgid "Attribute key already exists"
 msgstr "Aquesta clau d'atribut ja existeix"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Desa l'adjunció"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "No es pot desar l'adjunció"
 

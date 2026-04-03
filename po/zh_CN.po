@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-21 08:13+0000\n"
-"PO-Revision-Date: 2026-02-22 10:04+0800\n"
+"POT-Creation-Date: 2026-03-29 15:49+0000\n"
+"PO-Revision-Date: 2026-04-03 08:20+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -45,6 +45,21 @@ msgstr "包含敏感数据。"
 msgid "_Add"
 msgstr "添加(_A)"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "您确定吗？"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "后退(_B)"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:318
+#: data/gtk/group_page.ui:81 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "删除(_D)"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "下载附件"
@@ -64,10 +79,6 @@ msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
 msgstr "外部应用程序可能会创建此附件文件未加密的隐藏或临时副本！请谨慎操作。"
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "后退(_B)"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -101,7 +112,7 @@ msgstr "颜色"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:240
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "创建保险箱"
 
@@ -404,11 +415,6 @@ msgstr "保存到历史(_S)"
 msgid "Show _History"
 msgstr "显示历史(_H)"
 
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "删除(_D)"
-
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
 msgstr "移除"
@@ -606,12 +612,12 @@ msgstr "是否将所有更改写入保险箱？"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:421
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "不保存并退出(_Q)"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "不退出(_D)"
 
@@ -630,8 +636,8 @@ msgstr "重新打开上次打开的保险箱。"
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:232 gsecrets/widgets/window.py:244
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "保险箱"
 
@@ -1242,6 +1248,12 @@ msgstr "Falk Alexander Seidl"
 msgid "Enable debug logging"
 msgstr "启用调试日志"
 
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr "附件“{filename}”将被删除。此操作无法撤消。"
+
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
@@ -1495,7 +1507,7 @@ msgstr "克隆"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:420
+#: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
 
@@ -1591,11 +1603,11 @@ msgid "Attribute key already exists"
 msgstr "属性键已存在"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "保存附件"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "无法存储附件"
 
@@ -1742,35 +1754,35 @@ msgstr "保存备份"
 msgid "Could not backup safe"
 msgstr "无法备份保险箱"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "任何文件类型"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "选择保险箱"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:177
 msgid "File does not have a valid path"
 msgstr "文件不具有有效路径"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "Safe is already open"
 msgstr "保险箱已打开"
 
-#: gsecrets/widgets/window.py:242
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "创建(_C)"
 
-#: gsecrets/widgets/window.py:264
+#: gsecrets/widgets/window.py:266
 msgid "Cannot create Safe: Safe is already open"
 msgstr "无法创建保险箱：保险箱已打开"
 
-#: gsecrets/widgets/window.py:307 gsecrets/widgets/window.py:320
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
 msgid "Could not create new Safe"
 msgstr "无法创建新保险箱"
 
-#: gsecrets/widgets/window.py:397
+#: gsecrets/widgets/window.py:399
 msgid "Could not save safe"
 msgstr "无法保存保险箱"
 

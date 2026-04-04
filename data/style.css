@@ -1,5 +1,9 @@
 /* Entry color button styles */
 
+.rounded-colored-button {
+  border-radius: 25px;
+}
+
 button.colored {
   border-radius: 25px;
   --accent-color: oklab(from var(--accent-bg-color) var(--standalone-color-oklab));

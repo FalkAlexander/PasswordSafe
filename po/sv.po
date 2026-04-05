@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-22 08:37+0000\n"
-"PO-Revision-Date: 2026-02-27 18:28+0100\n"
+"POT-Creation-Date: 2026-03-29 15:49+0000\n"
+"PO-Revision-Date: 2026-03-30 11:22+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -44,6 +44,21 @@ msgstr "Innehåller känsliga data."
 msgid "_Add"
 msgstr "_Lägg till"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Är du säker?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Bakåt"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:318
+#: data/gtk/group_page.ui:81 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_Ta bort"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "Hämta bilaga"
@@ -65,10 +80,6 @@ msgid ""
 msgstr ""
 "Det är möjligt att externa program kommer att skapa okrypterade dolda eller "
 "temporära kopior av denna bilagefil! Fortsätt med aktsamhet."
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "_Bakåt"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -407,11 +418,6 @@ msgstr "_Spara i historik"
 #: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "Visa _historik"
-
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "_Ta bort"
 
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
@@ -1262,6 +1268,12 @@ msgstr "Falk Alexander Seidl"
 msgid "Enable debug logging"
 msgstr "Aktivera felsökningsloggning"
 
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr "Bilagan ”{filename}” kommer tas bort. Denna åtgärd kan inte ångras."
+
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
@@ -1614,11 +1626,11 @@ msgid "Attribute key already exists"
 msgstr "Attributnyckel finns redan"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Spara bilaga"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "Kunde inte lagra bilaga"
 

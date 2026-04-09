@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-22 08:37+0000\n"
-"PO-Revision-Date: 2026-03-19 08:00+0300\n"
+"POT-Creation-Date: 2026-03-29 15:49+0000\n"
+"PO-Revision-Date: 2026-04-09 08:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -46,6 +46,21 @@ msgstr "Hassas veri içerir."
 msgid "_Add"
 msgstr "_Ekle"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Emin Misiniz?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Geri"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:318
+#: data/gtk/group_page.ui:81 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_Sil"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "Eki İndir"
@@ -67,10 +82,6 @@ msgid ""
 msgstr ""
 "Dış uygulamalar bu ek dosyasının şifrelenmemiş gizli veya geçici kopyalarını "
 "oluşturabilir! Lütfen sakınarak sürdürün."
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "_Geri"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -408,11 +419,6 @@ msgstr "Geçmişe _Kaydet"
 #: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "_Geçmişi Göster"
-
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "_Sil"
 
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
@@ -1262,6 +1268,13 @@ msgstr "Falk Alexander Seidl"
 msgid "Enable debug logging"
 msgstr "Hata ayıklama günlüğünü etkinleştir"
 
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr ""
+"“{filename}” eki silinecek. Bu eylem geri alınamaz."
+
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
@@ -1612,11 +1625,11 @@ msgid "Attribute key already exists"
 msgstr "Öznitelik anahtarı zaten var"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Eki Kaydet"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "Ek depolanamadı"
 
@@ -1804,9 +1817,3 @@ msgid "translator-credits"
 msgstr ""
 "Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Sabri Ünal <yakushabb@gmail.com>"
-
-#~ msgid "_Z-A"
-#~ msgstr "_Z-A"
-
-#~ msgid "New Window"
-#~ msgstr "Yeni Pencere"

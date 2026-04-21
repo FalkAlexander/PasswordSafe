@@ -13,21 +13,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-28 07:55+0000\n"
-"PO-Revision-Date: 2026-03-06 20:56-0300\n"
+"POT-Creation-Date: 2026-03-29 15:49+0000\n"
+"PO-Revision-Date: 2026-04-20 21:54-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
-"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao/>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 "X-DL-Team: pt_BR\n"
 "X-DL-Module: secrets\n"
 "X-DL-Branch: master\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/World/secrets\n"
+"X-DL-Lang: pt_BR\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -54,6 +56,21 @@ msgstr "Contém dados sensíveis."
 msgid "_Add"
 msgstr "_Adicionar"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Você tem certeza?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Voltar"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:318
+#: data/gtk/group_page.ui:81 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "E_xcluir"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "Baixar anexo"
@@ -75,10 +92,6 @@ msgid ""
 msgstr ""
 "É possível que aplicativos externos criem cópias ocultas ou temporárias não "
 "criptografadas desse arquivo de anexo! Por favor, prossiga com cautela."
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "_Voltar"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -416,11 +429,6 @@ msgstr "Sal_var no histórico"
 #: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "Mostrar _histórico"
-
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "E_xcluir"
 
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
@@ -1277,6 +1285,12 @@ msgstr "Falk Alexander Seidl"
 msgid "Enable debug logging"
 msgstr "Habilitar registro de logs de depuração"
 
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr "O anexo “{filename}” será excluído. Esta ação não pode ser desfeita."
+
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
@@ -1631,11 +1645,11 @@ msgid "Attribute key already exists"
 msgstr "Já existe chave de atributo"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Salvar anexo"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "Não foi possível armazenar o anexo"
 

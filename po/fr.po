@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
 "POT-Creation-Date: 2026-03-29 15:49+0000\n"
-"PO-Revision-Date: 2026-04-19 16:51+0200\n"
-"Last-Translator: Mathis Joussemet <joussemetmathis@gmail.com>\n"
+"PO-Revision-Date: 2026-04-26 21:39+0900\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "_Ajouter"
 #. Dialog title which asks a confirmation from user to delete attachment.
 #: data/gtk/attachment_delete_dialog.ui:4
 msgid "Are you Sure?"
-msgstr ""
+msgstr "Êtes-vous sûr(e) ?"
 
 #: data/gtk/attachment_delete_dialog.ui:8
 #: data/gtk/attachment_warning_dialog.ui:9
@@ -295,7 +295,7 @@ msgstr "Mots de passe"
 
 #: data/gtk/database_settings_dialog.ui:218
 msgid "Audit"
-msgstr ""
+msgstr "Audit"
 
 #: data/gtk/database_settings_dialog.ui:222
 msgid "Statistics"
@@ -306,10 +306,8 @@ msgid "Unique Passwords"
 msgstr "Mot de passe à usage unique"
 
 #: data/gtk/database_settings_dialog.ui:234
-#, fuzzy
-#| msgid "Passwords"
 msgid "Reused Passwords"
-msgstr "Mots de passe"
+msgstr "Mots de passe réutilisés"
 
 #: data/gtk/database_settings_dialog.ui:245
 msgid "Weak Passwords"
@@ -318,16 +316,20 @@ msgstr "Mots de passe faibles"
 #: data/gtk/database_settings_dialog.ui:250
 msgid "Check passwords for online breaches"
 msgstr ""
+"Vérifiez si vos mots de passe ont été compromis lors de fuites de données en "
+"ligne"
 
 #: data/gtk/database_settings_dialog.ui:251
 msgid ""
 "Ask online whether your passwords have been hacked. The passwords won't be "
 "sent online! The following passwords have been leaked:"
 msgstr ""
+"Vérifier en ligne si vos mots de passe ont été piratés. Les mots de passe ne "
+"seront pas transmis en ligne ! Les mots de passe suivants ont été divulgués :"
 
 #: data/gtk/database_settings_dialog.ui:261
 msgid "Help"
-msgstr ""
+msgstr "Aide"
 
 #: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
@@ -1057,10 +1059,8 @@ msgstr "Gestionnaire de mots de passe pour GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-#, fuzzy
-#| msgid "keepass;encrypt;secure;"
 msgid "keepass;encrypt;secure;password;manager;"
-msgstr "keepass;chiffrement;sécurisé;"
+msgstr "keepass;chiffrement;sécurisé;mot de passe;gestionnaire;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1301,7 +1301,7 @@ msgstr "Création du coffre-fort"
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
 msgid "Falk Alexander Seidl"
-msgstr ""
+msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
@@ -1312,6 +1312,8 @@ msgstr "Activer la journalisation de débogage"
 msgid ""
 "The attachment “{filename}” will be deleted. This action cannot be undone."
 msgstr ""
+"La pièce jointe « {filename} » va être effacée. Cette action est "
+"irréversible."
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1683,7 +1685,7 @@ msgstr "Attribut copié"
 
 #: gsecrets/widgets/database_settings_dialog.py:128
 msgid "Insecure"
-msgstr ""
+msgstr "Non sécurisé"
 
 #: gsecrets/widgets/database_settings_dialog.py:130
 msgid "Weak"
@@ -1695,7 +1697,7 @@ msgstr "Aucun mot de passe faible n’a été trouvé"
 
 #: gsecrets/widgets/database_settings_dialog.py:226
 msgid "No records found"
-msgstr ""
+msgstr "Aucun enregistrement trouvé"
 
 #: gsecrets/widgets/database_settings_dialog.py:313
 #: gsecrets/widgets/database_settings_dialog.py:317

@@ -187,6 +187,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
         # Sets the accessed time.
         element.touch()
 
+        self._split_view.props.show_content = True
+
         if self.active_element == element:
             return
 
@@ -199,7 +201,6 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
         page = Adw.NavigationPage.new(page, "Edit")
         self._split_view.props.content = page
-        self._split_view.props.show_content = True
 
         self.browsing_panel.selection_model.props.selected_item = element
 

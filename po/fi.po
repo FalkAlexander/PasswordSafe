@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-01-31 10:06+0000\n"
-"PO-Revision-Date: 2026-02-08 11:12+0200\n"
+"POT-Creation-Date: 2026-03-29 15:49+0000\n"
+"PO-Revision-Date: 2026-05-14 22:47+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -43,6 +43,21 @@ msgstr "Sisältää arkaluonteista tietoa."
 msgid "_Add"
 msgstr "_Lisää"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Oletko varma?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Takaisin"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:318
+#: data/gtk/group_page.ui:81 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_Poista"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "Lataa liite"
@@ -64,10 +79,6 @@ msgid ""
 msgstr ""
 "On mahdollista, että erilliset sovellukset luovat salaamattomia ja "
 "piilotettuja tai väliaikaisia kopioita tästä liitetiedostosta! Jatka varoen."
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "_Takaisin"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -101,7 +112,7 @@ msgstr "Väri"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:240
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Luo säilö"
 
@@ -406,11 +417,6 @@ msgstr "Tallenna _historiaan"
 msgid "Show _History"
 msgstr "_Näytä historia"
 
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "_Poista"
-
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
 msgstr "Poista"
@@ -610,12 +616,12 @@ msgstr "Haluatko kirjoittaa kaikki muutokset säilöön?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:421
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "_Lopeta tallentamatta"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "_Älä lopeta"
 
@@ -634,8 +640,8 @@ msgstr "Avaa uudelleen viimeksi avattu säilö."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:232 gsecrets/widgets/window.py:244
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Säilö"
 
@@ -1028,8 +1034,9 @@ msgstr "Salasanojen hallintasovellus Gnomelle"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;encrypt;secure;"
+#| msgid "keepass;encrypt;secure;"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;encrypt;secure;password;manager;salasana;salaisuus;tunnuslause;salaus;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1259,6 +1266,12 @@ msgstr "Falk Alexander Seidl"
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Ota vianjäljityksen lokitus käyttöön"
+
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr "Liite “{filename}” poistetaan. Tätä toimintoa ei voi perua."
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1513,7 +1526,7 @@ msgstr "Kaksoiskappale"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:420
+#: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Säilöä ei voitu tallentaa"
 
@@ -1612,11 +1625,11 @@ msgid "Attribute key already exists"
 msgstr "Attribuuttiavain on jo olemassa"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Tallenna liite"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "Liitettä ei voitu tallettaa"
 
@@ -1766,35 +1779,35 @@ msgstr "Tallenna varmuuskopio"
 msgid "Could not backup safe"
 msgstr "Säilöä ei voitu varmuuskopioida"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "Mikä tahansa tiedostotyyppi"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "Valitse säilö"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:177
 msgid "File does not have a valid path"
 msgstr "Tiedostolla ei ole kelvollista polkua"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "Safe is already open"
 msgstr "Säilö on jo avoinna"
 
-#: gsecrets/widgets/window.py:242
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "_Luo"
 
-#: gsecrets/widgets/window.py:264
+#: gsecrets/widgets/window.py:266
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Säilöä ei voi luoda: Säilö on jo avoinna"
 
-#: gsecrets/widgets/window.py:307 gsecrets/widgets/window.py:320
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
 msgid "Could not create new Safe"
 msgstr "Uutta säilöä ei voitu luoda"
 
-#: gsecrets/widgets/window.py:397
+#: gsecrets/widgets/window.py:399
 msgid "Could not save safe"
 msgstr "Säilöä ei voitu tallentaa"
 

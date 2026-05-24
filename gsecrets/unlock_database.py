@@ -351,9 +351,10 @@ class UnlockDatabase(Adw.Bin):
             return
 
         async def disconnect():
-            if self.fprint:
-                await self.fprint.verify_stop()
-                self.fprint.disconnect()
+            if fprint := self.fprint:
+                await fprint.verify_stop()
+                fprint.disconnect()
+
             self.fingerprint_img.props.visible = False
 
         app = Gio.Application.get_default()
@@ -417,7 +418,9 @@ class UnlockDatabase(Adw.Bin):
             self.window.send_notification(
                 _("Maximum tries reached. Please unlock using the password."),
             )
-            self.fprint.disconnect()
+            if fprint := self.fprint:
+                fprint.disconnect()
+
             logging.debug("Max tries reached. Fingerprint disabled.")
         else:
             # else start verification again

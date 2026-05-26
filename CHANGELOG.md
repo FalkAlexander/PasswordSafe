@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## 13.0.1 - 2026-05-26
+- Fix app version in meson.build
+
 ## 13.0 - 2026-05-26
 - Allow reopening entries in mobile mode
 - Fix crash when disconnecting fingerprint reader

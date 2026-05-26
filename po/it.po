@@ -2,22 +2,28 @@
 # Copyright (C) 2018, 2019, 2020, 2021, 2022 the Free Software Foundation, Inc.
 # This file is distributed under the same license as the PasswordSafe package.
 # Milo Casagrande <milo@milo.name>, 2018, 2019, 2020, 2021, 2022.
-# Davide Ferracin <davide.ferracin@icloud.com>, 2025.
+# Davide Ferracin <davide.ferracin@icloud.com>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-10-27 19:03+0000\n"
-"PO-Revision-Date: 2025-11-17 14:43+0100\n"
-"Last-Translator: Davide Ferracin <davide.ferracin@protonmail.com>\n"
+"POT-Creation-Date: 2026-05-26 07:43+0000\n"
+"PO-Revision-Date: 2026-05-26 12:20+0200\n"
+"Last-Translator: Davide Ferracin <davide.ferracin@icloud.com>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Gtranslator 50.0\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/World/secrets\n"
+"X-DL-Lang: it\n"
+"X-DL-Module: secrets\n"
+"X-DL-Branch: master\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -44,6 +50,21 @@ msgstr "Contiene dati sensibili."
 msgid "_Add"
 msgstr "A_ggiungi"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Confermare l'eliminazione?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Indietro"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:318
+#: data/gtk/group_page.ui:81 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "Eli_mina"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "Scarica allegato"
@@ -65,10 +86,6 @@ msgid ""
 msgstr ""
 "È possibile che applicazioni esterne creino copie non-cifrate nascoste o "
 "temporanee di questo allegato. Procedere con cautela."
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "_Indietro"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -102,7 +119,7 @@ msgstr "Colore"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Crea cassaforte"
 
@@ -145,18 +162,18 @@ msgid "_Open Safe"
 msgstr "_Apri cassaforte"
 
 #: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "Preferen_ze"
 
 #: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "Scorciatoie da _tastiera"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:106
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_Informazioni su Secrets"
 
@@ -305,6 +322,10 @@ msgstr ""
 "password non verranno inviate a nessuno! Le seguenti password sono state "
 "trafugate:"
 
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Aiuto"
+
 #: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
 msgstr "Voce del menù"
@@ -404,11 +425,6 @@ msgstr "_Salva nella cronologia"
 msgid "Show _History"
 msgstr "Mo_stra _cronologia"
 
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "Eli_mina"
-
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
 msgstr "Rimuovi"
@@ -417,15 +433,15 @@ msgstr "Rimuovi"
 msgid "Select Entry"
 msgstr "Seleziona voce"
 
-#: data/gtk/entry_row.ui:82
+#: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
 msgstr "Copia password monouso"
 
-#: data/gtk/entry_row.ui:93
+#: data/gtk/entry_row.ui:92
 msgid "Copy Username"
 msgstr "Copia nome utente"
 
-#: data/gtk/entry_row.ui:103
+#: data/gtk/entry_row.ui:102
 msgid "Copy Password"
 msgstr "Copia password"
 
@@ -453,7 +469,7 @@ msgstr "Menù del gruppo"
 msgid "Select Group"
 msgstr "Seleziona gruppo"
 
-#: data/gtk/group_row.ui:68
+#: data/gtk/group_row.ui:67
 msgid "Edit"
 msgstr "Modifica"
 
@@ -473,8 +489,7 @@ msgstr "Cronologia password"
 msgid "_Open"
 msgstr "A_pri"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:84
-#: data/gtk/welcome_page.ui:18
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "_Nuova cassaforte"
 
@@ -609,12 +624,12 @@ msgstr "Salvare tutte le modifiche nella cassaforte?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:419
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "_Esci senza salvare"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "_Non uscire"
 
@@ -633,8 +648,8 @@ msgstr "Riapre l'ultima cassaforte aperta"
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Cassaforte"
 
@@ -658,8 +673,8 @@ msgid ""
 "Re-unlock using the last four characters of the password for a single "
 "attempt."
 msgstr ""
-"Sblocca di nuovo usando gli ultimi quattro caratteri della password per "
-"un singolo tentativo."
+"Sblocca di nuovo usando gli ultimi quattro caratteri della password per un "
+"singolo tentativo."
 
 #. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
 #: data/gtk/settings_dialog.ui:42
@@ -728,7 +743,7 @@ msgstr "Cara_tteri speciali"
 #. ASCII is a proper name
 #: data/gtk/settings_dialog.ui:113
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
-msgstr "Usa caratteri ASCII non alfanumerici per generare una password." 
+msgstr "Usa caratteri ASCII non alfanumerici per generare una password."
 
 #: data/gtk/settings_dialog.ui:122
 msgid "Passphrase Generation"
@@ -914,7 +929,7 @@ msgstr "_Sblocca"
 msgid "Browser"
 msgstr "Browser"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
 msgid "Select Items"
 msgstr "Selezionare elementi"
 
@@ -991,19 +1006,19 @@ msgstr "_Più recenti prima"
 msgid "_Oldest First"
 msgstr "_Meno recenti prima"
 
-#: data/gtk/unlocked_headerbar.ui:88
+#: data/gtk/unlocked_headerbar.ui:84
 msgid "New _Window"
 msgstr "Nuova _finestra"
 
-#: data/gtk/unlocked_headerbar.ui:92
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "Im_postazioni cassaforte"
 
-#: data/gtk/unlocked_headerbar.ui:114
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "Nuova _voce"
 
-#: data/gtk/unlocked_headerbar.ui:118
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "Nuovo _gruppo"
 
@@ -1028,8 +1043,8 @@ msgstr "Un gestore di password per GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;cifrare;cifra;sicurezza;sicuro;"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;cifrare;cifra;sicurezza;sicuro;gestore;gestione;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1247,26 +1262,34 @@ msgstr ""
 "integra perfettamente con l'ambiente grafico GNOME e fornisce una semplice "
 "interfaccia per la gestione delle proprie password."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:395
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
 msgid "Password management"
 msgstr "Gestione delle password"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:399
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
 msgid "Safe unlocking"
 msgstr "Sblocco della cassaforte"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:403
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
 msgid "Safe creation"
 msgstr "Creazione di una cassaforte"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:416
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Attiva il registro di debug"
+
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr ""
+"L'allegato «{filename}» verrà eliminato. Questa azione non può essere "
+"annullata."
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1513,15 +1536,15 @@ msgstr "Viola"
 msgid "Brown"
 msgstr "Marrone"
 
-#: gsecrets/safe_element.py:664
+#: gsecrets/safe_element.py:673
 msgid "Clone"
 msgstr "Clona"
 
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
-#: gsecrets/widgets/window.py:418
+#: gsecrets/unlocked_database.py:249 gsecrets/unlocked_database.py:536
+#: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Impossibile salvare la cassaforte"
 
@@ -1558,56 +1581,56 @@ msgstr "Sblocco veloce attivo"
 msgid "Safe {path} is already open"
 msgstr "La cassaforte {path} è già aperta"
 
-#: gsecrets/unlock_database.py:239
+#: gsecrets/unlock_database.py:241
 msgid "Failed to unlock Safe"
 msgstr "Sblocco della cassaforte non riuscito"
 
-#: gsecrets/unlock_database.py:407
+#: gsecrets/unlock_database.py:410
 msgid "Please unlock using the password."
 msgstr "Sbloccare usando la password."
 
-#: gsecrets/unlock_database.py:416
+#: gsecrets/unlock_database.py:419
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr ""
 "Raggiunto il numero massimo di tentativi. Sbloccare usando la password."
 
-#: gsecrets/unlocked_database.py:251
+#: gsecrets/unlocked_database.py:252
 msgid "Safe saved"
 msgstr "Cassaforte salvata"
 
-#: gsecrets/unlocked_database.py:253
+#: gsecrets/unlocked_database.py:254
 msgid "No changes made"
 msgstr "Nessuna modifica effettuata"
 
-#: gsecrets/unlocked_database.py:300
+#: gsecrets/unlocked_database.py:301
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "{} elemento eliminato"
 msgstr[1] "{} elementi eliminati"
 
-#: gsecrets/unlocked_database.py:305
+#: gsecrets/unlocked_database.py:306
 msgid "Deletion completed"
 msgstr "Eliminazione completata"
 
-#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
 msgid "Undo"
 msgstr "Annulla"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:334
 msgid "Attribute deleted"
 msgstr "Attributo eliminato"
 
-#: gsecrets/unlocked_database.py:362
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "Copiato"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:462
+#: gsecrets/unlocked_database.py:463
 msgid "Safe locked due to inactivity"
 msgstr "Cassaforte bloccata per inattività"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:700
+#: gsecrets/unlocked_database.py:701
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} selezionato"
@@ -1622,11 +1645,11 @@ msgid "Attribute key already exists"
 msgstr "Esiste già un attributo con questa chiave"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Salva allegato"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "Impossibile salvare l'allegato"
 
@@ -1776,35 +1799,35 @@ msgstr "Salva backup"
 msgid "Could not backup safe"
 msgstr "Impossibile fare un backup della cassaforte"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "Qualsiasi tipo di file"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "Seleziona cassaforte"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:177
 msgid "File does not have a valid path"
 msgstr "Il file non ha un percorso valido"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "Safe is already open"
 msgstr "La cassaforte è già aperta"
 
-#: gsecrets/widgets/window.py:240
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "_Crea"
 
-#: gsecrets/widgets/window.py:262
+#: gsecrets/widgets/window.py:266
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Impossibile creare la cassaforte: è già aperta"
 
-#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
 msgid "Could not create new Safe"
 msgstr "Impossibile creare una nuova cassaforte"
 
-#: gsecrets/widgets/window.py:395
+#: gsecrets/widgets/window.py:399
 msgid "Could not save safe"
 msgstr "Impossibile salvare la cassaforte"
 

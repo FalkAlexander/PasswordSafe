@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 13.0 - 2026-05-26
+- Allow reopening entries in mobile mode
+- Fix crash when disconnecting fingerprint reader
+- Add confirmation dialog when deleting attachments
+- Minor performance improvements
+- Updated translations
+
 ## 12.2 - 2025-12-23
 - Fix regression where OTPs codes were not loaded from 12.1
 

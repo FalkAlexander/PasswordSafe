@@ -2,13 +2,19 @@ conf = configuration_data()
 
 conf.set('APPID', application_id)
 conf.set('GETTEXT_PACKAGE', meson.project_name())
-conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
+conf.set(
+  'LOCALE_DIR',
+  join_paths(get_option('prefix'), get_option('datadir'), 'locale'),
+)
 conf.set('NAME', project_name)
 conf.set('PYTHON', python_bin.full_path())
 conf.set('DATA_DIR', DATA_DIR)
 conf.set('PROFILE', profile)
 conf.set('APPID', application_id)
-conf.set('PKCS11_LIB', join_paths(get_option('prefix'), get_option('libdir'), 'opensc-pkcs11.so'))
+conf.set(
+  'PKCS11_LIB',
+  join_paths(get_option('prefix'), get_option('libdir'), 'opensc-pkcs11.so'),
+)
 conf.set('VERSION', meson.project_version())
 
 configure_file(
@@ -16,7 +22,7 @@ configure_file(
   output: 'const.py',
   configuration: conf,
   install_dir: join_paths(python_dir, 'gsecrets'),
-  install: true
+  install: true,
 )
 
 main_conf = configuration_data()
@@ -26,7 +32,7 @@ configure_file(
   output: 'secrets',
   configuration: conf,
   install_dir: bindir,
-  install: true
+  install: true,
 )
 
 install_subdir(

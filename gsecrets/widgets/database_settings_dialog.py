@@ -409,8 +409,8 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         path = self.database_manager.path
         gfile = Gio.File.new_for_path(path)
 
-        async def set_path():
-            path = PurePath(await get_host_path(gfile))
+        def set_path():
+            path = PurePath(get_host_path(gfile))
 
             home = str(Path.home())
             if path.is_relative_to(home):
@@ -418,8 +418,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
             else:
                 self.path_row.props.subtitle = str(path)
 
-        app = Gio.Application.get_default()
-        app.create_asyncio_task(set_path())
+        set_path()
 
         # Size
         def query_info_cb(gfile, result):

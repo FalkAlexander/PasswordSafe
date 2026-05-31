@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import logging
+import os
 import secrets
 import stat
 import typing
@@ -16,7 +16,7 @@ if typing.TYPE_CHECKING:
     from collections.abc import Callable
 
 
-ATTRIBUTE_HOST_PATH = "xattr::document-portal.host-path"
+ATTRIBUTE_HOST_PATH = "user.document-portal.host-path"
 
 
 def format_time(time: GLib.DateTime | None, hours: bool = True) -> str:
@@ -80,24 +80,18 @@ def compare_passwords(pass1: str | None, pass2: str | None) -> bool:
     return pass1 is None and pass2 is None
 
 
-async def get_host_path(gfile: Gio.File) -> str | None:
+def get_host_path(gfile: Gio.File) -> str | None:
     """Tries to get the file host-path, if not set will return the file path."""
-    try:
-        info = await gfile.query_info_async(
-            ATTRIBUTE_HOST_PATH, Gio.FileQueryInfoFlags.NONE, GLib.PRIORITY_DEFAULT
-        )
-    except GLib.Error:
-        logging.exception("Could not query file info")
-        return gfile.get_path()
+    local_path = gfile.get_path()
+    if not local_path:
+        return None
 
     try:
-        host_path = info.get_attribute_string(ATTRIBUTE_HOST_PATH)
-    except GLib.Error:
-        logging.exception("Could not query file attribute")
+        attr = os.getxattr(local_path, ATTRIBUTE_HOST_PATH)
+    except OSError:
+        return local_path
     else:
-        return host_path or gfile.get_path()
-
-    return gfile.get_path()
+        return os.fsdecode(attr)
 
 
 class KeyFileFilter:

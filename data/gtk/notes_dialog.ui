@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="NotesDialog" parent="AdwDialog">
-    <property name="content_width">500</property>
-    <property name="content_height">450</property>
+    <property name="content-width">500</property>
+    <property name="content-height">450</property>
     <property name="title" translatable="yes">Notes</property>
-    <property name="focus_widget">_value_entry</property>
+    <property name="focus-widget">_value_entry</property>
     <style>
       <class name="view"/>
     </style>
@@ -14,12 +14,12 @@
           <object class="AdwToolbarView">
             <child type="top">
               <object class="AdwHeaderBar">
-                <property name="show_title">False</property>
+                <property name="show-title">False</property>
                 <child>
                   <object class="GtkButton" id="copy_button">
                     <property name="label" translatable="yes">_Copy</property>
-                    <property name="use_underline">True</property>
-                    <property name="can_shrink">True</property>
+                    <property name="use-underline">True</property>
+                    <property name="can-shrink">True</property>
                     <signal name="clicked" handler="_on_copy_button_clicked"/>
                     <style>
                       <class name="suggested-action"/>
@@ -29,8 +29,8 @@
                 <child type="end">
                   <object class="GtkToggleButton" id="_search_button">
                     <property name="halign">end</property>
-                    <property name="icon_name">system-search-symbolic</property>
-                    <property name="tooltip_text" translatable="yes">Search</property>
+                    <property name="icon-name">system-search-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Search</property>
                     <signal name="toggled" handler="_on_search_button_toggled"/>
                     <child>
                       <object class="GtkShortcutController">
@@ -54,7 +54,7 @@
                 </accessibility>
                 <child>
                   <object class="GtkSearchEntry" id="search_entry">
-                    <property name="width_chars">26</property>
+                    <property name="width-chars">26</property>
                     <property name="placeholder-text" translatable="yes">Search</property>
                     <signal name="search-changed" handler="_on_search_entry_changed"/>
                     <signal name="stop-search" handler="_on_search_stopped"/>
@@ -69,7 +69,7 @@
               <object class="GtkScrolledWindow" id="notes_dialog_scrolled_window">
                 <child>
                   <object class="GtkSourceView" id="_value_entry">
-                    <property name="wrap_mode">word</property>
+                    <property name="wrap-mode">word</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
                     <accessibility>

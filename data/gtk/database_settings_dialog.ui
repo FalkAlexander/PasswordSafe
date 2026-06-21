@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="DatabaseSettingsDialog" parent="AdwPreferencesDialog">
-    <property name="content_width">450</property>
+    <property name="content-width">450</property>
     <property name="title" translatable="yes">Safe Settings</property>
     <child>
       <object class="AdwPreferencesPage">
         <property name="name">auth_page</property>
         <property name="title" translatable="yes">Authentication</property>
-        <property name="icon_name">dice3-symbolic</property>
+        <property name="icon-name">dice3-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
             <child>
@@ -27,8 +27,8 @@
                 <child>
                   <object class="GtkMenuButton">
                     <property name="valign">center</property>
-                    <property name="icon_name">dice3-symbolic</property>
-                    <property name="tooltip_text" translatable="yes">Generate New Password</property>
+                    <property name="icon-name">dice3-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Generate New Password</property>
                     <property name="popover">
                       <object class="PasswordGeneratorPopover">
                         <signal name="generated" handler="on_password_generated" swapped="no"/>
@@ -49,7 +49,7 @@
             </child>
             <child>
               <object class="PasswordLevelBar" id="level_bar">
-                <property name="margin_top">6</property>
+                <property name="margin-top">6</property>
                 <property name="password" bind-source="new_password_entry" bind-property="text"/>
               </object>
             </child>
@@ -73,9 +73,9 @@
               <object class="GtkButton" id="auth_apply_button">
                 <property name="halign">center</property>
                 <property name="label" translatable="yes">_Apply Changes</property>
-                <property name="use_underline">True</property>
+                <property name="use-underline">True</property>
                 <property name="sensitive">False</property>
-                <property name="can_shrink">True</property>
+                <property name="can-shrink">True</property>
                 <signal name="clicked" handler="on_auth_apply_button_clicked"/>
                 <style>
                   <class name="suggested-action"/>
@@ -91,7 +91,7 @@
       <object class="AdwPreferencesPage">
         <property name="name">general_page</property>
         <property name="title" translatable="yes">General</property>
-        <property name="icon_name">info-outline-symbolic</property>
+        <property name="icon-name">info-outline-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Database</property>
@@ -216,7 +216,7 @@
       <object class="AdwPreferencesPage">
         <property name="name">report_page</property>
         <property name="title" translatable="yes">Audit</property>
-        <property name="icon_name">find-location-symbolic</property>
+        <property name="icon-name">find-location-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup" id="statistic_group">
             <property name="title" translatable="yes">Statistics</property>

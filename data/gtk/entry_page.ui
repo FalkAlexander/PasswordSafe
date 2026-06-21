@@ -51,9 +51,9 @@
             </property>
             <child type="end">
               <object class="GtkMenuButton" id="_secondary_menu_button">
-                <property name="icon_name">view-more-symbolic</property>
-                <property name="tooltip_text" translatable="yes">Entry Menu</property>
-                <property name="menu_model">entry_menu</property>
+                <property name="icon-name">view-more-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Entry Menu</property>
+                <property name="menu-model">entry_menu</property>
               </object>
             </child>
           </object>
@@ -64,21 +64,21 @@
               <object class="AdwPreferencesGroup">
                 <child>
                   <object class="AdwEntryRow" id="title_entry_row">
-                    <property name="input_purpose">name</property>
-                    <property name="enable_undo">False</property>
+                    <property name="input-purpose">name</property>
+                    <property name="enable-undo">False</property>
                     <property name="title" translatable="yes">_Title</property>
-                    <property name="use_underline">True</property>
+                    <property name="use-underline">True</property>
                   </object>
                 </child>
                 <child>
                   <object class="AdwEntryRow" id="url_entry_row">
                     <property name="title" translatable="yes">U_RL</property>
-                    <property name="use_underline">True</property>
+                    <property name="use-underline">True</property>
                     <child>
                       <object class="GtkButton">
                         <property name="valign">center</property>
-                        <property name="icon_name">external-link-symbolic</property>
-                        <property name="tooltip_text" translatable="yes">Open Address</property>
+                        <property name="icon-name">external-link-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Open Address</property>
                         <signal name="clicked" handler="on_visit_url_button_clicked" swapped="no"/>
                         <property name="sensitive" bind-source="url_entry_row" bind-property="text-length" bind-flags="sync-create"/>
                         <style>
@@ -89,8 +89,8 @@
                     <child>
                       <object class="GtkButton">
                         <property name="valign">center</property>
-                        <property name="icon_name">edit-copy-symbolic</property>
-                        <property name="tooltip_text" translatable="yes">Copy</property>
+                        <property name="icon-name">edit-copy-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Copy</property>
                         <signal name="clicked" handler="_on_url_copy_button_clicked" swapped="no"/>
                         <style>
                           <class name="flat"/>
@@ -111,14 +111,14 @@
                 <child>
                   <object class="AdwActionRow" id="otp_token_row">
                     <property name="visible">False</property>
-                    <property name="activatable_widget">otp_copy_button</property>
+                    <property name="activatable-widget">otp_copy_button</property>
                     <style>
                       <class name="otp-action-row"/>
                       <class name="numeric"/>
                     </style>
                     <child>
                       <object class="GtkImage">
-                        <property name="tooltip_text" translatable="yes">Remaining Time</property>
+                        <property name="tooltip-text" translatable="yes">Remaining Time</property>
                         <property name="paintable">
                           <object class="ProgressIcon" id="otp_progress_icon"/>
                         </property>
@@ -127,9 +127,9 @@
                     <child>
                       <object class="GtkButton" id="otp_copy_button">
                         <property name="valign">center</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Copy</property>
-                        <property name="icon_name">edit-copy-symbolic</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Copy</property>
+                        <property name="icon-name">edit-copy-symbolic</property>
                         <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
                         <style>
                           <class name="flat"/>
@@ -141,7 +141,7 @@
                 <child>
                   <object class="AdwPasswordEntryRow" id="otp_secret_entry_row">
                     <property name="title" translatable="yes">One-_Time Password Secret</property>
-                    <property name="use_underline">True</property>
+                    <property name="use-underline">True</property>
                   </object>
                 </child>
                 <child>
@@ -157,8 +157,8 @@
                 <property name="title" translatable="yes">Notes</property>
                 <property name="header-suffix">
                   <object class="GtkButton" id="notes_detach_button">
-                    <property name="icon_name">focus-windows-symbolic</property>
-                    <property name="tooltip_text" translatable="yes">Edit in a Window</property>
+                    <property name="icon-name">focus-windows-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Edit in a Window</property>
                     <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
                     <style>
                       <class name="flat"/>
@@ -167,12 +167,12 @@
                 </property>
                 <child>
                   <object class="GtkScrolledWindow">
-                    <property name="height_request">180</property>
+                    <property name="height-request">180</property>
                     <child>
                       <object class="GtkTextView" id="notes_property_value_entry">
                         <property name="hexpand">True</property>
-                        <property name="wrap_mode">word</property>
-                        <property name="accepts_tab">False</property>
+                        <property name="wrap-mode">word</property>
+                        <property name="accepts-tab">False</property>
                         <style>
                           <class name="inline"/>
                         </style>
@@ -219,10 +219,10 @@
               <object class="AdwPreferencesGroup" id="_tags_group">
                 <property name="title" translatable="yes">Tags</property>
                 <property name="visible">False</property>
-                <property name="header_suffix">
+                <property name="header-suffix">
                   <object class="GtkButton">
-                    <property name="icon_name">list-add-symbolic</property>
-                    <property name="tooltip_text" translatable="yes">Add New Tag</property>
+                    <property name="icon-name">list-add-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Add New Tag</property>
                     <signal name="clicked" handler="_on_tag_add_clicked" swapped="no"/>
                     <style>
                       <class name="flat"/>
@@ -244,7 +244,7 @@
                 <child>
                   <object class="AddListBox" id="attachment_list_box">
                     <property name="label" translatable="yes">_Add Attachment</property>
-                    <property name="action_name">entry.add_attachment</property>
+                    <property name="action-name">entry.add_attachment</property>
                     <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
                   </object>
                 </child>
@@ -256,7 +256,7 @@
                 <property name="visible">False</property>
                 <child>
                   <object class="AddListBox" id="attribute_list_box">
-                    <property name="action_name">entry.add_attribute</property>
+                    <property name="action-name">entry.add_attribute</property>
                     <property name="label" translatable="yes">Add Attr_ibute</property>
                   </object>
                 </child>
@@ -277,9 +277,9 @@
                 <child>
                   <object class="AdwButtonRow">
                     <signal name="activated" handler="on_show_all_properties_button_clicked" swapped="no"/>
-                    <property name="start_icon_name">view-more-symbolic</property>
+                    <property name="start-icon-name">view-more-symbolic</property>
                     <property name="title" translatable="yes">_Show More</property>
-                    <property name="use_underline">True</property>
+                    <property name="use-underline">True</property>
                   </object>
                 </child>
               </object>

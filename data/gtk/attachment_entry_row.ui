@@ -5,8 +5,8 @@
     <child>
       <object class="GtkButton" id="download_button">
         <property name="valign">center</property>
-        <property name="icon_name">document-save-as-symbolic</property>
-        <property name="tooltip_text" translatable="yes">Download Attachment</property>
+        <property name="icon-name">document-save-as-symbolic</property>
+        <property name="tooltip-text" translatable="yes">Download Attachment</property>
         <signal name="clicked" handler="_on_download_button_clicked" swapped="no"/>
         <style>
           <class name="flat"/>
@@ -16,8 +16,8 @@
     <child>
       <object class="GtkButton" id="delete_button">
         <property name="valign">center</property>
-        <property name="icon_name">user-trash-symbolic</property>
-        <property name="tooltip_text" translatable="yes">Remove Attachment</property>
+        <property name="icon-name">user-trash-symbolic</property>
+        <property name="tooltip-text" translatable="yes">Remove Attachment</property>
         <signal name="clicked" handler="_on_delete_button_clicked" swapped="no"/>
         <style>
           <class name="flat"/>

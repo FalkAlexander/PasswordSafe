@@ -6,10 +6,10 @@
       <object class="GtkStack" id="_stack">
         <child>
           <object class="GtkScrolledWindow" id="_scrolled_window">
-            <property name="hscrollbar_policy">never</property>
+            <property name="hscrollbar-policy">never</property>
             <child>
               <object class="GtkListView" id="_list_view">
-                <property name="single_click_activate">True</property>
+                <property name="single-click-activate">True</property>
                 <style>
                   <class name="navigation-sidebar"/>
                 </style>
@@ -19,14 +19,14 @@
         </child>
         <child>
           <object class="AdwStatusPage" id="_empty_group_box">
-            <property name="icon_name">folder-symbolic</property>
+            <property name="icon-name">folder-symbolic</property>
             <property name="description" translatable="yes">Add elements with the ➕ button</property>
             <property name="title" translatable="yes">Empty Group</property>
           </object>
         </child>
         <child>
           <object class="AdwStatusPage" id="_empty_search_page">
-            <property name="icon_name">folder-saved-search-symbolic</property>
+            <property name="icon-name">folder-saved-search-symbolic</property>
             <property name="title" translatable="yes">No Search Results</property>
           </object>
         </child>

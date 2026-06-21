@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="AddAttributeDialog" parent="AdwDialog">
-    <property name="content_width">450</property>
+    <property name="content-width">450</property>
     <property name="title" translatable="yes">Add Attribute</property>
-    <property name="default_widget">_add_button</property>
-    <property name="focus_widget">_key_entry</property>
+    <property name="default-widget">_add_button</property>
+    <property name="focus-widget">_key_entry</property>
     <child>
       <object class="AdwToolbarView">
         <child type="top">
@@ -14,13 +14,13 @@
           <object class="AdwToastOverlay" id="_toast_overlay">
             <child>
               <object class="GtkScrolledWindow">
-                <property name="propagate_natural_height">True</property>
+                <property name="propagate-natural-height">True</property>
                 <child>
                   <object class="AdwClamp">
-                    <property name="margin_top">12</property>
-                    <property name="margin_bottom">12</property>
-                    <property name="margin_start">12</property>
-                    <property name="margin_end">12</property>
+                    <property name="margin-top">12</property>
+                    <property name="margin-bottom">12</property>
+                    <property name="margin-start">12</property>
+                    <property name="margin-end">12</property>
                     <child>
                       <object class="GtkBox">
                         <property name="orientation">vertical</property>
@@ -35,13 +35,13 @@
                             <child>
                               <object class="AdwEntryRow" id="_key_entry">
                                 <property name="title" translatable="yes">Key</property>
-                                <property name="activates_default">True</property>
+                                <property name="activates-default">True</property>
                               </object>
                             </child>
                             <child>
                               <object class="AdwEntryRow" id="_value_entry">
                                 <property name="title" translatable="yes">Value</property>
-                                <property name="activates_default">True</property>
+                                <property name="activates-default">True</property>
                               </object>
                             </child>
                             <child>
@@ -57,8 +57,8 @@
                             <property name="label" translatable="yes">_Add</property>
                             <signal name="clicked" handler="_on_add_button_clicked" swapped="no"/>
                             <property name="halign">center</property>
-                            <property name="use_underline">True</property>
-                            <property name="can_shrink">True</property>
+                            <property name="use-underline">True</property>
+                            <property name="can-shrink">True</property>
                             <style>
                               <class name="suggested-action"/>
                               <class name="pill"/>

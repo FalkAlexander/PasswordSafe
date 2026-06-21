@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="UnlockedDatabase" parent="AdwBreakpointBin">
-    <property name="width_request">360</property>
-    <property name="height_request">200</property>
+    <property name="width-request">360</property>
+    <property name="height-request">200</property>
     <child>
       <object class="AdwBreakpoint">
         <condition>max-width: 720</condition>
@@ -22,25 +22,25 @@
                   <object class="GtkStack" id="headerbar_stack">
                     <child>
                       <object class="AdwHeaderBar" id="_selection_mode_headerbar">
-                        <property name="show_end_title_buttons">False</property>
-                        <property name="show_start_title_buttons">False</property>
-                        <property name="title_widget">
+                        <property name="show-end-title-buttons">False</property>
+                        <property name="show-start-title-buttons">False</property>
+                        <property name="title-widget">
                           <object class="AdwWindowTitle" id="_selection_mode_title">
                             <property name="title" translatable="yes">Select Items</property>
                           </object>
                         </property>
                         <child>
                           <object class="GtkButton" id="_selection_go_back_button">
-                            <property name="icon_name">go-previous-symbolic</property>
-                            <property name="tooltip_text" translatable="yes">Go Back</property>
+                            <property name="icon-name">go-previous-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Go Back</property>
                             <signal name="clicked" handler="_on_selection_go_back_button_clicked" swapped="no"/>
                           </object>
                         </child>
                         <child type="end">
                           <object class="GtkButton">
                             <property name="label" translatable="yes">_Cancel</property>
-                            <property name="use_underline">True</property>
-                            <property name="can_shrink">True</property>
+                            <property name="use-underline">True</property>
+                            <property name="can-shrink">True</property>
                             <signal name="clicked" handler="_on_selection_cancel_clicked" swapped="no"/>
                           </object>
                         </child>
@@ -55,9 +55,9 @@
                     </accessibility>
                     <child>
                       <object class="GtkSearchEntry" id="_search_entry">
-                        <property name="activates_default">True</property>
+                        <property name="activates-default">True</property>
                         <property name="hexpand">True</property>
-                        <property name="placeholder_text" translatable="yes">Search Safe</property>
+                        <property name="placeholder-text" translatable="yes">Search Safe</property>
                         <accessibility>
                           <relation name="labelled-by">_search_bar</relation>
                         </accessibility>
@@ -72,16 +72,16 @@
                       <object class="GtkButton" id="_clear_selection_button">
                         <property name="label" translatable="yes">_Clear</property>
                         <property name="sensitive">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="can_shrink">True</property>
+                        <property name="use-underline">True</property>
+                        <property name="can-shrink">True</property>
                         <signal name="clicked" handler="_on_clear_selection_clicked" swapped="no"/>
                       </object>
                     </child>
                     <child type="end">
                       <object class="GtkButton" id="_delete_selection_button">
                         <property name="sensitive">False</property>
-                        <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete Selection</property>
-                        <property name="icon_name">user-trash-symbolic</property>
+                        <property name="tooltip-text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete Selection</property>
+                        <property name="icon-name">user-trash-symbolic</property>
                         <signal name="clicked" handler="_on_delete_selection_clicked" swapped="no"/>
                       </object>
                     </child>
@@ -90,15 +90,15 @@
                         <child>
                           <object class="GtkButton" id="_cut_selection_button">
                             <property name="sensitive">False</property>
-                            <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move Selection</property>
-                            <property name="icon_name">edit-cut-symbolic</property>
+                            <property name="tooltip-text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move Selection</property>
+                            <property name="icon-name">edit-cut-symbolic</property>
                             <signal name="clicked" handler="_on_cut_selection_clicked" swapped="no"/>
                           </object>
                         </child>
                         <child>
                           <object class="GtkButton" id="_paste_selection_button">
-                            <property name="tooltip_text" translatable="yes">Paste Selection</property>
-                            <property name="icon_name">edit-paste-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Paste Selection</property>
+                            <property name="icon-name">edit-paste-symbolic</property>
                             <signal name="clicked" handler="_on_paste_selection_clicked" swapped="no"/>
                           </object>
                         </child>
@@ -117,7 +117,7 @@
               <object class="AdwToolbarView">
                 <child type="top">
                   <object class="AdwHeaderBar">
-                    <property name="show_title">False</property>
+                    <property name="show-title">False</property>
                   </object>
                 </child>
                 <child>

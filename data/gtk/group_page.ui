@@ -5,14 +5,14 @@
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar">
-            <property name="title_widget">
+            <property name="title-widget">
               <object class="AdwWindowTitle" id="_window_title"/>
             </property>
             <child type="end">
               <object class="GtkMenuButton" id="_secondary_menu_button">
-                <property name="icon_name">view-more-symbolic</property>
-                <property name="tooltip_text" translatable="yes">Group Menu</property>
-                <property name="menu_model">group_menu</property>
+                <property name="icon-name">view-more-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Group Menu</property>
+                <property name="menu-model">group_menu</property>
               </object>
             </child>
           </object>
@@ -24,7 +24,7 @@
                 <child>
                   <object class="AdwEntryRow" id="title_entry_row">
                     <property name="title" translatable="yes">_Title</property>
-                    <property name="use_underline">True</property>
+                    <property name="use-underline">True</property>
                   </object>
                 </child>
               </object>
@@ -32,10 +32,10 @@
             <child>
               <object class="AdwPreferencesGroup" id="notes_group">
                 <property name="title" translatable="yes">Notes</property>
-                <property name="header_suffix">
+                <property name="header-suffix">
                   <object class="GtkButton" id="notes_detach_button">
-                    <property name="icon_name">focus-windows-symbolic</property>
-                    <property name="tooltip_text" translatable="yes">Edit in a Window</property>
+                    <property name="icon-name">focus-windows-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Edit in a Window</property>
                     <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
                     <style>
                       <class name="flat"/>
@@ -44,12 +44,12 @@
                 </property>
                 <child>
                   <object class="GtkScrolledWindow">
-                    <property name="height_request">180</property>
+                    <property name="height-request">180</property>
                     <child>
                       <object class="GtkTextView" id="notes_text_view">
                         <property name="hexpand">True</property>
-                        <property name="wrap_mode">word</property>
-                        <property name="accepts_tab">False</property>
+                        <property name="wrap-mode">word</property>
+                        <property name="accepts-tab">False</property>
                         <accessibility>
                           <relation name="labelled-by">notes_group</relation>
                         </accessibility>

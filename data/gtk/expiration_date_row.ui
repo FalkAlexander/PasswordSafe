@@ -6,11 +6,11 @@
         <child>
           <object class="AdwActionRow" id="action_row">
             <property name="title" translatable="yes">Expiration Date not Set</property>
-            <property name="activatable_widget">edit_button</property>
+            <property name="activatable-widget">edit_button</property>
             <property name="selectable">False</property>
             <child type="prefix">
               <object class="GtkImage">
-                <property name="icon_name">x-office-calendar-symbolic</property>
+                <property name="icon-name">x-office-calendar-symbolic</property>
                 <property name="accessible-role">presentation</property>
               </object>
             </child>
@@ -18,8 +18,8 @@
               <object class="GtkMenuButton" id="edit_button">
                 <property name="popover">popover</property>
                 <property name="valign">center</property>
-                <property name="icon_name">document-edit-symbolic</property>
-                <property name="tooltip_text" translatable="yes">Edit Expiration Date</property>
+                <property name="icon-name">document-edit-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Edit Expiration Date</property>
                 <style>
                   <class name="flat"/>
                 </style>
@@ -27,10 +27,10 @@
             </child>
             <child>
               <object class="GtkButton" id="remove_button">
-                <property name="tooltip_text" translatable="yes">Remove Expiration Date</property>
+                <property name="tooltip-text" translatable="yes">Remove Expiration Date</property>
                 <property name="valign">center</property>
                 <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
-                <property name="icon_name">user-trash-symbolic</property>
+                <property name="icon-name">user-trash-symbolic</property>
                 <style>
                   <class name="destructive-action"/>
                 </style>
@@ -47,10 +47,10 @@
   <object class="GtkPopover" id="popover">
     <child>
       <object class="GtkBox">
-        <property name="margin_start">12</property>
-        <property name="margin_end">12</property>
-        <property name="margin_bottom">12</property>
-        <property name="margin_top">12</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="margin-top">12</property>
         <property name="spacing">12</property>
         <property name="orientation">vertical</property>
         <child>
@@ -61,8 +61,8 @@
         <child>
           <object class="GtkButton" id="popover_edit_button">
             <property name="label" translatable="yes">_Set Expiration Date</property>
-            <property name="use_underline">True</property>
-            <property name="can_shrink">True</property>
+            <property name="use-underline">True</property>
+            <property name="can-shrink">True</property>
             <signal name="clicked" handler="on_edit_button_clicked" swapped="no"/>
             <style>
               <class name="suggested-action"/>

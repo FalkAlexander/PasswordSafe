@@ -4,12 +4,12 @@
     <property name="position">bottom</property>
     <child>
       <object class="GtkGrid">
-        <property name="margin_start">8</property>
-        <property name="margin_end">8</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
-        <property name="row_spacing">6</property>
-        <property name="column_spacing">14</property>
+        <property name="margin-start">8</property>
+        <property name="margin-end">8</property>
+        <property name="margin-top">8</property>
+        <property name="margin-bottom">8</property>
+        <property name="row-spacing">6</property>
+        <property name="column-spacing">14</property>
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Code</property>
@@ -189,7 +189,7 @@
   </menu>
   <template class="ReferencesDialog" parent="AdwDialog">
     <property name="title" translatable="yes">References</property>
-    <property name="width_request">300</property>
+    <property name="width-request">300</property>
     <child>
       <object class="AdwToolbarView">
         <child type="top">
@@ -199,16 +199,16 @@
           <object class="AdwClamp">
             <child>
               <object class="GtkBox">
-                <property name="margin_start">12</property>
-                <property name="margin_end">12</property>
-                <property name="margin_top">12</property>
-                <property name="margin_bottom">12</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">12</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel" id="section_label_ref_syntax">
                     <property name="xalign">0.0</property>
-                    <property name="margin_top">6</property>
-                    <property name="margin_bottom">6</property>
+                    <property name="margin-top">6</property>
+                    <property name="margin-bottom">6</property>
                     <property name="label" translatable="yes">Syntax</property>
                     <style>
                       <class name="heading"/>
@@ -237,7 +237,7 @@
                     </child>
                     <child>
                       <object class="GtkLabel" id="_property_label">
-                        <property name="tooltip_text" translatable="yes">Show Field Codes</property>
+                        <property name="tooltip-text" translatable="yes">Show Field Codes</property>
                         <property name="label" translatable="yes">Property</property>
                         <property name="ellipsize">end</property>
                         <property name="wrap">True</property>
@@ -265,7 +265,7 @@
                     </child>
                     <child>
                       <object class="GtkLabel" id="identifier_label">
-                        <property name="tooltip_text" translatable="yes">Show Field Codes</property>
+                        <property name="tooltip-text" translatable="yes">Show Field Codes</property>
                         <property name="label" translatable="yes">Identifier</property>
                         <property name="ellipsize">end</property>
                         <attributes>
@@ -321,8 +321,8 @@
                 <child>
                   <object class="GtkLabel" id="section_label_reference">
                     <property name="xalign">0.0</property>
-                    <property name="margin_top">30</property>
-                    <property name="margin_bottom">6</property>
+                    <property name="margin-top">30</property>
+                    <property name="margin-bottom">6</property>
                     <property name="label" translatable="yes">Reference</property>
                     <style>
                       <class name="heading"/>
@@ -333,7 +333,7 @@
                   <object class="GtkBox">
                     <child>
                       <object class="GtkMenuButton" id="_property_popover_button">
-                        <property name="menu_model">prop_selection_menu</property>
+                        <property name="menu-model">prop_selection_menu</property>
                         <property name="label" translatable="yes">Property</property>
                       </object>
                     </child>
@@ -341,7 +341,7 @@
                       <object class="GtkEntry" id="_reference_entry">
                         <property name="hexpand">True</property>
                         <property name="editable">False</property>
-                        <property name="secondary_icon_name">edit-copy-symbolic</property>
+                        <property name="secondary-icon-name">edit-copy-symbolic</property>
                         <property name="secondary-icon-tooltip-text" translatable="yes">Copy</property>
                         <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
                       </object>
@@ -364,10 +364,10 @@
       <object class="GtkLabel">
         <property name="label" translatable="yes">Each entry has a unique identifier called UUID. It can be found in the properties of the entry.</property>
         <property name="wrap">True</property>
-        <property name="margin_start">8</property>
-        <property name="margin_end">8</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin-start">8</property>
+        <property name="margin-end">8</property>
+        <property name="margin-top">8</property>
+        <property name="margin-bottom">8</property>
       </object>
     </child>
   </object>

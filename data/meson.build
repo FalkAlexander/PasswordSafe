@@ -8,22 +8,22 @@ metainfo = i18n.merge_file(
   input: configure_file(
     input: files('org.gnome.World.Secrets.metainfo.xml.in.in'),
     output: 'org.gnome.World.Secrets.metainfo.xml.in',
-    configuration: metainfo_conf
+    configuration: metainfo_conf,
   ),
   output: application_id + '.metainfo.xml',
   install: true,
   install_dir: join_paths(join_paths('share'), 'metainfo'),
-  po_dir: join_paths(meson.project_source_root(), 'po')
+  po_dir: join_paths(meson.project_source_root(), 'po'),
 )
 
 # Validating the metainfo file
 appstreamcli = find_program('appstreamcli', required: false)
 if appstreamcli.found()
-  test (
+  test(
     'Validate metainfo file',
     appstreamcli,
     args: ['validate', '--no-net', '--explain', metainfo],
-    workdir: meson.current_build_dir()
+    workdir: meson.current_build_dir(),
   )
 endif
 
@@ -48,11 +48,11 @@ gschema_conf = configuration_data()
 gschema_conf.set('APP_ID', application_id)
 gschema_conf.set('GETTEXT_PACKAGE', gettext_package)
 configure_file(
-    input: '@0@.gschema.xml.in'.format(project_id),
-    output: '@0@.gschema.xml'.format(application_id),
-    configuration: gschema_conf,
-    install: true,
-    install_dir: 'share/glib-2.0/schemas'
+  input: '@0@.gschema.xml.in'.format(project_id),
+  output: '@0@.gschema.xml'.format(application_id),
+  configuration: gschema_conf,
+  install: true,
+  install_dir: 'share/glib-2.0/schemas',
 )
 
 # Install mimetype file
@@ -68,30 +68,36 @@ desktop = i18n.merge_file(
   input: configure_file(
     input: files('org.gnome.World.Secrets.desktop.in.in'),
     output: 'org.gnome.World.Secrets.desktop.in',
-    configuration: desktop_conf
+    configuration: desktop_conf,
   ),
   output: '@0@.desktop'.format(application_id),
   po_dir: join_paths(meson.project_source_root(), 'po'),
   type: 'desktop',
   install: true,
-  install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'applications')
+  install_dir: join_paths(
+    get_option('prefix'),
+    get_option('datadir'),
+    'applications',
+  ),
 )
 
 # Validating the desktop file
-desktop_file_validate = find_program('desktop-file-validate', required:false)
+desktop_file_validate = find_program('desktop-file-validate', required: false)
 if desktop_file_validate.found()
-  test (
+  test(
     'Validate desktop file',
     desktop_file_validate,
-    args: join_paths(meson.current_build_dir (), application_id + '.desktop')
+    args: join_paths(meson.current_build_dir(), application_id + '.desktop'),
   )
 endif
 
 # Validating schemas
 compile_schemas = find_program('glib-compile-schemas', required: false)
 if compile_schemas.found()
-  test('Validate schema file', compile_schemas,
-    args: ['--strict', '--dry-run', meson.current_source_dir()]
+  test(
+    'Validate schema file',
+    compile_schemas,
+    args: ['--strict', '--dry-run', meson.current_source_dir()],
   )
 endif
 

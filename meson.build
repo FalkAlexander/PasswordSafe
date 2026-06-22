@@ -1,8 +1,9 @@
-project('secrets',
-        version: '13.0.1',
-        meson_version: '>= 1.7',
-        license: 'GPL-3.0-only'
-       )
+project(
+  'secrets',
+  version: '13.0.1',
+  meson_version: '>= 1.7',
+  license: 'GPL-3.0-only',
+)
 i18n = import('i18n')
 python = import('python')
 gnome = import('gnome')
@@ -12,14 +13,17 @@ project_name = 'Secrets'
 
 message('Looking for dependencies')
 # We need pykeepass>=4.1.1 and pyotp>=2.4.0.
-python_bin = python.find_installation('python3', modules:[
-  'pykeepass',
-  'pyotp',
-  'validators',
-  'zxcvbn_rs_py',
-  'PyKCS11',
-  'yubico',
-])
+python_bin = python.find_installation(
+  'python3',
+  modules: [
+    'pykeepass',
+    'pyotp',
+    'validators',
+    'zxcvbn_rs_py',
+    'PyKCS11',
+    'yubico',
+  ],
+)
 if not python_bin.found()
   error('No valid python3 binary found')
 else
@@ -40,19 +44,27 @@ dependency('pygobject-3.0', version: '>= 3.52')
 dependency('gtksourceview-5', version: '>= 5.0')
 
 python_dir = python_bin.get_install_dir()
-DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
+DATA_DIR = join_paths(
+  get_option('prefix'),
+  get_option('datadir'),
+  meson.project_name(),
+)
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 
 # Profiles
 application_id = project_id
 if get_option('profile') == 'development'
-    profile = 'Devel'
-    application_id = '@0@.Devel'.format(application_id)
-    version =  ''.join([run_command('git', 'describe', '--long', '--tags', check: false).stdout().strip()])
+  profile = 'Devel'
+  application_id = '@0@.Devel'.format(application_id)
+  version = ''.join(
+    [
+      run_command('git', 'describe', '--long', '--tags', check: false).stdout().strip(),
+    ],
+  )
 else
-    profile = ''
-    version = meson.project_version()
+  profile = ''
+  version = meson.project_version()
 endif
 
 top_source_dir = meson.current_source_dir()

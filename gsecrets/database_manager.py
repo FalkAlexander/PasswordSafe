@@ -6,6 +6,7 @@ import json
 import logging
 from pathlib import Path
 from time import perf_counter
+from typing import TYPE_CHECKING
 
 from gi.repository import Gio, GLib, GObject
 from pykeepass import PyKeePass
@@ -16,6 +17,9 @@ from gsecrets.err import ErrorType, error, generic_error
 from gsecrets.recent_manager import RecentManager
 from gsecrets.safe_element import SafeEntry, SafeGroup
 from gsecrets.utils import LazyValue, compare_passwords
+
+if TYPE_CHECKING:
+    from gsecrets.provider.base_provider import BaseProvider
 
 # GTK uses G_PRIORITY_HIGH_IDLE + 10 for resizing operations, and
 # G_PRIORITY_HIGH_IDLE + 20 for redrawing operations. We use a slightly lower
@@ -64,7 +68,7 @@ class DatabaseManager(GObject.Object):
     # To be emitted when the elements list model needs to be re sorted.
     sorting_changed = GObject.Signal(arg_types=(bool,))
 
-    def __init__(self, key_providers: list, database_path: str) -> None:
+    def __init__(self, key_providers: list[BaseProvider], database_path: str) -> None:
         """Initialize the database handling logic.
 
         :param str database_path: The database path

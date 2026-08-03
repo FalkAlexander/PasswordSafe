@@ -312,7 +312,7 @@ class Pkcs11Provider(BaseProvider):
 
         return True
 
-    def config(self) -> dict:
+    def config(self) -> dict[str, object]:
         return {"label": self._active_certificate}
 
 

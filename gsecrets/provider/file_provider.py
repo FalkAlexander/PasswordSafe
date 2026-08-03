@@ -198,7 +198,7 @@ class FileProvider(BaseProvider):
 
         dialog.save(self.window, None, self._on_filechooser_response)
 
-    def config(self):
+    def config(self) -> dict[str, object]:
         ret = {}
 
         if self.keyfile_path:

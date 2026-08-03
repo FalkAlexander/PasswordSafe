@@ -225,7 +225,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
     #
 
     @GObject.Property(type=SafeElement)
-    def current_element(self) -> SafeElement:
+    def current_element(self) -> SafeElement | None:
         # FIXME Rename to current_group, check all uses
         return self._current_element
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from gi.repository import Adw, GLib, GObject, Gtk
 
-DURATION = 3.0
+DURATION: int = 3
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/error_revealer.ui")
@@ -29,7 +29,7 @@ class ErrorRevealer(Adw.Bin):
         else:
             self._revealer.props.reveal_child = False
 
-    def _hide_callback(self) -> None:
+    def _hide_callback(self) -> bool:
         self.reveal(False)
 
         return GLib.SOURCE_REMOVE

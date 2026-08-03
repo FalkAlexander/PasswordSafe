@@ -28,7 +28,7 @@ def path():
 
 @pytest.fixture(scope="module")
 def db_pwd(path, password):
-    db = DatabaseManager(None, path)
+    db = DatabaseManager([], path)
 
     # Hack around async methods
     # TODO Provide a sync method which tests unlock_async

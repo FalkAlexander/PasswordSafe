@@ -21,7 +21,7 @@ class BaseProvider(GObject.Object):
     def key(self) -> bytes:
         return self.raw_key
 
-    def config(self) -> dict:
+    def config(self) -> dict[str, object]:
         return {}
 
     def clear_input_fields(self) -> None:

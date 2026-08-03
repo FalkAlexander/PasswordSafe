@@ -36,7 +36,7 @@ class HistoryRow(Adw.ActionRow):
         return self._reveal
 
     @reveal.setter  # type: ignore
-    def reveal(self, reveal) -> bool:
+    def reveal(self, reveal) -> None:
         button = self.visibility_button
         if reveal:
             button.props.icon_name = "eye-not-looking-symbolic"

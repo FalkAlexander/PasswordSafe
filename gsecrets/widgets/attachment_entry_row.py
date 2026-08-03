@@ -12,7 +12,7 @@ from gsecrets.attachment_delete_dialog import AttachmentDeleteDialog
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
-    from gsecrets.add_list_box import AddListBox
+    from gsecrets.widgets.add_list_box import AddListBox
     from gsecrets.safe_element import SafeEntry
     from gsecrets.unlocked_database import UnlockedDatabase
 

@@ -591,14 +591,14 @@ class SafeGroup(SafeElement):
         )
 
     @property
-    def subgroups(self) -> Gio.ListModel:
+    def subgroups(self) -> Gio.ListModel[SafeElement]:
         if self._subgroups is None:
             self.init_subgroups()
 
         return self._subgroups
 
     @property
-    def entries(self) -> Gio.ListModel:
+    def entries(self) -> Gio.ListModel[SafeElement]:
         if self._entries is None:
             self.init_entries()
 
@@ -934,11 +934,11 @@ class SafeEntry(SafeElement):
         return self.props.icon.name
 
     @property
-    def tags(self) -> dict:
+    def tags(self) -> dict[str, str]:
         return self.entry.tags
 
     @tags.setter  # type: ignore
-    def tags(self, new_tags: dict) -> None:
+    def tags(self, new_tags: dict[str, str]) -> None:
         self.entry.tags = new_tags
         self._db_manager.is_dirty = True
 

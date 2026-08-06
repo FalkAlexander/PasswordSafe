@@ -3,43 +3,78 @@
 # This file is distributed under the same license as the PasswordSafe package.
 #
 # Marek Černocký <marek@manet.cz>, 2018, 2019, 2020, 2021, 2022.
+# Patrik Sivek <sivekpatrik@gmail.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-14 12:11+0000\n"
-"PO-Revision-Date: 2022-03-14 14:24+0100\n"
-"Last-Translator: Marek Černocký <marek@manet.cz>\n"
-"Language-Team: čeština <gnome-cs-list@gnome.org>\n"
+"POT-Creation-Date: 2026-08-03 21:01+0000\n"
+"PO-Revision-Date: 2026-08-06 19:08+0200\n"
+"Last-Translator: Patrik Sivek <sivekpatrik@gmail.com>\n"
+"Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 50.0\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
-msgid "Manage your passwords"
-msgstr "Spravujte svá hesla"
+#: data/gtk/add_attribute_dialog.ui:5
+msgid "Add Attribute"
+msgstr "Přidat vlastnost"
 
-#. "Secrets" is the application name, do not translate
-#: data/about_dialog.ui.in:9
-msgid "Learn more about Secrets"
-msgstr "Dozvědět se více o aplikaci Secrets"
+#: data/gtk/add_attribute_dialog.ui:37
+msgid "Key"
+msgstr "Klíč"
 
-#. Add your name to the translator credits list
-#: data/about_dialog.ui.in:11
-msgid "translator-credits"
-msgstr "Marek Černocký <marek@manet.cz>"
+#: data/gtk/add_attribute_dialog.ui:43
+msgid "Value"
+msgstr "Hodnota"
+
+#: data/gtk/add_attribute_dialog.ui:49
+msgid "Sensitive"
+msgstr "Citlivé"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Contains sensitive data."
+msgstr "Obsahuje citlivá data."
+
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
+msgid "_Add"
+msgstr "Přid_at"
+
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Chcete pokračovat?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Zpět"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:319
+#: data/gtk/group_page.ui:82 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_Smazat"
+
+#: data/gtk/attachment_entry_row.ui:9
+msgid "Download Attachment"
+msgstr "Stáhnout přílohu"
+
+#: data/gtk/attachment_entry_row.ui:20
+msgid "Remove Attachment"
+msgstr "Odstranit přílohu"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:4
 msgid "Safety Info"
 msgstr "Bezpečnostní informace"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:5
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -47,531 +82,475 @@ msgstr ""
 "Je možné, že externí aplikace vytvoří nešifrované skryté nebo dočasné kopie "
 "souboru s touto přílohou. Postupujte prosím obezřetně."
 
-#. Discard all the changes which the user have made to his keepass safe
 #: data/gtk/attachment_warning_dialog.ui:10
-msgid "_Back"
-msgstr "_Zpět"
-
-#. Save all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:16
 msgid "_Proceed"
 msgstr "_Pokračovat"
 
-#: data/gtk/attribute_entry_row.ui:49
+#: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+msgid "Copy Attribute"
+msgstr "Kopírovat vlastnost"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
 msgid "Remove Attribute"
 msgstr "Odstranit vlastnost"
 
-#: data/gtk/color_entry_row.ui:11
+#: data/gtk/browsing_panel.ui:23
+msgid "Add elements with the ➕ button"
+msgstr "Přidat položky stisknutím tlačítka ➕"
+
+#: data/gtk/browsing_panel.ui:24
+msgid "Empty Group"
+msgstr "Prázdná skupina"
+
+#: data/gtk/browsing_panel.ui:30
+msgid "No Search Results"
+msgstr "Nejsou žádné výsledky hledání"
+
+#: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Barva"
 
-#: data/gtk/create_database.ui:33
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
+msgid "Create Safe"
+msgstr "Vytvoření trezoru"
+
+#: data/gtk/create_database.ui:17
+msgid "Back"
+msgstr "Zpět"
+
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:40
+msgid "Main Menu"
+msgstr "Hlavní nabídka"
+
+#: data/gtk/create_database.ui:44
 msgid "Protect your safe"
 msgstr "Ochraňte svůj trezor"
 
-#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Heslo"
 
-#: data/gtk/create_database.ui:47
-msgid "Use a password to secure your safe."
-msgstr "Používat k zabezpečení trezoru heslo."
+#: data/gtk/create_database.ui:64
+msgid "_Confirm Password"
+msgstr "_Potvrdit heslo"
 
-#: data/gtk/create_database.ui:57
-msgid "_Keyfile"
-msgstr "Soubor s _klíčem"
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:59
+msgid "Additional Credentials"
+msgstr "Dodatečné přihlašovací údaje"
 
-#: data/gtk/create_database.ui:58
-msgid "Use a keyfile to secure your safe."
-msgstr "Používat k zabezpečení trezoru soubor s klíčem."
+#: data/gtk/create_database.ui:90
+msgid "C_reate"
+msgstr "_Vytvořit"
 
-#: data/gtk/create_database.ui:68
-msgid "_Composite"
-msgstr "_Kombinace obojího"
-
-#: data/gtk/create_database.ui:69
-msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr "Používat k zabezpečení trezoru kombinaci hesla a souboru s klíčem."
-
-#: data/gtk/create_database.ui:101
-msgid "Enter Password"
-msgstr "Zadání hesla"
-
-#: data/gtk/create_database.ui:109
-msgid "Set password for safe."
-msgstr "Nastavte si heslo pro trezor."
-
-#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
-msgid "Generate New Password"
-msgstr "Vygenerovat nové heslo"
-
-#: data/gtk/create_database.ui:183
-msgid "Password Match Check"
-msgstr "Kontrola správného zadání hesla"
-
-#: data/gtk/create_database.ui:191
-msgid "Repeat password for safe."
-msgstr "Zopakujte zadání hesla pro trezor."
-
-#: data/gtk/create_database.ui:248
-msgid "Match Check Failed"
-msgstr "Kontrola shody hesel neprošla"
-
-#: data/gtk/create_database.ui:256
-msgid "Please try again."
-msgstr "Zkuste to prosím znovu."
-
-#: data/gtk/create_database.ui:286
-msgid "_Confirm"
-msgstr "P_otvrzení"
-
-#. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:166
-#: gsecrets/widgets/database_settings_dialog.py:200
-msgid "Generate Keyfile"
-msgstr "Generování souboru s klíčem"
-
-#: data/gtk/create_database.ui:329
-msgid "Set keyfile for safe"
-msgstr "Nastavte si soubor s klíčem pro trezor"
-
-#. Button to generate a password
-#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:169
-#: gsecrets/widgets/database_settings_dialog.py:203
-msgid "_Generate"
-msgstr "Vy_generovat"
-
-#: data/gtk/create_database.ui:372
+#: data/gtk/create_database.ui:115
 msgid "Safe Successfully Created"
 msgstr "Trezor byl úspěšně vytvořen"
 
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:118
 msgid "_Open Safe"
 msgstr "_Otevřít trezor"
 
-#. Headerbar subtitle in keepass safe creation routine.
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
-msgid "Create Safe"
-msgstr "Vytvoření trezoru"
-
-#: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
-#: data/gtk/unlock_database_headerbar.ui:38
-msgid "Back"
-msgstr "Zpět"
-
-#: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
-msgid "Main Menu"
-msgstr "Hlavní nabídka"
-
-#: data/gtk/create_database_headerbar.ui:31
-#: data/gtk/recent_files_headerbar.ui:53
-#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Předvolby"
 
-#: data/gtk/create_database_headerbar.ui:35
-#: data/gtk/recent_files_headerbar.ui:57
-#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Klávesové zkratky"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database_headerbar.ui:39
-#: data/gtk/recent_files_headerbar.ui:61
-#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "O _aplikaci Secrets"
 
-#: data/gtk/database_settings_dialog.ui:10
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "_Uživatelské jméno"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:131
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:345
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
+msgid "Generate New Password"
+msgstr "Vygenerovat nové heslo"
+
+#: data/gtk/database_settings_dialog.ui:5
+msgid "Safe Settings"
+msgstr "Nastavení trezoru"
+
+#: data/gtk/database_settings_dialog.ui:9
 msgid "Authentication"
 msgstr "Ověřování"
 
-#: data/gtk/database_settings_dialog.ui:14
-#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87
-msgid "Password"
-msgstr "Heslo"
+#: data/gtk/database_settings_dialog.ui:15
+msgid "Current Password"
+msgstr "Současné heslo"
 
-#. New password (replacement for an old one)
-#: data/gtk/database_settings_dialog.ui:22
-#: data/gtk/recent_files_headerbar.ui:19
-msgid "_New"
-msgstr "_Nové"
+#: data/gtk/database_settings_dialog.ui:25
+msgid "New Password"
+msgstr "Nové heslo"
 
-#. Retype the new password to confirm
-#: data/gtk/database_settings_dialog.ui:69
-msgid "C_onfirm"
-msgstr "P_otvrzení"
-
-#: data/gtk/database_settings_dialog.ui:85
+#: data/gtk/database_settings_dialog.ui:46
 msgid "Confirm New Password"
-msgstr "potvrďte nové heslo"
+msgstr "Potvrďte nové heslo"
 
-#. Current password
-#: data/gtk/database_settings_dialog.ui:97
-msgid "_Current"
-msgstr "_Současné"
+#: data/gtk/database_settings_dialog.ui:60
+msgid "New Additional Credentials"
+msgstr "Nové další přihlašovací údaje"
 
-#: data/gtk/database_settings_dialog.ui:114
-msgid "Enter Current Password"
-msgstr "zadejte současné heslo"
-
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:173
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:206
-msgid "Keyfile"
-msgstr "Soubor s klíčem"
-
-#: data/gtk/database_settings_dialog.ui:161
-msgid "_Select current keyfile if any"
-msgstr "Vybrat aktuální _soubor s klíčem, pokud existuje"
-
-#: data/gtk/database_settings_dialog.ui:203
-msgid "(Optional) _Generate new keyfile"
-msgstr "(volitelně) Vy_generovat nový soubor s klíčem"
-
-#: data/gtk/database_settings_dialog.ui:221
-msgid "Could not Load Keyfile"
-msgstr "Nezdařilo se načíst soubor s klíčem"
-
-#: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:293
+#: data/gtk/database_settings_dialog.ui:75
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
 msgstr "_Použít změny"
 
-#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
-#: data/gtk/settings_dialog.ui:12
+#: data/gtk/database_settings_dialog.ui:93 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
 msgid "General"
 msgstr "Obecné"
 
-#: data/gtk/database_settings_dialog.ui:252
+#: data/gtk/database_settings_dialog.ui:97
+msgid "Database"
+msgstr "Databáze"
+
+#: data/gtk/database_settings_dialog.ui:100
+msgid "Name"
+msgstr "Název"
+
+#: data/gtk/database_settings_dialog.ui:108
+msgid "Description"
+msgstr "Popis"
+
+#: data/gtk/database_settings_dialog.ui:116
+msgid "Default User"
+msgstr "Výchozí uživatel"
+
+#: data/gtk/database_settings_dialog.ui:127
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: data/gtk/database_settings_dialog.ui:255
-msgid "Safe Name"
-msgstr "Název trezoru"
-
-#: data/gtk/database_settings_dialog.ui:260
+#: data/gtk/database_settings_dialog.ui:130
 msgid "Path"
 msgstr "Cesta"
 
-#: data/gtk/database_settings_dialog.ui:265
+#: data/gtk/database_settings_dialog.ui:139
 msgid "File Size"
 msgstr "Velikost souboru"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:270
+#: data/gtk/database_settings_dialog.ui:148
 msgid "KeePass Version"
 msgstr "Verze KeeePass"
 
-#: data/gtk/database_settings_dialog.ui:275
+#: data/gtk/database_settings_dialog.ui:157
 msgid "Creation Date"
 msgstr "Datum vytvoření"
 
-#: data/gtk/database_settings_dialog.ui:280
+#: data/gtk/database_settings_dialog.ui:165
 msgid "Encryption Algorithm"
 msgstr "Šifrovací algoritmus"
 
-#: data/gtk/database_settings_dialog.ui:285
+#: data/gtk/database_settings_dialog.ui:173
 msgid "Derivation Algorithm"
 msgstr "Odvozovací algoritmus"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:292
+#: data/gtk/database_settings_dialog.ui:183
 msgid "Stats"
 msgstr "Statistiky"
 
-#: data/gtk/database_settings_dialog.ui:295
+#: data/gtk/database_settings_dialog.ui:186
 msgid "Number of Entries"
 msgstr "Počet položek"
 
-#: data/gtk/database_settings_dialog.ui:300
+#: data/gtk/database_settings_dialog.ui:195
 msgid "Number of Groups"
 msgstr "Počet skupin"
 
-#: data/gtk/database_settings_dialog.ui:305
+#: data/gtk/database_settings_dialog.ui:204
 msgid "Passwords"
 msgstr "Počet hesel"
 
-#: data/gtk/edit_element_headerbar.ui:22
-msgid "Menu"
-msgstr "Nabídka"
+#: data/gtk/database_settings_dialog.ui:218
+msgid "Audit"
+msgstr "Audit"
 
-#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
-msgid "_Properties"
-msgstr "_Vlastnosti"
+#: data/gtk/database_settings_dialog.ui:222
+msgid "Statistics"
+msgstr "Statistika"
 
-#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
-msgid "_Delete"
-msgstr "_Smazat"
+#: data/gtk/database_settings_dialog.ui:225
+msgid "Unique Passwords"
+msgstr "Unikátní hesla"
 
-#: data/gtk/edit_element_headerbar.ui:45
-msgid "D_uplicate"
-msgstr "D_uplikovat"
+#: data/gtk/database_settings_dialog.ui:234
+msgid "Reused Passwords"
+msgstr "Opakovaně použitá hesla"
 
-#: data/gtk/edit_element_headerbar.ui:49
-msgid "_References"
-msgstr "O_dkazy"
+#: data/gtk/database_settings_dialog.ui:245
+msgid "Weak Passwords"
+msgstr "Slabá hesla"
 
-#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/database_settings_dialog.ui:250
+msgid "Check passwords for online breaches"
+msgstr "Zkontrolovat, zda byla hesla nalezena on-line"
+
+#: data/gtk/database_settings_dialog.ui:251
+msgid ""
+"Ask online whether your passwords have been hacked. The passwords won't be "
+"sent online! The following passwords have been leaked:"
+msgstr ""
+"Zeptat se on-line, zda byla vaše hesla napadena. Hesla nebudou poslána on-"
+"line! Následující hesla byla napadena:"
+
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Nápověda"
+
+#: data/gtk/entry_page.ui:55
+msgid "Entry Menu"
+msgstr "Nabídka záznamu"
+
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:26
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "Náz_ev"
 
-#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "_Uživatelské jméno"
-
-#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
-#: data/gtk/password_entry_row.ui:32
-msgid "Copy"
-msgstr "Kopírovat"
-
-#: data/gtk/entry_page.ui:77
-msgid "One-_Time Password Secret"
-msgstr "Tajemství jednorázového hesla"
-
-#: data/gtk/entry_page.ui:97
-msgid "Could not Generate OTP Token"
-msgstr "Nezdařilo se vygenerovat tiket jednorázového hesla"
-
-#: data/gtk/entry_page.ui:111
-msgid "_One-Time Password"
-msgstr "Jedn_orázové heslo"
-
-#: data/gtk/entry_page.ui:159
+#: data/gtk/entry_page.ui:75
 msgid "U_RL"
 msgstr "Adresa U_RL"
 
-#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "Poz_námky"
+#: data/gtk/entry_page.ui:81
+msgid "Open Address"
+msgstr "Otevřít Adresu"
 
-#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+#: data/gtk/entry_page.ui:109
+msgid "One-Time Password"
+msgstr "Jednorázové heslo"
+
+#: data/gtk/entry_page.ui:121
+msgid "Remaining Time"
+msgstr "Zbývající čas"
+
+#: data/gtk/entry_page.ui:143
+msgid "One-_Time Password Secret"
+msgstr "Tajemství jednorázového hesla"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:149
+msgid "Could not Generate OTP Token"
+msgstr "Nezdařilo se vygenerovat tiket jednorázového hesla"
+
+#: data/gtk/entry_page.ui:157 data/gtk/group_page.ui:34
+#: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Poznámky"
+
+#: data/gtk/entry_page.ui:161 data/gtk/group_page.ui:38
 msgid "Edit in a Window"
 msgstr "Upravit v okně"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:200
 msgid "Icon"
 msgstr "Ikona"
 
-#: data/gtk/entry_page.ui:268
+#: data/gtk/entry_page.ui:220
+msgid "Tags"
+msgstr "Štítky"
+
+#: data/gtk/entry_page.ui:225 gsecrets/entry_page.py:295
+msgid "Add New Tag"
+msgstr "Přidat nový štítek"
+
+#: data/gtk/entry_page.ui:242
 msgid "Attachments"
 msgstr "Přílohy"
 
-#: data/gtk/entry_page.ui:293
+#: data/gtk/entry_page.ui:246
 msgid "_Add Attachment"
 msgstr "Přid_al přílohu"
 
-#: data/gtk/entry_page.ui:315
+#: data/gtk/entry_page.ui:255
 msgid "Attributes"
 msgstr "Vlastnosti"
 
-#: data/gtk/entry_page.ui:331
-msgid "Key"
-msgstr "Klíč"
+#: data/gtk/entry_page.ui:260
+msgid "Add Attr_ibute"
+msgstr "Př_idat vlastnost"
 
-#: data/gtk/entry_page.ui:337
-msgid "Value"
-msgstr "Hodnota"
+#: data/gtk/entry_page.ui:268
+msgid "Expiration Date"
+msgstr "Datum vypršení"
 
-#: data/gtk/entry_page.ui:348
-msgid "Add Attribute"
-msgstr "Přidat vlastnost"
-
-#: data/gtk/entry_page.ui:372
-msgid "_Expiration Date"
-msgstr "_Datum vypršení"
-
-#: data/gtk/entry_page.ui:393
+#: data/gtk/entry_page.ui:281
 msgid "_Show More"
 msgstr "_Zobrazit více"
 
-#: data/gtk/entry_row.ui:52
+#: data/gtk/entry_page.ui:295
+msgid "D_uplicate"
+msgstr "D_uplikovat"
+
+#: data/gtk/entry_page.ui:299
+msgid "_References"
+msgstr "O_dkazy"
+
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:76
+msgid "_Properties"
+msgstr "_Vlastnosti"
+
+#: data/gtk/entry_page.ui:309
+msgid "_Save in History"
+msgstr "_Uložit do historie"
+
+#: data/gtk/entry_page.ui:313
+msgid "Show _History"
+msgstr "Zobrazit _historii"
+
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "Odstranit"
+
+#: data/gtk/entry_row.ui:38
+msgid "Select Entry"
+msgstr "Vybrat záznam"
+
+#: data/gtk/entry_row.ui:81
+msgid "Copy One-Time Password"
+msgstr "Kopírovat jednorázové heslo"
+
+#: data/gtk/entry_row.ui:92
 msgid "Copy Username"
 msgstr "Zkopírovat uživatelské jméno"
 
-#: data/gtk/entry_row.ui:59
+#: data/gtk/entry_row.ui:102
 msgid "Copy Password"
 msgstr "Zkopírovat heslo"
 
-#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
 msgid "Expiration Date not Set"
 msgstr "Datum vypršení není nastaveno"
 
-#: data/gtk/expiration_date_row.ui:21
+#: data/gtk/expiration_date_row.ui:22
+msgid "Edit Expiration Date"
+msgstr "Upravit datum vypršení"
+
+#: data/gtk/expiration_date_row.ui:30
 msgid "Remove Expiration Date"
 msgstr "Odebrat datum vypršení"
 
-#: data/gtk/expiration_date_row.ui:54
+#: data/gtk/expiration_date_row.ui:63
 msgid "_Set Expiration Date"
 msgstr "Na_stavit datum vypršení"
 
-#: data/gtk/help-overlay.ui:11
-msgctxt "Shortcut window description"
-msgid "Application"
-msgstr "Aplikace"
+#: data/gtk/group_page.ui:14
+msgid "Group Menu"
+msgstr "Nabídka skupiny"
 
-#: data/gtk/help-overlay.ui:14
-msgctxt "Shortcut window description"
-msgid "Create Safe"
-msgstr "Vytvořit trezor"
+#: data/gtk/group_row.ui:38
+msgid "Select Group"
+msgstr "Vybrat skupinu"
 
-#: data/gtk/help-overlay.ui:20
-msgctxt "Shortcut window description"
-msgid "Go Back"
-msgstr "Přejít zpět"
+#: data/gtk/group_row.ui:67
+msgid "Edit"
+msgstr "Upravit"
 
-#: data/gtk/help-overlay.ui:26
-msgctxt "Shortcut window description"
-msgid "Open Safe"
-msgstr "Otevřít trezor"
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
+msgid "Show Text"
+msgstr "Zobrazit text"
 
-#: data/gtk/help-overlay.ui:32
-msgctxt "Shortcut window description"
-msgid "Open Preferences"
-msgstr "Otevřít předvolby"
+#: data/gtk/history_row.ui:39
+msgid "Remove from History"
+msgstr "Odstranit z historie"
 
-#: data/gtk/help-overlay.ui:38
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr "Zobrazit klávesové zkratky"
+#: data/gtk/history_window.ui:8
+msgid "Password History"
+msgstr "Historie hesel"
 
-#: data/gtk/help-overlay.ui:44
-msgctxt "Shortcut window description"
-msgid "Close Window"
-msgstr "Zavřít okno"
-
-#: data/gtk/help-overlay.ui:50
-msgctxt "Shortcut window description"
-msgid "Quit"
-msgstr "Ukončit"
-
-#: data/gtk/help-overlay.ui:58
-msgctxt "Shortcut window description"
-msgid "Safe"
-msgstr "Trezor"
-
-#: data/gtk/help-overlay.ui:61
-msgctxt "Shortcut window description"
-msgid "Lock Safe"
-msgstr "Zamknout trezor"
-
-#: data/gtk/help-overlay.ui:67
-msgctxt "Shortcut window description"
-msgid "Save Safe"
-msgstr "Uložit trezor"
-
-#: data/gtk/help-overlay.ui:73
-msgctxt "Shortcut window description"
-msgid "Open Search"
-msgstr "Otevřít hledání"
-
-#: data/gtk/help-overlay.ui:79
-msgctxt "Shortcut window description"
-msgid "Create Entry"
-msgstr "Vytvořit položku"
-
-#: data/gtk/help-overlay.ui:85
-msgctxt "Shortcut window description"
-msgid "Create Group"
-msgstr "Vytvořit skupinu"
-
-#: data/gtk/help-overlay.ui:93
-msgctxt "Shortcut window description"
-msgid "Entry"
-msgstr "Položka"
-
-#: data/gtk/help-overlay.ui:96
-msgctxt "Shortcut window description"
-msgid "Copy Password"
-msgstr "Zkopírovat heslo"
-
-#: data/gtk/help-overlay.ui:102
-msgctxt "Shortcut window description"
-msgid "Copy Username"
-msgstr "Zkopírovat uživatelské jméno"
-
-#: data/gtk/notes_dialog.ui:14
-msgid "_Copy"
-msgstr "Z_kopírovat"
-
-#: data/gtk/password_generator_popover.ui:35
-msgid "Length"
-msgstr "Délka"
-
-#: data/gtk/password_generator_popover.ui:62
-msgid "Characters"
-msgstr "Znaky"
-
-#: data/gtk/password_generator_popover.ui:111
-msgid "Passphrase"
-msgstr "Heslová fráze"
-
-#: data/gtk/password_generator_popover.ui:119
-msgid "Words"
-msgstr "Počet slov"
-
-#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
-msgid "Separator"
-msgstr "Oddělovač"
-
-#: data/gtk/password_generator_popover.ui:154
-msgid "Enter character here…"
-msgstr "zde zadejte znak…"
-
-#: data/gtk/properties_dialog.ui:7
-msgid "Properties"
-msgstr "Vlastnosti"
-
-#: data/gtk/properties_dialog.ui:28 data/gtk/references_dialog.ui:153
-msgid "UUID"
-msgstr "UUID"
-
-#: data/gtk/properties_dialog.ui:33
-msgid "Accessed"
-msgstr "Poslední přístup"
-
-#: data/gtk/properties_dialog.ui:38
-msgid "Modified"
-msgstr "Změněno"
-
-#: data/gtk/properties_dialog.ui:43
-msgid "Created"
-msgstr "Vytvořeno"
-
-#: data/gtk/recent_files_headerbar.ui:14
-msgid "New Safe"
-msgstr "Nový trezor"
-
-#: data/gtk/recent_files_headerbar.ui:27
-msgid "Open Safe"
-msgstr "Otevřít trezor"
-
-#: data/gtk/recent_files_headerbar.ui:32
+#: data/gtk/locked_headerbar.ui:14
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: data/gtk/recent_files_page.ui:27
-msgid "Recent Safes"
-msgstr "Nedávné trezory"
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
+msgid "_New Safe"
+msgstr "_Nový trezor"
+
+#: data/gtk/notes_dialog.ui:20
+msgid "_Copy"
+msgstr "Z_kopírovat"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:33 data/gtk/notes_dialog.ui:58
+#: data/gtk/unlocked_headerbar.ui:26
+msgid "Search"
+msgstr "Hledání"
+
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
+msgid "Password"
+msgstr "Heslo"
+
+#: data/gtk/password_generator_popover.ui:32
+msgid "Length"
+msgstr "Délka"
+
+#: data/gtk/password_generator_popover.ui:50
+msgid "Characters"
+msgstr "Znaky"
+
+#: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:213
+msgid "Passphrase"
+msgstr "Heslová fráze"
+
+#: data/gtk/password_generator_popover.ui:99
+msgid "Words"
+msgstr "Počet slov"
+
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:126
+#: gsecrets/provider/file_provider.py:196
+msgid "_Generate"
+msgstr "Vy_generovat"
+
+#: data/gtk/properties_dialog.ui:6
+msgid "Properties"
+msgstr "Vlastnosti"
+
+#: data/gtk/properties_dialog.ui:26 data/gtk/references_dialog.ui:153
+msgid "UUID"
+msgstr "UUID"
+
+#: data/gtk/properties_dialog.ui:35
+msgid "Accessed"
+msgstr "Poslední přístup"
+
+#: data/gtk/properties_dialog.ui:44
+msgid "Modified"
+msgstr "Změněno"
+
+#: data/gtk/properties_dialog.ui:53
+msgid "Created"
+msgstr "Vytvořeno"
 
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
 msgstr "Kód"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:250
-#: data/gtk/references_dialog.ui:346
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:241
+#: data/gtk/references_dialog.ui:337
 msgid "Property"
 msgstr "Vlastnost"
 
@@ -587,39 +566,39 @@ msgstr "Uživatelské jméno"
 msgid "URL"
 msgstr "Adresa URL"
 
-#: data/gtk/references_dialog.ui:141
-msgid "Notes"
-msgstr "Poznámky"
-
 #: data/gtk/references_dialog.ui:181
 msgid "_URL"
 msgstr "Adresa _URL"
 
-#: data/gtk/references_dialog.ui:192
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "Poz_námky"
+
+#: data/gtk/references_dialog.ui:191
 msgid "References"
 msgstr "Předvolby"
 
-#: data/gtk/references_dialog.ui:222
+#: data/gtk/references_dialog.ui:212
 msgid "Syntax"
 msgstr "Syntax"
 
-#: data/gtk/references_dialog.ui:231
+#: data/gtk/references_dialog.ui:221
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Syntax zástupného řetězce pro odkazy pole je následující:"
 
-#: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
+#: data/gtk/references_dialog.ui:240 data/gtk/references_dialog.ui:268
 msgid "Show Field Codes"
 msgstr "Zobrazovat kódy pole"
 
-#: data/gtk/references_dialog.ui:277
+#: data/gtk/references_dialog.ui:269
 msgid "Identifier"
 msgstr "Identifikátor"
 
-#: data/gtk/references_dialog.ui:335
+#: data/gtk/references_dialog.ui:326
 msgid "Reference"
 msgstr "Předvolba"
 
-#: data/gtk/references_dialog.ui:373
+#: data/gtk/references_dialog.ui:365
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -628,237 +607,378 @@ msgstr ""
 "vlastnostmi položky."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/save_dialog.ui:7
+#: data/gtk/save_dialog.ui:4
 msgid "Unsaved Changes"
 msgstr "Neuložené změny"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/save_dialog.ui:8
+#: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
 msgstr "Chcete uložit všechny změny do trezoru?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
 msgstr "U_končit bez uložení"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:20
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "_Neukončovat"
 
 #. _Save all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:26
+#: data/gtk/save_dialog.ui:12
 msgid "_Save and Quit"
 msgstr "_Uložit a ukončit"
 
-#: data/gtk/search.ui:9
-msgid "Enter Search Term"
-msgstr "Zadejte hledaný výraz"
-
-#: data/gtk/search.ui:15
-msgid "No Search Results"
-msgstr "Nejsou žádné výsledky hledání"
-
-#: data/gtk/selection_mode_headerbar.ui:17
-#: gsecrets/widgets/selection_mode_headerbar.py:70
-msgid "_Select Items"
-msgstr "_Vybrat položky"
-
-#. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/gtk/selection_mode_headerbar.ui:29
-msgid "Move Selection"
-msgstr "Přesunout vybrané"
-
-#: data/gtk/selection_mode_headerbar.ui:36
-msgid "Paste Selection"
-msgstr "Vložit vybrané"
-
-#. Button tooltip in selection mode to delete every selected entry/group
-#: data/gtk/selection_mode_headerbar.ui:46
-msgid "Delete Selection"
-msgstr "Smazat vybrané"
-
-#: data/gtk/selection_mode_headerbar.ui:53
-msgid "_Cancel"
-msgstr "_Zrušit"
-
-#: data/gtk/selection_mode_headerbar.ui:66
-msgid "Select _All"
-msgstr "Vybrat _vše"
-
-#: data/gtk/selection_mode_headerbar.ui:71
-msgid "Select _None"
-msgstr "_Zrušit výběr"
-
-#: data/gtk/settings_dialog.ui:16
-msgid "_Dark Theme"
-msgstr "_Tmavý motiv"
-
-#: data/gtk/settings_dialog.ui:17
-msgid "Use dark GTK theme."
-msgstr "Používat tmavý motiv GTK."
-
-#: data/gtk/settings_dialog.ui:30
+#: data/gtk/settings_dialog.ui:14
 msgid "_Hide First Start Screen"
 msgstr "_Skrýt úvodní obrazovku"
 
-#: data/gtk/settings_dialog.ui:31
+#: data/gtk/settings_dialog.ui:15
 msgid "Reopen last opened safe."
 msgstr "Znovu otevřít poslední otevřený trezor."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
+#. TRANSLATORS Safe as in strongbox.
+#. NOTE: Safe as in strongbox
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Trezor"
 
-#: data/gtk/settings_dialog.ui:49
+#: data/gtk/settings_dialog.ui:27
 msgid "_Save Automatically"
 msgstr "_Automaticky ukládat"
 
-#: data/gtk/settings_dialog.ui:50
+#: data/gtk/settings_dialog.ui:28
 msgid "Save every change automatically."
 msgstr "Všechny změny ukládat automaticky."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:35
+#: data/org.gnome.World.Secrets.gschema.xml.in:112
+msgid "Enable Quick Unlock"
+msgstr "Povolit rychlé odemčení"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:36
+msgid ""
+"Re-unlock using the last four characters of the password for a single "
+"attempt."
+msgstr ""
+"V prvním pokusu opětovného odemčení stačí požít poslední čtyři znaky hesla."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:42
+msgid "Enable Fingerprint Unlock"
+msgstr "Povolit odemčení otiskem prstu"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:43
+msgid "Use the fingerprint reader to quickly unlock the safe."
+msgstr "Pro odemčení trezoru stačí přiložit prst ke čtečce."
+
+#: data/gtk/settings_dialog.ui:51 gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock"
 msgstr "Odemykání"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:68
+#: data/gtk/settings_dialog.ui:54
 msgid "Remember Composite _Key"
 msgstr "Pamatovat si kombinované _klíče"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:69
+#: data/gtk/settings_dialog.ui:55
 msgid "Remember last used composite key."
 msgstr "Pamatovat si poslední použitý kombinovaný klíč."
 
-#: data/gtk/settings_dialog.ui:90
+#: data/gtk/settings_dialog.ui:70
 msgid "Password Generation"
 msgstr "Generování hesla"
 
-#: data/gtk/settings_dialog.ui:93
+#: data/gtk/settings_dialog.ui:73
 msgid "Password Length"
 msgstr "Délka hesla"
 
-#: data/gtk/settings_dialog.ui:94
+#: data/gtk/settings_dialog.ui:74
 msgid "Number of characters when generating a password."
 msgstr "Počet znaků, když se generuje heslo."
 
-#: data/gtk/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:88
 msgid "_Uppercase Characters"
 msgstr "_Velká písmena"
 
-#: data/gtk/settings_dialog.ui:114
+#: data/gtk/settings_dialog.ui:89
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Při generování hesla používat znaky A až Z."
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:96
 msgid "_Lowercase Characters"
 msgstr "Ma_lá písmena"
 
-#: data/gtk/settings_dialog.ui:128
+#: data/gtk/settings_dialog.ui:97
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Při generování hesla používat znaky a až z."
 
-#: data/gtk/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:104
 msgid "_Numeric Characters"
 msgstr "Čísli_ce"
 
-#: data/gtk/settings_dialog.ui:142
+#: data/gtk/settings_dialog.ui:105
 msgid "Use numeric characters when generating a password."
 msgstr "Při generování hesla používat číslice."
 
-#: data/gtk/settings_dialog.ui:155
+#: data/gtk/settings_dialog.ui:112
 msgid "_Special Characters"
 msgstr "_Speciální znaky"
 
-#: data/gtk/settings_dialog.ui:156
+#. ASCII is a proper name
+#: data/gtk/settings_dialog.ui:113
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Při generování hesla používat nealfanumerické symboly ASCII."
 
-#: data/gtk/settings_dialog.ui:171
+#: data/gtk/settings_dialog.ui:122
 msgid "Passphrase Generation"
 msgstr "Generování heslové fráze"
 
-#: data/gtk/settings_dialog.ui:174
+#: data/gtk/settings_dialog.ui:125
 msgid "Passphrase Length"
 msgstr "Délka heslové fráze"
 
-#: data/gtk/settings_dialog.ui:175
+#: data/gtk/settings_dialog.ui:126
 #: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
 msgstr "Počet slov, který se má použít při generování heslové fráze."
 
-#: data/gtk/settings_dialog.ui:195
-#: data/org.gnome.World.Secrets.gschema.xml.in:108
-msgid "Word separator to use when generating a passphrase."
-msgstr "Oddělovač slov, který se má použít při generování heslové fráze."
+#: data/gtk/settings_dialog.ui:140
+msgid "Separator"
+msgstr "Oddělovač"
 
-#: data/gtk/settings_dialog.ui:202
-msgid "Enter Character"
-msgstr "zadejte znak"
-
-#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
+#: data/gtk/settings_dialog.ui:150 data/gtk/settings_dialog.ui:153
 msgid "Security"
 msgstr "Bezpečnost"
 
-#: data/gtk/settings_dialog.ui:221
+#: data/gtk/settings_dialog.ui:156
 msgid "Safe Lock Timeout"
 msgstr "Čas do zamknutí trezoru"
 
-#: data/gtk/settings_dialog.ui:222
+#: data/gtk/settings_dialog.ui:157
 msgid "Lock safe on idle after X minutes."
 msgstr "Zamknout trezor po X minutách nečinnosti."
 
-#: data/gtk/settings_dialog.ui:241
+#: data/gtk/settings_dialog.ui:171
+msgid "Lock on _Session Lock"
+msgstr "Zamknout při zamčení _sezení"
+
+#: data/gtk/settings_dialog.ui:172
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid "Automatically lock when the session is locked."
+msgstr "Trezor se ihned zamkne po zamčení sezení."
+
+#: data/gtk/settings_dialog.ui:179
 msgid "Clear Clipboard"
 msgstr "Mazat schránku"
 
-#: data/gtk/settings_dialog.ui:242
+#: data/gtk/settings_dialog.ui:180
 msgid "Clear clipboard after X seconds."
 msgstr "Vymazat schránku po X sekundách."
 
-#: data/gtk/settings_dialog.ui:261
+#: data/gtk/settings_dialog.ui:194
 msgid "Clear Recent List"
 msgstr "Smazat seznam nedávných"
 
-#: data/gtk/settings_dialog.ui:262
+#: data/gtk/settings_dialog.ui:195
 msgid "Clear the recently opened safes list."
 msgstr "Smazat seznam nedávno otevřených trezorů."
 
-#: data/gtk/unlock_database.ui:7
+#: data/gtk/settings_dialog.ui:202
+msgid "Clear"
+msgstr "Vyčistit"
+
+#: data/gtk/shortcuts_dialog.ui:6
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Aplikace"
+
+#: data/gtk/shortcuts_dialog.ui:9
+msgctxt "Shortcut window description"
+msgid "Create Safe"
+msgstr "Vytvořit trezor"
+
+#: data/gtk/shortcuts_dialog.ui:15
+msgctxt "Shortcut window description"
+msgid "Go Back"
+msgstr "Přejít zpět"
+
+#: data/gtk/shortcuts_dialog.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Safe"
+msgstr "Otevřít trezor"
+
+#: data/gtk/shortcuts_dialog.ui:27
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Otevřít předvolby"
+
+#: data/gtk/shortcuts_dialog.ui:33
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Zobrazit klávesové zkratky"
+
+#: data/gtk/shortcuts_dialog.ui:39
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "Zavřít okno"
+
+#: data/gtk/shortcuts_dialog.ui:45
+msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Nové okno"
+
+#: data/gtk/shortcuts_dialog.ui:51
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Ukončit"
+
+#: data/gtk/shortcuts_dialog.ui:59
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Trezor"
+
+#: data/gtk/shortcuts_dialog.ui:62
+msgctxt "Shortcut window description"
+msgid "Lock Safe"
+msgstr "Zamknout trezor"
+
+#: data/gtk/shortcuts_dialog.ui:68
+msgctxt "Shortcut window description"
+msgid "Save Safe"
+msgstr "Uložit trezor"
+
+#: data/gtk/shortcuts_dialog.ui:74
+msgctxt "Shortcut window description"
+msgid "Open Search"
+msgstr "Otevřít hledání"
+
+#: data/gtk/shortcuts_dialog.ui:80
+msgctxt "Shortcut window description"
+msgid "Create Entry"
+msgstr "Vytvořit položku"
+
+#: data/gtk/shortcuts_dialog.ui:86
+msgctxt "Shortcut window description"
+msgid "Create Group"
+msgstr "Vytvořit skupinu"
+
+#: data/gtk/shortcuts_dialog.ui:94
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Položka"
+
+#: data/gtk/shortcuts_dialog.ui:97
+msgctxt "Shortcut window description"
+msgid "Copy Password"
+msgstr "Zkopírovat heslo"
+
+#: data/gtk/shortcuts_dialog.ui:103
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Zkopírovat adresu"
+
+#: data/gtk/shortcuts_dialog.ui:109
+msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "Zkopírovat uživatelské jméno"
+
+#: data/gtk/shortcuts_dialog.ui:115
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Kopírovat jednorázové heslo"
+
+#: data/gtk/shortcuts_dialog.ui:121
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Zobrazit historii"
+
+#: data/gtk/shortcuts_dialog.ui:127
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Uložit do historie"
+
+#: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
 msgstr "Odemknutí trezoru"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:306
-msgid "_Select Keyfile"
-msgstr "Vybrat _soubor s klíčem"
+#: data/gtk/unlock_database.ui:38
+msgid "Fingerprint Unlock available"
+msgstr "Odemčení otiskem je dostupné"
 
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
-msgid "_New Safe"
-msgstr "_Nový trezor"
+#: data/gtk/unlock_database.ui:65 gsecrets/provider/pkcs11_provider.py:218
+msgid "_Unlock"
+msgstr "Odemkno_ut"
 
-#: data/gtk/unlocked_headerbar.ui:13
+#: data/gtk/unlocked_database.ui:18
+msgid "Browser"
+msgstr "Prohlížeč"
+
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
+msgid "Select Items"
+msgstr "Vybrat položky"
+
+#: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
+msgid "Go Back"
+msgstr "Přejít zpět"
+
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "_Zrušit"
+
+#: data/gtk/unlocked_database.ui:54 data/gtk/unlocked_database.ui:60
+msgid "Search Safe"
+msgstr "hledat v trezoru"
+
+#: data/gtk/unlocked_database.ui:73
+msgid "_Clear"
+msgstr "_Vyčistit"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/unlocked_database.ui:83
+msgid "Delete Selection"
+msgstr "Smazat vybrané"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/gtk/unlocked_database.ui:93
+msgid "Move Selection"
+msgstr "Přesunout vybrané"
+
+#: data/gtk/unlocked_database.ui:100
+msgid "Paste Selection"
+msgstr "Vložit vybrané"
+
+#: data/gtk/unlocked_database.ui:125
+msgid "Select an Entry"
+msgstr "Vybrat záznam"
+
+#: data/gtk/unlocked_headerbar.ui:18
 msgid "New Entry or Group"
 msgstr "Nová položka nebo skupina"
 
-#. Button tooltip in headerbar to open search page
-#: data/gtk/unlocked_headerbar.ui:24
-msgid "Search"
-msgstr "Hledání"
-
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/gtk/unlocked_headerbar.ui:31
+#: data/gtk/unlocked_headerbar.ui:33
 msgid "Selection Mode"
 msgstr "Režim výběru"
 
-#: data/gtk/unlocked_headerbar.ui:53
+#. s
+#: data/gtk/unlocked_headerbar.ui:54
+#: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Save"
 msgstr "_Uložit"
 
-#: data/gtk/unlocked_headerbar.ui:59
+#. s
+#: data/gtk/unlocked_headerbar.ui:58
 msgid "_Lock"
 msgstr "Za_mknout"
 
@@ -866,73 +986,62 @@ msgstr "Za_mknout"
 msgid "So_rting"
 msgstr "Ř_azení"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
 #: data/gtk/unlocked_headerbar.ui:71
-msgid "_Z-A"
-msgstr "_Z-A"
-
-#: data/gtk/unlocked_headerbar.ui:76
 msgid "_Newest First"
 msgstr "_Nejnovější prví"
 
-#: data/gtk/unlocked_headerbar.ui:81
+#: data/gtk/unlocked_headerbar.ui:76
 msgid "_Oldest First"
 msgstr "Nej_starší první"
 
-#: data/gtk/unlocked_headerbar.ui:97
+#: data/gtk/unlocked_headerbar.ui:84
+msgid "New _Window"
+msgstr "Nové okno"
+
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "Nastavení tre_zoru"
 
-#: data/gtk/unlocked_headerbar.ui:119
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "Nová p_oložka"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "Nová s_kupina"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:24
+#: data/gtk/welcome_page.ui:11
 msgid "Secure Secrets"
 msgstr "Tajemství v bezpečí"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:35
-msgid ""
-"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
-"b> a new Keepass safe."
-msgstr ""
-"Uchovávejte bezpečně svá hesla, poznámky a data. <b>Vytvořte</b> si nebo "
-"<b>naimportujte</b> nový trezor KeePass."
+#: data/gtk/welcome_page.ui:12
+msgid "Create or import a new Keepass safe"
+msgstr "Vytvořit nebo importovat nový trezor Keepass"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/gtk/window.ui:4 data/org.gnome.World.Secrets.desktop.in.in:3
 msgid "Secrets"
 msgstr "Secrets"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:5
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "Správa hesel pro GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.World.Secrets.desktop.in.in:14
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;hesla;šifrování;bezpečnost;zabezpečení;"
+#: data/org.gnome.World.Secrets.desktop.in.in:13
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr "keepass;šifrování;bezpečnost;zabezpečení;heslo;správce;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
-msgid "Use dark GTK theme"
-msgstr "Používat tmavý motiv GTK"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid ""
-"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
-"theme has a dark variant."
-msgstr ""
-"Používat tmavou variantu vašeho motivu GTK+. Uvědomte si ale, že ne každý "
-"motiv má tmavou variantu."
+msgid "Lock on session lock"
+msgstr "Uzamčení při zamčení sezení"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -988,20 +1097,20 @@ msgid "Remember the window size."
 msgstr "Pamatovat si velikost okna."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:42
-msgid "Last opened database"
-msgstr "Poslední otevřená databáze"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:43
-msgid "Path to the last opened database."
-msgstr "Cesta k databázi, která byla otevřená jako poslední."
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Last opened databases"
 msgstr "Poslední otevřené databáze"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
 msgid "A list of the last opened databases."
 msgstr "Seznam databází, které byly otevřené jako poslední."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last opened database"
+msgstr "Poslední otevřená databáze"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "Path to the last opened database."
+msgstr "Cesta k databázi, která byla otevřená jako poslední."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
@@ -1012,12 +1121,12 @@ msgid "Remember last used composite key for database unlocking."
 msgstr "Pamatovat si poslední použitý kombinovaný klíč pro odemknutí databáze."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "Poslední použitý kombinovaný klíč"
+msgid "Last used key provider"
+msgstr "Poslední použitý poskytovatel klíčů"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr "Cesta k poslednímu použitému klíči pro kombinované odemknutí databáze."
+msgid "Key provider for composite database unlocking."
+msgstr "Poskytovatel klíče pro kombinované odemknutí databáze."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1034,8 +1143,8 @@ msgstr "Zálohovat databázi při odemčení"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/secrets/backups"
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
 msgstr ""
 "Když dojde k chybě při ukládání databáze, můžete najít zálohu v ~/.cache/"
 "secrets/backups"
@@ -1096,9 +1205,34 @@ msgstr "Počet slov při generování heslové fráze"
 msgid "Separator when generating a passphrase"
 msgstr "Oddělovač při generování heslové fráze"
 
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Word separator to use when generating a passphrase."
+msgstr "Oddělovač slov, který se má použít při generování heslové fráze."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:113
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four "
+"characters of the password. If the first try is wrong, the full password is "
+"needed to unlock the safe."
+msgstr ""
+"Když je povoleno rychlé odemčení, můžete trezor odemknout pomocí posledních "
+"čtyř znaků hesla. Pokud je první pokus špatně, musíte použít celé heslo."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:117
+msgid "Enable Fingerprint Quick Unlock"
+msgstr "Povolit rychlé odemčení otiskem prstu"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:118
+msgid "Use the fingerprint reader to quick unlock a locked safe."
+msgstr "Použít čtečku otisků prstů pro rychlé odemčení trezoru."
+
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
 msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Spravujte svá hesla"
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
 msgid ""
@@ -1110,227 +1244,718 @@ msgstr ""
 "v.4. Je výborně začleněný do uživatelského prostředí GNOME a nabízí "
 "jednoduché a přehledné uživatelské rozhraní pro správu databází hesel."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:421
+msgid "Password management"
+msgstr "Správa hesel"
 
-#: gsecrets/application.py:52
-msgid "Error: File {} does not exist"
-msgstr "Chyba: Soubor {} neexistuje"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:425
+msgid "Safe unlocking"
+msgstr "Odemykání trezoru"
 
-#: gsecrets/application.py:57
-msgid "Error: Safe {} is already open"
-msgstr "Chyba: Trezor {} je již otevřený"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:429
+msgid "Safe creation"
+msgstr "Vytváření trezoru"
 
-#: gsecrets/attachment_warning_dialog.py:66
-msgid "Could not Load Attachment"
+#: gsecrets/application.py:39
+msgid "Enable debug logging"
+msgstr "Povolit ladicí zprávy"
+
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr "Příloha „{filename}“ bude odstraněna. Tuto akci nelze vrátit."
+
+#: gsecrets/attachment_warning_dialog.py:71
+#: gsecrets/attachment_warning_dialog.py:82
+msgid "Could not load attachment"
 msgstr "Nezdařilo se načíst přílohu"
 
-#: gsecrets/create_database.py:67
+#: gsecrets/create_database.py:65
+msgid "Passwords do not match"
+msgstr "Hesla se neshodují"
+
+#: gsecrets/create_database.py:80
 msgid "Unable to create database"
 msgstr "Nelze vytvořit databázi"
 
-#: gsecrets/create_database.py:157
-msgid "Passwords do not Match"
-msgstr "Hesla se neshodují"
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:346
+msgid "Failed to generate composite key"
+msgstr "Nezdařilo se vytvořit kombinovaný klíč"
 
-#: gsecrets/create_database.py:185
-msgid "Generating…"
-msgstr "Generuje se…"
+#: gsecrets/entry_page.py:289
+msgid "Enter tag name"
+msgstr "Zadejte název štítku"
 
-#: gsecrets/create_database.py:198
-msgid "Could not Create Keyfile"
-msgstr "Nezdařilo se vytvořit soubor s klíčem"
+#: gsecrets/entry_page.py:319
+msgid "The tag already exists"
+msgstr "Tento štítek již existuje"
 
-#: gsecrets/create_database.py:200
-msgid "Generate"
-msgstr "Generovat"
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:103
+msgid "Saved in history"
+msgstr "Uloženo do historie"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:375
-#: gsecrets/entry_row.py:112
-msgid "Username Copied"
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:164
+#: gsecrets/widgets/credentials_group.py:98
+msgid "Username copied"
 msgstr "Uživatelské jméno zkopírováno"
 
-#: gsecrets/entry_page.py:279
-msgid "One-time Password Copied"
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:499
+msgid "Address copied"
+msgstr "Adresa zkopírována"
+
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
+msgid "One-time password copied"
 msgstr "Jednorázové heslo zkopírováno"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
-msgstr "Klíč takovéto vlastnosti již existuje"
+#: gsecrets/entry_page.py:406
+msgid "Could not open URL"
+msgstr "Nezdařilo se otevřít adresu URL"
+
+#: gsecrets/entry_page.py:416
+msgid "The address is not valid"
+msgstr "Adresa je neplatná"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
-msgid "Select Attachment"
-msgstr "Výběr přílohy"
+#: gsecrets/entry_page.py:453
+msgid "Select Attachments"
+msgstr "Vybrat přílohy"
 
-#: gsecrets/entry_page.py:331
-msgid "_Add"
-msgstr "Přid_at"
-
-#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
+#: gsecrets/entry_row.py:157 gsecrets/widgets/credentials_group.py:110
+msgid "Password copied"
 msgstr "Heslo zkopírováno"
 
-#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+#: gsecrets/entry_row.py:172
+msgid "One-Time Password copied"
+msgstr "Jednorázové heslo zkopírováno"
+
+#: gsecrets/entry_row.py:186 gsecrets/group_row.py:137
 msgid "Title not Specified"
 msgstr "Název není zadán"
 
-#: gsecrets/entry_row.py:135
-msgid "Username not specified"
-msgstr "Uživatelské jméno neni zadáno"
+#: gsecrets/password_generator_popover.py:74
+msgid "Include Lowercase"
+msgstr "Zahrnout malá písmena"
 
-#: gsecrets/safe_element.py:361
+#: gsecrets/password_generator_popover.py:76
+msgid "Exclude Lowercase"
+msgstr "Bez malých písmen"
+
+#: gsecrets/password_generator_popover.py:79
+msgid "Include Uppercase"
+msgstr "Zahrnout velká písmena"
+
+#: gsecrets/password_generator_popover.py:81
+msgid "Exclude Uppercase"
+msgstr "Bez velkých písmen"
+
+#: gsecrets/password_generator_popover.py:84
+msgid "Include Numbers"
+msgstr "Zahrnout čísla"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Exclude Numbers"
+msgstr "Bez čísel"
+
+#: gsecrets/password_generator_popover.py:89
+msgid "Include Symbols"
+msgstr "Zahrnout znaky"
+
+#: gsecrets/password_generator_popover.py:91
+msgid "Exclude Symbols"
+msgstr "Bez znaků"
+
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:103
+msgid "Keyfile"
+msgstr "Soubor s klíčem"
+
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
+msgid "Select Keyfile"
+msgstr "Vybrat soubor s klíčem"
+
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
+msgid "Clear Keyfile"
+msgstr "Vymazat soubor s klíčem"
+
+#: gsecrets/provider/file_provider.py:70
+msgid "Select keyfile"
+msgstr "Vybrat soubor s klíčem"
+
+#: gsecrets/provider/file_provider.py:108
+msgid "Could not load keyfile"
+msgstr "Nezdařilo se načíst soubor s klíčem"
+
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
+msgid "Generate Keyfile"
+msgstr "Generovat soubor s klíčem"
+
+#: gsecrets/provider/file_provider.py:159
+msgid "Use a file to increase security"
+msgstr "Pro větší zabezpečení použijte soubor"
+
+#: gsecrets/provider/file_provider.py:181
+msgid "Could not create keyfile"
+msgstr "Nezdařilo se vytvořit soubor s klíčem"
+
+#: gsecrets/provider/pkcs11_provider.py:99
+msgid "No Smartcard"
+msgstr "Žádná čipová karta"
+
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "Žádný certifikát RSA"
+
+#: gsecrets/provider/pkcs11_provider.py:119
+#: gsecrets/provider/pkcs11_provider.py:268
+msgid "Smartcard"
+msgstr "Čipová karta"
+
+#: gsecrets/provider/pkcs11_provider.py:120
+msgid "Select certificate"
+msgstr "Vybrat certifikát"
+
+#: gsecrets/provider/pkcs11_provider.py:196
+msgid "No smartcard present"
+msgstr "Není k dispozici žádná čipová karta"
+
+#: gsecrets/provider/pkcs11_provider.py:197
+msgid "Please insert smartcard and retry."
+msgstr "Vložte prosím čipovou kartu a zkuste to znovu."
+
+#: gsecrets/provider/pkcs11_provider.py:200
+#: gsecrets/widgets/database_settings_dialog.py:384
+msgid "_OK"
+msgstr "_Budiž"
+
+#: gsecrets/provider/pkcs11_provider.py:216
+msgid "Unlock your smartcard"
+msgstr "Odemknout čipovou kartou"
+
+#: gsecrets/provider/pkcs11_provider.py:261
+msgid "Failed to unlock Smartcard"
+msgstr "Selhalo odemknutí čipové karty"
+
+#: gsecrets/provider/pkcs11_provider.py:269
+msgid "Use a smartcard"
+msgstr "Použít čipovou kartu"
+
+#: gsecrets/provider/pkcs11_provider.py:323
+msgid "Refresh Certificate List"
+msgstr "Obnovit seznam certifikátů"
+
+#: gsecrets/provider/yubikey_provider.py:36
+msgid "No Key"
+msgstr "Žádný klíč"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:39
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] – slot {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:205
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:144
+msgid "Select key"
+msgstr "Vybrat klíč"
+
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
+msgid "Select YubiKey slot"
+msgstr "Vybrat slot YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:246
+msgid "Touch YubiKey"
+msgstr "Přiložte YubiKey"
+
+#: gsecrets/recent_files_menu.py:29
+msgid "Recent Files"
+msgstr "Nedávné soubory"
+
+#: gsecrets/safe_element.py:43
+msgid "White"
+msgstr "Bílá"
+
+#: gsecrets/safe_element.py:45
+msgid "Blue"
+msgstr "Modrá"
+
+#: gsecrets/safe_element.py:47
+msgid "Green"
+msgstr "Zelená"
+
+#: gsecrets/safe_element.py:49
+msgid "Yellow"
+msgstr "Žlutá"
+
+#: gsecrets/safe_element.py:51
+msgid "Orange"
+msgstr "Oranžová"
+
+#: gsecrets/safe_element.py:53
+msgid "Red"
+msgstr "Červená"
+
+#: gsecrets/safe_element.py:55
+msgid "Purple"
+msgstr "Purpurová"
+
+#: gsecrets/safe_element.py:57
+msgid "Brown"
+msgstr "Hnědá"
+
+#: gsecrets/safe_element.py:673
 msgid "Clone"
 msgstr "Klonovat"
 
-#: gsecrets/unlock_database.py:78
-msgid "Select Keyfile"
-msgstr "Výběr souboru s klíčem"
-
-#: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
-msgstr "Trezor {} je již otevřený"
-
-#: gsecrets/unlock_database.py:234
-msgid "The kdb Format is not Supported"
-msgstr "Formát kdb není podporován."
-
-#: gsecrets/unlock_database.py:290
-msgid "Failed to Unlock Safe"
-msgstr "Selhalo odemknutí trezoru"
-
-#: gsecrets/unlock_database.py:301
-msgid "_Try Again"
-msgstr "Zkusi_t znovu"
-
-#: gsecrets/unlocked_database.py:276
-msgid "Safe Saved"
-msgstr "Trezor byl uložen"
-
-#: gsecrets/unlocked_database.py:278
-msgid "Could not Save Safe"
+#. This shouldn't happen
+#. TODO Set the body of the message based on the error kind.
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
+#: gsecrets/unlocked_database.py:249 gsecrets/unlocked_database.py:536
+#: gsecrets/widgets/window.py:422
+msgid "Could not save Safe"
 msgstr "Nezdařilo se uložit trezor"
 
-#: gsecrets/unlocked_database.py:288
-msgid "Please Wait. Another Save is Running."
-msgstr "Počkejte prosím, probíhá jiné ukládání."
+#: gsecrets/selection_manager.py:58
+msgid "Operation aborted: deleting currently active group"
+msgstr "Operace zrušena: Mazala se právě aktivní skupina"
 
-#. NOTE: In-app notification to inform the user that no save
-#. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:293
-msgid "No Changes Made"
+#: gsecrets/selection_manager.py:106
+msgid "Warning"
+msgstr "Upozornění"
+
+#: gsecrets/selection_manager.py:108
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr "Pokoušíte se odstranit položky z koše, operace je nevratná."
+
+#: gsecrets/selection_manager.py:142
+msgid "Operation aborted: moving currently active group"
+msgstr "Operace zrušena: Přesouvala se právě aktivní skupina"
+
+#: gsecrets/selection_manager.py:155
+msgid "Move completed"
+msgstr "Přesun byl dokončen"
+
+#: gsecrets/unlock_database.py:105
+msgid "Quick Unlock active"
+msgstr "Rychlé odemčení je povoleno"
+
+#. TRANSLATORS For example: "Safe ~/MySafe.kdbx is already open"
+#: gsecrets/unlock_database.py:150
+#, python-brace-format
+msgid "Safe {path} is already open"
+msgstr "Trezor {path} je již otevřený"
+
+#: gsecrets/unlock_database.py:241
+msgid "Failed to unlock Safe"
+msgstr "Selhalo odemknutí trezoru"
+
+#: gsecrets/unlock_database.py:410
+msgid "Please unlock using the password."
+msgstr "Odemkněte prosím pomocí hesla."
+
+#: gsecrets/unlock_database.py:419
+msgid "Maximum tries reached. Please unlock using the password."
+msgstr "Dosažen maximální počet pokusů. Odemkněte prosím pomocí hesla."
+
+#: gsecrets/unlocked_database.py:252
+msgid "Safe saved"
+msgstr "Trezor byl uložen"
+
+#: gsecrets/unlocked_database.py:254
+msgid "No changes made"
 msgstr "Nebyly provedeny žádné změny"
 
-#: gsecrets/unlocked_database.py:330
+#: gsecrets/unlocked_database.py:301
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "Položka smazána"
+msgstr[1] "Položky smazány"
+msgstr[2] "Položky smazány"
+
+#: gsecrets/unlocked_database.py:306
+msgid "Deletion completed"
+msgstr "Mazání bylo dokončeno"
+
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
+msgid "Undo"
+msgstr "Zpět"
+
+#: gsecrets/unlocked_database.py:334
+msgid "Attribute deleted"
+msgstr "Vlastnost byla smazána"
+
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "Zkopírováno"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:397
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:463
+msgid "Safe locked due to inactivity"
 msgstr "Kvůli nečinnosti byl trezor uzamknut"
 
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
+#: gsecrets/unlocked_database.py:701
+msgid "{} Selected"
+msgid_plural "{} Selected"
+msgstr[0] "{} vybrána"
+msgstr[1] "{} vybrány"
+msgstr[2] "{} vybráno"
+
+#: gsecrets/widgets/add_attribute_dialog.py:36
+msgid "Attribute key contains an illegal character"
+msgstr "Klíč vlastnosti obsahuje zakázaný znak"
+
+#: gsecrets/widgets/add_attribute_dialog.py:46
+msgid "Attribute key already exists"
+msgstr "Klíč takovéto vlastnosti již existuje"
+
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Uložení přílohy"
 
-#: gsecrets/widgets/attachment_entry_row.py:64
-msgid "Could not Store Attachment"
+#: gsecrets/widgets/attachment_entry_row.py:71
+msgid "Could not store attachment"
 msgstr "Nezdařilo se uložit přílohu"
 
-#. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:131
-msgid "Select Current Keyfile"
-msgstr "Výběr aktuálního souboru s klíčem"
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
+msgid "Attribute copied"
+msgstr "Vlastnost byla zkopírována"
+
+#: gsecrets/widgets/database_settings_dialog.py:128
+msgid "Insecure"
+msgstr "Nebezpečné"
+
+#: gsecrets/widgets/database_settings_dialog.py:130
+msgid "Weak"
+msgstr "Slabé"
+
+#: gsecrets/widgets/database_settings_dialog.py:137
+msgid "No weak passwords found"
+msgstr "Nenalezena žádná slabá hesla"
+
+#: gsecrets/widgets/database_settings_dialog.py:226
+msgid "No records found"
+msgstr "Nebyly nalezeny žádné záznamy"
+
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
+msgid "Could not apply changes"
+msgstr "Nezdařilo se použít změny"
+
+#. Still executes the finally block
+#: gsecrets/widgets/database_settings_dialog.py:320
+msgid "Changes Applied"
+msgstr "Změny provedeny"
+
+#: gsecrets/widgets/database_settings_dialog.py:374
+msgid "Could not change credentials"
+msgstr "Nezdařilo se změnit přihlašovací údaje"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:379
+#: gsecrets/widgets/saving_conflict_dialog.py:22
+msgid "Conflicts While Saving"
+msgstr "Při ukládání vznikl konflikt"
+
+#: gsecrets/widgets/database_settings_dialog.py:381
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"Trezor byl uložen jinde. Prosím vyřešte konflikty v hlavním okně během "
+"ukládání."
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:324
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:467
 msgid "Unknown"
 msgstr "Žádný"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:328
+#: gsecrets/widgets/database_settings_dialog.py:457
 msgid "AES 256-bit"
 msgstr "AES 256bitový"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:460
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256bitový"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:463
 msgid "Twofish 256-bit"
 msgstr "Twofish 256bitový"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:471
 msgid "Argon2"
 msgstr "Argon2"
 
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:474
+msgid "Argon2id"
+msgstr "Argon2id"
+
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:477
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
 #: gsecrets/widgets/expiration_date_row.py:56
-#: gsecrets/widgets/expiration_date_row.py:62
+#: gsecrets/widgets/expiration_date_row.py:64
 msgid "Entry expired"
 msgstr "Platnost položky vypršela"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:72
-msgid "{} _Selected"
-msgid_plural "{} _Selected"
-msgstr[0] "{} _vybrána"
-msgstr[1] "{} _vybrány"
-msgstr[2] "{} _vybráno"
+#: gsecrets/widgets/history_row.py:43
+msgid "Hide Text"
+msgstr "Skrýt text"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
-msgstr "Operace zrušena: Mazala se právě aktivní skupiny"
+#: gsecrets/widgets/notes_dialog.py:105
+msgid "Selection copied"
+msgstr "Výběr zkopírován"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
-msgstr "Mazání bylo dokončeno"
+#: gsecrets/widgets/password_level_bar.py:22
+msgid "Password Strength"
+msgstr "Síla hesla"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
-msgstr "Operace zrušena: Přesouvala se právě aktivní skupiny"
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:18
+msgid "Unsaved Changes Conflict"
+msgstr "Konflikt neuložených změn"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
-msgstr "Přesun byl dokončen"
+#: gsecrets/widgets/quit_conflict_dialog.py:20
+msgid "Save and Quit"
+msgstr "Uložit a ukončit"
 
-#. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:146
-msgid "Select Safe"
-msgstr "Výběr trezoru"
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Back up, Save, and Quit"
+msgstr "Zálohovat, uložit a ukončit"
 
-#. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
-msgid "KeePass 3.1/4 Database"
-msgstr "Databáze KeePass 3.1/4"
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Don't Quit"
+msgstr "Neukončovat"
 
-#: gsecrets/widgets/window.py:162
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:25
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"Trezor byl někde jinde změněn. Uložením přepíšete tuto jinou verzi trezoru "
+"naší stávající verzí.\n"
+"\n"
+" Také můžete udělat zálohu jejich verze trezoru."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:33
+msgid "_Back up and Save"
+msgstr "_Zálohovat a uložit"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:45
+msgid "Save Backup"
+msgstr "Uložit zálohu"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:55
+msgid "Could not backup safe"
+msgstr "Nezdařilo se zálohovat trezor"
+
+#: gsecrets/widgets/window.py:153
 msgid "Any file type"
 msgstr "Libovolný typ souboru"
 
-#: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
+#: gsecrets/widgets/window.py:160
+msgid "Select Safe"
+msgstr "Vybrat trezor"
+
+#: gsecrets/widgets/window.py:177
+msgid "File does not have a valid path"
+msgstr "Soubor nemá platnou cestu"
+
+#: gsecrets/widgets/window.py:210
+msgid "Safe is already open"
 msgstr "Trezor je již otevřený"
 
-#: gsecrets/widgets/window.py:245
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
 msgstr "_Vytvořit"
 
-#: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
+#: gsecrets/widgets/window.py:266
+msgid "Cannot create Safe: Safe is already open"
 msgstr "Nelze vytvořit trezor: Trezor je již otevřený"
 
-#: gsecrets/widgets/window.py:316
-msgid "Could not Create new Safe"
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
+msgid "Could not create new Safe"
 msgstr "Nezdařilo se vytvořit nový trezor"
+
+#: gsecrets/widgets/window.py:399
+msgid "Could not save safe"
+msgstr "Nezdařilo se uložit trezor"
+
+#. TRANSLATORS Add your name to the translator credits list
+#: gsecrets/widgets/window.py:562
+msgid "translator-credits"
+msgstr ""
+"Marek Černocký <marek@manet.cz>\n"
+"Daniel Rusek <mail@asciiwolf.com>\n"
+"Patrik Sivek <sivekpatrik@gmail.com>"
+
+#~ msgid "Falk Alexander Seidl"
+#~ msgstr "Falk Alexander Seidl"
+
+#~ msgid "_Z-A"
+#~ msgstr "_Z-A"
+
+#, fuzzy
+#~| msgctxt "Shortcut window description"
+#~| msgid "Close Window"
+#~ msgid "New Window"
+#~ msgstr "Zavřít okno"
+
+#, fuzzy
+#~| msgid "_Cancel"
+#~ msgid "Cancel"
+#~ msgstr "_Zrušit"
+
+#, fuzzy
+#~| msgid "_Delete"
+#~ msgid "Delete"
+#~ msgstr "_Smazat"
+
+#~ msgid "Learn more about Secrets"
+#~ msgstr "Dozvědět se více o aplikaci Secrets"
+
+#~ msgid "Use a password to secure your safe."
+#~ msgstr "Používat k zabezpečení trezoru heslo."
+
+#~ msgid "_Keyfile"
+#~ msgstr "Soubor s _klíčem"
+
+#~ msgid "_Composite"
+#~ msgstr "_Kombinace obojího"
+
+#~ msgid "Use a password in combination with a keyfile to secure your safe."
+#~ msgstr "Používat k zabezpečení trezoru kombinaci hesla a souboru s klíčem."
+
+#~ msgid "Set password for safe."
+#~ msgstr "Nastavte si heslo pro trezor."
+
+#~ msgid "Password Match Check"
+#~ msgstr "Kontrola správného zadání hesla"
+
+#~ msgid "Repeat password for safe."
+#~ msgstr "Zopakujte zadání hesla pro trezor."
+
+#~ msgid "Match Check Failed"
+#~ msgstr "Kontrola shody hesel neprošla"
+
+#~ msgid "Please try again."
+#~ msgstr "Zkuste to prosím znovu."
+
+#~ msgid "_Confirm"
+#~ msgstr "P_otvrzení"
+
+#~ msgid "Set keyfile for safe"
+#~ msgstr "Nastavte si soubor s klíčem pro trezor"
+
+#~ msgid "_New"
+#~ msgstr "_Nové"
+
+#~ msgid "C_onfirm"
+#~ msgstr "P_otvrzení"
+
+#~ msgid "_Current"
+#~ msgstr "_Současné"
+
+#~ msgid "_Select current keyfile if any"
+#~ msgstr "Vybrat aktuální _soubor s klíčem, pokud existuje"
+
+#~ msgid "(Optional) _Generate new keyfile"
+#~ msgstr "(volitelně) Vy_generovat nový soubor s klíčem"
+
+#~ msgid "Menu"
+#~ msgstr "Nabídka"
+
+#~ msgid "Enter character here…"
+#~ msgstr "zde zadejte znak…"
+
+#~ msgid "New Safe"
+#~ msgstr "Nový trezor"
+
+#~ msgid "Open Safe"
+#~ msgstr "Otevřít trezor"
+
+#~ msgid "Enter Search Term"
+#~ msgstr "Zadejte hledaný výraz"
+
+#~ msgid "Select _All"
+#~ msgstr "Vybrat _vše"
+
+#~ msgid "_Dark Theme"
+#~ msgstr "_Tmavý motiv"
+
+#~ msgid "Use dark GTK theme."
+#~ msgstr "Používat tmavý motiv GTK."
+
+#~ msgid "_Select Keyfile"
+#~ msgstr "Vybrat _soubor s klíčem"
+
+#~ msgid ""
+#~ "Securely store your passwords, notes and data. <b>Create</b> or "
+#~ "<b>import</b> a new Keepass safe."
+#~ msgstr ""
+#~ "Uchovávejte bezpečně svá hesla, poznámky a data. <b>Vytvořte</b> si nebo "
+#~ "<b>naimportujte</b> nový trezor KeePass."
+
+#~ msgid "Use dark GTK theme"
+#~ msgstr "Používat tmavý motiv GTK"
+
+#~ msgid ""
+#~ "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+#~ "theme has a dark variant."
+#~ msgstr ""
+#~ "Používat tmavou variantu vašeho motivu GTK+. Uvědomte si ale, že ne každý "
+#~ "motiv má tmavou variantu."
+
+#~ msgid "Error: File {} does not exist"
+#~ msgstr "Chyba: Soubor {} neexistuje"
+
+#~ msgid "Error: Safe {} is already open"
+#~ msgstr "Chyba: Trezor {} je již otevřený"
+
+#~ msgid "Generating…"
+#~ msgstr "Generuje se…"
+
+#~ msgid "Generate"
+#~ msgstr "Generovat"
+
+#~ msgid "Username not specified"
+#~ msgstr "Uživatelské jméno neni zadáno"
+
+#~ msgid "The kdb Format is not Supported"
+#~ msgstr "Formát kdb není podporován."
+
+#~ msgid "_Try Again"
+#~ msgstr "Zkusi_t znovu"
+
+#~ msgid "Please Wait. Another Save is Running."
+#~ msgstr "Počkejte prosím, probíhá jiné ukládání."
+
+#~ msgid "Select Current Keyfile"
+#~ msgstr "Výběr aktuálního souboru s klíčem"
+
+#~ msgid "KeePass 3.1/4 Database"
+#~ msgstr "Databáze KeePass 3.1/4"

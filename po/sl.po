@@ -9,18 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-19 20:09+0000\n"
-"PO-Revision-Date: 2024-09-20 08:25+0200\n"
+"POT-Creation-Date: 2024-12-26 10:34+0000\n"
+"PO-Revision-Date: 2026-08-12 21:36+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -35,7 +35,7 @@ msgstr ""
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/gtk/window.ui:6
-#: data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/org.gnome.World.Secrets.desktop.in.in:3
 msgid "Secrets"
 msgstr "Skrivnosti"
 
@@ -856,7 +856,7 @@ msgstr "_Odkleni"
 msgid "Browser"
 msgstr "Brskalnik"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:693
 msgid "Select Items"
 msgstr "Izbor predmetov"
 
@@ -964,16 +964,16 @@ msgstr "Zavarujte Skrivnosti"
 msgid "Create or import a new Keepass safe"
 msgstr "Ustvari ali uvozi nov sef Keepass"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:5
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "Upravitelj gesel za GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.World.Secrets.desktop.in.in:14
+#: data/org.gnome.World.Secrets.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;šifriraj;varno;"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:21
+#: data/org.gnome.World.Secrets.desktop.in.in:20
 msgid "New Window"
 msgstr "Novo okno"
 
@@ -1074,8 +1074,8 @@ msgstr "Varnostno kopiraj zbirko podatkov ob odklepanju"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/secrets/backups"
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
 msgstr ""
 "Če pri shranjevanju zbirke podatkov pride do napake, lahko varnostno kopijo "
 "najdete v ~/.cache/secrets/backups"
@@ -1155,17 +1155,23 @@ msgstr ""
 "integrira z namizjem GNOME in omogoča enostaven in pregleden vmesnik za "
 "upravljanje zbirk podatkov z gesli."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:357
 msgid "Password management"
 msgstr "Upravljanje gesel"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:361
 msgid "Safe unlocking"
 msgstr "Odklepanje sefa"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:365
 msgid "Safe creation"
 msgstr "Ustvarjanje sefa"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:377
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:379
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1419,7 +1425,7 @@ msgstr "Kloniraj"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/unlocked_database.py:243 gsecrets/unlocked_database.py:531
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "Sefa ni mogoče shraniti"
@@ -1454,16 +1460,16 @@ msgstr "Sef {} je že odprt"
 msgid "Failed to unlock Safe"
 msgstr "Odklepanje sefa je spodletelo"
 
-#: gsecrets/unlocked_database.py:244
+#: gsecrets/unlocked_database.py:246
 msgid "Safe saved"
 msgstr "Sef shranjen"
 
-#: gsecrets/unlocked_database.py:246
+#: gsecrets/unlocked_database.py:248
 msgid "No changes made"
 msgstr "Ni opravljenih sprememb"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:296
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "{} elementov izbrisanih"
@@ -1471,29 +1477,29 @@ msgstr[1] "{} element izbrisan"
 msgstr[2] "{} elementa izbrisana"
 msgstr[3] "{} elementi izbrisani"
 
-#: gsecrets/unlocked_database.py:298
+#: gsecrets/unlocked_database.py:301
 msgid "Deletion completed"
 msgstr "Brisanje končano"
 
-#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
+#: gsecrets/unlocked_database.py:306 gsecrets/unlocked_database.py:330
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: gsecrets/unlocked_database.py:326
+#: gsecrets/unlocked_database.py:329
 msgid "Attribute deleted"
 msgstr "Atribut izbrisan"
 
-#: gsecrets/unlocked_database.py:355
+#: gsecrets/unlocked_database.py:358
 msgid "Copied"
 msgstr "Uspešno kopirano"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:455
+#: gsecrets/unlocked_database.py:458
 msgid "Safe locked due to inactivity"
 msgstr "Sef zaklenjen zaradi nedejavnosti"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:693
+#: gsecrets/unlocked_database.py:696
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} izbranih"
@@ -1501,11 +1507,11 @@ msgstr[1] "{} izbran"
 msgstr[2] "{} izbrana"
 msgstr[3] "{} izbrani"
 
-#: gsecrets/widgets/add_attribute_dialog.py:35
+#: gsecrets/widgets/add_attribute_dialog.py:36
 msgid "Attribute key contains an illegal character"
 msgstr "Ključ atributa vsebuje neveljaven znak"
 
-#: gsecrets/widgets/add_attribute_dialog.py:45
+#: gsecrets/widgets/add_attribute_dialog.py:46
 msgid "Attribute key already exists"
 msgstr "Ključ atributa že obstaja"
 
@@ -1597,7 +1603,7 @@ msgstr "Vnos je potekel"
 msgid "Hide Text"
 msgstr "Skrij besedilo"
 
-#: gsecrets/widgets/notes_dialog.py:58
+#: gsecrets/widgets/notes_dialog.py:60
 msgid "Selection copied"
 msgstr "Izbor kopiran"
 

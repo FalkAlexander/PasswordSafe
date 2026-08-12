@@ -1,14 +1,14 @@
 # Persian translation for secrets.
 # Copyright (C) 2024 secrets's COPYRIGHT HOLDER
 # This file is distributed under the same license as the secrets package.
-# Danial Behzadi <dani.behzi@ubuntu.com>,  2024.
+# Danial Behzadi <dani.behzi@ubuntu.com>,  2024-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-19 20:09+0000\n"
-"PO-Revision-Date: 2024-09-20 14:45+0330\n"
+"POT-Creation-Date: 2024-12-26 10:34+0000\n"
+"PO-Revision-Date: 2026-08-13 03:04+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -29,7 +29,7 @@ msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/gtk/window.ui:6
-#: data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/org.gnome.World.Secrets.desktop.in.in:3
 msgid "Secrets"
 msgstr "رمزها"
 
@@ -845,7 +845,7 @@ msgstr "_قفل‌گشایی"
 msgid "Browser"
 msgstr "مرورگر"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:693
 msgid "Select Items"
 msgstr "گزینش موارد"
 
@@ -952,16 +952,16 @@ msgstr "رمزهای امن"
 msgid "Create or import a new Keepass safe"
 msgstr "ایجاد یا درون‌ریزی گاوصندوق کی‌پسی جدید"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:5
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "مدیر گذرواژه‌ای برای گنوم"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.World.Secrets.desktop.in.in:14
+#: data/org.gnome.World.Secrets.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;encrypt;secure;کی‌پس;رمزنگاری;گاوصندوق;"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:21
+#: data/org.gnome.World.Secrets.desktop.in.in:20
 msgid "New Window"
 msgstr "پنجرهٔ جدید"
 
@@ -1137,17 +1137,23 @@ msgstr ""
 "میزکار گنوم یکپارچه شده و میانایی ساده برای مدیریت پایگاه داده‌های گذرواژه فراهم "
 "می‌کند."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:357
 msgid "Password management"
 msgstr "مدیریت گذرواژه"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:361
 msgid "Safe unlocking"
 msgstr "قفل‌گشایی گاوصندوق"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:365
 msgid "Safe creation"
 msgstr "ایجاد گاوصندوق"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:377
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:379
+msgid "Falk Alexander Seidl"
+msgstr "فالک الکساندر سیدل"
 
 #: gsecrets/attachment_warning_dialog.py:71 gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
@@ -1398,7 +1404,7 @@ msgstr "شبیه‌سازی"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/unlocked_database.py:243 gsecrets/unlocked_database.py:531
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "نتواسنت گاوصندوق را ذخیره کند"
@@ -1433,44 +1439,44 @@ msgstr "گاوصندوق {} از پیش باز است"
 msgid "Failed to unlock Safe"
 msgstr "شکست در قفل‌گشایی گالوصندوق"
 
-#: gsecrets/unlocked_database.py:244
+#: gsecrets/unlocked_database.py:246
 msgid "Safe saved"
 msgstr "گاوصندوق ذخیره شد"
 
-#: gsecrets/unlocked_database.py:246
+#: gsecrets/unlocked_database.py:248
 msgid "No changes made"
 msgstr "هیچ تغییری ایجاد نشد"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:296
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "عنصر حذف شد"
 msgstr[1] "{} عنصر حذف شدند"
 
-#: gsecrets/unlocked_database.py:298
+#: gsecrets/unlocked_database.py:301
 msgid "Deletion completed"
 msgstr "حذف کامل شد"
 
-#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
+#: gsecrets/unlocked_database.py:306 gsecrets/unlocked_database.py:330
 msgid "Undo"
 msgstr "برگردان"
 
-#: gsecrets/unlocked_database.py:326
+#: gsecrets/unlocked_database.py:329
 msgid "Attribute deleted"
 msgstr "مشخّصه حذف شد"
 
-#: gsecrets/unlocked_database.py:355
+#: gsecrets/unlocked_database.py:358
 msgid "Copied"
 msgstr "رونوشت شد"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:455
+#: gsecrets/unlocked_database.py:458
 msgid "Safe locked due to inactivity"
 msgstr "گاوصندوق به خاطر غیرفعّال بودن قفل شد"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:693
+#: gsecrets/unlocked_database.py:696
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] ""
@@ -1478,11 +1484,11 @@ msgstr[0] ""
 "{} گزیده"
 msgstr[1] "{} گزیده"
 
-#: gsecrets/widgets/add_attribute_dialog.py:35
+#: gsecrets/widgets/add_attribute_dialog.py:36
 msgid "Attribute key contains an illegal character"
 msgstr "کلید مشخّصه نویسه‌ای غیرقانونی دارد"
 
-#: gsecrets/widgets/add_attribute_dialog.py:45
+#: gsecrets/widgets/add_attribute_dialog.py:46
 msgid "Attribute key already exists"
 msgstr "کلید مشخّصه از پیش موجود است"
 
@@ -1574,7 +1580,7 @@ msgstr "ورودی منقضی شده"
 msgid "Hide Text"
 msgstr "نهفتن متن"
 
-#: gsecrets/widgets/notes_dialog.py:58
+#: gsecrets/widgets/notes_dialog.py:60
 msgid "Selection copied"
 msgstr "گزینش رونوشت شد"
 

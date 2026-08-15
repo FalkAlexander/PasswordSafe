@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-03-29 15:49+0000\n"
-"PO-Revision-Date: 2026-04-03 08:20+0800\n"
+"POT-Creation-Date: 2026-08-03 21:01+0000\n"
+"PO-Revision-Date: 2026-08-15 17:44+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -55,8 +55,8 @@ msgstr "您确定吗？"
 msgid "_Back"
 msgstr "后退(_B)"
 
-#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:318
-#: data/gtk/group_page.ui:81 gsecrets/selection_manager.py:112
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:319
+#: data/gtk/group_page.ui:82 gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "删除(_D)"
 
@@ -359,59 +359,59 @@ msgstr "备注"
 msgid "Edit in a Window"
 msgstr "在窗口中编辑"
 
-#: data/gtk/entry_page.ui:199
+#: data/gtk/entry_page.ui:200
 msgid "Icon"
 msgstr "图标"
 
-#: data/gtk/entry_page.ui:219
+#: data/gtk/entry_page.ui:220
 msgid "Tags"
 msgstr "标签"
 
-#: data/gtk/entry_page.ui:224 gsecrets/entry_page.py:295
+#: data/gtk/entry_page.ui:225 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "添加新标签"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:242
 msgid "Attachments"
 msgstr "附件"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:246
 msgid "_Add Attachment"
 msgstr "添加附件(_A)"
 
-#: data/gtk/entry_page.ui:254
+#: data/gtk/entry_page.ui:255
 msgid "Attributes"
 msgstr "属性"
 
-#: data/gtk/entry_page.ui:259
+#: data/gtk/entry_page.ui:260
 msgid "Add Attr_ibute"
 msgstr "添加属性(_I)"
 
-#: data/gtk/entry_page.ui:267
+#: data/gtk/entry_page.ui:268
 msgid "Expiration Date"
 msgstr "过期日期"
 
-#: data/gtk/entry_page.ui:280
+#: data/gtk/entry_page.ui:281
 msgid "_Show More"
 msgstr "显示更多(_S)"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:295
 msgid "D_uplicate"
 msgstr "复制(_U)"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:299
 msgid "_References"
 msgstr "引用(_R)"
 
-#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "属性(_P)"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:309
 msgid "_Save in History"
 msgstr "保存到历史(_S)"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:313
 msgid "Show _History"
 msgstr "显示历史(_H)"
 
@@ -915,7 +915,7 @@ msgstr "解锁(_U)"
 msgid "Browser"
 msgstr "浏览器"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
 msgid "Select Items"
 msgstr "选择项目"
 
@@ -1227,22 +1227,17 @@ msgstr ""
 "秘密是一个使用 KeePass v.4 格式的密码管理器。与 GNOME 桌面完美集成并提供简"
 "易、整洁的界面来管理密码数据库。"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:421
 msgid "Password management"
 msgstr "密码管理"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:425
 msgid "Safe unlocking"
 msgstr "保险箱解锁"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:429
 msgid "Safe creation"
 msgstr "保险箱创建"
-
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
@@ -1355,7 +1350,7 @@ msgid "Exclude Symbols"
 msgstr "排除符号"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:103
 msgid "Keyfile"
 msgstr "密钥文件"
 
@@ -1506,7 +1501,7 @@ msgstr "克隆"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
+#: gsecrets/unlocked_database.py:249 gsecrets/unlocked_database.py:536
 #: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
@@ -1546,50 +1541,50 @@ msgstr "保险箱 {path} 已打开"
 msgid "Failed to unlock Safe"
 msgstr "保险箱解锁失败"
 
-#: gsecrets/unlock_database.py:409
+#: gsecrets/unlock_database.py:410
 msgid "Please unlock using the password."
 msgstr "请使用密码解锁。"
 
-#: gsecrets/unlock_database.py:418
+#: gsecrets/unlock_database.py:419
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr "达到最大尝试次数。请使用密码解锁。"
 
-#: gsecrets/unlocked_database.py:251
+#: gsecrets/unlocked_database.py:252
 msgid "Safe saved"
 msgstr "保险箱已保存"
 
-#: gsecrets/unlocked_database.py:253
+#: gsecrets/unlocked_database.py:254
 msgid "No changes made"
 msgstr "未作更改"
 
-#: gsecrets/unlocked_database.py:300
+#: gsecrets/unlocked_database.py:301
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "{} 项元素已删除"
 
-#: gsecrets/unlocked_database.py:305
+#: gsecrets/unlocked_database.py:306
 msgid "Deletion completed"
 msgstr "删除完毕"
 
-#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
 msgid "Undo"
 msgstr "撤消"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:334
 msgid "Attribute deleted"
 msgstr "属性已删除"
 
-#: gsecrets/unlocked_database.py:362
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "已复制"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:462
+#: gsecrets/unlocked_database.py:463
 msgid "Safe locked due to inactivity"
 msgstr "保险箱因无活动已被锁定"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:700
+#: gsecrets/unlocked_database.py:701
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "已选择 {} 项"
@@ -1656,42 +1651,42 @@ msgstr "保存时冲突"
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
-msgstr "该保险箱已被其它地方修改。请在保存时解决主窗口的这些冲突。"
+msgstr "该保险箱已被其他地方修改。请在保存时解决主窗口的这些冲突。"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:454
-#: gsecrets/widgets/database_settings_dialog.py:468
+#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:467
 msgid "Unknown"
 msgstr "未知"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:458
+#: gsecrets/widgets/database_settings_dialog.py:457
 msgid "AES 256-bit"
 msgstr "AES 256 位"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:461
+#: gsecrets/widgets/database_settings_dialog.py:460
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256 位"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:464
+#: gsecrets/widgets/database_settings_dialog.py:463
 msgid "Twofish 256-bit"
 msgstr "Twofish 256 位"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:472
+#: gsecrets/widgets/database_settings_dialog.py:471
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:475
+#: gsecrets/widgets/database_settings_dialog.py:474
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:478
+#: gsecrets/widgets/database_settings_dialog.py:477
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1737,7 +1732,7 @@ msgid ""
 "\n"
 " You can also make a backup of their version of the safe."
 msgstr ""
-"该保险箱已被其它地方修改。保存将使用我们的当前版本覆盖它们的版本。\n"
+"该保险箱已被其他地方修改。保存将使用我们的当前版本覆盖它们的版本。\n"
 "\n"
 " 您可以同时对它们的版本制作备份。"
 
@@ -1792,6 +1787,9 @@ msgid "translator-credits"
 msgstr ""
 "Damned <damnedlies@163.com>, 2020.\n"
 "lumingzh <lumingzh@qq.com>,2022-2026."
+
+#~ msgid "Falk Alexander Seidl"
+#~ msgstr "Falk Alexander Seidl"
 
 #~ msgid "_Z-A"
 #~ msgstr "_Z-A"

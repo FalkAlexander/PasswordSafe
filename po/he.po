@@ -2,23 +2,23 @@
 # Copyright (C) 2022 secrets's COPYRIGHT HOLDER
 # This file is distributed under the same license as the secrets package.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2022.
-# Yosef Or Boczko <yoseforb@gmail.com>, 2022-2025.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2022-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-28 07:55+0000\n"
-"PO-Revision-Date: 2026-03-04 14:27+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2026-08-03 21:01+0000\n"
+"PO-Revision-Date: 2026-08-23 09:10+0300\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3);\n"
-"X-Generator: Poedit 3.8\n"
+"2 : 3)\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -45,6 +45,21 @@ msgstr "מכיל מידע רגיש."
 msgid "_Add"
 msgstr "הו_ספה"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "האם אכן ברצונך להמשיך בפעולה?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "ח_זרה"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:319
+#: data/gtk/group_page.ui:82 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "מ_חיקה"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "הורדת צרופה"
@@ -66,10 +81,6 @@ msgid ""
 msgstr ""
 "בהחלט ייתכן שיישומים חיצוניים יצרו עותקים בלתי מוצפנים או נסתרים של הקובץ "
 "המצורף (צרופה) הזה! נא להמשיך תוך נקיטת משנה זהירות."
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "ח_זרה"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -353,66 +364,61 @@ msgstr "הערות"
 msgid "Edit in a Window"
 msgstr "עריכה בחלון"
 
-#: data/gtk/entry_page.ui:199
+#: data/gtk/entry_page.ui:200
 msgid "Icon"
 msgstr "סמל"
 
-#: data/gtk/entry_page.ui:219
+#: data/gtk/entry_page.ui:220
 msgid "Tags"
 msgstr "תגיות"
 
-#: data/gtk/entry_page.ui:224 gsecrets/entry_page.py:295
+#: data/gtk/entry_page.ui:225 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "הוספת תגית חדשה"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:242
 msgid "Attachments"
 msgstr "צרופות"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:246
 msgid "_Add Attachment"
 msgstr "הוספת _צרופה"
 
-#: data/gtk/entry_page.ui:254
+#: data/gtk/entry_page.ui:255
 msgid "Attributes"
 msgstr "מאפיינים"
 
-#: data/gtk/entry_page.ui:259
+#: data/gtk/entry_page.ui:260
 msgid "Add Attr_ibute"
 msgstr "הוספת _תכונה"
 
-#: data/gtk/entry_page.ui:267
+#: data/gtk/entry_page.ui:268
 msgid "Expiration Date"
 msgstr "תאריך תפוגה"
 
-#: data/gtk/entry_page.ui:280
+#: data/gtk/entry_page.ui:281
 msgid "_Show More"
 msgstr "להציג _עוד"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:295
 msgid "D_uplicate"
 msgstr "_שכפול"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:299
 msgid "_References"
 msgstr "ה_פניה"
 
-#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "מ_אפיינים"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:309
 msgid "_Save in History"
 msgstr "_שמירה בהיסטוריה"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:313
 msgid "Show _History"
 msgstr "הצגת _היסטוריה"
-
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "מ_חיקה"
 
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
@@ -918,7 +924,7 @@ msgstr "_שחרור נעילה"
 msgid "Browser"
 msgstr "דפדפן"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
 msgid "Select Items"
 msgstr "בחירת פריטים"
 
@@ -1238,26 +1244,27 @@ msgstr ""
 "באופן מושלם עם שולחן העבודה GNOME ומספק מנשק פשוט ובלתי עמוס לניהול מסדי "
 "נתונים של ססמאות."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:421
 msgid "Password management"
 msgstr "ניהול סיסמאות"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:425
 msgid "Safe unlocking"
 msgstr "שחרור נעילה בטוח"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:429
 msgid "Safe creation"
 msgstr "יצירה בטוחה"
-
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
-msgid "Falk Alexander Seidl"
-msgstr "פאלק אלכסנדר זיידל"
 
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "הפעלת תיעוד ניפוי שגיאות"
+
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr "הצרופה „{filename}” תִמחק. פעולה זו לא ניתנת לביטול."
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1360,7 +1367,7 @@ msgid "Exclude Symbols"
 msgstr "לא כולל סמלים"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:103
 msgid "Keyfile"
 msgstr "קובץ מפתח"
 
@@ -1511,7 +1518,7 @@ msgstr "שכפול"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
+#: gsecrets/unlocked_database.py:249 gsecrets/unlocked_database.py:536
 #: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "לא ניתן לשמור את הכספת"
@@ -1551,23 +1558,23 @@ msgstr "הכספת {path} כבר פתוחה"
 msgid "Failed to unlock Safe"
 msgstr "שחרור נעילת הכספת נכשל"
 
-#: gsecrets/unlock_database.py:409
+#: gsecrets/unlock_database.py:410
 msgid "Please unlock using the password."
 msgstr "נא לשחרר את הנעילה עם הסיסמה."
 
-#: gsecrets/unlock_database.py:418
+#: gsecrets/unlock_database.py:419
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr "הגעת למספר הניסיונות המרבי. נא לשחרר באמצעות הסיסמה."
 
-#: gsecrets/unlocked_database.py:251
+#: gsecrets/unlocked_database.py:252
 msgid "Safe saved"
 msgstr "הכספת נשמרה"
 
-#: gsecrets/unlocked_database.py:253
+#: gsecrets/unlocked_database.py:254
 msgid "No changes made"
 msgstr "לא בוצעו שינויים"
 
-#: gsecrets/unlocked_database.py:300
+#: gsecrets/unlocked_database.py:301
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "פריט אחד נמחק"
@@ -1575,29 +1582,29 @@ msgstr[1] "‏{} פריטים נמחקו"
 msgstr[2] "שני פריטים נמחקו"
 msgstr[3] "‏{} פריטים נמחקו"
 
-#: gsecrets/unlocked_database.py:305
+#: gsecrets/unlocked_database.py:306
 msgid "Deletion completed"
 msgstr "המחיקה הושלמה"
 
-#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
 msgid "Undo"
 msgstr "ביטול"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:334
 msgid "Attribute deleted"
 msgstr "תכונה נמחקה"
 
-#: gsecrets/unlocked_database.py:362
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "הועתק"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:462
+#: gsecrets/unlocked_database.py:463
 msgid "Safe locked due to inactivity"
 msgstr "הכספת ננעלה עקב חוסר פעילות"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:700
+#: gsecrets/unlocked_database.py:701
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} נבחר"
@@ -1614,11 +1621,11 @@ msgid "Attribute key already exists"
 msgstr "מפתח התכונה כבר קיים"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "שמירת צרופה"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "לא ניתן לאחסן צרופה"
 
@@ -1671,38 +1678,38 @@ msgstr "הכספת שונתה במקום אחר. נא לפתור את ההתנג
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:454
-#: gsecrets/widgets/database_settings_dialog.py:468
+#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:467
 msgid "Unknown"
 msgstr "לא ידוע"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:458
+#: gsecrets/widgets/database_settings_dialog.py:457
 msgid "AES 256-bit"
 msgstr "‫AES באורך 256 סיביות"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:461
+#: gsecrets/widgets/database_settings_dialog.py:460
 msgid "ChaCha20 256-bit"
 msgstr "‫ChaCha20 באורך 256 סיביות"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:464
+#: gsecrets/widgets/database_settings_dialog.py:463
 msgid "Twofish 256-bit"
 msgstr "‫Twofish באורך 256 סיביות"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:472
+#: gsecrets/widgets/database_settings_dialog.py:471
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:475
+#: gsecrets/widgets/database_settings_dialog.py:474
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:478
+#: gsecrets/widgets/database_settings_dialog.py:477
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1805,6 +1812,9 @@ msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
 "יוסף אור בוצ׳קו <yoseforb@gmail.com>\n"
 "מיזם תרגום GNOME לעברית https://l10n.gnome.org/teams/he/"
+
+#~ msgid "Falk Alexander Seidl"
+#~ msgstr "פאלק אלכסנדר זיידל"
 
 #~ msgid "_Z-A"
 #~ msgstr "_ת-א"

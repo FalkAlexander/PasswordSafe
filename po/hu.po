@@ -1,16 +1,16 @@
 # Hungarian translation for secrets.
-# Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024, 2025 Free Software Foundation, Inc.
+# Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Free Software Foundation, Inc.
 # This file is distributed under the same license as the secrets package.
 #
 # Balázs Meskó <mesko.balazs at fsf dot hu>, 2019, 2021, 2023.
 # Gabor Kelemen <kelemeng at ubuntu dot com>, 2019.
-# Balázs Úr <ur.balazs at fsf dot hu>, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2025-01-13 04:54+0000\n"
-"PO-Revision-Date: 2025-03-06 00:50+0100\n"
+"POT-Creation-Date: 2024-12-26 10:34+0000\n"
+"PO-Revision-Date: 2026-09-02 09:24+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -33,7 +33,7 @@ msgstr ""
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/gtk/window.ui:6
-#: data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/org.gnome.World.Secrets.desktop.in.in:3
 msgid "Secrets"
 msgstr "Titkok"
 
@@ -963,16 +963,16 @@ msgstr "Biztonságos titkok"
 msgid "Create or import a new Keepass safe"
 msgstr "Új Keepass-széf létrehozása vagy importálása"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:5
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "Jelszókezelő a GNOME-hoz"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.World.Secrets.desktop.in.in:14
+#: data/org.gnome.World.Secrets.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;titkosítás;biztonság;"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:21
+#: data/org.gnome.World.Secrets.desktop.in.in:20
 msgid "New Window"
 msgstr "Új ablak"
 
@@ -1073,8 +1073,8 @@ msgstr "Az adatbázis biztonsági mentése feloldáskor"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/secrets/backups"
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
 msgstr ""
 "Ha hiba történik az adatbázis mentésekor, akkor a biztonsági mentés itt "
 "található: ~/.cache/secrets/backups"
@@ -1173,6 +1173,12 @@ msgstr "Széf feloldása"
 msgid "Safe creation"
 msgstr "Széf létrehozása"
 
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:377
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:379
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
@@ -1196,7 +1202,6 @@ msgid "Enter tag name"
 msgstr "Címke nevének megadása"
 
 #: gsecrets/entry_page.py:313
-#| msgid "Attribute key already exists"
 msgid "The tag already exists"
 msgstr "A címke már létezik"
 
@@ -1682,4 +1687,3 @@ msgstr "Nem sikerült új széfet létrehozni"
 #: gsecrets/widgets/window.py:395
 msgid "Could not save safe"
 msgstr "Nem sikerült elmenteni a széfet"
-

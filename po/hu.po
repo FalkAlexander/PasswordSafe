@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-28 07:55+0000\n"
-"PO-Revision-Date: 2026-03-05 03:02+0100\n"
+"POT-Creation-Date: 2026-08-03 21:01+0000\n"
+"PO-Revision-Date: 2026-09-02 09:22+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -45,6 +45,21 @@ msgstr "Érzékeny adatokat tartalmaz."
 msgid "_Add"
 msgstr "Hozzá_adás"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Biztos benne?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Vissza"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:319
+#: data/gtk/group_page.ui:82 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_Törlés"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "Melléklet letöltése"
@@ -66,10 +81,6 @@ msgid ""
 msgstr ""
 "Előfordulhat, hogy külső alkalmazások titkosítatlan rejtett vagy ideiglenes "
 "másolatokat készítenek a mellékletről! Folytassa körültekintően."
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "_Vissza"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -352,66 +363,61 @@ msgstr "Jegyzetek"
 msgid "Edit in a Window"
 msgstr "Szerkesztés egy ablakban"
 
-#: data/gtk/entry_page.ui:199
+#: data/gtk/entry_page.ui:200
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/gtk/entry_page.ui:219
+#: data/gtk/entry_page.ui:220
 msgid "Tags"
 msgstr "Címkék"
 
-#: data/gtk/entry_page.ui:224 gsecrets/entry_page.py:295
+#: data/gtk/entry_page.ui:225 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "Új címke hozzáadása"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:242
 msgid "Attachments"
 msgstr "Mellékletek"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:246
 msgid "_Add Attachment"
 msgstr "Melléklet hozzá_adása"
 
-#: data/gtk/entry_page.ui:254
+#: data/gtk/entry_page.ui:255
 msgid "Attributes"
 msgstr "Tulajdonságok"
 
-#: data/gtk/entry_page.ui:259
+#: data/gtk/entry_page.ui:260
 msgid "Add Attr_ibute"
 msgstr "T_ulajdonság hozzáadása"
 
-#: data/gtk/entry_page.ui:267
+#: data/gtk/entry_page.ui:268
 msgid "Expiration Date"
 msgstr "Lejárati dátum"
 
-#: data/gtk/entry_page.ui:280
+#: data/gtk/entry_page.ui:281
 msgid "_Show More"
 msgstr "_Több megjelenítése"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:295
 msgid "D_uplicate"
 msgstr "_Kettőzés"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:299
 msgid "_References"
 msgstr "_Hivatkozások"
 
-#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Tulajdonságok"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:309
 msgid "_Save in History"
 msgstr "_Mentés az előzményekbe"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:313
 msgid "Show _History"
 msgstr "_Előzmények megjelenítése"
-
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "_Törlés"
 
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
@@ -918,7 +924,7 @@ msgstr "_Feloldás"
 msgid "Browser"
 msgstr "Böngésző"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
 msgid "Select Items"
 msgstr "Elemek kiválasztása"
 
@@ -1032,7 +1038,6 @@ msgstr "Jelszókezelő a GNOME-hoz"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:13
-#| msgid "keepass;encrypt;secure;"
 msgid "keepass;encrypt;secure;password;manager;"
 msgstr "keepass;titkosítás;biztonság;jelszó;kezelő;"
 
@@ -1251,26 +1256,29 @@ msgstr ""
 "Tökéletesen beépül a GNOME asztali környezetbe, egyszerű és rendezett "
 "felületet biztosít a jelszóadatbázisok kezeléséhez."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:421
 msgid "Password management"
 msgstr "Jelszókezelés"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:425
 msgid "Safe unlocking"
 msgstr "Széf feloldása"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:429
 msgid "Safe creation"
 msgstr "Széf létrehozása"
-
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Hibakeresési naplózás engedélyezése"
+
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr ""
+"A(z) „{filename}” melléklet törölve lesz. Ezt a műveletet nem lehet visszavonn"
+"i."
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1373,7 +1381,7 @@ msgid "Exclude Symbols"
 msgstr "Szimbólumok kizárása"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:103
 msgid "Keyfile"
 msgstr "Kulcsfájl"
 
@@ -1524,7 +1532,7 @@ msgstr "Klónozás"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
+#: gsecrets/unlocked_database.py:249 gsecrets/unlocked_database.py:536
 #: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Nem sikerült elmenteni a széfet"
@@ -1564,52 +1572,52 @@ msgstr "A(z) {path} széf már meg van nyitva"
 msgid "Failed to unlock Safe"
 msgstr "Nem sikerült feloldani a széfet"
 
-#: gsecrets/unlock_database.py:409
+#: gsecrets/unlock_database.py:410
 msgid "Please unlock using the password."
 msgstr "Oldja fel a jelszó használatával."
 
-#: gsecrets/unlock_database.py:418
+#: gsecrets/unlock_database.py:419
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr ""
 "A próbálkozások legnagyobb száma elérve. Oldja fel a jelszó használatával."
 
-#: gsecrets/unlocked_database.py:251
+#: gsecrets/unlocked_database.py:252
 msgid "Safe saved"
 msgstr "Széf elmentve"
 
-#: gsecrets/unlocked_database.py:253
+#: gsecrets/unlocked_database.py:254
 msgid "No changes made"
 msgstr "Nem történtek változtatások"
 
-#: gsecrets/unlocked_database.py:300
+#: gsecrets/unlocked_database.py:301
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Elem törölve"
 msgstr[1] "{} elem törölve"
 
-#: gsecrets/unlocked_database.py:305
+#: gsecrets/unlocked_database.py:306
 msgid "Deletion completed"
 msgstr "Törlés befejezve"
 
-#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:334
 msgid "Attribute deleted"
 msgstr "Tulajdonság törölve"
 
-#: gsecrets/unlocked_database.py:362
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "Lemásolva"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:462
+#: gsecrets/unlocked_database.py:463
 msgid "Safe locked due to inactivity"
 msgstr "A széf zárolva tétlenség miatt"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:700
+#: gsecrets/unlocked_database.py:701
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} kiválasztva"
@@ -1624,11 +1632,11 @@ msgid "Attribute key already exists"
 msgstr "A tulajdonságkulcs már létezik"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Melléklet mentése"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "Nem sikerült eltárolni a mellékletet"
 
@@ -1683,38 +1691,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:454
-#: gsecrets/widgets/database_settings_dialog.py:468
+#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:467
 msgid "Unknown"
 msgstr "Ismeretlen"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:458
+#: gsecrets/widgets/database_settings_dialog.py:457
 msgid "AES 256-bit"
 msgstr "256 bites AES"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:461
+#: gsecrets/widgets/database_settings_dialog.py:460
 msgid "ChaCha20 256-bit"
 msgstr "256 bites ChaCha20"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:464
+#: gsecrets/widgets/database_settings_dialog.py:463
 msgid "Twofish 256-bit"
 msgstr "256 bites Twofish"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:472
+#: gsecrets/widgets/database_settings_dialog.py:471
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:475
+#: gsecrets/widgets/database_settings_dialog.py:474
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:478
+#: gsecrets/widgets/database_settings_dialog.py:477
 msgid "AES-KDF"
 msgstr "AES-KDF"
 

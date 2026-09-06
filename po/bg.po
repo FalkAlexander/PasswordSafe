@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets secrets-10\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-10-17 19:36+0000\n"
-"PO-Revision-Date: 2024-10-19 10:48+0200\n"
+"POT-Creation-Date: 2024-12-26 10:34+0000\n"
+"PO-Revision-Date: 2026-09-06 11:12+0200\n"
 "Last-Translator: twlvnn <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -26,8 +26,8 @@ msgstr "Управление на паролите"
 #: data/about_dialog.ui.in:10
 msgid "translator-credits"
 msgstr ""
-"Twlvnn Kraftwerk &lt;<a href='mailto:kraft_werk@tutanota."
-"com'>kraft_werk@tutanota.com</a>&gt;\n"
+"Twlvnn Kraftwerk &lt;<a "
+"href='mailto:kraft_werk@tutanota.com'>kraft_werk@tutanota.com</a>&gt;\n"
 "\n"
 "\n"
 "Проектът за превод на GNOME има нужда от подкрепа.\n"
@@ -38,7 +38,7 @@ msgstr ""
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/gtk/window.ui:6
-#: data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/org.gnome.World.Secrets.desktop.in.in:3
 msgid "Secrets"
 msgstr "Secrets"
 
@@ -970,16 +970,16 @@ msgstr "Защитени тайни"
 msgid "Create or import a new Keepass safe"
 msgstr "Създаване или качване на нов сейф на Keepass"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:5
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "Управление на пароли за GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.World.Secrets.desktop.in.in:14
+#: data/org.gnome.World.Secrets.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;криптиране;шифриране;защитен;сейф;трезор;парола;кийпас;"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:21
+#: data/org.gnome.World.Secrets.desktop.in.in:20
 msgid "New Window"
 msgstr "Нов прозорец"
 
@@ -1081,8 +1081,8 @@ msgstr "Запазване на резервно копие на базата о
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/secrets/backups"
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
 msgstr ""
 "Ако възникне грешка при запазване на базата от данни, може да намерите "
 "резервно копие в „~/.cache/secrets/backups“ "
@@ -1164,17 +1164,23 @@ msgstr ""
 "v.4. Тя се интегрира перфектно с графичната среда GNOME и осигурява лесен и "
 "подреден интерфейс за управление на бази от данни с пароли."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:338
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:357
 msgid "Password management"
 msgstr "Управляване на паролите"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:342
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:361
 msgid "Safe unlocking"
 msgstr "Отключване на сейф"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:346
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:365
 msgid "Safe creation"
 msgstr "Настройки на сейфа"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:377
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:379
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1508,11 +1514,11 @@ msgid_plural "{} Selected"
 msgstr[0] "{} избрано"
 msgstr[1] "{} избрани"
 
-#: gsecrets/widgets/add_attribute_dialog.py:35
+#: gsecrets/widgets/add_attribute_dialog.py:36
 msgid "Attribute key contains an illegal character"
 msgstr "Ключът на атрибута съдържа непозволен знак"
 
-#: gsecrets/widgets/add_attribute_dialog.py:45
+#: gsecrets/widgets/add_attribute_dialog.py:46
 msgid "Attribute key already exists"
 msgstr "Ключът на атрибута вече съществува"
 
@@ -1604,7 +1610,7 @@ msgstr "Записът изтече"
 msgid "Hide Text"
 msgstr "Скриване на Текст"
 
-#: gsecrets/widgets/notes_dialog.py:58
+#: gsecrets/widgets/notes_dialog.py:60
 msgid "Selection copied"
 msgstr "Избраното е копирано"
 
@@ -1686,15 +1692,3 @@ msgstr "Неуспешно създаване на нов сейф"
 #: gsecrets/widgets/window.py:395
 msgid "Could not save safe"
 msgstr "Неуспешно запазване на сейф"
-
-#~ msgid "Automatically lock the safe when the session is locked."
-#~ msgstr "Автоматично заключване на сейфа при заключване на сесията."
-
-#~ msgid "Root Group"
-#~ msgstr "Коренова група"
-
-#~ msgid "Cancel"
-#~ msgstr "Отказване"
-
-#~ msgid "Delete"
-#~ msgstr "Изтриване"

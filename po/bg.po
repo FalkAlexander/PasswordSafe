@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-02-28 07:55+0000\n"
-"PO-Revision-Date: 2026-03-01 19:30+0100\n"
+"POT-Creation-Date: 2026-08-03 21:01+0000\n"
+"PO-Revision-Date: 2026-09-06 11:09+0200\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -43,6 +43,21 @@ msgstr "Съдържа чувствителни данни."
 msgid "_Add"
 msgstr "_Добавяне"
 
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Сигурни ли сте?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "На_зад"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:319
+#: data/gtk/group_page.ui:82 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_Изтриване"
+
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
 msgstr "Сваляне на прикачен файл"
@@ -64,10 +79,6 @@ msgid ""
 msgstr ""
 "Възможно е други програми да създадат нешифрирани скрити или временни копия "
 "на този прикачен файл. Бъдете внимателни!"
-
-#: data/gtk/attachment_warning_dialog.ui:9
-msgid "_Back"
-msgstr "На_зад"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -351,66 +362,61 @@ msgstr "Записки"
 msgid "Edit in a Window"
 msgstr "Редактиране в прозорец"
 
-#: data/gtk/entry_page.ui:199
+#: data/gtk/entry_page.ui:200
 msgid "Icon"
 msgstr "Икона"
 
-#: data/gtk/entry_page.ui:219
+#: data/gtk/entry_page.ui:220
 msgid "Tags"
 msgstr "Етикети"
 
-#: data/gtk/entry_page.ui:224 gsecrets/entry_page.py:295
+#: data/gtk/entry_page.ui:225 gsecrets/entry_page.py:295
 msgid "Add New Tag"
 msgstr "Добавяне на нов етикет"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:242
 msgid "Attachments"
 msgstr "Прикачени файлове"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:246
 msgid "_Add Attachment"
 msgstr "_Прикачване на файл"
 
-#: data/gtk/entry_page.ui:254
+#: data/gtk/entry_page.ui:255
 msgid "Attributes"
 msgstr "Атрибути"
 
-#: data/gtk/entry_page.ui:259
+#: data/gtk/entry_page.ui:260
 msgid "Add Attr_ibute"
 msgstr "Добавяне на атр_ибут"
 
-#: data/gtk/entry_page.ui:267
+#: data/gtk/entry_page.ui:268
 msgid "Expiration Date"
 msgstr "Дата на изтичане"
 
-#: data/gtk/entry_page.ui:280
+#: data/gtk/entry_page.ui:281
 msgid "_Show More"
 msgstr "_Допълнителни опции"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:295
 msgid "D_uplicate"
 msgstr "Д_убликат"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:299
 msgid "_References"
 msgstr "_Препратки"
 
-#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Свойства"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:309
 msgid "_Save in History"
 msgstr "_Запазване в историята"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:313
 msgid "Show _History"
 msgstr "Показване на _историята"
-
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:81
-#: gsecrets/selection_manager.py:112
-msgid "_Delete"
-msgstr "_Изтриване"
 
 #: data/gtk/entry_page_tag.ui:21
 msgid "Remove"
@@ -919,7 +925,7 @@ msgstr "_Отключване"
 msgid "Browser"
 msgstr "Браузър"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:697
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
 msgid "Select Items"
 msgstr "Избор на елементи"
 
@@ -1247,26 +1253,29 @@ msgstr ""
 "v.4. Тя се интегрира перфектно с графичната среда GNOME и осигурява лесен и "
 "подреден интерфейс за управление на бази от данни с пароли."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:410
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:421
 msgid "Password management"
 msgstr "Управляване на паролите"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:414
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:425
 msgid "Safe unlocking"
 msgstr "Отключване на сейф"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:418
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:429
 msgid "Safe creation"
 msgstr "Настройки на сейфа"
-
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:431
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:39
 msgid "Enable debug logging"
 msgstr "Включване на съобщенията за отстраняване на грешки"
+
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr ""
+"Прикаченият файл „{filename}“ ще бъде изтрит. Това действие не може да бъде "
+"върнато."
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1369,7 +1378,7 @@ msgid "Exclude Symbols"
 msgstr "Изключване на знаци"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:109
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:103
 msgid "Keyfile"
 msgstr "Ключов файл"
 
@@ -1520,7 +1529,7 @@ msgstr "Клониране"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:248 gsecrets/unlocked_database.py:535
+#: gsecrets/unlocked_database.py:249 gsecrets/unlocked_database.py:536
 #: gsecrets/widgets/window.py:422
 msgid "Could not save Safe"
 msgstr "Неуспешно запазване на сейфа"
@@ -1562,51 +1571,51 @@ msgstr "Сейфът „{path}“ вече е отворен"
 msgid "Failed to unlock Safe"
 msgstr "Неуспешно отключване на сейфа"
 
-#: gsecrets/unlock_database.py:409
+#: gsecrets/unlock_database.py:410
 msgid "Please unlock using the password."
 msgstr "Отключване с парола."
 
-#: gsecrets/unlock_database.py:418
+#: gsecrets/unlock_database.py:419
 msgid "Maximum tries reached. Please unlock using the password."
 msgstr "Максималният брой опити е достигнат. Отключете с парола."
 
-#: gsecrets/unlocked_database.py:251
+#: gsecrets/unlocked_database.py:252
 msgid "Safe saved"
 msgstr "Сейфът е запазен"
 
-#: gsecrets/unlocked_database.py:253
+#: gsecrets/unlocked_database.py:254
 msgid "No changes made"
 msgstr "Няма направени промени"
 
-#: gsecrets/unlocked_database.py:300
+#: gsecrets/unlocked_database.py:301
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Елементът е изтрит"
 msgstr[1] "{} елемента са изтрити"
 
-#: gsecrets/unlocked_database.py:305
+#: gsecrets/unlocked_database.py:306
 msgid "Deletion completed"
 msgstr "Изтриването завърши"
 
-#: gsecrets/unlocked_database.py:310 gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
 msgid "Undo"
 msgstr "Отмяна"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:334
 msgid "Attribute deleted"
 msgstr "Атрибутът е изтрит"
 
-#: gsecrets/unlocked_database.py:362
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "Копирано"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:462
+#: gsecrets/unlocked_database.py:463
 msgid "Safe locked due to inactivity"
 msgstr "Сейфът е заключен поради неактивност"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:700
+#: gsecrets/unlocked_database.py:701
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} избрано"
@@ -1621,11 +1630,11 @@ msgid "Attribute key already exists"
 msgstr "Ключът на атрибута вече съществува"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:41
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Запазване на прикачен файл"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:71
 msgid "Could not store attachment"
 msgstr "Неуспешно запазване на прикачения файл"
 
@@ -1680,38 +1689,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:454
-#: gsecrets/widgets/database_settings_dialog.py:468
+#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:467
 msgid "Unknown"
 msgstr "Неизвестен"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:458
+#: gsecrets/widgets/database_settings_dialog.py:457
 msgid "AES 256-bit"
 msgstr "AES 256-бита"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:461
+#: gsecrets/widgets/database_settings_dialog.py:460
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-бита"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:464
+#: gsecrets/widgets/database_settings_dialog.py:463
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-бита"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:472
+#: gsecrets/widgets/database_settings_dialog.py:471
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:475
+#: gsecrets/widgets/database_settings_dialog.py:474
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:478
+#: gsecrets/widgets/database_settings_dialog.py:477
 msgid "AES-KDF"
 msgstr "AES-KDF"
 

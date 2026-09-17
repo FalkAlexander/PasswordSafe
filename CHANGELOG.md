@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 14.0 - 2026-09-17
+- Fix displaying of file paths while sandboxed
+- Update pykeepass to 4.2.0
+
 ## 13.0.1 - 2026-05-26
 - Fix app version in meson.build
 

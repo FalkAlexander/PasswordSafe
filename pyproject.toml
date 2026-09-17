@@ -74,6 +74,9 @@ ignore = [
     "S101",
 ]
 
+[tool.ruff.lint.flake8-copyright]
+notice-rgx = "# SPDX-License-Identifier: GPL-3.0-only"
+
 [tool.mypy]
 ignore_missing_imports = true
 disallow_incomplete_defs = true

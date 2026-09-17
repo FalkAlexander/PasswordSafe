@@ -17,7 +17,7 @@ class NotesDialog(Adw.Dialog):
     _toast_overlay = Gtk.Template.Child()
     _value_entry = Gtk.Template.Child()
 
-    clipboard_timer_handler: None | int = None
+    clipboard_timer_handler: int | None = None
 
     def __init__(self, unlocked_database, safe_entry):
         super().__init__()

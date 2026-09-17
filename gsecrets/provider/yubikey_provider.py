@@ -106,7 +106,7 @@ class YubiKeyProvider(BaseProvider):
 
         return res
 
-    def get_yubikey(self, serial: int, debug: bool = False) -> None | yubico.YubiKey:
+    def get_yubikey(self, serial: int, debug: bool = False) -> yubico.YubiKey | None:
         """Get a specific yubikey based on it's serial."""
         try:
             for _idx in range(4):

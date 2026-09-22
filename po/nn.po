@@ -2,581 +2,582 @@
 # Copyright (C) 2020 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # John Erling Blad <jeblad@gmail.com>, 2020.
+# Roy-Magne Mo <rmo@sunnmore.net>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-20 22:17+0000\n"
-"PO-Revision-Date: 2022-03-22 16:20+0100\n"
-"Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
-"Language-Team: Norwegian Nynorsk\n"
+"POT-Creation-Date: 2026-09-17 16:14+0000\n"
+"PO-Revision-Date: 2026-09-23 13:00+0200\n"
+"Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
+"Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
-msgid "Manage your passwords"
-msgstr "Administrer passorda dine"
+#: data/gtk/add_attribute_dialog.ui:5
+msgid "Add Attribute"
+msgstr "Legg til attributt"
 
-#. "Secrets" is the application name, do not translate
-#: data/about_dialog.ui.in:9
-msgid "Learn more about Secrets"
-msgstr "Lær meir _om Løyndommar"
+#: data/gtk/add_attribute_dialog.ui:37
+msgid "Key"
+msgstr "Nøkkel"
 
-#. Add your name to the translator credits list
-#: data/about_dialog.ui.in:11
-msgid "translator-credits"
-msgstr "John Erling Blad <jeblad@gmail.com>"
+#: data/gtk/add_attribute_dialog.ui:43
+msgid "Value"
+msgstr "Verdi"
+
+#: data/gtk/add_attribute_dialog.ui:49
+msgid "Sensitive"
+msgstr "Følsam"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Contains sensitive data."
+msgstr "Inneheld sensitive data."
+
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:297
+#: gsecrets/entry_page.py:454
+msgid "_Add"
+msgstr "_Legg til"
+
+#. Dialog title which asks a confirmation from user to delete attachment.
+#: data/gtk/attachment_delete_dialog.ui:4
+msgid "Are you Sure?"
+msgstr "Er du sikker?"
+
+#: data/gtk/attachment_delete_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_Tilbake"
+
+#: data/gtk/attachment_delete_dialog.ui:9 data/gtk/entry_page.ui:319
+#: data/gtk/group_page.ui:82 gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_Slett"
+
+#: data/gtk/attachment_entry_row.ui:9
+#| msgid "Could not Load Attachment"
+msgid "Download Attachment"
+msgstr "Last ned vedlegg"
+
+#: data/gtk/attachment_entry_row.ui:20
+#| msgid "Save Attachment"
+msgid "Remove Attachment"
+msgstr "Fjern vedlegg"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:4
 msgid "Safety Info"
-msgstr "Sikkerhetsinfo"
+msgstr "Tryggleiksinformasjon"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:5
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
 msgstr ""
-"Det er mogleg at eksterne program vil laga nye ukrypterte skjulte eller "
-"mellombelse kopiar av dette vedlegget! Ver vennleg og fortset med varsemd."
+"Eksterne program kan lage ukrypterte, gøymde eller mellombelse kopiar av "
+"denne vedleggsfila! Gå fram med varsemd."
 
-#. Discard all the changes which the user have made to his keepass safe
 #: data/gtk/attachment_warning_dialog.ui:10
-msgid "_Back"
-msgstr "_Tilbake"
-
-#. Save all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:16
 msgid "_Proceed"
-msgstr "_Fortsett"
+msgstr "_Hald fram"
 
-#: data/gtk/attribute_entry_row.ui:49
+#: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+#| msgid "Attributes"
+msgid "Copy Attribute"
+msgstr "Kopier attributt"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
 msgid "Remove Attribute"
 msgstr "Fjern attributt"
 
-#: data/gtk/color_entry_row.ui:11
+#: data/gtk/browsing_panel.ui:23
+#| msgid "Add elements with the ➕ button."
+msgid "Add elements with the ➕ button"
+msgstr "Legg til element med ➕-knappen"
+
+#: data/gtk/browsing_panel.ui:24
+msgid "Empty Group"
+msgstr "Tom gruppe"
+
+#: data/gtk/browsing_panel.ui:30
+msgid "No Search Results"
+msgstr "Ingen søkjeresultat"
+
+#: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Farge"
 
-#: data/gtk/create_database.ui:33
-msgid "Protect your safe"
-msgstr "Vern din safe"
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:242
+msgid "Create Safe"
+msgstr "Opprett safe"
 
-#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:17
+msgid "Back"
+msgstr "Tilbake"
+
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:40
+msgid "Main Menu"
+msgstr "Hovudmeny"
+
+#: data/gtk/create_database.ui:44
+msgid "Protect your safe"
+msgstr "Vern safen din"
+
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Passord"
 
-#: data/gtk/create_database.ui:47
-msgid "Use a password to secure your safe."
-msgstr "Bruk eit passord for å sikra safen din."
+#: data/gtk/create_database.ui:64
+#| msgid "Confirm New Password"
+msgid "_Confirm Password"
+msgstr "_Stadfest passord"
 
-#: data/gtk/create_database.ui:57
-msgid "_Keyfile"
-msgstr "_Nykelfil"
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:59
+msgid "Additional Credentials"
+msgstr "Ekstra innloggingsinformasjon"
 
-#: data/gtk/create_database.ui:58
-msgid "Use a keyfile to secure your safe."
-msgstr "Bruk ein nykelfil for å sikra safen din."
+#: data/gtk/create_database.ui:90
+#| msgid "Created"
+msgid "C_reate"
+msgstr "Opp_rett"
 
-#: data/gtk/create_database.ui:68
-msgid "_Composite"
-msgstr "_Sammensatt"
-
-#: data/gtk/create_database.ui:69
-msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr "Bruk eit passord saman med ein nykelfil for å sikra safen din."
-
-#: data/gtk/create_database.ui:101
-msgid "Enter Password"
-msgstr "Skriv inn passord"
-
-#: data/gtk/create_database.ui:109
-msgid "Set password for safe."
-msgstr "Sett passord for safen."
-
-#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
-msgid "Generate New Password"
-msgstr "Skap nytt passord"
-
-#: data/gtk/create_database.ui:183
-msgid "Password Match Check"
-msgstr "Passordverifikasjon"
-
-#: data/gtk/create_database.ui:191
-msgid "Repeat password for safe."
-msgstr "Gjenta passordet for safen."
-
-#: data/gtk/create_database.ui:248
-msgid "Match Check Failed"
-msgstr "Kunne ikkje verifisere"
-
-#: data/gtk/create_database.ui:256
-msgid "Please try again."
-msgstr "Ver vennleg og prøv på nytt."
-
-#: data/gtk/create_database.ui:286
-msgid "_Confirm"
-msgstr "_Bekreft"
-
-#. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
-#: gsecrets/widgets/database_settings_dialog.py:196
-msgid "Generate Keyfile"
-msgstr "Skap nykelfil"
-
-#: data/gtk/create_database.ui:329
-msgid "Set keyfile for safe"
-msgstr "Sett nykelfil for safen"
-
-#. Button to generate a password
-#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:172
-#: gsecrets/widgets/database_settings_dialog.py:199
-msgid "_Generate"
-msgstr "_Skap"
-
-#: data/gtk/create_database.ui:372
+#: data/gtk/create_database.ui:115
 msgid "Safe Successfully Created"
-msgstr "Safen ble oppretta"
+msgstr "Safen er oppretta"
 
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:118
 msgid "_Open Safe"
 msgstr "_Opne safe"
 
-#. Headerbar subtitle in keepass safe creation routine.
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
-msgid "Create Safe"
-msgstr "Ny safe"
-
-#: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
-#: data/gtk/unlock_database_headerbar.ui:38
-msgid "Back"
-msgstr "Tilbake"
-
-#: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
-msgid "Main Menu"
-msgstr "Hovedmeny"
-
-#: data/gtk/create_database_headerbar.ui:31
-#: data/gtk/recent_files_headerbar.ui:53
-#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/create_database.ui:143 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
-msgstr "_Eigenskapar"
+msgstr "_Innstillingar"
 
-#: data/gtk/create_database_headerbar.ui:35
-#: data/gtk/recent_files_headerbar.ui:57
-#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:147 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastatursnarvegar"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database_headerbar.ui:39
-#: data/gtk/recent_files_headerbar.ui:61
-#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:151 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
-msgstr "_Om Løyndommar"
+msgstr "_Om Secrets"
 
-#: data/gtk/database_settings_dialog.ui:10
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "_Brukarnamn"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:131
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:345
+msgid "Copy"
+msgstr "Kopier"
+
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
+msgid "Generate New Password"
+msgstr "Lag nytt passord"
+
+#: data/gtk/database_settings_dialog.ui:5
+#| msgid "Sa_fe Settings"
+msgid "Safe Settings"
+msgstr "Innstillingar for safen"
+
+#: data/gtk/database_settings_dialog.ui:9
 msgid "Authentication"
-msgstr "Autentiser"
+msgstr "Autentisering"
 
-#: data/gtk/database_settings_dialog.ui:14
-#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:22
-msgid "Password"
-msgstr "Passord"
+#: data/gtk/database_settings_dialog.ui:15
+#| msgid "Enter Current Password"
+msgid "Current Password"
+msgstr "Gjeldande passord"
 
-#. New password (replacement for an old one)
-#: data/gtk/database_settings_dialog.ui:22
-#: data/gtk/recent_files_headerbar.ui:19
-msgid "_New"
-msgstr "_Ny"
+#: data/gtk/database_settings_dialog.ui:25
+#| msgid "Password"
+msgid "New Password"
+msgstr "Nytt passord"
 
-#. Retype the new password to confirm
-#: data/gtk/database_settings_dialog.ui:69
-msgid "C_onfirm"
-msgstr "Bekreft"
-
-#: data/gtk/database_settings_dialog.ui:85
+#: data/gtk/database_settings_dialog.ui:46
 msgid "Confirm New Password"
-msgstr "Bekreft nytt passord"
+msgstr "Stadfest nytt passord"
 
-#. Current password
-#: data/gtk/database_settings_dialog.ui:97
-msgid "_Current"
-msgstr "Nåværande"
+#: data/gtk/database_settings_dialog.ui:60
+msgid "New Additional Credentials"
+msgstr "Ny ekstra innloggingsinformasjon"
 
-#: data/gtk/database_settings_dialog.ui:114
-msgid "Enter Current Password"
-msgstr "Skriv inn nåværande passord"
-
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
-#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
-msgid "Keyfile"
-msgstr "Nykelfil"
-
-#: data/gtk/database_settings_dialog.ui:161
-msgid "_Select current keyfile if any"
-msgstr "_Vel nåværande nykelfil om nokon"
-
-#: data/gtk/database_settings_dialog.ui:203
-msgid "(Optional) _Generate new keyfile"
-msgstr "(Valgfritt) _Skap ny nykelfil"
-
-#: data/gtk/database_settings_dialog.ui:221
-msgid "Could not Load Keyfile"
-msgstr "Kunne ikkje lasta nykelfil"
-
-#: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:269
+#: data/gtk/database_settings_dialog.ui:75
+#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:396
 msgid "_Apply Changes"
-msgstr "_Utfør endringar"
+msgstr "_Ta i bruk endringar"
 
-#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
-#: data/gtk/settings_dialog.ui:12
+#: data/gtk/database_settings_dialog.ui:93 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
 msgid "General"
-msgstr "Allment"
+msgstr "Generelt"
 
-#: data/gtk/database_settings_dialog.ui:252
+#: data/gtk/database_settings_dialog.ui:97
+#| msgid "Database saved"
+msgid "Database"
+msgstr "Database"
+
+#: data/gtk/database_settings_dialog.ui:100
+#| msgid "Safe Name"
+msgid "Name"
+msgstr "Namn"
+
+#: data/gtk/database_settings_dialog.ui:108
+msgid "Description"
+msgstr "Skildring"
+
+#: data/gtk/database_settings_dialog.ui:116
+msgid "Default User"
+msgstr "Standardbrukar"
+
+#: data/gtk/database_settings_dialog.ui:127
 msgid "Details"
 msgstr "Detaljar"
 
-#: data/gtk/database_settings_dialog.ui:255
-msgid "Safe Name"
-msgstr "Safenamn"
-
-#: data/gtk/database_settings_dialog.ui:260
+#: data/gtk/database_settings_dialog.ui:130
 msgid "Path"
 msgstr "Sti"
 
-#: data/gtk/database_settings_dialog.ui:265
+#: data/gtk/database_settings_dialog.ui:139
 msgid "File Size"
-msgstr "Filstørrelse"
+msgstr "Filstorleik"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:270
+#: data/gtk/database_settings_dialog.ui:148
 msgid "KeePass Version"
-msgstr "KeePass versjon"
+msgstr "KeePass-versjon"
 
-#: data/gtk/database_settings_dialog.ui:275
+#: data/gtk/database_settings_dialog.ui:157
 msgid "Creation Date"
-msgstr "Oppretta dato"
+msgstr "Opprettingsdato"
 
-#: data/gtk/database_settings_dialog.ui:280
+#: data/gtk/database_settings_dialog.ui:165
 msgid "Encryption Algorithm"
 msgstr "Krypteringsalgoritme"
 
-#: data/gtk/database_settings_dialog.ui:285
+#: data/gtk/database_settings_dialog.ui:173
 msgid "Derivation Algorithm"
-msgstr "Generatoralgoritme"
+msgstr "Avleiingsalgoritme"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:292
+#: data/gtk/database_settings_dialog.ui:183
 msgid "Stats"
-msgstr "Stats"
+msgstr "Statistikk"
 
-#: data/gtk/database_settings_dialog.ui:295
+#: data/gtk/database_settings_dialog.ui:186
 msgid "Number of Entries"
 msgstr "Tal på oppføringar"
 
-#: data/gtk/database_settings_dialog.ui:300
+#: data/gtk/database_settings_dialog.ui:195
 msgid "Number of Groups"
 msgstr "Tal på grupper"
 
-#: data/gtk/database_settings_dialog.ui:305
+#: data/gtk/database_settings_dialog.ui:204
 msgid "Passwords"
 msgstr "Passord"
 
-#: data/gtk/edit_element_headerbar.ui:22
-msgid "Menu"
-msgstr "Meny"
+#: data/gtk/database_settings_dialog.ui:218
+msgid "Audit"
+msgstr "Revisjon"
 
-#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
-msgid "_Properties"
-msgstr "_Eigenskapar"
+#: data/gtk/database_settings_dialog.ui:222
+#| msgid "Stats"
+msgid "Statistics"
+msgstr "Statistikk"
 
-#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
-msgid "_Delete"
-msgstr "_Slett"
+#: data/gtk/database_settings_dialog.ui:225
+#| msgid "Enter Password"
+msgid "Unique Passwords"
+msgstr "Unike passord"
 
-#: data/gtk/edit_element_headerbar.ui:45
-msgid "D_uplicate"
-msgstr "D_ublett"
+#: data/gtk/database_settings_dialog.ui:234
+#| msgid "Passwords"
+msgid "Reused Passwords"
+msgstr "Attbrukte passord"
 
-#: data/gtk/edit_element_headerbar.ui:49
-msgid "_References"
-msgstr "_Referansar"
+#: data/gtk/database_settings_dialog.ui:245
+#| msgid "Passwords"
+msgid "Weak Passwords"
+msgstr "Svake passord"
 
-#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/database_settings_dialog.ui:250
+msgid "Check passwords for online breaches"
+msgstr "Sjå etter lekkasjar av passord på nettet"
+
+#: data/gtk/database_settings_dialog.ui:251
+msgid ""
+"Ask online whether your passwords have been hacked. The passwords won't be "
+"sent online! The following passwords have been leaked:"
+msgstr ""
+"Spør på nettet om passorda dine er hacka. Passorda vert ikkje sende over "
+"nettet! Desse passorda er lekne:"
+
+#: data/gtk/database_settings_dialog.ui:261
+msgid "Help"
+msgstr "Hjelp"
+
+#: data/gtk/entry_page.ui:55
+#| msgctxt "Shortcut window description"
+#| msgid "Entry"
+msgid "Entry Menu"
+msgstr "Oppføringsmeny"
+
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:26
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Tittel"
 
-#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "_Brukarnamn"
-
-#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
-#: data/gtk/password_entry_row.ui:32
-msgid "Copy"
-msgstr "Kopi"
-
-#: data/gtk/entry_page.ui:77
-msgid "One-_Time Password Secret"
-msgstr "Eingongspassord-hemmeligheit (OTP)"
-
-#. OTP is a proper name
-#: data/gtk/entry_page.ui:97
-msgid "Could not Generate OTP Token"
-msgstr "Kunne ikkje skapa OTP-token"
-
-#: data/gtk/entry_page.ui:111
-msgid "_One-Time Password"
-msgstr "_Eingongspassord"
-
-#: data/gtk/entry_page.ui:159
+#: data/gtk/entry_page.ui:75
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "_Notat"
+#: data/gtk/entry_page.ui:81
+msgid "Open Address"
+msgstr "Opne adresse"
 
-#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+#: data/gtk/entry_page.ui:109
+#| msgid "_One-Time Password"
+msgid "One-Time Password"
+msgstr "Eingongspassord"
+
+#: data/gtk/entry_page.ui:121
+msgid "Remaining Time"
+msgstr "Attverande tid"
+
+#: data/gtk/entry_page.ui:143
+msgid "One-_Time Password Secret"
+msgstr "Løyndom for eingongs_passord"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:149
+msgid "Could not Generate OTP Token"
+msgstr "Klarte ikkje lage OTP-token"
+
+#: data/gtk/entry_page.ui:157 data/gtk/group_page.ui:34
+#: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Notat"
+
+#: data/gtk/entry_page.ui:161 data/gtk/group_page.ui:38
 msgid "Edit in a Window"
 msgstr "Rediger i eit vindauge"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:200
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/gtk/entry_page.ui:268
+#: data/gtk/entry_page.ui:220
+msgid "Tags"
+msgstr "Merkelappar"
+
+#: data/gtk/entry_page.ui:225 gsecrets/entry_page.py:295
+msgid "Add New Tag"
+msgstr "Legg til ny merkelapp"
+
+#: data/gtk/entry_page.ui:242
 msgid "Attachments"
 msgstr "Vedlegg"
 
-#: data/gtk/entry_page.ui:293
+#: data/gtk/entry_page.ui:246
 msgid "_Add Attachment"
 msgstr "_Legg til vedlegg"
 
-#: data/gtk/entry_page.ui:315
+#: data/gtk/entry_page.ui:255
 msgid "Attributes"
-msgstr "Attributt"
+msgstr "Attributtar"
 
-#: data/gtk/entry_page.ui:331
-msgid "Key"
-msgstr "Nykel"
+#: data/gtk/entry_page.ui:260
+#| msgid "Add Attribute"
+msgid "Add Attr_ibute"
+msgstr "Legg til attr_ibutt"
 
-#: data/gtk/entry_page.ui:337
-msgid "Value"
-msgstr "Verdi"
+#: data/gtk/entry_page.ui:268
+#| msgid "_Expiration Date"
+msgid "Expiration Date"
+msgstr "Utløpsdato"
 
-#: data/gtk/entry_page.ui:348
-msgid "Add Attribute"
-msgstr "Legg til attributt"
-
-#: data/gtk/entry_page.ui:372
-msgid "_Expiration Date"
-msgstr "_Utløpsdato"
-
-#: data/gtk/entry_page.ui:393
+#: data/gtk/entry_page.ui:281
 msgid "_Show More"
 msgstr "_Vis meir"
 
-#: data/gtk/entry_row.ui:52
-msgid "Copy Username"
-msgstr "Kopier brukarnamn"
+#: data/gtk/entry_page.ui:295
+msgid "D_uplicate"
+msgstr "D_upliser"
 
-#: data/gtk/entry_row.ui:59
-msgid "Copy Password"
-msgstr "Kopier passord"
+#: data/gtk/entry_page.ui:299
+msgid "_References"
+msgstr "_Referansar"
 
-#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
-msgid "Expiration Date not Set"
-msgstr "Ingen utløpsdato"
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:76
+msgid "_Properties"
+msgstr "_Eigenskapar"
 
-#: data/gtk/expiration_date_row.ui:21
-msgid "Remove Expiration Date"
-msgstr "Fjern utløpsdato"
+#: data/gtk/entry_page.ui:309
+#| msgid "_Save and Quit"
+msgid "_Save in History"
+msgstr "_Lagre i historikken"
 
-#: data/gtk/expiration_date_row.ui:54
-msgid "_Set Expiration Date"
-msgstr "_Sett utløpsdato"
+#: data/gtk/entry_page.ui:313
+#| msgid "_Show More"
+msgid "Show _History"
+msgstr "Vis _historikk"
 
-#: data/gtk/help-overlay.ui:11
-msgctxt "Shortcut window description"
-msgid "Application"
-msgstr "Program"
+#: data/gtk/entry_page_tag.ui:21
+msgid "Remove"
+msgstr "Fjern"
 
-#: data/gtk/help-overlay.ui:14
-msgctxt "Shortcut window description"
-msgid "Create Safe"
-msgstr "Ny safe"
+#: data/gtk/entry_row.ui:38
+#| msgid "Select _None"
+msgid "Select Entry"
+msgstr "Vel oppføring"
 
-#: data/gtk/help-overlay.ui:20
-msgctxt "Shortcut window description"
-msgid "Go Back"
-msgstr "Tilbake"
-
-#: data/gtk/help-overlay.ui:26
-msgctxt "Shortcut window description"
-msgid "Open Safe"
-msgstr "Opne safe"
-
-#: data/gtk/help-overlay.ui:32
-msgctxt "Shortcut window description"
-msgid "Open Preferences"
-msgstr "Opne eigenskapar"
-
-#: data/gtk/help-overlay.ui:38
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr "Vis tastatursnarvegar"
-
-#: data/gtk/help-overlay.ui:44
-msgctxt "Shortcut window description"
-msgid "Close Window"
-msgstr "Steng vindu"
-
-#: data/gtk/help-overlay.ui:50
-msgctxt "Shortcut window description"
-msgid "Quit"
-msgstr "Avslutt"
-
-#: data/gtk/help-overlay.ui:58
-msgctxt "Shortcut window description"
-msgid "Safe"
-msgstr "Safe"
-
-#: data/gtk/help-overlay.ui:61
-msgctxt "Shortcut window description"
-msgid "Lock Safe"
-msgstr "Lås safen"
-
-#: data/gtk/help-overlay.ui:67
-msgctxt "Shortcut window description"
-msgid "Save Safe"
-msgstr "Lagre safe"
-
-#: data/gtk/help-overlay.ui:73
-msgctxt "Shortcut window description"
-msgid "Open Search"
-msgstr "Opne søk"
-
-#: data/gtk/help-overlay.ui:79
-msgctxt "Shortcut window description"
-msgid "Create Entry"
-msgstr "Ny oppføring"
-
-#: data/gtk/help-overlay.ui:85
-msgctxt "Shortcut window description"
-msgid "Create Group"
-msgstr "Ny gruppe"
-
-#: data/gtk/help-overlay.ui:93
-msgctxt "Shortcut window description"
-msgid "Entry"
-msgstr "Oppføring"
-
-#: data/gtk/help-overlay.ui:96
-msgctxt "Shortcut window description"
-msgid "Copy Password"
-msgstr "Kopier passord"
-
-#: data/gtk/help-overlay.ui:102
-msgctxt "Shortcut window description"
-msgid "Copy Username"
-msgstr "Kopier brukernavn"
-
-#: data/gtk/help-overlay.ui:108
-msgctxt "Shortcut window description"
+#: data/gtk/entry_row.ui:81
+#| msgctxt "Shortcut window description"
+#| msgid "Copy One-Time Password"
 msgid "Copy One-Time Password"
 msgstr "Kopier eingongspassord"
 
-#: data/gtk/notes_dialog.ui:14
-msgid "_Copy"
-msgstr "_Kopi"
+#: data/gtk/entry_row.ui:92
+msgid "Copy Username"
+msgstr "Kopier brukarnamn"
 
-#: data/gtk/password_generator_popover.ui:35
-msgid "Length"
-msgstr "Lengde"
+#: data/gtk/entry_row.ui:102
+msgid "Copy Password"
+msgstr "Kopier passord"
 
-#: data/gtk/password_generator_popover.ui:62
-msgid "Characters"
-msgstr "Teikn"
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
+msgid "Expiration Date not Set"
+msgstr "Ingen utløpsdato er sett"
 
-#: data/gtk/password_generator_popover.ui:111
-msgid "Passphrase"
-msgstr "Passfrase"
+#: data/gtk/expiration_date_row.ui:22
+#| msgid "_Set Expiration Date"
+msgid "Edit Expiration Date"
+msgstr "Rediger utløpsdato"
 
-#: data/gtk/password_generator_popover.ui:119
-msgid "Words"
-msgstr "Ord"
+#: data/gtk/expiration_date_row.ui:30
+msgid "Remove Expiration Date"
+msgstr "Fjern utløpsdato"
 
-#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
-msgid "Separator"
-msgstr "Separator"
+#: data/gtk/expiration_date_row.ui:63
+msgid "_Set Expiration Date"
+msgstr "_Set utløpsdato"
 
-#: data/gtk/password_generator_popover.ui:154
-msgid "Enter character here…"
-msgstr "Skriv inn teikn her…"
+#: data/gtk/group_page.ui:14
+msgid "Group Menu"
+msgstr "Gruppemeny"
 
-#: data/gtk/properties_dialog.ui:7
-msgid "Properties"
-msgstr "Eigenskapar"
+#: data/gtk/group_row.ui:38
+#| msgid "Select _None"
+msgid "Select Group"
+msgstr "Vel gruppe"
 
-#: data/gtk/properties_dialog.ui:28 data/gtk/references_dialog.ui:153
-msgid "UUID"
-msgstr "UUID"
+#: data/gtk/group_row.ui:67
+msgid "Edit"
+msgstr "Rediger"
 
-#: data/gtk/properties_dialog.ui:33
-msgid "Accessed"
-msgstr "Aksessert"
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
+#| msgid "_Show More"
+msgid "Show Text"
+msgstr "Vis tekst"
 
-#: data/gtk/properties_dialog.ui:38
-msgid "Modified"
-msgstr "Endra"
+#: data/gtk/history_row.ui:39
+msgid "Remove from History"
+msgstr "Fjern frå historikk"
 
-#: data/gtk/properties_dialog.ui:43
-msgid "Created"
-msgstr "Oppretta"
+#: data/gtk/history_window.ui:8
+#| msgid "Passwords"
+msgid "Password History"
+msgstr "Passordhistorikk"
 
-#: data/gtk/recent_files_headerbar.ui:14
-msgid "New Safe"
-msgstr "Ny safe"
-
-#: data/gtk/recent_files_headerbar.ui:27
-msgid "Open Safe"
-msgstr "Opne safe"
-
-#: data/gtk/recent_files_headerbar.ui:32
+#: data/gtk/locked_headerbar.ui:14
 msgid "_Open"
 msgstr "_Opne"
 
-#: data/gtk/recent_files_page.ui:27
-msgid "Recent Safes"
-msgstr "Nylege safar"
+#: data/gtk/locked_headerbar.ui:32 data/gtk/welcome_page.ui:18
+msgid "_New Safe"
+msgstr "_Ny safe"
+
+#: data/gtk/notes_dialog.ui:20
+msgid "_Copy"
+msgstr "_Kopier"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:33 data/gtk/notes_dialog.ui:58
+#: data/gtk/unlocked_headerbar.ui:26
+msgid "Search"
+msgstr "Søk"
+
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:67 data/gtk/unlock_database.ui:51
+msgid "Password"
+msgstr "Passord"
+
+#: data/gtk/password_generator_popover.ui:32
+msgid "Length"
+msgstr "Lengd"
+
+#: data/gtk/password_generator_popover.ui:50
+msgid "Characters"
+msgstr "Teikn"
+
+#: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:213
+msgid "Passphrase"
+msgstr "Passfrase"
+
+#: data/gtk/password_generator_popover.ui:99
+msgid "Words"
+msgstr "Ord"
+
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:126
+#: gsecrets/provider/file_provider.py:196
+msgid "_Generate"
+msgstr "_Lag"
+
+#: data/gtk/properties_dialog.ui:6
+msgid "Properties"
+msgstr "Eigenskapar"
+
+#: data/gtk/properties_dialog.ui:26 data/gtk/references_dialog.ui:153
+msgid "UUID"
+msgstr "UUID"
+
+#: data/gtk/properties_dialog.ui:35
+msgid "Accessed"
+msgstr "Opna"
+
+#: data/gtk/properties_dialog.ui:44
+msgid "Modified"
+msgstr "Endra"
+
+#: data/gtk/properties_dialog.ui:53
+msgid "Created"
+msgstr "Oppretta"
 
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
 msgstr "Kode"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:250
-#: data/gtk/references_dialog.ui:346
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:241
+#: data/gtk/references_dialog.ui:337
 msgid "Property"
 msgstr "Eigenskap"
 
@@ -592,287 +593,431 @@ msgstr "Brukarnamn"
 msgid "URL"
 msgstr "URL"
 
-#: data/gtk/references_dialog.ui:141
-msgid "Notes"
-msgstr "Notat"
-
 #: data/gtk/references_dialog.ui:181
 msgid "_URL"
 msgstr "_URL"
 
-#: data/gtk/references_dialog.ui:192
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_Notat"
+
+#: data/gtk/references_dialog.ui:191
 msgid "References"
 msgstr "Referansar"
 
-#: data/gtk/references_dialog.ui:222
+#: data/gtk/references_dialog.ui:212
 msgid "Syntax"
 msgstr "Syntaks"
 
-#: data/gtk/references_dialog.ui:231
+#: data/gtk/references_dialog.ui:221
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Plasshaldersyntaks for feltreferansar er følgande:"
 
-#: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
+#: data/gtk/references_dialog.ui:240 data/gtk/references_dialog.ui:268
 msgid "Show Field Codes"
-msgstr "Vis feltkoder"
+msgstr "Vis feltkodar"
 
-#: data/gtk/references_dialog.ui:277
+#: data/gtk/references_dialog.ui:269
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: data/gtk/references_dialog.ui:335
+#: data/gtk/references_dialog.ui:326
 msgid "Reference"
 msgstr "Referanse"
 
-#: data/gtk/references_dialog.ui:373
+#: data/gtk/references_dialog.ui:365
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
 msgstr ""
-"Kvar oppføring har ein unik identifikator kalla UUID. Ho finst i "
-"eigenskapanetil oppføringa."
+"Kvar oppføring har ein unik identifikator som heiter UUID. Han finst i "
+"eigenskapane til oppføringa."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/save_dialog.ui:7
+#: data/gtk/save_dialog.ui:4
 msgid "Unsaved Changes"
 msgstr "Ulagra endringar"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/save_dialog.ui:8
+#: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
-msgstr "Vil du skriva alle endringar til safen?"
+msgstr "Vil du skrive alle endringane til safen?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:423
 msgid "_Quit Without Saving"
-msgstr "_Avslutt utan lagring"
+msgstr "_Avslutt utan å lagre"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:20
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:424
 msgid "_Don't Quit"
 msgstr "_Ikkje avslutt"
 
 #. _Save all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:26
+#: data/gtk/save_dialog.ui:12
 msgid "_Save and Quit"
 msgstr "_Lagre og avslutt"
 
-#: data/gtk/search.ui:9
-msgid "Enter Search Term"
-msgstr "Skriv søketerm"
-
-#: data/gtk/search.ui:15
-msgid "No Search Results"
-msgstr "Ingen søkeresultat"
-
-#: data/gtk/selection_mode_headerbar.ui:17
-#: gsecrets/widgets/selection_mode_headerbar.py:70
-msgid "_Select Items"
-msgstr "_Vel elementer"
-
-#. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/gtk/selection_mode_headerbar.ui:29
-msgid "Move Selection"
-msgstr "Flytt utvalg"
-
-#: data/gtk/selection_mode_headerbar.ui:36
-msgid "Paste Selection"
-msgstr "Lim inn utvalg"
-
-#. Button tooltip in selection mode to delete every selected entry/group
-#: data/gtk/selection_mode_headerbar.ui:46
-msgid "Delete Selection"
-msgstr "Slett utvalg"
-
-#: data/gtk/selection_mode_headerbar.ui:53
-msgid "_Cancel"
-msgstr "_Avbryt"
-
-#: data/gtk/selection_mode_headerbar.ui:66
-msgid "Select _All"
-msgstr "Vel alt"
-
-#: data/gtk/selection_mode_headerbar.ui:71
-msgid "Select _None"
-msgstr "Vel ingenting"
-
-#: data/gtk/settings_dialog.ui:16
-msgid "_Dark Theme"
-msgstr "_Mørk drakt"
-
-#: data/gtk/settings_dialog.ui:17
-msgid "Use dark GTK theme."
-msgstr "Bruk mørk GTK-drakt."
-
-#: data/gtk/settings_dialog.ui:30
+#: data/gtk/settings_dialog.ui:14
 msgid "_Hide First Start Screen"
-msgstr "_Skjul fyrste oppstartsvindu"
+msgstr "_Gøym den første oppstartsskjermen"
 
-#: data/gtk/settings_dialog.ui:31
+#: data/gtk/settings_dialog.ui:15
 msgid "Reopen last opened safe."
-msgstr "Gjenopne sist brukte safe."
+msgstr "Opne sist brukte safe på nytt."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
+#. TRANSLATORS Safe as in strongbox.
+#. NOTE: Safe as in strongbox
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:149
+#: gsecrets/widgets/window.py:234 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Safe"
 
-#: data/gtk/settings_dialog.ui:49
+#: data/gtk/settings_dialog.ui:27
 msgid "_Save Automatically"
 msgstr "_Lagre automatisk"
 
-#: data/gtk/settings_dialog.ui:50
+#: data/gtk/settings_dialog.ui:28
 msgid "Save every change automatically."
 msgstr "Lagre kvar endring automatisk."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:35
+#: data/org.gnome.World.Secrets.gschema.xml.in:112
+#| msgid "Enable faster unlocking"
+msgid "Enable Quick Unlock"
+msgstr "Slå på hurtigopplåsing"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:36
+msgid ""
+"Re-unlock using the last four characters of the password for a single "
+"attempt."
+msgstr ""
+"Lås opp på nytt med dei siste fire teikna i passordet for eit enkelt forsøk."
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:42
+#| msgid "Enable faster unlocking"
+msgid "Enable Fingerprint Unlock"
+msgstr "Slå på opplåsing med fingeravtrykk"
+
+#. Quick Unlock means it only can unlock the safe if the safe was unlocked once.
+#: data/gtk/settings_dialog.ui:43
+msgid "Use the fingerprint reader to quickly unlock the safe."
+msgstr "Bruk fingeravtrykklesaren til å låse opp safen raskt."
+
+#: data/gtk/settings_dialog.ui:51 gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock"
 msgstr "Lås opp"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:68
+#: data/gtk/settings_dialog.ui:54
 msgid "Remember Composite _Key"
-msgstr "Hugs samansett _nykel"
+msgstr "Hugs samansett _nøkkel"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:69
+#: data/gtk/settings_dialog.ui:55
 msgid "Remember last used composite key."
-msgstr "Hugs sist brukte samansette nykel."
+msgstr "Hugs den sist brukte samansette nøkkelen."
 
-#: data/gtk/settings_dialog.ui:90
+#: data/gtk/settings_dialog.ui:70
 msgid "Password Generation"
-msgstr "Passordskaping"
+msgstr "Passordlaging"
 
-#: data/gtk/settings_dialog.ui:93
+#: data/gtk/settings_dialog.ui:73
 msgid "Password Length"
-msgstr "Passordlengde"
+msgstr "Passordlengd"
 
-#: data/gtk/settings_dialog.ui:94
+#: data/gtk/settings_dialog.ui:74
 msgid "Number of characters when generating a password."
-msgstr "Tal på karakterar i eit skapt passord."
+msgstr "Tal på teikn når eit passord vert laga."
 
-#: data/gtk/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:88
 msgid "_Uppercase Characters"
-msgstr "Store bokstavar"
+msgstr "_Store bokstavar"
 
-#: data/gtk/settings_dialog.ui:114
+#: data/gtk/settings_dialog.ui:89
 msgid "Use uppercase characters A-Z when generating a password."
-msgstr "Bruk store bokstavar A-Z når passord blir skapt."
+msgstr "Bruk store bokstavar A-Z når eit passord vert laga."
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:96
 msgid "_Lowercase Characters"
-msgstr "Små bokstavar"
+msgstr "_Små bokstavar"
 
-#: data/gtk/settings_dialog.ui:128
+#: data/gtk/settings_dialog.ui:97
 msgid "Use lowercase characters a-z when generating a password."
-msgstr "Bruk små bokstavar a-z når passord blir skapt"
+msgstr "Bruk små bokstavar a-z når eit passord vert laga."
 
-#: data/gtk/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:104
 msgid "_Numeric Characters"
-msgstr "Nummerteikn"
+msgstr "_Tal"
 
-#: data/gtk/settings_dialog.ui:142
+#: data/gtk/settings_dialog.ui:105
 msgid "Use numeric characters when generating a password."
-msgstr "Bruk nummerteikn når passord blir skapt."
+msgstr "Bruk tal når eit passord vert laga."
 
-#: data/gtk/settings_dialog.ui:155
+#: data/gtk/settings_dialog.ui:112
 msgid "_Special Characters"
-msgstr "Spesialtegn"
+msgstr "_Spesialteikn"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:156
+#: data/gtk/settings_dialog.ui:113
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
-msgstr "Bruk ikke-alfanumeriske ASCII-teikn når passord blir skapt."
+msgstr "Bruk ikkje-alfanumeriske ASCII-symbol når eit passord vert laga."
 
-#: data/gtk/settings_dialog.ui:171
+#: data/gtk/settings_dialog.ui:122
 msgid "Passphrase Generation"
-msgstr "Passfraseskaping"
+msgstr "Passfraselaging"
 
-#: data/gtk/settings_dialog.ui:174
+#: data/gtk/settings_dialog.ui:125
 msgid "Passphrase Length"
-msgstr "Passfraselengde"
+msgstr "Passfraselengd"
 
-#: data/gtk/settings_dialog.ui:175
+#: data/gtk/settings_dialog.ui:126
 #: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
-msgstr "Tal på ord i ein skapt passfrase."
+msgstr "Tal på ord når ein passfrase vert laga."
+
+#: data/gtk/settings_dialog.ui:140
+msgid "Separator"
+msgstr "Skiljeteikn"
+
+#: data/gtk/settings_dialog.ui:150 data/gtk/settings_dialog.ui:153
+msgid "Security"
+msgstr "Tryggleik"
+
+#: data/gtk/settings_dialog.ui:156
+msgid "Safe Lock Timeout"
+msgstr "Tidsavbrot for låsing av safen"
+
+#: data/gtk/settings_dialog.ui:157
+msgid "Lock safe on idle after X minutes."
+msgstr "Lås safen etter X minutt utan aktivitet."
+
+#: data/gtk/settings_dialog.ui:171
+msgid "Lock on _Session Lock"
+msgstr "Lås når _økta vert låst"
+
+#: data/gtk/settings_dialog.ui:172
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid "Automatically lock when the session is locked."
+msgstr "Lås automatisk når økta er låst."
+
+#: data/gtk/settings_dialog.ui:179
+msgid "Clear Clipboard"
+msgstr "Tøm utklippstavla"
+
+#: data/gtk/settings_dialog.ui:180
+msgid "Clear clipboard after X seconds."
+msgstr "Tøm utklippstavla etter X sekund."
+
+#: data/gtk/settings_dialog.ui:194
+msgid "Clear Recent List"
+msgstr "Tøm lista over nylege"
 
 #: data/gtk/settings_dialog.ui:195
-#: data/org.gnome.World.Secrets.gschema.xml.in:108
-msgid "Word separator to use when generating a passphrase."
-msgstr "Ord-skilleteikn i ein skapt passfrase."
+msgid "Clear the recently opened safes list."
+msgstr "Tøm lista over sist opna safar."
 
 #: data/gtk/settings_dialog.ui:202
-msgid "Enter Character"
-msgstr "Skriv teikn"
+msgid "Clear"
+msgstr "Tøm"
 
-#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
-msgid "Security"
-msgstr "Trygging"
+#: data/gtk/shortcuts_dialog.ui:6
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Program"
 
-#: data/gtk/settings_dialog.ui:221
-msgid "Safe Lock Timeout"
-msgstr "Tidslås for safen"
+#: data/gtk/shortcuts_dialog.ui:9
+msgctxt "Shortcut window description"
+msgid "Create Safe"
+msgstr "Ny safe"
 
-#: data/gtk/settings_dialog.ui:222
-msgid "Lock safe on idle after X minutes."
-msgstr "Lås safen etter X minutt når han ikkje er i bruk."
+#: data/gtk/shortcuts_dialog.ui:15
+msgctxt "Shortcut window description"
+msgid "Go Back"
+msgstr "Tilbake"
 
-#: data/gtk/settings_dialog.ui:241
-msgid "Clear Clipboard"
-msgstr "Reinsk utklippstavla"
+#: data/gtk/shortcuts_dialog.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Safe"
+msgstr "Opne safe"
 
-#: data/gtk/settings_dialog.ui:242
-msgid "Clear clipboard after X seconds."
-msgstr "Reinsk utklippstavla etter X sekund."
+#: data/gtk/shortcuts_dialog.ui:27
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Opne innstillingar"
 
-#: data/gtk/settings_dialog.ui:261
-msgid "Clear Recent List"
-msgstr "Reinsk siste liste"
+#: data/gtk/shortcuts_dialog.ui:33
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Vis tastatursnarvegar"
 
-#: data/gtk/settings_dialog.ui:262
-msgid "Clear the recently opened safes list."
-msgstr "Reinsk lista over sist åpna safer."
+#: data/gtk/shortcuts_dialog.ui:39
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "Lukk vindauget"
 
-#: data/gtk/unlock_database.ui:7
+#: data/gtk/shortcuts_dialog.ui:45
+#| msgctxt "Shortcut window description"
+#| msgid "Close Window"
+msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Nytt vindauge"
+
+#: data/gtk/shortcuts_dialog.ui:51
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Avslutt"
+
+#: data/gtk/shortcuts_dialog.ui:59
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Safe"
+
+#: data/gtk/shortcuts_dialog.ui:62
+msgctxt "Shortcut window description"
+msgid "Lock Safe"
+msgstr "Lås safen"
+
+#: data/gtk/shortcuts_dialog.ui:68
+msgctxt "Shortcut window description"
+msgid "Save Safe"
+msgstr "Lagre safen"
+
+#: data/gtk/shortcuts_dialog.ui:74
+msgctxt "Shortcut window description"
+msgid "Open Search"
+msgstr "Opne søk"
+
+#: data/gtk/shortcuts_dialog.ui:80
+msgctxt "Shortcut window description"
+msgid "Create Entry"
+msgstr "Ny oppføring"
+
+#: data/gtk/shortcuts_dialog.ui:86
+msgctxt "Shortcut window description"
+msgid "Create Group"
+msgstr "Ny gruppe"
+
+#: data/gtk/shortcuts_dialog.ui:94
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Oppføring"
+
+#: data/gtk/shortcuts_dialog.ui:97
+msgctxt "Shortcut window description"
+msgid "Copy Password"
+msgstr "Kopier passord"
+
+#: data/gtk/shortcuts_dialog.ui:103
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Kopier adresse"
+
+#: data/gtk/shortcuts_dialog.ui:109
+msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "Kopier brukarnamn"
+
+#: data/gtk/shortcuts_dialog.ui:115
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Kopier eingongspassord"
+
+#: data/gtk/shortcuts_dialog.ui:121
+#| msgid "_Show More"
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Vis historikk"
+
+#: data/gtk/shortcuts_dialog.ui:127
+#| msgid "_Save and Quit"
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Lagre i historikk"
+
+#: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
-msgstr "Lås opp safe"
+msgstr "Lås opp safen"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
-msgid "_Select Keyfile"
-msgstr "_Vel nykelfil"
+#: data/gtk/unlock_database.ui:38
+msgid "Fingerprint Unlock available"
+msgstr "Opplåsing med fingeravtrykk er tilgjengeleg"
 
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
-msgid "_New Safe"
-msgstr "_Ny safe"
+#: data/gtk/unlock_database.ui:65 gsecrets/provider/pkcs11_provider.py:218
+#| msgid "Unlock"
+msgid "_Unlock"
+msgstr "_Lås opp"
 
-#: data/gtk/unlocked_database_page.ui:28
-msgid "Add elements with the ➕ button."
-msgstr "Legg til element med ➕-knappen."
+#: data/gtk/unlocked_database.ui:18
+msgid "Browser"
+msgstr "Nettlesar"
 
-#: data/gtk/unlocked_database_page.ui:29
-msgid "Empty Group"
-msgstr "Tom gruppe"
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:698
+#| msgid "_Select Items"
+msgid "Select Items"
+msgstr "Vel element"
 
-#: data/gtk/unlocked_headerbar.ui:13
+#: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
+#| msgctxt "Shortcut window description"
+#| msgid "Go Back"
+msgid "Go Back"
+msgstr "Gå tilbake"
+
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:296
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "_Avbryt"
+
+#: data/gtk/unlocked_database.ui:54 data/gtk/unlocked_database.ui:60
+#| msgid "Select Safe"
+msgid "Search Safe"
+msgstr "Søk i safen"
+
+#: data/gtk/unlocked_database.ui:73
+msgid "_Clear"
+msgstr "_Tøm"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/unlocked_database.ui:83
+msgid "Delete Selection"
+msgstr "Slett utvalet"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/gtk/unlocked_database.ui:93
+msgid "Move Selection"
+msgstr "Flytt utvalet"
+
+#: data/gtk/unlocked_database.ui:100
+msgid "Paste Selection"
+msgstr "Lim inn utvalet"
+
+#: data/gtk/unlocked_database.ui:125
+#| msgid "Select Attachment"
+msgid "Select an Entry"
+msgstr "Vel ei oppføring"
+
+#: data/gtk/unlocked_headerbar.ui:18
 msgid "New Entry or Group"
 msgstr "Ny oppføring eller gruppe"
 
-#. Button tooltip in headerbar to open search page
-#: data/gtk/unlocked_headerbar.ui:24
-msgid "Search"
-msgstr "Søk"
-
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/gtk/unlocked_headerbar.ui:31
+#: data/gtk/unlocked_headerbar.ui:33
 msgid "Selection Mode"
-msgstr "Vel modus"
+msgstr "Valmodus"
 
-#: data/gtk/unlocked_headerbar.ui:53
+#. s
+#: data/gtk/unlocked_headerbar.ui:54
+#: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Save"
 msgstr "_Lagre"
 
-#: data/gtk/unlocked_headerbar.ui:59
+#. s
+#: data/gtk/unlocked_headerbar.ui:58
 msgid "_Lock"
 msgstr "_Lås"
 
@@ -885,74 +1030,66 @@ msgstr "So_rtering"
 msgid "_A-Z"
 msgstr "_A–Z"
 
-#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:71
-msgid "_Z-A"
-msgstr "_Z–A"
+msgid "_Newest First"
+msgstr "_Nyaste først"
 
 #: data/gtk/unlocked_headerbar.ui:76
-msgid "_Newest First"
-msgstr "_Nyeste først"
-
-#: data/gtk/unlocked_headerbar.ui:81
 msgid "_Oldest First"
 msgstr "_Eldste først"
 
-#: data/gtk/unlocked_headerbar.ui:97
-msgid "Sa_fe Settings"
-msgstr "Sa_fe innstillingar"
+#: data/gtk/unlocked_headerbar.ui:84
+#| msgctxt "Shortcut window description"
+#| msgid "Close Window"
+msgid "New _Window"
+msgstr "_Nytt vindauge"
 
-#: data/gtk/unlocked_headerbar.ui:119
+#: data/gtk/unlocked_headerbar.ui:88
+msgid "Sa_fe Settings"
+msgstr "Innstillingar for sa_fen"
+
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "Ny _oppføring"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "Ny _gruppe"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:24
+#: data/gtk/welcome_page.ui:11
 msgid "Secure Secrets"
-msgstr "Sikre Løyndommar"
+msgstr "Trygge løyndommar"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:35
-msgid ""
-"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
-"b> a new Keepass safe."
-msgstr ""
-"Lagre sikkert passord, notat og data. <b>Opprett</b> eller <b>importer</b> "
-"ein ny Keepass-safe."
+#: data/gtk/welcome_page.ui:12
+#| msgid "Choose a Keepass safe"
+msgid "Create or import a new Keepass safe"
+msgstr "Opprett eller importer ein ny KeePass-safe"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/gtk/window.ui:4 data/org.gnome.World.Secrets.desktop.in.in:3
 msgid "Secrets"
-msgstr "Løyndommar"
+msgstr "Secrets"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:5
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "A password manager for GNOME"
-msgstr "Ein passordbehandlar for GNOME"
+msgstr "Ein passordhandsamar for GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.World.Secrets.desktop.in.in:14
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;encrypt;secure;secret;løyndom;"
+#: data/org.gnome.World.Secrets.desktop.in.in:13
+#| msgid "keepass;encrypt;secure;"
+msgid "keepass;encrypt;secure;password;manager;"
+msgstr ""
+"keepass;encrypt;secure;password;manager;kryptere;trygg;passord;passordhandsamar;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
-msgid "Use dark GTK theme"
-msgstr "Bruk mørk GTK-drakt"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid ""
-"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
-"theme has a dark variant."
-msgstr ""
-"Bruk mørk variant av din GTK+-drakt. Ikkje alle GTK+-drakter har ein mørk "
-"variant."
+msgid "Lock on session lock"
+msgstr "Lås når økta vert låst"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
-msgstr "Gjenopne sist brukte database"
+msgstr "Opne sist brukte database på nytt"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:18
 msgid ""
@@ -971,8 +1108,8 @@ msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
-"Lagre alle endringar du gjer umiddelbart i databasen. Vær oppmerksam på at "
-"du ikkje kan tilbakestille endringar viss Autolagring er aktivert."
+"Lagre alle endringar du gjer i databasen med ein gong. Merk at du ikkje kan "
+"gjere om endringar når automatisk lagring er slått på."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Lock database after X minutes"
@@ -983,16 +1120,17 @@ msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
 msgstr ""
-"Lås databasen automatisk etter eit gitt tal på minutt for å forbetra "
-"trygginga."
+"Lås databasen automatisk etter eit gitt tal på minutt for å betre "
+"tryggleiken."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:32
 msgid "Clear clipboard after X seconds"
-msgstr "Reinsk utklippstavla etter X sekund"
+msgstr "Tøm utklippstavla etter X sekund"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
-msgstr "Etter å ha kopiert passordet, tøm utklippstavla av tryggingsgrunner."
+msgstr ""
+"Tøm utklippstavla etter at passordet er kopiert, av omsyn til tryggleiken."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
@@ -1003,40 +1141,42 @@ msgid "Remember the window size."
 msgstr "Hugs vindaugsstorleiken."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened databases"
+msgstr "Sist opna databasar"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "A list of the last opened databases."
+msgstr "Ei liste over dei sist opna databasane."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Last opened database"
 msgstr "Sist opna database"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:43
-msgid "Path to the last opened database."
-msgstr "Sti til sist brukte database."
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:47
-msgid "Last opened databases"
-msgstr "Sist opna databaser"
-
 #: data/org.gnome.World.Secrets.gschema.xml.in:48
-msgid "A list of the last opened databases."
-msgstr "Ei liste av sist brukte databaser."
+msgid "Path to the last opened database."
+msgstr "Sti til den sist opna databasen."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
-msgstr "Hugs samansett nykel"
+msgstr "Hugs samansett nøkkel"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
-msgstr "Hugs sist brukte samansette nykel for opplåsing av databasen."
+msgstr "Hugs sist brukte samansette nøkkel for opplåsing av databasen."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "Sist brukte samansette nøkkel"
+#| msgid "Last used composite key"
+msgid "Last used key provider"
+msgstr "Sist brukte nøkkelleverandør"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr "Sti til sist brukte nykel for samansett opplåsing av database."
+#| msgid "Path to last used key for composite database unlocking."
+msgid "Key provider for composite database unlocking."
+msgstr "Nøkkelleverandør for samansett opplåsing av databasen."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
-msgstr "Husk opplåsingsmetode"
+msgstr "Hugs opplåsingsmetode"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
@@ -1044,76 +1184,102 @@ msgstr "Hugs sist brukte opplåsingsmetode for framtidig opplåsing av database.
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
-msgstr "Tryggingskopiar databasen når han blir låst opp"
+msgstr "Ta sikkerheitskopi av databasen når han vert låst opp"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/secrets/backups"
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
 msgstr ""
-"Viss ein feil oppstår under lagring av databasen, så finnast ein "
-"tryggingskopi på ~/.cache/secrets/backups"
+"Viss det oppstår ein feil når databasen vert lagra, finst det ein "
+"sikkerheitskopi i ~/.cache/secrets/backups"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
-msgstr "Sorteringsorden for grupper og oppføringar"
+msgstr "Sorteringsrekkjefølgje for grupper og oppføringar"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
-msgstr "Rekkefølgen på rekker i gruppe- og oppføringsvisning."
+msgstr "Rekkjefølgja på radene i gruppe- og oppføringsvisinga."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
-msgstr "Bruk store bokstavar når passord blir skapt"
+msgstr "Bruk store bokstavar når passord vert laga"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
-msgstr "Bruk store bokstavar A-Z når eit tilfeldig passord blir skapt."
+msgstr "Bruk store bokstavar A-Z når eit tilfeldig passord vert laga."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
-msgstr "Bruk små bokstavar når passord blir skapt"
+msgstr "Bruk små bokstavar når passord vert laga"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
-msgstr "Bruk små bokstavar a-z når eit tilfeldig passord blir skapt."
+msgstr "Bruk små bokstavar a-z når eit tilfeldig passord vert laga."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
-msgstr "Bruk nummer når passord blir skapt"
+msgstr "Bruk tal når passord vert laga"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
-msgstr "Bruk nummerteikn 0–9 når eit tilfeldig passord blir skapt."
+msgstr "Bruk tala 0-9 når eit tilfeldig passord vert laga."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
-msgstr "Bruk symboler når passord blir skapt"
+msgstr "Bruk symbol når passord vert laga"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
-"Bruk ikke-alfanumeriske ASCII-teikn når eit tilfeldig passord blir skapt."
+"Bruk ikkje-alfanumeriske ASCII-symbol når eit tilfeldig passord vert laga."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
-msgstr "Passordlengde når passord skapast"
+msgstr "Passordlengd når passord vert laga"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
-msgstr "Tal på enkle karakterar i eit skapt passord."
+msgstr "Tal på enkeltteikn når eit passord vert laga."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
-msgstr "Tal på ord i ein skapt passfrase"
+msgstr "Tal på ord når ein passfrase vert laga"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:107
 msgid "Separator when generating a passphrase"
-msgstr "Ord-skilleteikn i ein skapt passfrase"
+msgstr "Skiljeteikn når ein passfrase vert laga"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Word separator to use when generating a passphrase."
+msgstr "Skiljeteikn mellom orda når ein passfrase vert laga."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:113
+msgid ""
+"With quick unlock enabled, a safe can be re-entered using the last four "
+"characters of the password. If the first try is wrong, the full password is "
+"needed to unlock the safe."
+msgstr ""
+"Med hurtigopplåsing slått på kan ein safe opnast att med dei siste fire "
+"teikna i passordet. Er det første forsøket feil, trengst heile passordet for"
+" å låse opp safen."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:117
+msgid "Enable Fingerprint Quick Unlock"
+msgstr "Slå på hurtigopplåsing med fingeravtrykk"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:118
+msgid "Use the fingerprint reader to quick unlock a locked safe."
+msgstr "Bruk fingeravtrykklesaren til å låse opp ein låst safe raskt."
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
 msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Administrer passorda dine"
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
 msgid ""
@@ -1121,236 +1287,757 @@ msgid ""
 "integrates perfectly with the GNOME desktop and provides an easy and "
 "uncluttered interface for the management of password databases."
 msgstr ""
-"Løyndommar er ein passordbehandlar som bruker KeePass v.4-formatet. Han blir "
-"integrert perfekt med Gnome-skrivebordet og gir eit enkelt og oversiktleg "
-"grensesnitt for å administrera passorddatabasar."
+"Secrets er ein passordhandsamar som brukar KeePass v.4-formatet. Han passar "
+"perfekt inn i GNOME-skrivebordet og gjev eit enkelt og ryddig grensesnitt "
+"for handsaming av passorddatabasar."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:429
+#| msgid "Password Length"
+msgid "Password management"
+msgstr "Passordhandsaming"
 
-#: gsecrets/application.py:52
-msgid "Error: File {} does not exist"
-msgstr "Feil: Fil {} finns ikkje"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:433
+#| msgid "Enable faster unlocking"
+msgid "Safe unlocking"
+msgstr "Opplåsing av safe"
 
-#: gsecrets/application.py:57
-msgid "Error: Safe {} is already open"
-msgstr "Feil: Safe {} er allerede åpen"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:437
+msgid "Safe creation"
+msgstr "Oppretting av safe"
 
-#: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
-msgstr "Kunne ikkje lasta vedlegg"
+#: gsecrets/application.py:39
+#| msgid "Enable faster unlocking"
+msgid "Enable debug logging"
+msgstr "Slå på feilsøkingslogging"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/attachment_delete_dialog.py:36
+#, python-brace-format
+msgid ""
+"The attachment “{filename}” will be deleted. This action cannot be undone."
+msgstr ""
+"Vedlegget «{filename}» vert sletta. Denne handlinga kan ikkje gjerast om."
+
+#: gsecrets/attachment_warning_dialog.py:71
+#: gsecrets/attachment_warning_dialog.py:82
+#| msgid "Could not Load Attachment"
+msgid "Could not load attachment"
+msgstr "Klarte ikkje laste vedlegg"
+
+#: gsecrets/create_database.py:65
+#| msgid "Passwords do not Match"
+msgid "Passwords do not match"
+msgstr "Passorda stemmer ikkje"
+
+#: gsecrets/create_database.py:80
 msgid "Unable to create database"
-msgstr "Kan ikkje oppretta database"
+msgstr "Klarte ikkje opprette database"
 
-#: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
-msgstr "Passord stemmer ikkje overeins"
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:346
+#| msgid "Remember composite key"
+msgid "Failed to generate composite key"
+msgstr "Klarte ikkje lage samansett nøkkel"
 
-#: gsecrets/create_database.py:188
-msgid "Generating…"
-msgstr "Skapar…"
+#: gsecrets/entry_page.py:289
+#| msgid "Enter Character"
+msgid "Enter tag name"
+msgstr "Skriv inn namn på merkelappen"
 
-#: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
-msgstr "Kunne ikkje laga ny nykelfil"
+#: gsecrets/entry_page.py:319
+#| msgid "File already exists"
+msgid "The tag already exists"
+msgstr "Merkelappen finst alt"
 
-#: gsecrets/create_database.py:201
-msgid "Generate"
-msgstr "Skap"
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:103
+#| msgid "_Save and Quit"
+msgid "Saved in history"
+msgstr "Lagra i historikken"
 
-#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
-#: gsecrets/entry_row.py:112
-msgid "Username Copied"
+#: gsecrets/entry_page.py:359 gsecrets/entry_row.py:164
+#: gsecrets/widgets/credentials_group.py:98
+#| msgid "Username Copied"
+msgid "Username copied"
 msgstr "Brukarnamn kopiert"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
-msgid "One-time Password Copied"
+#: gsecrets/entry_page.py:364 gsecrets/entry_page.py:499
+msgid "Address copied"
+msgstr "Adresse kopiert"
+
+#: gsecrets/entry_page.py:373 gsecrets/entry_page.py:428
+#| msgid "One-time Password Copied"
+msgid "One-time password copied"
 msgstr "Eingongspassord kopiert"
 
-#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
-msgstr "Attributtnykel finns allereie"
+#: gsecrets/entry_page.py:406
+#| msgid "Could not save Safe"
+msgid "Could not open URL"
+msgstr "Klarte ikkje opne URL"
+
+#: gsecrets/entry_page.py:416
+msgid "The address is not valid"
+msgstr "Adressa er ikkje gyldig"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:342
-msgid "Select Attachment"
+#: gsecrets/entry_page.py:453
+#| msgid "Select Attachment"
+msgid "Select Attachments"
 msgstr "Vel vedlegg"
 
-#: gsecrets/entry_page.py:345
-msgid "_Add"
-msgstr "_Legg til"
-
-#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
+#: gsecrets/entry_row.py:157 gsecrets/widgets/credentials_group.py:110
+#| msgid "Password Copied"
+msgid "Password copied"
 msgstr "Passord kopiert"
 
-#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+#: gsecrets/entry_row.py:172
+#| msgid "One-time Password Copied"
+msgid "One-Time Password copied"
+msgstr "Eingongspassord kopiert"
+
+#: gsecrets/entry_row.py:186 gsecrets/group_row.py:137
 msgid "Title not Specified"
-msgstr "Tittel er ikkje angitt"
+msgstr "Tittel er ikkje oppgjeven"
 
-#: gsecrets/entry_row.py:135
-msgid "Username not specified"
-msgstr "Ingen brukarnamn er angitt"
+#: gsecrets/password_generator_popover.py:74
+msgid "Include Lowercase"
+msgstr "Ta med små bokstavar"
 
-#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
-#: gsecrets/widgets/window.py:376
-msgid "Could not save Safe"
-msgstr "Kunne ikkje lagra safen"
+#: gsecrets/password_generator_popover.py:76
+msgid "Exclude Lowercase"
+msgstr "Ikkje ta med små bokstavar"
 
-#: gsecrets/safe_element.py:361
-msgid "Clone"
-msgstr "Klone"
+#: gsecrets/password_generator_popover.py:79
+msgid "Include Uppercase"
+msgstr "Ta med store bokstavar"
 
-#: gsecrets/unlock_database.py:80
+#: gsecrets/password_generator_popover.py:81
+msgid "Exclude Uppercase"
+msgstr "Ikkje ta med store bokstavar"
+
+#: gsecrets/password_generator_popover.py:84
+msgid "Include Numbers"
+msgstr "Ta med tal"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Exclude Numbers"
+msgstr "Ikkje ta med tal"
+
+#: gsecrets/password_generator_popover.py:89
+msgid "Include Symbols"
+msgstr "Ta med symbol"
+
+#: gsecrets/password_generator_popover.py:91
+msgid "Exclude Symbols"
+msgstr "Ikkje ta med symbol"
+
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:103
+msgid "Keyfile"
+msgstr "Nøkkelfil"
+
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
 msgid "Select Keyfile"
-msgstr "Vel nykelfil"
+msgstr "Vel nøkkelfil"
 
-#: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
-msgstr "Safe {} er allereie open"
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
+#| msgid "Select Keyfile"
+msgid "Clear Keyfile"
+msgstr "Tøm nøkkelfil"
 
-#: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
-msgstr "Kunne ikkje låsa opp safen"
+#: gsecrets/provider/file_provider.py:70
+#| msgid "Select Keyfile"
+msgid "Select keyfile"
+msgstr "Vel nøkkelfil"
 
-#: gsecrets/unlock_database.py:287
-msgid "_Try Again"
-msgstr "_Prøv på nytt"
+#: gsecrets/provider/file_provider.py:108
+#| msgid "Could not Load Keyfile"
+msgid "Could not load keyfile"
+msgstr "Klarte ikkje laste nøkkelfila"
 
-#: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
-msgstr "Safe lagra"
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
+msgid "Generate Keyfile"
+msgstr "Lag nøkkelfil"
 
-#: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
-msgstr "Ingen endringar gjort"
+#: gsecrets/provider/file_provider.py:159
+#| msgid "Use a keyfile to secure your safe."
+msgid "Use a file to increase security"
+msgstr "Bruk ei fil for å auke tryggleiken"
 
-#: gsecrets/unlocked_database.py:322
+#: gsecrets/provider/file_provider.py:181
+#| msgid "Could not Create Keyfile"
+msgid "Could not create keyfile"
+msgstr "Klarte ikkje lage nøkkelfil"
+
+#: gsecrets/provider/pkcs11_provider.py:99
+msgid "No Smartcard"
+msgstr "Ingen smartkort"
+
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "Ingen RSA-sertifikat"
+
+#: gsecrets/provider/pkcs11_provider.py:119
+#: gsecrets/provider/pkcs11_provider.py:268
+msgid "Smartcard"
+msgstr "Smartkort"
+
+#: gsecrets/provider/pkcs11_provider.py:120
+#| msgid "Select Keyfile"
+msgid "Select certificate"
+msgstr "Vel eit sertifikat"
+
+#: gsecrets/provider/pkcs11_provider.py:196
+msgid "No smartcard present"
+msgstr "Ingen smartkort til stades"
+
+#: gsecrets/provider/pkcs11_provider.py:197
+msgid "Please insert smartcard and retry."
+msgstr "Set inn smartkort og prøv på nytt."
+
+#: gsecrets/provider/pkcs11_provider.py:200
+#: gsecrets/widgets/database_settings_dialog.py:384
+msgid "_OK"
+msgstr "_OK"
+
+#: gsecrets/provider/pkcs11_provider.py:216
+msgid "Unlock your smartcard"
+msgstr "Lås opp smartkortet ditt"
+
+#: gsecrets/provider/pkcs11_provider.py:261
+#| msgid "Failed to Unlock Safe"
+msgid "Failed to unlock Smartcard"
+msgstr "Klarte ikkje låse opp smartkortet"
+
+#: gsecrets/provider/pkcs11_provider.py:269
+msgid "Use a smartcard"
+msgstr "Bruk eit smartkort"
+
+#: gsecrets/provider/pkcs11_provider.py:323
+msgid "Refresh Certificate List"
+msgstr "Oppdater sertifikatliste"
+
+#: gsecrets/provider/yubikey_provider.py:36
+msgid "No Key"
+msgstr "Ingen nøkkel"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:39
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] - Plass {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:205
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:144
+#| msgid "Select Safe"
+msgid "Select key"
+msgstr "Vel nøkkel"
+
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
+#| msgid "Select Keyfile"
+msgid "Select YubiKey slot"
+msgstr "Vel YubiKey-plass"
+
+#: gsecrets/provider/yubikey_provider.py:246
+msgid "Touch YubiKey"
+msgstr "Trykk på YubiKey"
+
+#: gsecrets/recent_files_menu.py:29
+#| msgid "Recent Safes"
+msgid "Recent Files"
+msgstr "Nylege filer"
+
+#: gsecrets/safe_element.py:43
+msgid "White"
+msgstr "Kvit"
+
+#: gsecrets/safe_element.py:45
+msgid "Blue"
+msgstr "Blå"
+
+#: gsecrets/safe_element.py:47
+msgid "Green"
+msgstr "Grøn"
+
+#: gsecrets/safe_element.py:49
+msgid "Yellow"
+msgstr "Gul"
+
+#: gsecrets/safe_element.py:51
+msgid "Orange"
+msgstr "Oransje"
+
+#: gsecrets/safe_element.py:53
+msgid "Red"
+msgstr "Raud"
+
+#: gsecrets/safe_element.py:55
+msgid "Purple"
+msgstr "Lilla"
+
+#: gsecrets/safe_element.py:57
+msgid "Brown"
+msgstr "Brun"
+
+#: gsecrets/safe_element.py:673
+msgid "Clone"
+msgstr "Klon"
+
+#. This shouldn't happen
+#. TODO Set the body of the message based on the error kind.
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
+#: gsecrets/unlocked_database.py:249 gsecrets/unlocked_database.py:536
+#: gsecrets/widgets/window.py:422
+msgid "Could not save Safe"
+msgstr "Klarte ikkje lagre safen"
+
+#: gsecrets/selection_manager.py:58
+#| msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
+msgstr "Operasjonen er avbroten: slettar gruppa som er aktiv no"
+
+#: gsecrets/selection_manager.py:106
+msgid "Warning"
+msgstr "Åtvaring"
+
+#: gsecrets/selection_manager.py:108
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+"Du slettar element i papirkorga. Desse slettingane kan ikkje gjerast om."
+
+#: gsecrets/selection_manager.py:142
+#| msgid "Operation Aborted: Moving Currently Active Group"
+msgid "Operation aborted: moving currently active group"
+msgstr "Operasjonen er avbroten: flyttar gruppa som er aktiv no"
+
+#: gsecrets/selection_manager.py:155
+#| msgid "Move Completed"
+msgid "Move completed"
+msgstr "Flyttinga er fullført"
+
+#: gsecrets/unlock_database.py:105
+#| msgid "Unlock Safe"
+msgid "Quick Unlock active"
+msgstr "Hurtigopplåsing er aktiv"
+
+#. TRANSLATORS For example: "Safe ~/MySafe.kdbx is already open"
+#: gsecrets/unlock_database.py:150
+#, python-brace-format
+#| msgid "Safe {} is Already Open"
+msgid "Safe {path} is already open"
+msgstr "Safen {path} er alt open"
+
+#: gsecrets/unlock_database.py:241
+#| msgid "Failed to Unlock Safe"
+msgid "Failed to unlock Safe"
+msgstr "Klarte ikkje låse opp safen"
+
+#: gsecrets/unlock_database.py:410
+msgid "Please unlock using the password."
+msgstr "Lås opp med passordet."
+
+#: gsecrets/unlock_database.py:419
+msgid "Maximum tries reached. Please unlock using the password."
+msgstr "Maksimalt tal forsøk nådd. Ver venleg og lås opp med passordet."
+
+#: gsecrets/unlocked_database.py:252
+#| msgid "Safe Saved"
+msgid "Safe saved"
+msgstr "Safen er lagra"
+
+#: gsecrets/unlocked_database.py:254
+#| msgid "No Changes Made"
+msgid "No changes made"
+msgstr "Ingen endringar er gjorde"
+
+#: gsecrets/unlocked_database.py:301
+#, python-brace-format
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "Element sletta"
+msgstr[1] "{} element sletta"
+
+#: gsecrets/unlocked_database.py:306
+#| msgid "Deletion Completed"
+msgid "Deletion completed"
+msgstr "Slettinga er fullført"
+
+#: gsecrets/unlocked_database.py:311 gsecrets/unlocked_database.py:335
+msgid "Undo"
+msgstr "Angre"
+
+#: gsecrets/unlocked_database.py:334
+#| msgid "Attributes"
+msgid "Attribute deleted"
+msgstr "Attributt sletta"
+
+#: gsecrets/unlocked_database.py:363
 msgid "Copied"
 msgstr "Kopiert"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:463
+#| msgid "Safe Locked due to Inactivity"
+msgid "Safe locked due to inactivity"
 msgstr "Safen er låst på grunn av inaktivitet"
 
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
+#: gsecrets/unlocked_database.py:701
+#, python-brace-format
+#| msgid "{} _Selected"
+#| msgid_plural "{} _Selected"
+msgid "{} Selected"
+msgid_plural "{} Selected"
+msgstr[0] "{} vald"
+msgstr[1] "{} valde"
+
+#: gsecrets/widgets/add_attribute_dialog.py:36
+msgid "Attribute key contains an illegal character"
+msgstr "Attributtnøkkelen inneheld eit ugyldig teikn"
+
+#: gsecrets/widgets/add_attribute_dialog.py:46
+#| msgid "Attribute key Already Exists"
+msgid "Attribute key already exists"
+msgstr "Attributtnøkkelen finst alt"
+
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:50
 msgid "Save Attachment"
 msgstr "Lagre vedlegg"
 
-#: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
-msgstr "Kunne ikkje lagra vedlegg"
+#: gsecrets/widgets/attachment_entry_row.py:71
+#| msgid "Could not Store Attachment"
+msgid "Could not store attachment"
+msgstr "Klarte ikkje lagre vedlegg"
 
-#. NOTE: Filechooser title for choosing current used keyfile
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
+#| msgid "Attributes"
+msgid "Attribute copied"
+msgstr "Attributt kopiert"
+
+#: gsecrets/widgets/database_settings_dialog.py:128
+msgid "Insecure"
+msgstr "Utrygg"
+
 #: gsecrets/widgets/database_settings_dialog.py:130
-msgid "Select Current Keyfile"
-msgstr "Vel noverande nykelfil"
+msgid "Weak"
+msgstr "Svak"
 
-#. pylint: disable=no-member
-#: gsecrets/widgets/database_settings_dialog.py:243
-#: gsecrets/widgets/database_settings_dialog.py:248
+#: gsecrets/widgets/database_settings_dialog.py:137
+msgid "No weak passwords found"
+msgstr "Ingen svake passord vart funne"
+
+#: gsecrets/widgets/database_settings_dialog.py:226
+msgid "No records found"
+msgstr "Fann ingen oppføringar"
+
+#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:317
 msgid "Could not apply changes"
-msgstr "Kunne ikkje utføra endringar"
+msgstr "Klarte ikkje ta i bruk endringane"
 
 #. Still executes the finally block
-#. pylint: disable=no-member
-#: gsecrets/widgets/database_settings_dialog.py:252
+#: gsecrets/widgets/database_settings_dialog.py:320
 msgid "Changes Applied"
-msgstr "Endringar gjort"
+msgstr "Endringane er tekne i bruk"
+
+#: gsecrets/widgets/database_settings_dialog.py:374
+#| msgid "Could not apply changes"
+msgid "Could not change credentials"
+msgstr "Klarte ikkje endre innloggingsinformasjon"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:379
+#: gsecrets/widgets/saving_conflict_dialog.py:22
+msgid "Conflicts While Saving"
+msgstr "Konfliktar ved lagring"
+
+#: gsecrets/widgets/database_settings_dialog.py:381
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"Safen er endra frå ein annan stad. Løys konfliktane frå hovudvindauget når "
+"du lagrar."
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:335
-#: gsecrets/widgets/database_settings_dialog.py:349
+#: gsecrets/widgets/database_settings_dialog.py:453
+#: gsecrets/widgets/database_settings_dialog.py:467
 msgid "Unknown"
-msgstr "Ukjent"
+msgstr "Ukjend"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:339
+#: gsecrets/widgets/database_settings_dialog.py:457
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:460
 msgid "ChaCha20 256-bit"
-msgstr "CHACHA20 256-bit"
+msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:463
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:353
+#: gsecrets/widgets/database_settings_dialog.py:471
 msgid "Argon2"
 msgstr "Argon2"
 
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:474
+#| msgid "Argon2"
+msgid "Argon2id"
+msgstr "Argon2id"
+
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:356
+#: gsecrets/widgets/database_settings_dialog.py:477
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
 #: gsecrets/widgets/expiration_date_row.py:56
-#: gsecrets/widgets/expiration_date_row.py:62
+#: gsecrets/widgets/expiration_date_row.py:64
 msgid "Entry expired"
-msgstr "Utgått oppføring"
+msgstr "Oppføringa har gått ut"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:72
-msgid "{} _Selected"
-msgid_plural "{} _Selected"
-msgstr[0] "{} Valt"
-msgstr[1] "{} Valde"
+#: gsecrets/widgets/history_row.py:43
+msgid "Hide Text"
+msgstr "Gøym tekst"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
-msgstr "Operasjon avbrote: Sletter den aktive gruppa"
+#: gsecrets/widgets/notes_dialog.py:105
+#| msgid "Selection Mode"
+msgid "Selection copied"
+msgstr "Utvalet er kopiert"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
-msgstr "Sletting gjennomført"
+#: gsecrets/widgets/password_level_bar.py:22
+#| msgid "Password Length"
+msgid "Password Strength"
+msgstr "Passordstyrke"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
-msgstr "Operasjon avbrote: Flyttar den aktive gruppa"
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:18
+#| msgid "Unsaved Changes"
+msgid "Unsaved Changes Conflict"
+msgstr "Konflikt med ulagra endringar"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
-msgstr "Flytting ferdig"
+#: gsecrets/widgets/quit_conflict_dialog.py:20
+#| msgid "_Save and Quit"
+msgid "Save and Quit"
+msgstr "Lagre og avslutt"
 
-#. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:146
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+#| msgid "_Save and Quit"
+msgid "Back up, Save, and Quit"
+msgstr "Ta sikkerheitskopi, lagre og avslutt"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+#| msgid "_Don't Quit"
+msgid "Don't Quit"
+msgstr "Ikkje avslutt"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:25
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"Safen er endra frå ein annan stad. Lagrar du, vert versjonen deira av safen skriven over med den noverande versjonen vår.\n"
+"\n"
+" Du kan òg ta ein sikkerheitskopi av versjonen deira av safen."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:33
+msgid "_Back up and Save"
+msgstr "_Ta sikkerheitskopi og lagre"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:45
+msgid "Save Backup"
+msgstr "Lagre sikkerheitskopi"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:55
+#| msgid "Could not save Safe"
+msgid "Could not backup safe"
+msgstr "Klarte ikkje ta sikkerheitskopi av safen"
+
+#: gsecrets/widgets/window.py:153
+msgid "Any file type"
+msgstr "Alle filtypar"
+
+#: gsecrets/widgets/window.py:160
 msgid "Select Safe"
 msgstr "Vel safe"
 
-#. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
-msgid "KeePass 3.1/4 Database"
-msgstr "KeePass 3.1/4 databaser"
+#: gsecrets/widgets/window.py:177
+msgid "File does not have a valid path"
+msgstr "Fila har ikkje ein gyldig sti"
 
-#: gsecrets/widgets/window.py:162
-msgid "Any file type"
-msgstr "Einkvar filtype"
+#: gsecrets/widgets/window.py:210
+#| msgid "Safe is Already Open"
+msgid "Safe is already open"
+msgstr "Safen er alt open"
 
-#: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
-msgstr "Safe er allereie opna"
-
-#: gsecrets/widgets/window.py:245
+#: gsecrets/widgets/window.py:244
 msgid "_Create"
-msgstr "_Ny"
+msgstr "_Opprett"
 
-#: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
-msgstr "Kan ikkje laga ny safe: Safe er allereie open"
+#: gsecrets/widgets/window.py:266
+#| msgid "Cannot Create Safe: Safe is Already Open"
+msgid "Cannot create Safe: Safe is already open"
+msgstr "Kan ikkje opprette safe: safen er alt open"
 
-#: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
-msgstr "Kunne ikkje laga ny safe"
+#: gsecrets/widgets/window.py:309 gsecrets/widgets/window.py:322
+#| msgid "Could not Create new Safe"
+msgid "Could not create new Safe"
+msgstr "Klarte ikkje opprette ny safe"
+
+#: gsecrets/widgets/window.py:399
+#| msgid "Could not save Safe"
+msgid "Could not save safe"
+msgstr "Klarte ikkje lagre safen"
+
+#. TRANSLATORS Add your name to the translator credits list
+#: gsecrets/widgets/window.py:562
+msgid "translator-credits"
+msgstr ""
+"John Erling Blad <jeblad@gmail.com>\n"
+"Roy-Magne Mo <rmo@sunnmore.net>"
+
+#~ msgid "Learn more about Secrets"
+#~ msgstr "Lær meir _om Løyndommar"
+
+#~ msgid "Use a password to secure your safe."
+#~ msgstr "Bruk eit passord for å sikra safen din."
+
+#~ msgid "_Keyfile"
+#~ msgstr "_Nykelfil"
+
+#~ msgid "_Composite"
+#~ msgstr "_Sammensatt"
+
+#~ msgid "Use a password in combination with a keyfile to secure your safe."
+#~ msgstr "Bruk eit passord saman med ein nykelfil for å sikra safen din."
+
+#~ msgid "Set password for safe."
+#~ msgstr "Sett passord for safen."
+
+#~ msgid "Password Match Check"
+#~ msgstr "Passordverifikasjon"
+
+#~ msgid "Repeat password for safe."
+#~ msgstr "Gjenta passordet for safen."
+
+#~ msgid "Match Check Failed"
+#~ msgstr "Kunne ikkje verifisere"
+
+#~ msgid "Please try again."
+#~ msgstr "Ver vennleg og prøv på nytt."
+
+#~ msgid "_Confirm"
+#~ msgstr "_Bekreft"
+
+#~ msgid "Set keyfile for safe"
+#~ msgstr "Sett nykelfil for safen"
+
+#~ msgid "_New"
+#~ msgstr "_Ny"
+
+#~ msgid "C_onfirm"
+#~ msgstr "Bekreft"
+
+#~ msgid "_Current"
+#~ msgstr "Nåværande"
+
+#~ msgid "_Select current keyfile if any"
+#~ msgstr "_Vel nåværande nykelfil om nokon"
+
+#~ msgid "(Optional) _Generate new keyfile"
+#~ msgstr "(Valgfritt) _Skap ny nykelfil"
+
+#~ msgid "Menu"
+#~ msgstr "Meny"
+
+#~ msgid "Enter character here…"
+#~ msgstr "Skriv inn teikn her…"
+
+#~ msgid "New Safe"
+#~ msgstr "Ny safe"
+
+#~ msgid "Open Safe"
+#~ msgstr "Opne safe"
+
+#~ msgid "Enter Search Term"
+#~ msgstr "Skriv søketerm"
+
+#~ msgid "Select _All"
+#~ msgstr "Vel alt"
+
+#~ msgid "_Dark Theme"
+#~ msgstr "_Mørk drakt"
+
+#~ msgid "Use dark GTK theme."
+#~ msgstr "Bruk mørk GTK-drakt."
+
+#~ msgid "_Select Keyfile"
+#~ msgstr "_Vel nykelfil"
+
+#~ msgid "_Z-A"
+#~ msgstr "_Z–A"
+
+#~ msgid ""
+#~ "Securely store your passwords, notes and data. <b>Create</b> or "
+#~ "<b>import</b> a new Keepass safe."
+#~ msgstr ""
+#~ "Lagre sikkert passord, notat og data. <b>Opprett</b> eller <b>importer</"
+#~ "b> ein ny Keepass-safe."
+
+#~ msgid "Use dark GTK theme"
+#~ msgstr "Bruk mørk GTK-drakt"
+
+#~ msgid ""
+#~ "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+#~ "theme has a dark variant."
+#~ msgstr ""
+#~ "Bruk mørk variant av din GTK+-drakt. Ikkje alle GTK+-drakter har ein mørk "
+#~ "variant."
+
+#~ msgid "Falk Alexander Seidl"
+#~ msgstr "Falk Alexander Seidl"
+
+#~ msgid "Error: File {} does not exist"
+#~ msgstr "Feil: Fil {} finns ikkje"
+
+#~ msgid "Error: Safe {} is already open"
+#~ msgstr "Feil: Safe {} er allerede åpen"
+
+#~ msgid "Generating…"
+#~ msgstr "Skapar…"
+
+#~ msgid "Generate"
+#~ msgstr "Skap"
+
+#~ msgid "Username not specified"
+#~ msgstr "Ingen brukarnamn er angitt"
+
+#~ msgid "_Try Again"
+#~ msgstr "_Prøv på nytt"
+
+#~ msgid "Select Current Keyfile"
+#~ msgstr "Vel noverande nykelfil"
+
+#~ msgid "KeePass 3.1/4 Database"
+#~ msgstr "KeePass 3.1/4 databaser"
 
 #~ msgid "Please Wait. Another Save is Running."
 #~ msgstr "Ver vennleg og vent. Ei anna lagring pågår."
@@ -1381,9 +2068,6 @@ msgstr "Kunne ikkje laga ny safe"
 
 #~ msgid "Settings"
 #~ msgstr "Innstillingar"
-
-#~ msgid "Enable faster unlocking"
-#~ msgstr "Slå på raskere opplåsning"
 
 #~ msgid "Show Password Fields"
 #~ msgstr "Vis passordfelt"
@@ -1457,9 +2141,6 @@ msgstr "Kunne ikkje laga ny safe"
 #~ msgid "Open…"
 #~ msgstr "Opne…"
 
-#~ msgid "File already exists"
-#~ msgstr "Fila finns allereie"
-
 #~ msgid "Do you want to override it?"
 #~ msgstr "Vil du overstyre den?"
 
@@ -1469,9 +2150,6 @@ msgstr "Kunne ikkje laga ny safe"
 #~ msgid "No group title specified"
 #~ msgstr "Ingen gruppetittel angitt"
 
-#~ msgid "Choose a Keepass safe"
-#~ msgstr "Vel ein Keepass safe"
-
 #~ msgid "Unable to open file \"{}\"."
 #~ msgstr "Kan ikkje opna fila \"{}\"."
 
@@ -1480,9 +2158,6 @@ msgstr "Kunne ikkje laga ny safe"
 
 #~ msgid "Choose location for Keepass safe"
 #~ msgstr "Vel sted for Keepass safen"
-
-#~ msgid "Database saved"
-#~ msgstr "Database lagra"
 
 #~ msgid "Copied to clipboard"
 #~ msgstr "Kopiert til utklippstavla"

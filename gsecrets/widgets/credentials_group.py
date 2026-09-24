@@ -28,6 +28,18 @@ class CredentialsGroup(Adw.PreferencesGroup):
 
     _safe_entry = None
 
+    def __init__(self):
+        super().__init__()
+
+        entry_row = self._password_entry_row
+        Adw.bind_property_to_css_class(
+            entry_row.get_delegate(),
+            "visibility",
+            entry_row,
+            "monospace",
+            GObject.BindingFlags.DEFAULT,
+        )
+
     @property
     def username(self):
         return self._username_entry_row.props.text
@@ -43,11 +55,6 @@ class CredentialsGroup(Adw.PreferencesGroup):
 
         self._safe_entry = entry
         self._password_entry_row.props.text = entry.props.password
-
-        self._password_entry_row.get_delegate().connect(
-            "notify::visibility",
-            self._on_password_visibility_changed,
-        )
 
         entry.bind_property(
             "username",
@@ -108,9 +115,3 @@ class CredentialsGroup(Adw.PreferencesGroup):
         if self._unlocked_database:
             password: str = self._password_entry_row.props.text
             self._unlocked_database.send_to_clipboard(password, _("Password copied"))
-
-    def _on_password_visibility_changed(self, _widget, _value):
-        if self._password_entry_row.get_delegate().get_visibility():
-            self._password_entry_row.add_css_class("monospace")
-        else:
-            self._password_entry_row.remove_css_class("monospace")

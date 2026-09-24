@@ -31,6 +31,20 @@ class CredentialsGroup(Adw.PreferencesGroup):
     def __init__(self):
         super().__init__()
 
+        self._bindings = GObject.BindingGroup.new()
+        self._bindings.bind(
+            "username",
+            self._username_entry_row,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+        self._bindings.bind(
+            "password",
+            self._password_entry_row,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+
         entry_row = self._password_entry_row
         Adw.bind_property_to_css_class(
             entry_row.get_delegate(),
@@ -54,20 +68,7 @@ class CredentialsGroup(Adw.PreferencesGroup):
             return
 
         self._safe_entry = entry
-        self._password_entry_row.props.text = entry.props.password
-
-        entry.bind_property(
-            "username",
-            self._username_entry_row,
-            "text",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
-        )
-        entry.bind_property(
-            "password",
-            self._password_entry_row,
-            "text",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
-        )
+        self._bindings.props.source = entry
 
     @property
     def unlocked_database(self) -> UnlockedDatabase | None:

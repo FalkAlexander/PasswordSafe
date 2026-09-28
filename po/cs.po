@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the PasswordSafe package.
 #
 # Marek Černocký <marek@manet.cz>, 2018, 2019, 2020, 2021, 2022.
-# Patrik Sivek <sivekpatrik@gmail.com>, 2026.
+# Patrik Sivek <patriksivek@gnome.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2026-08-03 21:01+0000\n"
-"PO-Revision-Date: 2026-08-06 19:08+0200\n"
-"Last-Translator: Patrik Sivek <sivekpatrik@gmail.com>\n"
+"POT-Creation-Date: 2026-09-24 09:36+0000\n"
+"PO-Revision-Date: 2026-09-28 15:24+0200\n"
+"Last-Translator: Patrik Sivek <patriksivek@gnome.org>\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Gtranslator 50.0\n"
+"X-Generator: Gtranslator 51.0\n"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
@@ -1244,15 +1244,15 @@ msgstr ""
 "v.4. Je výborně začleněný do uživatelského prostředí GNOME a nabízí "
 "jednoduché a přehledné uživatelské rozhraní pro správu databází hesel."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:421
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:429
 msgid "Password management"
 msgstr "Správa hesel"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:425
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:433
 msgid "Safe unlocking"
 msgstr "Odemykání trezoru"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:429
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:437
 msgid "Safe creation"
 msgstr "Vytváření trezoru"
 
@@ -1292,12 +1292,12 @@ msgstr "Zadejte název štítku"
 msgid "The tag already exists"
 msgstr "Tento štítek již existuje"
 
-#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:103
+#: gsecrets/entry_page.py:340 gsecrets/widgets/credentials_group.py:111
 msgid "Saved in history"
 msgstr "Uloženo do historie"
 
 #: gsecrets/entry_page.py:359 gsecrets/entry_row.py:164
-#: gsecrets/widgets/credentials_group.py:98
+#: gsecrets/widgets/credentials_group.py:106
 msgid "Username copied"
 msgstr "Uživatelské jméno zkopírováno"
 
@@ -1322,7 +1322,7 @@ msgstr "Adresa je neplatná"
 msgid "Select Attachments"
 msgstr "Vybrat přílohy"
 
-#: gsecrets/entry_row.py:157 gsecrets/widgets/credentials_group.py:110
+#: gsecrets/entry_row.py:157 gsecrets/widgets/credentials_group.py:118
 msgid "Password copied"
 msgstr "Heslo zkopírováno"
 
@@ -1575,11 +1575,12 @@ msgid "No changes made"
 msgstr "Nebyly provedeny žádné změny"
 
 #: gsecrets/unlocked_database.py:301
+#, python-brace-format
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
-msgstr[0] "Položka smazána"
-msgstr[1] "Položky smazány"
-msgstr[2] "Položky smazány"
+msgstr[0] "Položka byla smazána"
+msgstr[1] "Byly smazány {} položky"
+msgstr[2] "Bylo smazáno {} položek"
 
 #: gsecrets/unlocked_database.py:306
 msgid "Deletion completed"
@@ -1604,6 +1605,7 @@ msgstr "Kvůli nečinnosti byl trezor uzamknut"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
 #: gsecrets/unlocked_database.py:701
+#, python-brace-format
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} vybrána"
@@ -1811,7 +1813,7 @@ msgid "translator-credits"
 msgstr ""
 "Marek Černocký <marek@manet.cz>\n"
 "Daniel Rusek <mail@asciiwolf.com>\n"
-"Patrik Sivek <sivekpatrik@gmail.com>"
+"Patrik Sivek <patriksivek@gnome.org>"
 
 #~ msgid "Falk Alexander Seidl"
 #~ msgstr "Falk Alexander Seidl"

@@ -2,22 +2,22 @@
 # Copyright (C) 2020 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2023, 2024.
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2026 Yuri Chornoivan <yurchor@ukr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-19 20:09+0000\n"
-"PO-Revision-Date: 2024-09-20 22:00+0300\n"
+"POT-Creation-Date: 2024-12-26 10:34+0000\n"
+"PO-Revision-Date: 2026-09-30 18:12+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.04.3\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2"
+" && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -30,7 +30,7 @@ msgstr "Юрій Чорноіван <yurchor@ukr.net>"
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/gtk/window.ui:6
-#: data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/org.gnome.World.Secrets.desktop.in.in:3
 msgid "Secrets"
 msgstr "Секрети"
 
@@ -852,7 +852,7 @@ msgstr "Віді_мкнути"
 msgid "Browser"
 msgstr "Навігатор"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:693
 msgid "Select Items"
 msgstr "Позначені записи"
 
@@ -962,16 +962,16 @@ msgstr "Безпечні секрети"
 msgid "Create or import a new Keepass safe"
 msgstr "Створити або імпортувати новий сейф Keepass"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:5
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "Засіб керування паролями для GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.World.Secrets.desktop.in.in:14
+#: data/org.gnome.World.Secrets.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;encrypt;secure;кіпас;шифрування;шифр;безпека;захист;"
 
-#: data/org.gnome.World.Secrets.desktop.in.in:21
+#: data/org.gnome.World.Secrets.desktop.in.in:20
 msgid "New Window"
 msgstr "Створити вікно"
 
@@ -1075,8 +1075,8 @@ msgstr "Створювати резервну копію бази даних п�
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/secrets/backups"
+"If an error occurs while saving the database, a backup can be found at "
+"~/.cache/secrets/backups"
 msgstr ""
 "Якщо під час спроби зберегти базу даних станеться помилка, резервну копію "
 "можна знайти у ~/.cache/secrets/backups"
@@ -1162,17 +1162,23 @@ msgstr ""
 "середовища GNOME і надає простий і незахаращений інтерфейс для керування "
 "базами даних паролів."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:357
 msgid "Password management"
 msgstr "Керування паролями"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:361
 msgid "Safe unlocking"
 msgstr "Розблокування сейфів"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:365
 msgid "Safe creation"
 msgstr "Створення сейфів"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:377
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:379
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
 
 #: gsecrets/attachment_warning_dialog.py:71
 #: gsecrets/attachment_warning_dialog.py:82
@@ -1193,12 +1199,10 @@ msgid "Failed to generate composite key"
 msgstr "Не вдалося створити суміщений ключ"
 
 #: gsecrets/entry_page.py:283
-#| msgid "Enter Character"
 msgid "Enter tag name"
 msgstr "Введіть назву мітки"
 
 #: gsecrets/entry_page.py:313
-#| msgid "File already exists"
 msgid "The tag already exists"
 msgstr "Мітка з такою назвою вже існує"
 
@@ -1428,7 +1432,7 @@ msgstr "Клонувати"
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/unlocked_database.py:243 gsecrets/unlocked_database.py:531
 #: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "Не вдалося зберегти сейф"
@@ -1458,23 +1462,26 @@ msgstr "Пересування завершено"
 
 #. pylint: disable=consider-using-f-string
 #: gsecrets/unlock_database.py:106
+#, python-brace-format
+#| msgid "Safe {} is already open"
 msgid "Safe {} is already open"
-msgstr "Сейф вже відкрито"
+msgstr "Сейф {} вже відкрито"
 
 #: gsecrets/unlock_database.py:185
 msgid "Failed to unlock Safe"
 msgstr "Не вдалося відімкнути сейф"
 
-#: gsecrets/unlocked_database.py:244
+#: gsecrets/unlocked_database.py:246
 msgid "Safe saved"
 msgstr "Сейф збережено"
 
-#: gsecrets/unlocked_database.py:246
+#: gsecrets/unlocked_database.py:248
 msgid "No changes made"
 msgstr "Не було внесено жодних змін"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:296
+#, python-brace-format
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Вилучено {} елемент"
@@ -1482,29 +1489,30 @@ msgstr[1] "Вилучено {} елементи"
 msgstr[2] "Вилучено {} елементів"
 msgstr[3] "Вилучено елемент"
 
-#: gsecrets/unlocked_database.py:298
+#: gsecrets/unlocked_database.py:301
 msgid "Deletion completed"
 msgstr "Вилучення завершено"
 
-#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
+#: gsecrets/unlocked_database.py:306 gsecrets/unlocked_database.py:330
 msgid "Undo"
 msgstr "Скасувати"
 
-#: gsecrets/unlocked_database.py:326
+#: gsecrets/unlocked_database.py:329
 msgid "Attribute deleted"
 msgstr "Атрибут вилучено"
 
-#: gsecrets/unlocked_database.py:355
+#: gsecrets/unlocked_database.py:358
 msgid "Copied"
 msgstr "Скопійовано"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:455
+#: gsecrets/unlocked_database.py:458
 msgid "Safe locked due to inactivity"
 msgstr "Сейф замкнено через неактивність"
 
 #. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
-#: gsecrets/unlocked_database.py:693
+#: gsecrets/unlocked_database.py:696
+#, python-brace-format
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "Позначено {}"
@@ -1512,11 +1520,11 @@ msgstr[1] "Позначено {}"
 msgstr[2] "Позначено {}"
 msgstr[3] "Позначено {}"
 
-#: gsecrets/widgets/add_attribute_dialog.py:35
+#: gsecrets/widgets/add_attribute_dialog.py:36
 msgid "Attribute key contains an illegal character"
 msgstr "Ключ атрибута містить некоректний символ"
 
-#: gsecrets/widgets/add_attribute_dialog.py:45
+#: gsecrets/widgets/add_attribute_dialog.py:46
 msgid "Attribute key already exists"
 msgstr "Ключ атрибута вже існує"
 
@@ -1608,7 +1616,7 @@ msgstr "Строк дії запису вичерпано"
 msgid "Hide Text"
 msgstr "Сховати текст"
 
-#: gsecrets/widgets/notes_dialog.py:58
+#: gsecrets/widgets/notes_dialog.py:60
 msgid "Selection copied"
 msgstr "Позначене скопійовано"
 
@@ -1754,9 +1762,6 @@ msgstr "Не вдалося зберегти сейф"
 
 #~ msgid "Username not specified"
 #~ msgstr "Не вказано імені користувача"
-
-#~ msgid "Falk Alexander Seidl"
-#~ msgstr "Falk Alexander Seidl"
 
 #~ msgid "Ok"
 #~ msgstr "Гаразд"

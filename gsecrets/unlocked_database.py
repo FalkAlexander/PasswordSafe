@@ -61,6 +61,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     # Connection handlers
     db_locked_handler: int | None = None
+    clipboard_timer_handler: int | None = None
     # Used only to delete the clipboard if the window is not active.
     on_is_active_handler: int | None = None
     _current_element: SafeElement | None = None
@@ -364,6 +365,10 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
         self.start_database_lock_timer()
 
+        if self.clipboard_timer_handler:
+            GLib.source_remove(self.clipboard_timer_handler)
+            self.clipboard_timer_handler = None
+
         if self.on_is_active_handler:
             self.window.disconnect(self.on_is_active_handler)
             self.on_is_active_handler = None
@@ -382,6 +387,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
         clipboard_last_content = self.clipboard.get_content()
 
         def callback():
+            self.clipboard_timer_handler = None
+
             if window.props.is_active:
                 if clipboard_last_content == self.clipboard.get_content():
                     logging.debug("Clipboard cleared")
@@ -408,7 +415,10 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
             return GLib.SOURCE_REMOVE
 
-        GLib.timeout_add_seconds(clear_clipboard_time, callback)
+        self.clipboard_timer_handler = GLib.timeout_add_seconds(
+            clear_clipboard_time,
+            callback,
+        )
 
     def show_database_settings(self) -> None:
         DatabaseSettingsDialog(self).present(self)

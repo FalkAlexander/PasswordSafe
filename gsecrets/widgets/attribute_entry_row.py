@@ -37,10 +37,11 @@ class AttributeEntryRow(Adw.EntryRow):
 
     @Gtk.Template.Callback()
     def _on_copy_button_clicked(self, _row):
-        clipboard = self.get_clipboard()
-        clipboard.set(self.props.text)
         window = self.get_root()
-        window.send_notification(_("Attribute copied"))
+        window.unlocked_db.send_to_clipboard(
+            self.props.text,
+            _("Attribute copied"),
+        )
 
     @Gtk.Template.Callback()
     def _on_changed(self, row):

@@ -53,8 +53,8 @@ class ProtectedAttributeEntryRow:
         self._entry.set_attribute(self._key, row.props.text, True)
 
     def _on_copy_button_clicked(self, _row):
-        clipboard = self.row.get_clipboard()
-        clipboard.set(self.row.props.text)
-
         window = self.row.get_root()
-        window.send_notification(_("Attribute copied"))
+        window.unlocked_db.send_to_clipboard(
+            self.row.props.text,
+            _("Attribute copied"),
+        )

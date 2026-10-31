@@ -365,7 +365,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self.start_database_lock_timer()
 
         if self.on_is_active_handler:
-            self.disconnect(self.on_is_active_handler)
+            self.window.disconnect(self.on_is_active_handler)
             self.on_is_active_handler = None
 
         self.clipboard.set(text)

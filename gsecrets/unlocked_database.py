@@ -386,32 +386,42 @@ class UnlockedDatabase(Adw.BreakpointBin):
         clear_clipboard_time = gsecrets.config_manager.get_clear_clipboard()
         clipboard_last_content = self.clipboard.get_content()
 
+        def clear_clipboard():
+            # Only clear the clipboard if it still contains data set by us.
+            if clipboard_last_content != self.clipboard.get_content():
+                return True
+
+            if self.clipboard.set_content(None):
+                logging.debug("Clipboard cleared")
+                return True
+
+            return False
+
         def callback():
             self.clipboard_timer_handler = None
 
-            if window.props.is_active:
-                if clipboard_last_content == self.clipboard.get_content():
-                    logging.debug("Clipboard cleared")
-                    self.clipboard.set_content(None)
-            else:
-                logging.debug(
-                    "Could not clear the clipboard, it will clear on new focus",
-                )
+            if window.props.is_active and clear_clipboard():
+                return GLib.SOURCE_REMOVE
 
-                def on_is_active(window, _pspec):
-                    if self.on_is_active_handler:
-                        window.disconnect(self.on_is_active_handler)
-                        self.on_is_active_handler = None
+            logging.debug(
+                "Could not clear the clipboard, it will clear on new focus",
+            )
 
-                    # Only clear clipboard if we set ourselves the content.
-                    if clipboard_last_content == self.clipboard.get_content():
-                        logging.debug("Clipboard cleared")
-                        self.clipboard.set_content(None)
+            def on_is_active(window, _pspec):
+                if not window.props.is_active:
+                    return
 
-                self.on_is_active_handler = window.connect(
-                    "notify::is-active",
-                    on_is_active,
-                )
+                if not clear_clipboard():
+                    return
+
+                if self.on_is_active_handler:
+                    window.disconnect(self.on_is_active_handler)
+                    self.on_is_active_handler = None
+
+            self.on_is_active_handler = window.connect(
+                "notify::is-active",
+                on_is_active,
+            )
 
             return GLib.SOURCE_REMOVE
 

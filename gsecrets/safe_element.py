@@ -10,6 +10,7 @@ from enum import Enum
 from gettext import gettext as _
 from typing import NamedTuple
 
+from pykeepass.entry import reserved_keys
 from gi.repository import Gio, GLib, GObject, Gtk
 from pyotp import TOTP, parse_uri
 
@@ -832,6 +833,11 @@ class SafeEntry(SafeElement):
         assert self._attributes is not None
 
         if self.props.attributes.get(key) == value:
+            return
+
+        if key in reserved_keys:
+            msg = f"Using reserved key '{key}' is not allowed"
+            logging.error(msg)
             return
 
         if self._element.get_custom_property(

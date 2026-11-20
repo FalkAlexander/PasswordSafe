@@ -140,6 +140,14 @@ class EntryPage(Adw.Bin):
 
         Gtk.Widget.do_unroot(self)
 
+    def _on_otp_error_notify(self, entry, _pspec):
+        if entry.otp_error:
+            self.otp_secret_entry_row.add_css_class("error")
+            self.otp_error_revealer.reveal(True)
+        else:
+            self.otp_secret_entry_row.remove_css_class("error")
+            self.otp_error_revealer.reveal(False)
+
     def insert_entry_properties_into_listbox(self, add_all: bool) -> None:
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-branches
@@ -179,6 +187,8 @@ class EntryPage(Adw.Bin):
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
+
+        safe_entry.connect("notify::otp-error", self._on_otp_error_notify)
 
         # Notes
         textbuffer = self.notes_property_value_entry.get_buffer()
@@ -527,12 +537,5 @@ class EntryPage(Adw.Bin):
             )
         else:
             self.otp_token_row.props.visible = False
-
-        if not otp_token and safe_entry.props.otp:
-            self.otp_error_revealer.reveal(True)
-            self.otp_secret_entry_row.add_css_class("error")
-        else:
-            self.otp_error_revealer.reveal(False)
-            self.otp_secret_entry_row.remove_css_class("error")
 
         return GLib.SOURCE_CONTINUE

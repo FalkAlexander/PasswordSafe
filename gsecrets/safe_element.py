@@ -653,6 +653,8 @@ class SafeEntry(SafeElement):
     _color: EntryColor | None = None
     _icon_nr: str | None = None
 
+    otp_error = GObject.Property(type=bool, default=False)
+
     history_saved = GObject.Signal()
 
     def __init__(self, db_manager: DatabaseManager, entry: Entry) -> None:
@@ -999,28 +1001,37 @@ class SafeEntry(SafeElement):
             # NOTE the opt property doesn't accept None.
             self._element.otp = ""
             self.updated()
+            self.props.otp_error = False
         elif self._otp and self._otp.secret != otp:
             # Changing an existing OTP
             try:
                 _totp = TOTP80(otp, issuer=self.name)
             except binascii.Error:
                 logging.exception("Error creating TOTP code")
+                self.props.otp_error = True
             except ValueError:
                 logging.exception("Error creating TOTP code")
+                self.props.otp_error = True
             else:
                 self._otp.secret = otp
                 updated = True
+                self.props.otp_error = False
         elif otp:
             # Creating brand new OTP.
             try:
                 totp = TOTP80(otp, issuer=self.name)
             except binascii.Error:
                 logging.exception("Error creating TOTP code")
+                self.props.otp_error = True
             except ValueError:
                 logging.exception("Error creating TOTP code")
+                self.props.otp_error = True
             else:
                 self._otp = totp
                 updated = True
+                self.props.otp_error = False
+        else:
+            self.props.otp_error = False
 
         if updated:
             self._element.otp = self._otp.provisioning_uri()

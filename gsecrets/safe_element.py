@@ -1001,8 +1001,15 @@ class SafeEntry(SafeElement):
             self.updated()
         elif self._otp and self._otp.secret != otp:
             # Changing an existing OTP
-            self._otp.secret = otp
-            updated = True
+            try:
+                _totp = TOTP80(otp, issuer=self.name)
+            except binascii.Error:
+                logging.exception("Error creating TOTP code")
+            except ValueError:
+                logging.exception("Error creating TOTP code")
+            else:
+                self._otp.secret = otp
+                updated = True
         elif otp:
             # Creating brand new OTP.
             try:
@@ -1020,14 +1027,14 @@ class SafeEntry(SafeElement):
             self.updated()
 
     def otp_interval(self) -> int:
-        if isinstance(self._otp, TOTP80):
+        if isinstance(self._otp, pyotp.TOTP):
             return self._otp.interval
 
         return 30
 
     def otp_lifespan(self) -> float | None:
         """Return seconds until token expires."""
-        if isinstance(self._otp, TOTP80):
+        if isinstance(self._otp, pyotp.TOTP):
             gnow = GLib.DateTime.new_now_utc()
             now_seconds = gnow.to_unix()
             now_milis = gnow.get_seconds() % 1

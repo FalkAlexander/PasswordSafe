@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import binascii
 import logging
+import pyotp
 import typing
 from datetime import UTC, datetime
 from enum import Enum
@@ -12,9 +13,31 @@ from typing import NamedTuple
 
 from pykeepass.entry import reserved_keys
 from gi.repository import Gio, GLib, GObject, Gtk
-from pyotp import TOTP, parse_uri
+from pyotp import parse_uri
 
 from gsecrets.attributes_model import AttributesModel
+
+
+# A minimum seed length of 80 bits was the default before 2.12 [0] where it was
+# bumped to 112 bits. 2.12.1 is required in order to change this value [1]. We
+# set the value to the old default to allow pre-existing TOTP codes to work.
+#
+# FIXME There should be a warning when creating a TOTP with seed length lower
+# than 112 bits and perhaps even for 128 bits.
+#
+# * RFC 4226, section 4 [2] requires a minimum seed length of 128 bits and
+#   recommends 160 bits. NIST SP 800-63B-4, section 3.1.4.1
+#
+# * NIST SP 800-63B-4, section 3.1.4.1 [3] requires the secret key and its
+#   algorithm to provide at least 112 bits of security strength
+#
+# [0] https://github.com/pyauth/pyotp/pull/205/changes/c87b892967984b2b5506265bc35cd98720b0b686
+# [1] https://github.com/pyauth/pyotp/pull/208/changes/03121fb089c4562cf9fdd07fb9363e437027205e
+# [2] https://www.rfc-editor.org/info/rfc4226/#section-4
+# [3] https://pages.nist.gov/800-63-4/sp800-63b/authenticators/#sf-otp
+class TOTP80(pyotp.TOTP):
+    min_secret_length_bits = 80
+
 
 if typing.TYPE_CHECKING:
     from uuid import UUID
@@ -620,7 +643,7 @@ class SafeEntry(SafeElement):
     _color_key = "color_prop_LcljUMJZ9X"
     _expired_id: int | None = None
     _note_key = "Notes"
-    _otp: TOTP | None = None
+    _otp: TOTP80 | None = None
     _otp_key = "otp"
     _attributes: AttributesModel | None = None
     _attachments: list[Attachment] | None = None
@@ -645,7 +668,7 @@ class SafeEntry(SafeElement):
                 if otp_uri.startswith("otpauth://"):
                     self._otp = parse_uri(otp_uri)  # type: ignore
                 else:
-                    self._otp = TOTP(otp_uri)
+                    self._otp = TOTP80(otp_uri)
             except ValueError:
                 logging.exception("Could not parse OTP")
 
@@ -975,7 +998,7 @@ class SafeEntry(SafeElement):
             updated = True
         elif otp:
             # Creating brand new OTP.
-            self._otp = TOTP(otp, issuer=self.name)
+            self._otp = TOTP80(otp, issuer=self.name)
             updated = True
 
         if updated:
@@ -983,14 +1006,14 @@ class SafeEntry(SafeElement):
             self.updated()
 
     def otp_interval(self) -> int:
-        if isinstance(self._otp, TOTP):
+        if isinstance(self._otp, TOTP80):
             return self._otp.interval
 
         return 30
 
     def otp_lifespan(self) -> float | None:
         """Return seconds until token expires."""
-        if isinstance(self._otp, TOTP):
+        if isinstance(self._otp, TOTP80):
             gnow = GLib.DateTime.new_now_utc()
             now_seconds = gnow.to_unix()
             now_milis = gnow.get_seconds() % 1

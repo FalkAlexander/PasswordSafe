@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 14.1 - 2026-11-20
+- Allow OTP secrets with secrets with 80 bits again to be compatible with
+  existing secrets with pyotp 2.12.1 or newer.
+- Improvements on how clipboards are clean
+- Prevent crashes when using attribute names reserved by pykeepass, e.g. 'otp'
+- Updated translations
+- Fix desktop entry validation
+
 ## 14.0 - 2026-09-17
 - Fix displaying of file paths while sandboxed
 - Update pykeepass to 4.2.0

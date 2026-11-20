@@ -668,7 +668,14 @@ class SafeEntry(SafeElement):
                 if otp_uri.startswith("otpauth://"):
                     self._otp = parse_uri(otp_uri)  # type: ignore
                 else:
-                    self._otp = TOTP80(otp_uri)
+                    try:
+                        totp = TOTP80(otp_uri)
+                    except binascii.Error:
+                        logging.exception("Error creating TOTP code from URI")
+                    except ValueError:
+                        logging.exception("Error creating TOTP code from URI")
+                    else:
+                        self._otp = totp
             except ValueError:
                 logging.exception("Could not parse OTP")
 
@@ -998,8 +1005,15 @@ class SafeEntry(SafeElement):
             updated = True
         elif otp:
             # Creating brand new OTP.
-            self._otp = TOTP80(otp, issuer=self.name)
-            updated = True
+            try:
+                totp = TOTP80(otp, issuer=self.name)
+            except binascii.Error:
+                logging.exception("Error creating TOTP code")
+            except ValueError:
+                logging.exception("Error creating TOTP code")
+            else:
+                self._otp = totp
+                updated = True
 
         if updated:
             self._element.otp = self._otp.provisioning_uri()
